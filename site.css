@@ -13,6 +13,18 @@ body {
     margin: 0
 }
 
+.circletag {
+    display: block;
+    width: 132px;
+    height: 132px;
+    background: #E6E7ED;
+    -moz-border-radius: 66px;
+    -webkit-border-radius: 66px;
+    background-image: url(/images/jerry-shaughnessy.jpg);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
 article,
 aside,
 details,
