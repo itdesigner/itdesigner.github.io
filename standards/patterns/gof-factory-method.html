@@ -265,7 +265,7 @@
             },
             "websiteCloneable": false,
             "collection": {
-                "title": "Jerry Shaughnessy - GoF Patterns",
+                "title": "Jerry Shaughnessy - GoF Patterns - Factory Method",
                 "id": "1sd",
                 "fullUrl": "/patterns/",
                 "type": 10
@@ -674,7 +674,7 @@
                     <section class="Main-content" data-content-field="main-content">
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
-                                <h1>Factory Method Pattern</h1>
+                                <h1>Factory Pattern</h1>
                             </div>
                             <div class="row sqs-row">
                                 <div class="col sqs-col-1 span-1">
@@ -685,6 +685,45 @@
                             </div>
 
                             <div class="row sqs-row">
+                                <!-- TOC -->
+                                <div class="col sqs-col-3 span-3" style="border-color: lightgray; border-style: solid;margin:20px;float:right;">
+                                    <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_15_1471634480282_91413">
+                                        <div class="sqs-block-content" style="padding-top:10px;">
+                                            <h3>CONTENTS</h3>
+                                            <ul class="sqs-aclist-list">
+                                                <li><a href="#intent">Intent</a></li>
+                                                <li><a href="#problem">Problem</a></li>
+                                                <li><a href="#discussion">Discussion</a></li>
+                                                <li><a href="#structure">Structure</a></li>
+                                                <li><a href="#example">Practical Example</a></li>
+                                                <li><a href="#code-sample">Code Samples</a></li>
+                                                <li><a href="#notes">Notes</a></li>
+                                            </ul>
+                                            <h3>OTHER CONSTRUCTIONAL PATTERNS</h3>
+                                            <ul class="sqs-aclist-list">
+                                                <li><a href="/standards/patterns/gof-factory-method.html">Factory Method</a></li>
+                                                <li><a href="/standards/patterns/gof-abstract-factory.html">Abstract Factory</a></li>
+                                                <li><a href="/">Builder</a></li>
+                                                <li><a href="/">Object Pool</a></li>
+                                                <li><a href="/">Prototype</a></li>
+                                                <li><a href="/">Singleton</a></li>
+                                            </ul>
+                                            <h3>OTHER LINKS</h3>
+                                            <ul class="sqs-aclist-list">
+                                                <li><a href="/standards/patterns/patterns-classic.html">Back to Classic Patterns</a></li>
+                                                <li><a href="/patterns.html">Back to Patterns</a></li>
+                                            </ul>
+                                            <h3>Additional Resources</h3>
+                                            <ul class="sqs-aclist-list">
+                                                <li><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" class="external-link" rel="nofollow">Learning JS Design Patterns</a></li>
+                                                <li><a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
+                                                        target="_blank">Gang of Four Book Online</a></li>
+                                                <li><a href="http://enos.itcollege.ee/~jpoial/java/naited/Java-Design-Patterns.pdf" target="_blank">Java Design Patterns Online</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- CONTENT -->
                                 <div class="col sqs-col-8 span-8">
                                     <!-- INTENT -->
                                     <div class="row sqs-row">
@@ -694,8 +733,8 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The classic Factory Method pattern is one of the most used design patterns in any object oriented language. The Factory pattern falls under creational patterns as this pattern provides one of the best
-                                                        ways to create an object. In the Factory pattern, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface.</p>
+                                                    <p>The classic Factory pattern is one of the most used design patterns in any object oriented language. The Factory pattern falls under creational patterns as this pattern provides one of the best ways
+                                                        to create an object. In the Factory pattern, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface.</p>
                                                     <p>It is used when:</p>
                                                     <ul>
                                                         <li>Defining an interface for creating an object; but, we desire that subclasses decide which exact class to instantiate. Essentially, this pattern lets a class defer instantiation to subclasses. </li>
@@ -823,127 +862,9 @@
                                                             same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
                                                         <p>Three different currency types are created. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
                                                         <br>
-                                                        <div class="code-container"><pre class="code-block"><span class="c-keyword">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
-					
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// Factory Pattern Demo</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">Program</span>
-{
-    <span class="c-keyword">public</span> <span class="c-keyword">static</span> <span class="c-keyword">void</span> <span class="c-method">Main</span>(<span class="c-type">string</span>[] args)
-    {
-        CurrencyFactory factory = <span class="c-keyword">new</span> ConcreteCurrencyFactory();
-
-        ICurrency yen = factory.createCurrency(<span class="c-string">&quot;yen&quot;</span>);
-        yen.describe();
-        ICurrency euro = factory.createCurrency(<span class="c-string">&quot;euro&quot;</span>);
-        euro.describe();
-        ICurrency dollar = factory.createCurrency(<span class="c-string">&quot;dollar&quot;</span>);
-        dollar.describe();
-    }
-}
-
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// The &#39;Currency&#39; interface</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">interface</span> ICurrency
-{
-    <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">void</span> <span class="c-method">describe</span>();
-}
-
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// A &#39;ConcreteCurrency&#39; class</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">YenCurrency</span> : ICurrency
-{
-    <span class="c-keyword">public</span> <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-method">YenCurrency</span>()
-    {
-        <span class="c-keyword">this</span>.rate = <span class="c-number">113.40</span>;
-        <span class="c-keyword">this</span>.country = <span class="c-string">&quot;Japan&quot;</span>;
-        <span class="c-keyword">this</span>.type = <span class="c-string">&quot;yen&quot;</span>;
-    }
-    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-method">describe</span>()
-    {
-        Console.WriteLine(<span class="c-keyword">this</span>.type + <span class="c-string">&quot;: from &quot;</span> + <span class="c-keyword">this</span>.country + <span class="c-string">&quot; currently at &quot;</span> + <span class="c-keyword">this</span>.rate);
-    }
-}
-
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// A &#39;ConcreteCurrency&#39; class</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">EuroCurrency</span> : ICurrency
-{
-    <span class="c-keyword">public</span> <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-method">EuroCurrency</span>()
-    {
-        <span class="c-keyword">this</span>.rate = <span class="c-number">0.86</span>;
-        <span class="c-keyword">this</span>.country = <span class="c-string">&quot;European Union&quot;</span>;
-        <span class="c-keyword">this</span>.type = <span class="c-string">&quot;euro&quot;</span>;
-    }
-    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-method">describe</span>()
-    {
-        Console.WriteLine(<span class="c-keyword">this</span>.type + <span class="c-string">&quot;: from &quot;</span> + <span class="c-keyword">this</span>.country + <span class="c-string">&quot; currently at &quot;</span> + <span class="c-keyword">this</span>.rate);
-    }
-}
-
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// A &#39;ConcreteCurrency&#39; class</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">DollarCurrency</span> : ICurrency
-{
-    <span class="c-keyword">public</span> <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
-    <span class="c-keyword">public</span> <span class="c-method">DollarCurrency</span>()
-    {
-        <span class="c-keyword">this</span>.rate = <span class="c-number">1.00</span>;
-        <span class="c-keyword">this</span>.country = <span class="c-string">&quot;United States&quot;</span>;
-        <span class="c-keyword">this</span>.type = <span class="c-string">&quot;dollar&quot;</span>;
-    }
-    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-method">describe</span>()
-    {
-        Console.WriteLine(<span class="c-keyword">this</span>.type + <span class="c-string">&quot;: from &quot;</span> + <span class="c-keyword">this</span>.country + <span class="c-string">&quot; currently at &quot;</span> + <span class="c-keyword">this</span>.rate);
-    }
-}
-
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// The Currency Factory Abstract Class</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">abstract</span> <span class="c-keyword">class</span> <span class="c-class">CurrencyFactory</span>
-{
-    <span class="c-keyword">public</span> <span class="c-keyword">abstract</span> ICurrency <span class="c-method">createCurrency</span>(<span class="c-type">string</span> currencyType);
-
-}
-
-<span class="c-comment">/// &lt;summary&gt;</span>
-<span class="c-comment">/// A &#39;ConcreteCreator&#39; class</span>
-<span class="c-comment">/// &lt;/summary&gt;</span>
-<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">ConcreteCurrencyFactory</span> : CurrencyFactory
-{
-    <span class="c-keyword">public</span> <span class="c-keyword">override</span> ICurrency <span class="c-method">createCurrency</span>(<span class="c-type">string</span> currencyType)
-    {
-        <span class="c-keyword">switch</span> (currencyType)
-        {
-            <span class="c-keyword">case</span> <span class="c-string">&quot;yen&quot;</span>:
-                <span class="c-keyword">return</span> <span class="c-keyword">new</span> <span class="c-method">YenCurrency</span>();
-            <span class="c-keyword">case</span> <span class="c-string">&quot;euro&quot;</span>:
-                <span class="c-keyword">return</span> <span class="c-keyword">new</span> <span class="c-method">EuroCurrency</span>();
-            <span class="c-keyword">case</span> <span class="c-string">&quot;dollar&quot;</span>:
-                <span class="c-keyword">return</span> <span class="c-keyword">new</span> <span class="c-method">DollarCurrency</span>();
-            <span class="c-keyword">default</span>:
-                <span class="c-keyword">throw</span> <span class="c-keyword">new</span> <span class="c-method">ApplicationException</span>(<span class="c-type">string</span>.Format(<span class="c-string">&quot;Currency &#39;{0}&#39; cannot be created&quot;</span>, currencyType));
-        }
-    }
-}
-</pre></div>
+                                                        <div id="NET-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-csharp.html" />
+                                                        </div>
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
@@ -954,97 +875,9 @@
                                                             same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
                                                         <p>Three different currency types are created. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
                                                         <br>
-                                                        <div class="code-container"><pre class="code-block"><span class="j-keyword">public</span> <span class="j-keyword">class</span> <span class="j-class">MyClass</span> <span class="j-operator">{</span>
-    <span class="j-keyword">public</span> <span class="j-keyword">static</span> <span class="j-type">void</span> <span class="j-method-name">main</span><span class="j-operator">(</span>String args<span class="j-operator">[])</span> <span class="j-operator">{</span>
-        <span class="j-comment">// create a yen</span>
-        ICurrency currency <span class="j-operator">=</span> CurrencyFactory<span class="j-operator">.</span><span class="j-method">createCurrency</span><span class="j-operator">(</span><span class="j-string">&quot;yen&quot;</span><span class="j-operator">);</span>
-        currency<span class="j-operator">.</span><span class="j-method">describe</span><span class="j-operator">();</span>
-
-        <span class="j-comment">// create a euro</span>
-        currency <span class="j-operator">=</span> CurrencyFactory<span class="j-operator">.</span><span class="j-method">createCurrency</span><span class="j-operator">(</span><span class="j-string">&quot;euro&quot;</span><span class="j-operator">);</span>
-        currency<span class="j-operator">.</span><span class="j-method">describe</span><span class="j-operator">();</span>
-
-        <span class="j-comment">// create a dollar</span>
-        currency <span class="j-operator">=</span> CurrencyFactory<span class="j-operator">.</span><span class="j-method">createCurrency</span><span class="j-operator">(</span><span class="j-string">&quot;dollar&quot;</span><span class="j-operator">);</span>
-        currency<span class="j-operator">.</span><span class="j-method">describe</span><span class="j-operator">();</span>
-    <span class="j-operator">}</span>
-<span class="j-operator">}</span>
-<span class="j-keyword">interface</span> <span class="j-class">ICurrency</span>
-<span class="j-operator">{</span>
-    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">();</span>
-<span class="j-operator">}</span>
-<span class="j-comment">/// &lt;summary&gt;</span>
-<span class="j-comment">/// A &#39;ConcreteCurrency&#39; class</span>
-<span class="j-comment">/// &lt;/summary&gt;</span>
-<span class="j-keyword">class</span> <span class="j-class">YenCurrency</span> <span class="j-keyword">implements</span> ICurrency
-<span class="j-operator">{</span>
-    <span class="j-keyword">public</span> String type<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> <span class="j-type">double</span> rate<span class="j-operator">=</span><span class="j-number">0.00</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> String country<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> <span class="j-method-name">YenCurrency</span><span class="j-operator">()</span>
-    <span class="j-operator">{</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span> <span class="j-operator">=</span> <span class="j-number">113.40</span><span class="j-operator">;</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">=</span> <span class="j-string">&quot;Japan&quot;</span><span class="j-operator">;</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">=</span> <span class="j-string">&quot;yen&quot;</span><span class="j-operator">;</span>
-    <span class="j-operator">}</span>
-    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">()</span>
-    <span class="j-operator">{</span>
-        System<span class="j-operator">.</span><span class="j-method">out</span><span class="j-operator">.</span><span class="j-method">println</span><span class="j-operator">(</span><span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">+</span> <span class="j-string">&quot;: from &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">+</span> <span class="j-string">&quot; currently at &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span><span class="j-operator">);</span>
-    <span class="j-operator">}</span>
-<span class="j-operator">}</span>
-<span class="j-comment">/// &lt;summary&gt;</span>
-<span class="j-comment">/// A &#39;ConcreteCurrency&#39; class</span>
-<span class="j-comment">/// &lt;/summary&gt;</span>
-<span class="j-keyword">class</span> <span class="j-class">EuroCurrency</span> <span class="j-keyword">implements</span> ICurrency
-<span class="j-operator">{</span>
-    <span class="j-keyword">public</span> String type<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> <span class="j-type">double</span> rate<span class="j-operator">=</span><span class="j-number">0.00</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> String country<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> <span class="j-method-name">EuroCurrency</span><span class="j-operator">()</span>
-    <span class="j-operator">{</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span> <span class="j-operator">=</span> <span class="j-number">0.86</span><span class="j-operator">;</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">=</span> <span class="j-string">&quot;European Union&quot;</span><span class="j-operator">;</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">=</span> <span class="j-string">&quot;euro&quot;</span><span class="j-operator">;</span>
-    <span class="j-operator">}</span>
-    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">()</span>
-    <span class="j-operator">{</span>
-        System<span class="j-operator">.</span><span class="j-method">out</span><span class="j-operator">.</span><span class="j-method">println</span><span class="j-operator">(</span><span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">+</span> <span class="j-string">&quot;: from &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">+</span> <span class="j-string">&quot; currently at &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span><span class="j-operator">);</span>
-    <span class="j-operator">}</span>
-<span class="j-operator">}</span>
-<span class="j-comment">/// &lt;summary&gt;</span>
-<span class="j-comment">/// A &#39;ConcreteCurrency&#39; class</span>
-<span class="j-comment">/// &lt;/summary&gt;</span>
-<span class="j-keyword">class</span> <span class="j-class">DollarCurrency</span> <span class="j-keyword">implements</span> ICurrency
-<span class="j-operator">{</span>
-    <span class="j-keyword">public</span> String type<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> <span class="j-type">double</span> rate<span class="j-operator">=</span><span class="j-number">0.00</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> String country<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
-    <span class="j-keyword">public</span> <span class="j-method-name">DollarCurrency</span><span class="j-operator">()</span>
-    <span class="j-operator">{</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span> <span class="j-operator">=</span> <span class="j-number">1.00</span><span class="j-operator">;</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">=</span> <span class="j-string">&quot;United States&quot;</span><span class="j-operator">;</span>
-        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">=</span> <span class="j-string">&quot;dollar&quot;</span><span class="j-operator">;</span>
-    <span class="j-operator">}</span>
-    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">()</span>
-    <span class="j-operator">{</span>
-        System<span class="j-operator">.</span><span class="j-method">out</span><span class="j-operator">.</span><span class="j-method">println</span><span class="j-operator">(</span><span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">+</span> <span class="j-string">&quot;: from &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">+</span> <span class="j-string">&quot; currently at &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span><span class="j-operator">);</span>
-    <span class="j-operator">}</span>
-<span class="j-operator">}</span>
-<span class="j-keyword">class</span> <span class="j-class">CurrencyFactory</span>
-<span class="j-operator">{</span>
-    <span class="j-keyword">public</span> <span class="j-keyword">static</span> ICurrency <span class="j-method-name">createCurrency</span><span class="j-operator">(</span>String criteria<span class="j-operator">)</span>
-    <span class="j-operator">{</span>
-        <span class="j-keyword">if</span> <span class="j-operator">(</span> criteria<span class="j-operator">.</span><span class="j-method">equals</span><span class="j-operator">(</span><span class="j-string">&quot;yen&quot;</span><span class="j-operator">)</span> <span class="j-operator">)</span>
-            <span class="j-keyword">return</span> <span class="j-keyword">new</span> <span class="j-method-name">YenCurrency</span><span class="j-operator">();</span>
-        <span class="j-keyword">else</span> <span class="j-method-name">if</span> <span class="j-operator">(</span> criteria<span class="j-operator">.</span><span class="j-method">equals</span><span class="j-operator">(</span><span class="j-string">&quot;euro&quot;</span><span class="j-operator">)</span> <span class="j-operator">)</span>
-            <span class="j-keyword">return</span> <span class="j-keyword">new</span> <span class="j-method-name">EuroCurrency</span><span class="j-operator">();</span>
-        <span class="j-keyword">else</span> <span class="j-method-name">if</span> <span class="j-operator">(</span> criteria<span class="j-operator">.</span><span class="j-method">equals</span><span class="j-operator">(</span><span class="j-string">&quot;dollar&quot;</span><span class="j-operator">)</span> <span class="j-operator">)</span>
-            <span class="j-keyword">return</span> <span class="j-keyword">new</span> <span class="j-method-name">DollarCurrency</span><span class="j-operator">();</span>
-        
-        <span class="j-keyword">return</span> <span class="j-keyword">null</span><span class="j-operator">;</span>
-    <span class="j-operator">}</span>
-<span class="j-operator">}</span>
-</pre></div>
+                                                        <div id="JAVA-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-java.html" />
+                                                        </div>
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
@@ -1056,88 +889,9 @@
                                                         <p>Three different currency types are created; all are stored in the same array. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
                                                         <p>The log function is just a helper which collects and displays results.</p>
                                                         <br>
-                                                        <div class="code-container"><pre class="code-block"><span class="ts-keyword">interface</span> ICurrency {
-    name: <span class="ts-type">string</span>;
-    rate: <span class="ts-type">number</span>;
-    country: <span class="ts-type">string</span>;
-    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span>;
-    
-}
-<span class="ts-keyword">class</span> YenCurrency <span class="ts-keyword">implements</span> ICurrency {
-    name: <span class="ts-type">string</span>;
-    rate: <span class="ts-type">number</span>;
-    country: <span class="ts-type">string</span>;
-    <span class="ts-keyword">constructor</span>() {
-        <span class="ts-keyword">this</span>.rate <span class="ts-text">=</span> <span class="ts-number">113.40</span>;
-        <span class="ts-keyword">this</span>.country <span class="ts-text">=</span> <span class="ts-string">&#39;Japan&#39;</span>;
-        <span class="ts-keyword">this</span>.name <span class="ts-text">=</span> <span class="ts-string">&#39;yen&#39;</span>;
-    }
-    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
-        log.add(<span class="ts-keyword">this</span>.name <span class="ts-text">+</span> <span class="ts-string">&#39;: from &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.country <span class="ts-text">+</span> <span class="ts-string">&#39; currently at &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.rate);
-    }
-}
-<span class="ts-keyword">class</span> EuroCurrency <span class="ts-keyword">implements</span> ICurrency {
-    name: <span class="ts-type">string</span>;
-    rate: <span class="ts-type">number</span>;
-    country: <span class="ts-type">string</span>;
-    <span class="ts-keyword">constructor</span>() {
-        <span class="ts-keyword">this</span>.rate <span class="ts-text">=</span> <span class="ts-number">0.86</span>;
-        <span class="ts-keyword">this</span>.country <span class="ts-text">=</span> <span class="ts-string">&#39;European Union&#39;</span>;
-        <span class="ts-keyword">this</span>.name <span class="ts-text">=</span> <span class="ts-string">&#39;euro&#39;</span>;
-    }
-    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
-        log.add(<span class="ts-keyword">this</span>.name <span class="ts-text">+</span> <span class="ts-string">&#39;: from &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.country <span class="ts-text">+</span> <span class="ts-string">&#39; currently at &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.rate);
-    }
-}
-<span class="ts-keyword">class</span> DollarCurrency <span class="ts-keyword">implements</span> ICurrency {
-    name: <span class="ts-type">string</span>;
-    rate: <span class="ts-type">number</span>;
-    country: <span class="ts-type">string</span>;
-    <span class="ts-keyword">constructor</span>() {
-        <span class="ts-keyword">this</span>.rate <span class="ts-text">=</span> <span class="ts-number">1.00</span>;
-        <span class="ts-keyword">this</span>.country <span class="ts-text">=</span> <span class="ts-string">&#39;United States&#39;</span>;
-        <span class="ts-keyword">this</span>.name <span class="ts-text">=</span> <span class="ts-string">&#39;dollar&#39;</span>;
-    }
-    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
-        log.add(<span class="ts-keyword">this</span>.name <span class="ts-text">+</span> <span class="ts-string">&#39;: from &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.country <span class="ts-text">+</span> <span class="ts-string">&#39; currently at &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.rate);
-    }
-}
-<span class="ts-keyword">class</span> Factory {
-    <span class="ts-keyword">public</span> <span class="ts-keyword">static</span> createCurrency(type: <span class="ts-type">string</span>)<span class="ts-text">:</span> ICurrency {
-        <span class="ts-keyword">var</span> _currency: <span class="ts-type">ICurrency</span>;
-        <span class="ts-keyword">if</span> (type <span class="ts-text">===</span> <span class="ts-string">&#39;yen&#39;</span>) {
-            _currency <span class="ts-text">=</span> <span class="ts-keyword">new</span> YenCurrency();
-        } <span class="ts-keyword">else</span> <span class="ts-keyword">if</span> (type <span class="ts-text">===</span> <span class="ts-string">&#39;euro&#39;</span>) {
-            _currency <span class="ts-text">=</span> <span class="ts-keyword">new</span> EuroCurrency();
-        } <span class="ts-keyword">else</span> <span class="ts-keyword">if</span> (type <span class="ts-text">===</span> <span class="ts-string">&#39;dollar&#39;</span>) {
-            _currency <span class="ts-text">=</span> <span class="ts-keyword">new</span> DollarCurrency();
-        }
-        <span class="ts-keyword">return</span> _currency;
-    }
-}
-<span class="c-comment">// log helper class</span>
-<span class="ts-keyword">class</span> log {
-    <span class="ts-keyword">private</span> <span class="ts-keyword">static</span> _log: <span class="ts-type">string</span> <span class="ts-text">=</span> <span class="ts-string">&#39;&#39;</span>;
-    <span class="ts-keyword">static</span> add(message: <span class="ts-type">string</span>)<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
-        log._log <span class="ts-text">+=</span> message <span class="ts-text">+</span> <span class="ts-string">&#39;\n&#39;</span>;
-    }
-    <span class="ts-keyword">static</span> show()<span class="ts-text">:</span> <span class="ts-type">string</span> {
-        <span class="ts-keyword">return</span> log._log;
-        log._log <span class="ts-text">=</span> <span class="ts-string">&#39;&#39;</span>;
-    }
-}
-
-<span class="ts-keyword">var</span> currencies: <span class="ts-type">ICurrency</span>[] <span class="ts-text">=</span>[];
-currencies.push(Factory.createCurrency(<span class="ts-string">&#39;yen&#39;</span>));
-currencies.push(Factory.createCurrency(<span class="ts-string">&quot;euro&quot;</span>));
-currencies.push(Factory.createCurrency(<span class="ts-string">&quot;dollar&quot;</span>));
-    
-<span class="ts-keyword">for</span> (<span class="ts-keyword">var</span> i <span class="ts-text">=</span> <span class="ts-iterator">0</span>, len <span class="ts-text">=</span> currencies.length; i <span class="ts-text">&lt;</span> len; i<span class="ts-text">++</span>) {
-    currencies[i].describe();
-}
-
-<span class="ts-special">document</span>.body.innerHTML <span class="ts-text">=</span> log.show();
-</pre></div>
+                                                        <div id="TS-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-ts.html" />
+                                                        </div>
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
@@ -1149,68 +903,9 @@ currencies.push(Factory.createCurrency(<span class="ts-string">&quot;dollar&quot
                                                         <p>Three different currency types are created; all are stored in the same array. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
                                                         <p>The log function is just a helper which collects and displays results.</p>
                                                         <br>
-                                                        <div class="code-container"><pre class="code-block"><span class="js-keyword">function</span> Factory() {
-    <span class="js-keyword">this</span>.createCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> (type) {
-        <span class="js-keyword">var</span> currency;
-  
-        <span class="js-keyword">if</span> (type <span class="js-text">===</span> <span class="js-string"">&quot;yen&quot;</span>) {
-            currency <span class="js-text">=</span> <span class="js-keyword">new</span> YenCurrency();
-        } <span class="js-keyword">else</span> <span class="js-keyword">if</span> (type <span class="js-text">===</span> <span class="js-string">&quot;euro&quot;</span>) {
-            currency <span class="js-text">=</span> <span class="js-keyword">new</span> EuroCurrency();
-        } <span class="js-keyword">else</span> <span class="js-keyword">if</span> (type <span class="js-text">===</span> <span class="js-string">&quot;dollar&quot;</span>) {
-            currency <span class="js-text">=</span> <span class="js-keyword">new</span> DollarCurrency();
-        }
-  
-        currency.type <span class="js-text">=</span> type;
-  
-        currency.describe <span class="js-text">=</span> <span class="js-keyword">function</span> () {
-            log.add(<span class="js-keyword">this</span>.type <span class="js-text">+</span> <span class="js-string">&quot;: from &quot;</span> <span class="js-text">+</span> <span class="js-keyword">this</span>.country <span class="js-text">+</span> <span class="js-string">&quot; currently at &quot;</span> <span class="js-text">+</span> <span class="js-keyword">this</span>.rate);
-        }
-  
-        <span class="js-keyword">return</span> currency;
-    }
-}
-  
-<span class="js-keyword">var</span> YenCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> () {
-    <span class="js-keyword">this</span>.rate <span class="js-text">=</span> <span class="js-string">&quot;113.40&quot;</span>;
-    <span class="js-keyword">this</span>.country <span class="js-text">=</span> <span class="js-string">&quot;Japan&quot;</span>;
-};
-  
-<span class="js-keyword">var</span> EuroCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> () {
-    <span class="js-keyword">this</span>.rate <span class="js-text">=</span> <span class="js-string">&quot;0.86&quot;</span>;
-    <span class="js-keyword">this</span>.country <span class="js-text">=</span> <span class="js-string">&quot;European Union&quot;</span>;
-};
-  
-<span class="js-keyword">var</span> DollarCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> () {
-    <span class="js-keyword">this</span>.rate <span class="js-text">=</span> <span class="js-string">&quot;1&quot;</span>;
-    <span class="js-keyword">this</span>.country <span class="js-text">=</span> <span class="js-string">&quot;United States&quot;</span>;
-};
-  
-<span class="c-comment">// log helper</span>
-<span class="js-keyword">var</span> log <span class="js-text">=</span> (<span class="js-keyword">function</span> () {
-    <span class="js-keyword">var</span> log <span class="js-text">=</span> <span class="js-string">&quot;&quot;</span>;
-  
-    <span class="js-keyword">return</span> {
-        add<span class="js-text">:</span> <span class="js-keyword">function</span> (msg) { log <span class="js-text">+=</span> msg <span class="js-text">+</span> <span class="js-string">&quot;\n&quot;</span>; },
-        show<span class="js-text">:</span> <span class="js-keyword">function</span> () { alert(log); log <span class="js-text">=</span> <span class="js-string">&quot;&quot;</span>; }
-    }
-})();
-  
-<span class="js-keyword">function</span> run() {
-    <span class="js-keyword">var</span> currencies <span class="js-text">=</span> [];
-    <span class="js-keyword">var</span> factory <span class="js-text">=</span> <span class="js-keyword">new</span> Factory();
-  
-    currencies.push(factory.createCurrency(<span class="js-string">&quot;yen&quot;</span>));
-    currencies.push(factory.createCurrency(<span class="js-string">&quot;euro&quot;</span>));
-    currencies.push(factory.createCurrency(<span class="js-string">&quot;dollar&quot;</span>));
-     
-    <span class="js-keyword">for</span> (<span class="js-keyword">var</span> i <span class="js-text">=</span> <span class="ts-iterator">0</span>, len <span class="js-text">=</span> currencies.length; i <span class="js-text">&lt;</span> len; i<span class="js-text">++</span>) {
-        currencies[i].describe();
-    }
-  
-    log.show();
-}
-</pre></div>
+                                                        <div id="JS-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-js.html" />
+                                                        </div>
 
                                                     </div>
                                                 </div>
@@ -1231,19 +926,6 @@ currencies.push(Factory.createCurrency(<span class="ts-string">&quot;dollar&quot
                                                         <li style="padding-left: 10px;">Consider designing an internal "object pool" that will allow objects to be reused instead of created from scratch.</li>
                                                         <li style="padding-left: 10px;">Consider making all constructors private or protected.</li>
                                                     </ol>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ADVANTAGES/DISADVANTAGES -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
-                                            <div class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header panel-header-light">&nbsp;&nbsp;
-                                                    <h3>Advantages / Disadvantages</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>N/A</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1274,43 +956,7 @@ currencies.push(Factory.createCurrency(<span class="ts-string">&quot;dollar&quot
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col sqs-col-3 span-3" style="border-color: lightgray; border-style: solid;margin:20px">
-                                    <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_15_1471634480282_91413">
-                                        <div class="sqs-block-content" style="padding-top:10px;">
-                                            <h3>CONTENTS</h3>
-                                            <ul class="sqs-aclist-list">
-                                                <li><a href="#intent">Intent</a></li>
-                                                <li><a href="#problem">Problem</a></li>
-                                                <li><a href="#discussion">Discussion</a></li>
-                                                <li><a href="#structure">Structure</a></li>
-                                                <li><a href="#example">Practical Example</a></li>
-                                                <li><a href="#code-sample">Code Samples</a></li>
-                                                <li><a href="#notes">Notes</a></li>
-                                            </ul>
-                                            <h3>OTHER CONSTRUCTIONAL PATTERNS</h3>
-                                            <ul class="sqs-aclist-list">
-                                                <li><a href="/standards/patterns/gof-factory-method.html">Factory Method</a></li>
-                                                <li><a href="/standards/patterns/gof-abstract-factory.html">Abstract Factory</a></li>
-                                                <li><a href="/">Builder</a></li>
-                                                <li><a href="/">Object Pool</a></li>
-                                                <li><a href="/">Prototype</a></li>
-                                                <li><a href="/">Singleton</a></li>
-                                            </ul>
-                                            <h3>OTHER LINKS</h3>
-                                            <ul class="sqs-aclist-list">
-                                                <li><a href="/standards/patterns/patterns-classic.html">Back to Classic Patterns</a></li>
-                                                <li><a href="/patterns.html">Back to Patterns</a></li>
-                                            </ul>
-                                            <h3>Additional Resources</h3>
-                                            <ul class="sqs-aclist-list">
-                                                <li><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" class="external-link" rel="nofollow">Learning JS Design Patterns</a></li>
-                                                <li><a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
-                                                        target="_blank">Gang of Four Book Online</a></li>
-                                                <li><a href="http://enos.itcollege.ee/~jpoial/java/naited/Java-Design-Patterns.pdf" target="_blank">Java Design Patterns Online</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col sqs-col-1 span-1">
                                     <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-a20918e6bc3c012fcfaf">
                                         <div class="sqs-block-content">&nbsp;</div>
@@ -1372,6 +1018,7 @@ currencies.push(Factory.createCurrency(<span class="ts-string">&quot;dollar&quot
 
     <script src="/scripts/site-bundle.js" type="text/javascript"></script>
     <script src="/scripts/code-samples.js" type="text/javascript"></script>
+    <script src="/scripts/wm-html-include.min.js"></script>
     <script type="text/javascript" data-sqs-type="imageloader-bootstraper">
         (function() {
             if (window.ImageLoader) {

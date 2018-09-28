@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typscript Code Sample Page</title>
+</head>
+
+<body>
+    <div class="code-container"><pre class="code-block"><span class="ts-keyword">interface</span> ICurrency {
+    name: <span class="ts-type">string</span>;
+    rate: <span class="ts-type">number</span>;
+    country: <span class="ts-type">string</span>;
+    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span>;
+    
+}
+<span class="ts-keyword">class</span> YenCurrency <span class="ts-keyword">implements</span> ICurrency {
+    name: <span class="ts-type">string</span>;
+    rate: <span class="ts-type">number</span>;
+    country: <span class="ts-type">string</span>;
+    <span class="ts-keyword">constructor</span>() {
+        <span class="ts-keyword">this</span>.rate <span class="ts-text">=</span> <span class="ts-number">113.40</span>;
+        <span class="ts-keyword">this</span>.country <span class="ts-text">=</span> <span class="ts-string">&#39;Japan&#39;</span>;
+        <span class="ts-keyword">this</span>.name <span class="ts-text">=</span> <span class="ts-string">&#39;yen&#39;</span>;
+    }
+    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
+        log.add(<span class="ts-keyword">this</span>.name <span class="ts-text">+</span> <span class="ts-string">&#39;: from &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.country <span class="ts-text">+</span> <span class="ts-string">&#39; currently at &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.rate);
+    }
+}
+<span class="ts-keyword">class</span> EuroCurrency <span class="ts-keyword">implements</span> ICurrency {
+    name: <span class="ts-type">string</span>;
+    rate: <span class="ts-type">number</span>;
+    country: <span class="ts-type">string</span>;
+    <span class="ts-keyword">constructor</span>() {
+        <span class="ts-keyword">this</span>.rate <span class="ts-text">=</span> <span class="ts-number">0.86</span>;
+        <span class="ts-keyword">this</span>.country <span class="ts-text">=</span> <span class="ts-string">&#39;European Union&#39;</span>;
+        <span class="ts-keyword">this</span>.name <span class="ts-text">=</span> <span class="ts-string">&#39;euro&#39;</span>;
+    }
+    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
+        log.add(<span class="ts-keyword">this</span>.name <span class="ts-text">+</span> <span class="ts-string">&#39;: from &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.country <span class="ts-text">+</span> <span class="ts-string">&#39; currently at &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.rate);
+    }
+}
+<span class="ts-keyword">class</span> DollarCurrency <span class="ts-keyword">implements</span> ICurrency {
+    name: <span class="ts-type">string</span>;
+    rate: <span class="ts-type">number</span>;
+    country: <span class="ts-type">string</span>;
+    <span class="ts-keyword">constructor</span>() {
+        <span class="ts-keyword">this</span>.rate <span class="ts-text">=</span> <span class="ts-number">1.00</span>;
+        <span class="ts-keyword">this</span>.country <span class="ts-text">=</span> <span class="ts-string">&#39;United States&#39;</span>;
+        <span class="ts-keyword">this</span>.name <span class="ts-text">=</span> <span class="ts-string">&#39;dollar&#39;</span>;
+    }
+    describe()<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
+        log.add(<span class="ts-keyword">this</span>.name <span class="ts-text">+</span> <span class="ts-string">&#39;: from &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.country <span class="ts-text">+</span> <span class="ts-string">&#39; currently at &#39;</span> <span class="ts-text">+</span> <span class="ts-keyword">this</span>.rate);
+    }
+}
+<span class="ts-keyword">class</span> Factory {
+    <span class="ts-keyword">public</span> <span class="ts-keyword">static</span> createCurrency(type: <span class="ts-type">string</span>)<span class="ts-text">:</span> ICurrency {
+        <span class="ts-keyword">var</span> _currency: <span class="ts-type">ICurrency</span>;
+        <span class="ts-keyword">if</span> (type <span class="ts-text">===</span> <span class="ts-string">&#39;yen&#39;</span>) {
+            _currency <span class="ts-text">=</span> <span class="ts-keyword">new</span> YenCurrency();
+        } <span class="ts-keyword">else</span> <span class="ts-keyword">if</span> (type <span class="ts-text">===</span> <span class="ts-string">&#39;euro&#39;</span>) {
+            _currency <span class="ts-text">=</span> <span class="ts-keyword">new</span> EuroCurrency();
+        } <span class="ts-keyword">else</span> <span class="ts-keyword">if</span> (type <span class="ts-text">===</span> <span class="ts-string">&#39;dollar&#39;</span>) {
+            _currency <span class="ts-text">=</span> <span class="ts-keyword">new</span> DollarCurrency();
+        }
+        <span class="ts-keyword">return</span> _currency;
+    }
+}
+<span class="c-comment">// log helper class</span>
+<span class="ts-keyword">class</span> log {
+    <span class="ts-keyword">private</span> <span class="ts-keyword">static</span> _log: <span class="ts-type">string</span> <span class="ts-text">=</span> <span class="ts-string">&#39;&#39;</span>;
+    <span class="ts-keyword">static</span> add(message: <span class="ts-type">string</span>)<span class="ts-text">:</span> <span class="ts-keyword">void</span> {
+        log._log <span class="ts-text">+=</span> message <span class="ts-text">+</span> <span class="ts-string">&#39;\n&#39;</span>;
+    }
+    <span class="ts-keyword">static</span> show()<span class="ts-text">:</span> <span class="ts-type">string</span> {
+        <span class="ts-keyword">return</span> log._log;
+        log._log <span class="ts-text">=</span> <span class="ts-string">&#39;&#39;</span>;
+    }
+}
+
+<span class="ts-keyword">var</span> currencies: <span class="ts-type">ICurrency</span>[] <span class="ts-text">=</span>[];
+currencies.push(Factory.createCurrency(<span class="ts-string">&#39;yen&#39;</span>));
+currencies.push(Factory.createCurrency(<span class="ts-string">&quot;euro&quot;</span>));
+currencies.push(Factory.createCurrency(<span class="ts-string">&quot;dollar&quot;</span>));
+    
+<span class="ts-keyword">for</span> (<span class="ts-keyword">var</span> i <span class="ts-text">=</span> <span class="ts-iterator">0</span>, len <span class="ts-text">=</span> currencies.length; i <span class="ts-text">&lt;</span> len; i<span class="ts-text">++</span>) {
+    currencies[i].describe();
+}
+
+<span class="ts-special">document</span>.body.innerHTML <span class="ts-text">=</span> log.show();
+</pre></div>
+</body>
+
+</html>

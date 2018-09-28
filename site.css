@@ -30206,7 +30206,8 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 }
 
 .panel-content {
-    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 20px;
     background-color: white;
     margin-top: 10px;
 }
@@ -30224,14 +30225,14 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 /* Style the buttons inside the tab */
 
 .tab button {
-    background-color: inherit;
+    /*background-color: inherit;*/
     float: left;
-    border: none;
+    /* border: none; */
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 6px 10px;
     transition: 0.3s;
-    font-size: 17px;
+    /* font-size: 17px; */
 }
 
 
@@ -30253,7 +30254,7 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 
 .tabcontent {
     display: none;
-    padding: 6px 12px;
+    /* padding: 6px 12px; */
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
     /* border: 1px solid #ddd; */
@@ -30289,7 +30290,8 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 /* Code styles */
 
 .code-block {
-    margin: 15px;
+    margin-top: 15px;
+    margin-left: 10px;
     line-height: 125%;
 }
 

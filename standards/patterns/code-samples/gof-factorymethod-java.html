@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Java Code Sample Page</title>
+</head>
+
+<body>
+
+    <div class="code-container"><pre class="code-block"><span class="j-keyword">public</span> <span class="j-keyword">class</span> <span class="j-class">MyClass</span> <span class="j-operator">{</span>
+    <span class="j-keyword">public</span> <span class="j-keyword">static</span> <span class="j-type">void</span> <span class="j-method-name">main</span><span class="j-operator">(</span>String args<span class="j-operator">[])</span> <span class="j-operator">{</span>
+        <span class="j-comment">// create a yen</span>
+        ICurrency currency <span class="j-operator">=</span> CurrencyFactory<span class="j-operator">.</span><span class="j-method">createCurrency</span><span class="j-operator">(</span><span class="j-string">&quot;yen&quot;</span><span class="j-operator">);</span>
+        currency<span class="j-operator">.</span><span class="j-method">describe</span><span class="j-operator">();</span>
+
+        <span class="j-comment">// create a euro</span>
+        currency <span class="j-operator">=</span> CurrencyFactory<span class="j-operator">.</span><span class="j-method">createCurrency</span><span class="j-operator">(</span><span class="j-string">&quot;euro&quot;</span><span class="j-operator">);</span>
+        currency<span class="j-operator">.</span><span class="j-method">describe</span><span class="j-operator">();</span>
+
+        <span class="j-comment">// create a dollar</span>
+        currency <span class="j-operator">=</span> CurrencyFactory<span class="j-operator">.</span><span class="j-method">createCurrency</span><span class="j-operator">(</span><span class="j-string">&quot;dollar&quot;</span><span class="j-operator">);</span>
+        currency<span class="j-operator">.</span><span class="j-method">describe</span><span class="j-operator">();</span>
+    <span class="j-operator">}</span>
+<span class="j-operator">}</span>
+<span class="j-keyword">interface</span> <span class="j-class">ICurrency</span>
+<span class="j-operator">{</span>
+    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">();</span>
+<span class="j-operator">}</span>
+<span class="j-comment">/// &lt;summary&gt;</span>
+<span class="j-comment">/// A &#39;ConcreteCurrency&#39; class</span>
+<span class="j-comment">/// &lt;/summary&gt;</span>
+<span class="j-keyword">class</span> <span class="j-class">YenCurrency</span> <span class="j-keyword">implements</span> ICurrency
+<span class="j-operator">{</span>
+    <span class="j-keyword">public</span> String type<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> <span class="j-type">double</span> rate<span class="j-operator">=</span><span class="j-number">0.00</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> String country<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> <span class="j-method-name">YenCurrency</span><span class="j-operator">()</span>
+    <span class="j-operator">{</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span> <span class="j-operator">=</span> <span class="j-number">113.40</span><span class="j-operator">;</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">=</span> <span class="j-string">&quot;Japan&quot;</span><span class="j-operator">;</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">=</span> <span class="j-string">&quot;yen&quot;</span><span class="j-operator">;</span>
+    <span class="j-operator">}</span>
+    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">()</span>
+    <span class="j-operator">{</span>
+        System<span class="j-operator">.</span><span class="j-method">out</span><span class="j-operator">.</span><span class="j-method">println</span><span class="j-operator">(</span><span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">+</span> <span class="j-string">&quot;: from &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">+</span> <span class="j-string">&quot; currently at &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span><span class="j-operator">);</span>
+    <span class="j-operator">}</span>
+<span class="j-operator">}</span>
+<span class="j-comment">/// &lt;summary&gt;</span>
+<span class="j-comment">/// A &#39;ConcreteCurrency&#39; class</span>
+<span class="j-comment">/// &lt;/summary&gt;</span>
+<span class="j-keyword">class</span> <span class="j-class">EuroCurrency</span> <span class="j-keyword">implements</span> ICurrency
+<span class="j-operator">{</span>
+    <span class="j-keyword">public</span> String type<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> <span class="j-type">double</span> rate<span class="j-operator">=</span><span class="j-number">0.00</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> String country<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> <span class="j-method-name">EuroCurrency</span><span class="j-operator">()</span>
+    <span class="j-operator">{</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span> <span class="j-operator">=</span> <span class="j-number">0.86</span><span class="j-operator">;</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">=</span> <span class="j-string">&quot;European Union&quot;</span><span class="j-operator">;</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">=</span> <span class="j-string">&quot;euro&quot;</span><span class="j-operator">;</span>
+    <span class="j-operator">}</span>
+    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">()</span>
+    <span class="j-operator">{</span>
+        System<span class="j-operator">.</span><span class="j-method">out</span><span class="j-operator">.</span><span class="j-method">println</span><span class="j-operator">(</span><span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">+</span> <span class="j-string">&quot;: from &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">+</span> <span class="j-string">&quot; currently at &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span><span class="j-operator">);</span>
+    <span class="j-operator">}</span>
+<span class="j-operator">}</span>
+<span class="j-comment">/// &lt;summary&gt;</span>
+<span class="j-comment">/// A &#39;ConcreteCurrency&#39; class</span>
+<span class="j-comment">/// &lt;/summary&gt;</span>
+<span class="j-keyword">class</span> <span class="j-class">DollarCurrency</span> <span class="j-keyword">implements</span> ICurrency
+<span class="j-operator">{</span>
+    <span class="j-keyword">public</span> String type<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> <span class="j-type">double</span> rate<span class="j-operator">=</span><span class="j-number">0.00</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> String country<span class="j-operator">=</span><span class="j-string">&quot;&quot;</span><span class="j-operator">;</span>
+    <span class="j-keyword">public</span> <span class="j-method-name">DollarCurrency</span><span class="j-operator">()</span>
+    <span class="j-operator">{</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span> <span class="j-operator">=</span> <span class="j-number">1.00</span><span class="j-operator">;</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">=</span> <span class="j-string">&quot;United States&quot;</span><span class="j-operator">;</span>
+        <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">=</span> <span class="j-string">&quot;dollar&quot;</span><span class="j-operator">;</span>
+    <span class="j-operator">}</span>
+    <span class="j-keyword">public</span> <span class="j-type">void</span> <span class="j-method-name">describe</span><span class="j-operator">()</span>
+    <span class="j-operator">{</span>
+        System<span class="j-operator">.</span><span class="j-method">out</span><span class="j-operator">.</span><span class="j-method">println</span><span class="j-operator">(</span><span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">type</span> <span class="j-operator">+</span> <span class="j-string">&quot;: from &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">country</span> <span class="j-operator">+</span> <span class="j-string">&quot; currently at &quot;</span> <span class="j-operator">+</span> <span class="j-keyword">this</span><span class="j-operator">.</span><span class="j-method">rate</span><span class="j-operator">);</span>
+    <span class="j-operator">}</span>
+<span class="j-operator">}</span>
+<span class="j-keyword">class</span> <span class="j-class">CurrencyFactory</span>
+<span class="j-operator">{</span>
+    <span class="j-keyword">public</span> <span class="j-keyword">static</span> ICurrency <span class="j-method-name">createCurrency</span><span class="j-operator">(</span>String criteria<span class="j-operator">)</span>
+    <span class="j-operator">{</span>
+        <span class="j-keyword">if</span> <span class="j-operator">(</span> criteria<span class="j-operator">.</span><span class="j-method">equals</span><span class="j-operator">(</span><span class="j-string">&quot;yen&quot;</span><span class="j-operator">)</span> <span class="j-operator">)</span>
+            <span class="j-keyword">return</span> <span class="j-keyword">new</span> <span class="j-method-name">YenCurrency</span><span class="j-operator">();</span>
+        <span class="j-keyword">else</span> <span class="j-method-name">if</span> <span class="j-operator">(</span> criteria<span class="j-operator">.</span><span class="j-method">equals</span><span class="j-operator">(</span><span class="j-string">&quot;euro&quot;</span><span class="j-operator">)</span> <span class="j-operator">)</span>
+            <span class="j-keyword">return</span> <span class="j-keyword">new</span> <span class="j-method-name">EuroCurrency</span><span class="j-operator">();</span>
+        <span class="j-keyword">else</span> <span class="j-method-name">if</span> <span class="j-operator">(</span> criteria<span class="j-operator">.</span><span class="j-method">equals</span><span class="j-operator">(</span><span class="j-string">&quot;dollar&quot;</span><span class="j-operator">)</span> <span class="j-operator">)</span>
+            <span class="j-keyword">return</span> <span class="j-keyword">new</span> <span class="j-method-name">DollarCurrency</span><span class="j-operator">();</span>
+        
+        <span class="j-keyword">return</span> <span class="j-keyword">null</span><span class="j-operator">;</span>
+    <span class="j-operator">}</span>
+<span class="j-operator">}</span>
+</pre></div>
+</body>
+
+</html>

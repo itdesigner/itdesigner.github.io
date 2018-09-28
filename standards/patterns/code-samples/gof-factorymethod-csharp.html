@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+    <!-- CODE SAMPLE -->
+    <div class="code-container"><pre class="code-block"><span class="c-keyword">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+                
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// Factory Pattern Demo</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">Program</span>
+{
+    <span class="c-keyword">public</span> <span class="c-keyword">static</span> <span class="c-keyword">void</span> <span class="c-method">Main</span>(<span class="c-type">string</span>[] args)
+    {
+        CurrencyFactory factory = <span class="c-keyword">new</span> ConcreteCurrencyFactory();
+
+        ICurrency yen = factory.createCurrency(<span class="c-string">&quot;yen&quot;</span>);
+        yen.describe();
+        ICurrency euro = factory.createCurrency(<span class="c-string">&quot;euro&quot;</span>);
+        euro.describe();
+        ICurrency dollar = factory.createCurrency(<span class="c-string">&quot;dollar&quot;</span>);
+        dollar.describe();
+    }
+}
+
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// The &#39;Currency&#39; interface</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">interface</span> ICurrency
+{
+    <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">void</span> <span class="c-method">describe</span>();
+}
+
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// A &#39;ConcreteCurrency&#39; class</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">YenCurrency</span> : ICurrency
+{
+    <span class="c-keyword">public</span> <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-method">YenCurrency</span>()
+    {
+        <span class="c-keyword">this</span>.rate = <span class="c-number">113.40</span>;
+        <span class="c-keyword">this</span>.country = <span class="c-string">&quot;Japan&quot;</span>;
+        <span class="c-keyword">this</span>.type = <span class="c-string">&quot;yen&quot;</span>;
+    }
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-method">describe</span>()
+    {
+        Console.WriteLine(<span class="c-keyword">this</span>.type + <span class="c-string">&quot;: from &quot;</span> + <span class="c-keyword">this</span>.country + <span class="c-string">&quot; currently at &quot;</span> + <span class="c-keyword">this</span>.rate);
+    }
+}
+
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// A &#39;ConcreteCurrency&#39; class</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">EuroCurrency</span> : ICurrency
+{
+    <span class="c-keyword">public</span> <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-method">EuroCurrency</span>()
+    {
+        <span class="c-keyword">this</span>.rate = <span class="c-number">0.86</span>;
+        <span class="c-keyword">this</span>.country = <span class="c-string">&quot;European Union&quot;</span>;
+        <span class="c-keyword">this</span>.type = <span class="c-string">&quot;euro&quot;</span>;
+    }
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-method">describe</span>()
+    {
+        Console.WriteLine(<span class="c-keyword">this</span>.type + <span class="c-string">&quot;: from &quot;</span> + <span class="c-keyword">this</span>.country + <span class="c-string">&quot; currently at &quot;</span> + <span class="c-keyword">this</span>.rate);
+    }
+}
+
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// A &#39;ConcreteCurrency&#39; class</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">DollarCurrency</span> : ICurrency
+{
+    <span class="c-keyword">public</span> <span class="c-type">string</span> type { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-type">double</span> rate { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-type">string</span> country { <span class="c-keyword">get</span>; <span class="c-keyword">set</span>; }
+    <span class="c-keyword">public</span> <span class="c-method">DollarCurrency</span>()
+    {
+        <span class="c-keyword">this</span>.rate = <span class="c-number">1.00</span>;
+        <span class="c-keyword">this</span>.country = <span class="c-string">&quot;United States&quot;</span>;
+        <span class="c-keyword">this</span>.type = <span class="c-string">&quot;dollar&quot;</span>;
+    }
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-method">describe</span>()
+    {
+        Console.WriteLine(<span class="c-keyword">this</span>.type + <span class="c-string">&quot;: from &quot;</span> + <span class="c-keyword">this</span>.country + <span class="c-string">&quot; currently at &quot;</span> + <span class="c-keyword">this</span>.rate);
+    }
+}
+
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// The Currency Factory Abstract Class</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">abstract</span> <span class="c-keyword">class</span> <span class="c-class">CurrencyFactory</span>
+{
+    <span class="c-keyword">public</span> <span class="c-keyword">abstract</span> ICurrency <span class="c-method">createCurrency</span>(<span class="c-type">string</span> currencyType);
+
+}
+
+<span class="c-comment">/// &lt;summary&gt;</span>
+<span class="c-comment">/// A &#39;ConcreteCreator&#39; class</span>
+<span class="c-comment">/// &lt;/summary&gt;</span>
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-class">ConcreteCurrencyFactory</span> : CurrencyFactory
+{
+    <span class="c-keyword">public</span> <span class="c-keyword">override</span> ICurrency <span class="c-method">createCurrency</span>(<span class="c-type">string</span> currencyType)
+    {
+        <span class="c-keyword">switch</span> (currencyType)
+        {
+            <span class="c-keyword">case</span> <span class="c-string">&quot;yen&quot;</span>:
+                <span class="c-keyword">return</span> <span class="c-keyword">new</span> <span class="c-method">YenCurrency</span>();
+            <span class="c-keyword">case</span> <span class="c-string">&quot;euro&quot;</span>:
+                <span class="c-keyword">return</span> <span class="c-keyword">new</span> <span class="c-method">EuroCurrency</span>();
+            <span class="c-keyword">case</span> <span class="c-string">&quot;dollar&quot;</span>:
+                <span class="c-keyword">return</span> <span class="c-keyword">new</span> <span class="c-method">DollarCurrency</span>();
+            <span class="c-keyword">default</span>:
+                <span class="c-keyword">throw</span> <span class="c-keyword">new</span> <span class="c-method">ApplicationException</span>(<span class="c-type">string</span>.Format(<span class="c-string">&quot;Currency &#39;{0}&#39; cannot be created&quot;</span>, currencyType));
+        }
+    }
+}
+</pre></div>
+</body>
+
+</html>

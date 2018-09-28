@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typscript Code Sample Page</title>
+</head>
+
+<body>
+    <div class="code-container"><pre class="code-block"><span class="js-keyword">function</span> Factory() {
+    <span class="js-keyword">this</span>.createCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> (type) {
+        <span class="js-keyword">var</span> currency;
+    
+        <span class="js-keyword">if</span> (type <span class="js-text">===</span> <span class="js-string">&quot;yen&quot;</span>) {
+            currency <span class="js-text">=</span> <span class="js-keyword">new</span> YenCurrency();
+        } <span class="js-keyword">else</span> <span class="js-keyword">if</span> (type <span class="js-text">===</span> <span class="js-string">&quot;euro&quot;</span>) {
+            currency <span class="js-text">=</span> <span class="js-keyword">new</span> EuroCurrency();
+        } <span class="js-keyword">else</span> <span class="js-keyword">if</span> (type <span class="js-text">===</span> <span class="js-string">&quot;dollar&quot;</span>) {
+            currency <span class="js-text">=</span> <span class="js-keyword">new</span> DollarCurrency();
+        }
+    
+        currency.type <span class="js-text">=</span> type;
+    
+        currency.describe <span class="js-text">=</span> <span class="js-keyword">function</span> () {
+            log.add(<span class="js-keyword">this</span>.type <span class="js-text">+</span> <span class="js-string">&quot;: from &quot;</span> <span class="js-text">+</span> <span class="js-keyword">this</span>.country <span class="js-text">+</span> <span class="js-string">&quot; currently at &quot;</span> <span class="js-text">+</span> <span class="js-keyword">this</span>.rate);
+        }
+    
+        <span class="js-keyword">return</span> currency;
+    }
+}
+    
+<span class="js-keyword">var</span> YenCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> () {
+    <span class="js-keyword">this</span>.rate <span class="js-text">=</span> <span class="js-string">&quot;113.40&quot;</span>;
+    <span class="js-keyword">this</span>.country <span class="js-text">=</span> <span class="js-string">&quot;Japan&quot;</span>;
+};
+    
+<span class="js-keyword">var</span> EuroCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> () {
+    <span class="js-keyword">this</span>.rate <span class="js-text">=</span> <span class="js-string">&quot;0.86&quot;</span>;
+    <span class="js-keyword">this</span>.country <span class="js-text">=</span> <span class="js-string">&quot;European Union&quot;</span>;
+};
+    
+<span class="js-keyword">var</span> DollarCurrency <span class="js-text">=</span> <span class="js-keyword">function</span> () {
+    <span class="js-keyword">this</span>.rate <span class="js-text">=</span> <span class="js-string">&quot;1&quot;</span>;
+    <span class="js-keyword">this</span>.country <span class="js-text">=</span> <span class="js-string">&quot;United States&quot;</span>;
+};
+    
+<span class="c-comment">// log helper</span>
+<span class="js-keyword">var</span> log <span class="js-text">=</span> (<span class="js-keyword">function</span> () {
+    <span class="js-keyword">var</span> log <span class="js-text">=</span> <span class="js-string">&quot;&quot;</span>;
+    
+    <span class="js-keyword">return</span> {
+        add<span class="js-text">:</span> <span class="js-keyword">function</span> (msg) { log <span class="js-text">+=</span> msg <span class="js-text">+</span> <span class="js-string">&quot;\n&quot;</span>; },
+        show<span class="js-text">:</span> <span class="js-keyword">function</span> () { alert(log); log <span class="js-text">=</span> <span class="js-string">&quot;&quot;</span>; }
+    }
+})();
+    
+<span class="js-keyword">function</span> run() {
+    <span class="js-keyword">var</span> currencies <span class="js-text">=</span> [];
+    <span class="js-keyword">var</span> factory <span class="js-text">=</span> <span class="js-keyword">new</span> Factory();
+    
+    currencies.push(factory.createCurrency(<span class="js-string">&quot;yen&quot;</span>));
+    currencies.push(factory.createCurrency(<span class="js-string">&quot;euro&quot;</span>));
+    currencies.push(factory.createCurrency(<span class="js-string">&quot;dollar&quot;</span>));
+        
+    <span class="js-keyword">for</span> (<span class="js-keyword">var</span> i <span class="js-text">=</span> <span class="ts-iterator">0</span>, len <span class="js-text">=</span> currencies.length; i <span class="js-text">&lt;</span> len; i<span class="js-text">++</span>) {
+        currencies[i].describe();
+    }
+    
+    log.show();
+}
+</pre></div>
+
+</body>
+
+</html>
