@@ -30232,6 +30232,9 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
     cursor: pointer;
     padding: 6px 10px;
     transition: 0.3s;
+    -webkit-appearance: none;
+    border-radius: 0;
+    min-width: 50px;
     /* font-size: 17px; */
 }
 
@@ -30240,6 +30243,8 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 
 .tab button:hover {
     background-color: #ddd;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 
@@ -30421,4 +30426,9 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 .j-number {
     color: #6600EE;
     font-weight: bold;
+}
+
+.sub-heading {
+    margin-top: -20px;
+    color: #4a4a4a;
 }
