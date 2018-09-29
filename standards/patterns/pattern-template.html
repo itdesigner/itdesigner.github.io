@@ -705,8 +705,6 @@
                                                     <p>It is used when:</p>
                                                     <ul>
                                                         <li>Defining an interface for creating an object; but, we desire that subclasses decide which exact class to instantiate. Essentially, this pattern lets a class defer instantiation to subclasses. </li>
-                                                        <li>Defining a <i>virtual</i> constructor.</li>
-                                                        <li>Using a <i>new</i> operator is considered harmful or a bad practice.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -753,11 +751,6 @@
                                                     <p>A Factory Method creates new objects as instructed by the client. One way to create objects is by invoking a constructor function with the new operator. There are situations however, where the client
                                                         does not, or should not, know which one of several candidate objects to instantiate. The Factory Method allows the client to delegate object creation while still retaining control over which type
                                                         to instantiate.</p>
-                                                    <p>The key objective of the Factory Method is extensibility. Factory Methods are frequently used in applications that manage, maintain, or manipulate collections of objects that are different but at the
-                                                        same time have many characteristics (i.e. methods and properties) in common. An example would be a collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.</p>
-                                                    <p>There is a great deal of confusion about how the Factory Method and the Abstract Factory patterns differ. One of the challenges is that in the original <a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
-                                                            target="_blank">Gang of Four book</a>, the two basically overlap. Essentially, the primary difference is where and how the creation takes place. With the Factory Method pattern, all that is required
-                                                        is a new operation. This simplicity makes the code much more customizable and adaptable as needs change over time and adds very little complexity (as commonly used today).</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -792,12 +785,10 @@
                                                     <p>The Factory Method defines an interface for creating objects, but lets subclasses decide which classes to instantiate. This pattern can be applied many situations where you will need to create something
                                                         specific that matches an interface. For example, it could be used to create shapes (circles, squares, triangles), dogs (german shepards, huskies, chihuahuas), or types of money (dollars, euros, yen).
                                                         The traditional example is usually shapes, so, in the interest of being different, lets focus on a Factory Method example that concentrates on something near and dear - <b>currency</b>.</p>
-
                                                     <br>
                                                     <img alt="factory method structure" src="/images/currency-factory-method.jpg" data-src="/images/currency-factory-method.jpg" data-image="/images/currency-factory-method.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that creates currency could return any of the defined type instances (yen, euros, or US dollars).</p>
-                                                    <p>Let's extend this sample with some practical code below.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -825,9 +816,6 @@
                                                         <h3>C# Factory Method Code Sample for Currency</h3>
                                                         <p>In this C# example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is the
                                                             actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because C# does support interfaces. Because, we still need to ensure that all currency types have the
-                                                            same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
-                                                        <p>Three different currency types are created. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-csharp.html" />
@@ -836,11 +824,7 @@
                                                     </div>
                                                     <div id="Java" class="tabcontent">
                                                         <h3>Java Factory Method Code Sample for Currency</h3>
-                                                        <p>In this Java example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is
-                                                            the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because Java does support interfaces. Because, we still need to ensure that all currency types have the
-                                                            same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
-                                                        <p>Three different currency types are created. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
+                                                        <p>In this Java example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-java.html" />
@@ -851,10 +835,6 @@
                                                         <h3>Typescript Factory Method Code Sample for Currency</h3>
                                                         <p>In this TypeScript example, the Factory interface creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method
                                                             is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because Typescript does support interfaces. Because, we still need to ensure that all currency types have
-                                                            the same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
-                                                        <p>Three different currency types are created; all are stored in the same array. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
-                                                        <p>The log function is just a helper which collects and displays results.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-ts.html" />
@@ -865,15 +845,10 @@
                                                         <h3>JavaScript Factory Method Code Sample for Currency</h3>
                                                         <p>In this JavaScript example, the Factory object creates three different types of currency. Each currency type has a different comparison rate, nme, and country of origin. The createCurrency method
                                                             is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is not implemented because Javascript does not support abstract classes or interfaces. However, we still need to ensure that all currency types have the same interface
-                                                            (properties and methods). This is, of course, in no way guaranteed or enforced in Javascript.</p>
-                                                        <p>Three different currency types are created; all are stored in the same array. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
-                                                        <p>The log function is just a helper which collects and displays results.</p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-js.html" />
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -889,9 +864,6 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
                                                         <li style="padding-left: 10px;">If you have an inheritance hierarchy that exercises polymorphism, consider adding a polymorphic creation capability by defining a static factory method in the base class.</li>
-                                                        <li style="padding-left: 10px;">Design the arguments to the factory method. What qualities or characteristics are necessary and sufficient to identify the correct derived class to instantiate?</li>
-                                                        <li style="padding-left: 10px;">Consider designing an internal "object pool" that will allow objects to be reused instead of created from scratch.</li>
-                                                        <li style="padding-left: 10px;">Consider making all constructors private or protected.</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -907,16 +879,6 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
                                                         <li>Abstract Factory classes are often implemented with Factory Methods, but they can also be implemented using Prototype.</li>
-                                                        <li>Factory Methods are usually called within Template Methods.</li>
-                                                        <li>Factory Method: creation through inheritance. Prototype: creation through delegation.</li>
-                                                        <li>Often, designs start out using Factory Method (less complicated, more customizable, subclasses proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
-                                                            as the designer discovers where more flexibility is needed.</li>
-                                                        <li>Prototype doesn't require subclassing, but it does require an Initialize operation. Factory Method requires subclassing, but doesn't require Initialize.</li>
-                                                        <li>The advantage of a Factory Method is that it can return the same instance multiple times, or can return a subclass rather than an object of that exact type.</li>
-                                                        <li>Some Factory Method advocates recommend that as a matter of language design (or failing that, as a matter of style) absolutely all constructors should be private or protected. It's no one else's
-                                                            business whether a class manufactures a new object or recycles an old one.</li>
-                                                        <li>The new operator considered harmful. There is a difference between requesting an object and creating one. The new operator always creates an object, and fails to encapsulate object creation. A Factory
-                                                            Method enforces that encapsulation, and allows an object to be requested without inextricable coupling to the act of creation.</li>
                                                     </ul>
                                                 </div>
                                             </div>

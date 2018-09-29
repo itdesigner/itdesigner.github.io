@@ -700,13 +700,16 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The classic Factory pattern is one of the most used design patterns in any object oriented language. The Factory pattern falls under creational patterns as this pattern provides one of the best ways
-                                                        to create an object. In the Factory pattern, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface.</p>
+                                                    <p>The Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes. Abstract Factory patterns work around a super-factory
+                                                        which creates other factories. This factory is also called as <b>factory of factories</b>.</p>
+                                                    <p>Typically, in the Abstract Factory pattern an interface is responsible for creating a factory of related objects without explicitly specifying their classes. Each generated factory can give the objects
+                                                        as per the Factory pattern.</p>
+                                                    <p>The Abstract Factory pattern is pretty common in code.</p>
                                                     <p>It is used when:</p>
                                                     <ul>
-                                                        <li>Defining an interface for creating an object; but, we desire that subclasses decide which exact class to instantiate. Essentially, this pattern lets a class defer instantiation to subclasses. </li>
-                                                        <li>Defining a <i>virtual</i> constructor.</li>
-                                                        <li>Using a <i>new</i> operator is considered harmful or a bad practice.</li>
+                                                        <li>There is a need to provide an interface for creating families of related or dependent objects without specifying their concrete classes.</li>
+                                                        <li>There is a hierarchy that encapsulates: many possible object types, and their needs to be a facility to create them easily.</li>
+                                                        <li>The <i>new</i> operator considered harmful.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -737,7 +740,8 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>We need to simplify and standardize a model for a range of applications, but allow for individual applications to define their own domain specific objects and provide for their creation.</p>
+                                                    <p>Many frameworks and libraries use it to provide a way to extend and customize their standard components.</p>
+                                                    <p>The pattern is easy to recognize by methods, which return a factory object. Then, the factory is used for creating specific sub-components as desired.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -750,14 +754,11 @@
                                                     <h3>Discussion</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>A Factory Method creates new objects as instructed by the client. One way to create objects is by invoking a constructor function with the new operator. There are situations however, where the client
-                                                        does not, or should not, know which one of several candidate objects to instantiate. The Factory Method allows the client to delegate object creation while still retaining control over which type
-                                                        to instantiate.</p>
-                                                    <p>The key objective of the Factory Method is extensibility. Factory Methods are frequently used in applications that manage, maintain, or manipulate collections of objects that are different but at the
-                                                        same time have many characteristics (i.e. methods and properties) in common. An example would be a collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.</p>
-                                                    <p>There is a great deal of confusion about how the Factory Method and the Abstract Factory patterns differ. One of the challenges is that in the original <a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
-                                                            target="_blank">Gang of Four book</a>, the two basically overlap. Essentially, the primary difference is where and how the creation takes place. With the Factory Method pattern, all that is required
-                                                        is a new operation. This simplicity makes the code much more customizable and adaptable as needs change over time and adds very little complexity (as commonly used today).</p>
+                                                    <p>The Abstract Factory pattern is used to provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. Typically,
+                                                        a "factory" object has the responsibility for providing creation services for the entire object family. Clients never have to create objects directly, they ask the factory to do that on their behalf.</p>
+                                                    <p>This appraoch to creating objects makes exchanging entire object families easy because the specific class of the factory object appears only once in the application - where it is instantiated. This allows
+                                                        the application to perform wholesale replacement of the entire family of objects simply by instantiating a different concrete instance of the abstract factory.</p>
+                                                    <p>Because the service provided by the factory object is so pervasive, it is routinely implemented as a Singleton.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -770,13 +771,20 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>For the sake of this series, I will be focusing on the more current approach of how the Factory Method design pattern is implemented. In many cases today, the following definition is commonly substituted
-                                                        for the traditional definition or <a href="#intent">INTENT</a> above. <i><b>A method whose sole responsibility is to abstract the creation process of an object and return that object.</b></i>. You
-                                                        may notices that this is a very narrow, special case of the classic <a href="#intent">Intent</a> of the pattern. Given this definiton, the simplest way to implement this pattern is via a static method,</p>
+                                                    <p>The Abstract Factory is an extremely common pattern, in fact, it enables architectures such as Dependency Injection.</p>
+                                                    <p>Unfortunately, it's also one of the patterns that's prone to overuse: it's easy to start using Abstract Factories anytime you need to create objects. Be aware of when you decide to use this pattern,
+                                                        and make sure you actually need it.</p>
                                                     <br>
-                                                    <img alt="factory method structure" src="/images/Abstract-Factory-Structure.jpg" data-src="/images/Abstract-Factory-Structure.jpg" data-image="/images/Abstract-Factory-Structure.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>As you can see in the diagram above, the client is totally decoupled from the implementation details of derived classes. Polymorphic creation is now possible.</p>
+                                                    <img alt="abstract factory structure" src="/images/gof-abstract-factory-structure.jpg" data-src="/images/gof-abstract-factory-structure.jpg" data-image="/images/gof-abstract-factory-structure.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>While it seems like there is a lot going on the the diagram above, it's actually very straight-forward to understand. The <b>AbstractFactory</b> defines the interface (where supported) which all of the
+                                                        concrete factories will need to implement in order to create Items. <b>ConcreteFactoryOne</b> and <b>ConcreteFactoryTwo</b> have both implemented this interface here, creating two seperate families
+                                                        of items. Meanwhile,
+                                                        <b>AbstractItemA</b> and <b>AbstractItemB</b> are interfaces for the different types of items to be created. Each factory will create one of each of these AbstractItems. </p>
+                                                    <p>The <b>Client</b> deals with <b>AbstractFactory</b>, <b>AbstractItemA</b> and <b>AbstractItemB</b>. The <b>Client</b> doesn't know anything about the implementations or even how they are instantiated.
+                                                        The actual implementation of <b>AbstractFactory</b> that the <b>Client</b> uses is determined at runtime.</p>
+                                                    <p>As you can see, one of the main benefits of this pattern is that the client is totally decoupled from the concrete products. Also, new item families can be easily added into the system, by just adding
+                                                        in a new type of ConcreteFactory that implements AbstractFactory, and creating the specific Product implementations.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -789,15 +797,16 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The Factory Method defines an interface for creating objects, but lets subclasses decide which classes to instantiate. This pattern can be applied many situations where you will need to create something
-                                                        specific that matches an interface. For example, it could be used to create shapes (circles, squares, triangles), dogs (german shepards, huskies, chihuahuas), or types of money (dollars, euros, yen).
-                                                        The traditional example is usually shapes, so, in the interest of being different, lets focus on a Factory Method example that concentrates on something near and dear - <b>currency</b>.</p>
-
+                                                    <p>A sample scenario that we will discuss using the Abstract Factory pattern uses employees and consultants. Imagine a large company that has different process for bringing consultants and employees into
+                                                        the organization based on whether they work at the corporate headquarters or at another satellite location. Employees and Vendors are used throughout the organization regardless of location, but
+                                                        the processes for adding/creating them is different.</p>
                                                     <br>
-                                                    <img alt="factory method structure" src="/images/currency-factory-method.jpg" data-src="/images/currency-factory-method.jpg" data-image="/images/currency-factory-method.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that creates currency could return any of the defined type instances (yen, euros, or US dollars).</p>
-                                                    <p>Let's extend this sample with come practical code below.</p>
+                                                    <img alt="abstract factory example" src="/images/gof-abstractfactory-example.jpg" data-src="/images/gof-abstractfactory-example.jpg" data-image="/images/gof-abstractfactory-example.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>This diagram should appear very similar to the generic diagram in <a href="#structure">STRUCTURE</a> above. In this specific case, the <b>AbstractItemA</b> and <b>AbstractItemB</b> interfaces have been
+                                                        replaced with <b>AbstractEmployee</b> and <b>AbstractConsultant</b> respectively. The <b>ConcreteFactories</b> have been exchanged for factories that are specific to the type of process used to acquire
+                                                        the person - here there is a <b>PreferredFactory</b> and a <b>StandardFactory</b>.</p>
+                                                    <p>Let's continue this sample with some practical code below.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -810,9 +819,10 @@
                                                     <h3>Code Samples</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Factory Method</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
+                                                    <p>Below, you will find examples of the <i><b>Abstract Factory</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in
+                                                        the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a factory method to return a specific currency instance.</p>
+                                                    <p>Each sample will use abstact factories to return proper instances.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -822,7 +832,7 @@
                                                     </div>
 
                                                     <div id="NETC" class="tabcontent">
-                                                        <h3>C# Factory Method Code Sample for Currency</h3>
+                                                        <h3>C# Abstract Factory Code Sample for Currency</h3>
                                                         <p>In this C# example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is the
                                                             actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
                                                         <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because C# does support interfaces. Because, we still need to ensure that all currency types have the
@@ -835,7 +845,7 @@
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
-                                                        <h3>Java Factory Method Code Sample for Currency</h3>
+                                                        <h3>Java Abstract Factory Code Sample for Currency</h3>
                                                         <p>In this Java example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is
                                                             the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
                                                         <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because Java does support interfaces. Because, we still need to ensure that all currency types have the
@@ -848,7 +858,7 @@
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Factory Method Code Sample for Currency</h3>
+                                                        <h3>Typescript Abstract Factory Code Sample for Currency</h3>
                                                         <p>In this TypeScript example, the Factory interface creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method
                                                             is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
                                                         <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because Typescript does support interfaces. Because, we still need to ensure that all currency types have
@@ -862,7 +872,7 @@
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Factory Method Code Sample for Currency</h3>
+                                                        <h3>JavaScript Abstract Factory Code Sample for Currency</h3>
                                                         <p>In this JavaScript example, the Factory object creates three different types of currency. Each currency type has a different comparison rate, nme, and country of origin. The createCurrency method
                                                             is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
                                                         <p>The AbstractCurrency in the diagram is not implemented because Javascript does not support abstract classes or interfaces. However, we still need to ensure that all currency types have the same interface
@@ -888,10 +898,11 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">If you have an inheritance hierarchy that exercises polymorphism, consider adding a polymorphic creation capability by defining a static factory method in the base class.</li>
-                                                        <li style="padding-left: 10px;">Design the arguments to the factory method. What qualities or characteristics are necessary and sufficient to identify the correct derived class to instantiate?</li>
-                                                        <li style="padding-left: 10px;">Consider designing an internal "object pool" that will allow objects to be reused instead of created from scratch.</li>
-                                                        <li style="padding-left: 10px;">Consider making all constructors private or protected.</li>
+                                                        <li style="padding-left: 10px;">Decide if independence of creation services are the current source of pain.</li>
+                                                        <li style="padding-left: 10px;">Map out a matrix of the hierarchy of "items".</li>
+                                                        <li style="padding-left: 10px;">Define a factory interface that consists of a factory method per item.</li>
+                                                        <li style="padding-left: 10px;">Define a factory derived class for each heirarchy branch that encapsulates all references to the new operator.</li>
+                                                        <li style="padding-left: 10px;">The client should retire all references to new, and use the factory methods to create the various objects</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -906,17 +917,18 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
+                                                        <li>Sometimes creational patterns are competitors: there are cases when either Prototype or Abstract Factory could be used profitably. At other times they are complementary: Abstract Factory might store
+                                                            a set of Prototypes from which to clone and return product objects, Builder can use one of the other patterns to implement which components get built. Abstract Factory, Builder, and Prototype
+                                                            can use Singleton in their implementation.</li>
+                                                        <li>Abstract Factory, Builder, and Prototype define a factory object that's responsible for knowing and creating the class of product objects, and make it a parameter of the system. Abstract Factory
+                                                            has the factory object producing objects of several classes. Builder has the factory object building a complex product incrementally using a correspondingly complex protocol. Prototype has the
+                                                            factory object (aka prototype) building a product by copying a prototype object.</li>
                                                         <li>Abstract Factory classes are often implemented with Factory Methods, but they can also be implemented using Prototype.</li>
-                                                        <li>Factory Methods are usually called within Template Methods.</li>
-                                                        <li>Factory Method: creation through inheritance. Prototype: creation through delegation.</li>
+                                                        <li>Abstract Factory can be used as an alternative to Facade to hide platform-specific classes.</li>
+                                                        <li>Builder focuses on constructing a complex object step by step. Abstract Factory emphasizes a family of product objects (either simple or complex). Builder returns the product as a final step, but
+                                                            as far as the Abstract Factory is concerned, the product gets returned immediately.</li>
                                                         <li>Often, designs start out using Factory Method (less complicated, more customizable, subclasses proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
                                                             as the designer discovers where more flexibility is needed.</li>
-                                                        <li>Prototype doesn't require subclassing, but it does require an Initialize operation. Factory Method requires subclassing, but doesn't require Initialize.</li>
-                                                        <li>The advantage of a Factory Method is that it can return the same instance multiple times, or can return a subclass rather than an object of that exact type.</li>
-                                                        <li>Some Factory Method advocates recommend that as a matter of language design (or failing that, as a matter of style) absolutely all constructors should be private or protected. It's no one else's
-                                                            business whether a class manufactures a new object or recycles an old one.</li>
-                                                        <li>The new operator considered harmful. There is a difference between requesting an object and creating one. The new operator always creates an object, and fails to encapsulate object creation. A Factory
-                                                            Method enforces that encapsulation, and allows an object to be requested without inextricable coupling to the act of creation.</li>
                                                     </ul>
                                                 </div>
                                             </div>
