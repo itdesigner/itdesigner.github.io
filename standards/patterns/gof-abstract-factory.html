@@ -11,24 +11,24 @@
     <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Classic Design Patterns - Strategic and Architectural Leader, driving success through innovation and excellence. Strategic Leadership requires innovation and creativity and includes examining the voice of the customer, the employee and industry best practices. It is a process of examining everything we do in our various roles, understanding the needs of our customers and ensuring that all of this is linked to clearly defined strategic imperatives."
     />
     <title>Jerry Shaughnessy - Patterns - Strategic and Architectural Leader</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.ico" />
     <link rel="canonical" href="https://itdesigner.github.io/patterns" />
     <meta property="og:site_name" content="Jerry Shaughnessy - Strategic and Architectural Leader" />
     <meta property="og:title" content="Jerry Shaughnessy - GoF Patterns - Strategic and Architectural Leader" />
@@ -464,10 +464,10 @@
             "@type": "WebSite"
         }
     </script>
-    <!--[if gte IE 9]> <link rel="stylesheet" type="text/css" href="/site.css"/><link rel="stylesheet" type="text/css" href="/site.css"/><link rel="stylesheet" type="text/css" href="/site.css"/><link rel="stylesheet" type="text/css" href="/site.css"/><![endif]-->
-    <!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/site.css"/><link rel="stylesheet" type="text/css" href="/site.css"/><link rel="stylesheet" type="text/css" href="/site.css"/><link rel="stylesheet" type="text/css" href="/site.css"/><![endif]-->
+    <!--[if gte IE 9]> <link rel="stylesheet" type="text/css" href="/styles/site.css"/><link rel="stylesheet" type="text/css" href="/styles/site.css"/><link rel="stylesheet" type="text/css" href="/styles/site.css"/><link rel="stylesheet" type="text/css" href="/styles/site.css"/><![endif]-->
+    <!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/styles/site.css"/><link rel="stylesheet" type="text/css" href="/styles/site.css"/><link rel="stylesheet" type="text/css" href="/styles/site.css"/><link rel="stylesheet" type="text/css" href="/styles/site.css"/><![endif]-->
     <!--[if !IE]> -->
-    <link rel="stylesheet" type="text/css" href="/site.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/site.css" />
     <!-- <![endif]-->
     <script>
         Static.COOKIE_BANNER_CAPABLE = true;
@@ -832,56 +832,55 @@
                                                     </div>
 
                                                     <div id="NETC" class="tabcontent">
-                                                        <h3>C# Abstract Factory Code Sample for Currency</h3>
-                                                        <p>In this C# example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is the
-                                                            actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because C# does support interfaces. Because, we still need to ensure that all currency types have the
-                                                            same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
-                                                        <p>Three different currency types are created. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
+                                                        <h3>C# Abstract Factory Code Sample</h3>
+                                                        <p>In this C# example, the Abstract Factory pattern is used to create two different families of employee and consultants. </p>
+                                                        <p>The abstract definitions are created here using interfaces, although an abstract class could have been used as well. The AbstactEmployee and AbstractConsultant interfaces are required beacuse they
+                                                            are the only types known by the client (other than the AbstractFactory). They are also required because we still need to ensure that employee and consultant types have the same definiton (properties
+                                                            and methods) regardless of which factory is used to create them - done by implementing the interface on all child classes.</p>
+                                                        <p>Two different employee and consultant types are created.</p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-csharp.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-csharp.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
-                                                        <h3>Java Abstract Factory Code Sample for Currency</h3>
-                                                        <p>In this Java example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is
-                                                            the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because Java does support interfaces. Because, we still need to ensure that all currency types have the
-                                                            same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
-                                                        <p>Three different currency types are created. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
+                                                        <h3>Java Abstract Factory Code Sample</h3>
+                                                        <p>In this java example, the Abstract Factory pattern is used to create two different families of employee and consultants - one standard and one preferred. </p>
+                                                        <p>The abstract definitions are created here using abstract classes, although an interface could have been used as well. The AbstactEmployee and AbstractConsultant classes are required beacuse they
+                                                            are the only types known by the client (other than the AbstractFactory). They are also required because we still need to ensure that employee and consultant types have the same definiton (properties
+                                                            and methods) regardless of which factory is used to create them - done by extending them in child classes.</p>
+                                                        <p>Two different employee and consultant types are created.</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-java.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-java.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Abstract Factory Code Sample for Currency</h3>
-                                                        <p>In this TypeScript example, the Factory interface creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method
-                                                            is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is implemented via an interface (ICurrency in this case) because Typescript does support interfaces. Because, we still need to ensure that all currency types have
-                                                            the same interface (properties and methods) we do this via implementing the interface on all child classes.</p>
-                                                        <p>Three different currency types are created; all are stored in the same array. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
-                                                        <p>The log function is just a helper which collects and displays results.</p>
+                                                        <h3>Typescript Abstract Factory Code Sample</h3>
+                                                        <p>In this example, the Abstract Factory pattern is used to create two different families of employee and consultants. </p>
+                                                        <p>The abstract definitions are created here using interfaces. The AbstactEmployee and AbstractConsultant interfaces are required beacuse they are the only types known by the client (other than the
+                                                            AbstractFactory). They are also required because we still need to ensure that employee and consultant types have the same definiton (properties and methods) regardless of which factory is used
+                                                            to create them - done by implementing the interface on all child classes.</p>
+                                                        <p>Two different employee and consultant types are created.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-ts.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-ts.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Abstract Factory Code Sample for Currency</h3>
-                                                        <p>In this JavaScript example, the Factory object creates three different types of currency. Each currency type has a different comparison rate, nme, and country of origin. The createCurrency method
-                                                            is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
-                                                        <p>The AbstractCurrency in the diagram is not implemented because Javascript does not support abstract classes or interfaces. However, we still need to ensure that all currency types have the same interface
-                                                            (properties and methods). This is, of course, in no way guaranteed or enforced in Javascript.</p>
-                                                        <p>Three different currency types are created; all are stored in the same array. Each currency type is asked to describe what they are along with their conversion rate and company of origin.</p>
+                                                        <h3>JavaScript Abstract Factory Code Sample</h3>
+                                                        <p>JavaScript does not support class-based inheritance therefore the abstract classes as depicted in the diagram are not used in the JavaScript sample. Abstract classes and interfaces enforce consistent
+                                                            interfaces in derived classes. In JavaScript we must ensure this consistency ourselves by making sure that each 'Concrete' object has the same interface definition (i.e. properties and methods)
+                                                            as the others</p>
+                                                        <p>In the example we have two Concrete Factories: StandardFactory and PreferredFactory. The first one creates Standard instances, the second one Preferred instances. Both objects are person types (with
+                                                            the same interface) which allows the client to treat them the same. An array with two employees and two consultants is created. Each person is then asked to say what and who they are.</p>
                                                         <p>The log function is just a helper which collects and displays results.</p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-js.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-js.html" />
                                                         </div>
 
                                                     </div>

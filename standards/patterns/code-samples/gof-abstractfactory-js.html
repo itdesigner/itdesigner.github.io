@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> StandardEmployee() {
+    <span style="color: #008800; font-weight: bold">this</span>.usefulfunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        log.add(<span style="background-color: #fff0f0">&quot;I am a standard employee.&quot;</span>);
+    };
+}
+<span style="color: #008800; font-weight: bold">function</span> StandardConsultant() {
+    <span style="color: #008800; font-weight: bold">this</span>.usefulfunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        log.add(<span style="background-color: #fff0f0">&quot;I am a standard consultant.&quot;</span>);
+    };
+}
+<span style="color: #008800; font-weight: bold">function</span> StandardFactory() {
+    <span style="color: #008800; font-weight: bold">this</span>.createEmployee <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> StandardEmployee();
+    };
+    <span style="color: #008800; font-weight: bold">this</span>.createConsultant <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> StandardConsultant();
+    };
+}
+
+<span style="color: #008800; font-weight: bold">function</span> PreferredEmployee() {
+    <span style="color: #008800; font-weight: bold">this</span>.usefulfunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        log.add(<span style="background-color: #fff0f0">&quot;I am a preferred employee.&quot;</span>);
+    };
+}
+<span style="color: #008800; font-weight: bold">function</span> PreferredConsultant() {
+    <span style="color: #008800; font-weight: bold">this</span>.usefulfunction <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        log.add(<span style="background-color: #fff0f0">&quot;I am a preferred consultant.&quot;</span>);
+    };
+}
+<span style="color: #008800; font-weight: bold">function</span> PreferredFactory() {
+    <span style="color: #008800; font-weight: bold">this</span>.createEmployee <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> PreferredEmployee();
+    };
+    <span style="color: #008800; font-weight: bold">this</span>.createConsultant <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> PreferredConsultant();
+    };
+}
+    
+<span style="color: #888888">// log helper</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> {
+        add<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span> (msg) { log <span style="color: #333333">+=</span> msg <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;\n&quot;</span>; },
+        show<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span> () { alert(log); log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>; }
+    }
+})();
+    
+<span style="color: #008800; font-weight: bold">function</span> run() {
+    <span style="color: #008800; font-weight: bold">var</span> persons <span style="color: #333333">=</span> [];
+    <span style="color: #008800; font-weight: bold">var</span> standardFactory <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> StandardFactory();
+    <span style="color: #008800; font-weight: bold">var</span> preferredFactory <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> PreferredFactory();
+    
+    persons.push(standardFactory.createEmployee());
+    persons.push(standardFactory.createConsultant());
+    persons.push(preferredFactory.createEmployee());
+    persons.push(preferredFactory.createConsultant());
+    
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>, len <span style="color: #333333">=</span> persons.length; i <span style="color: #333333">&lt;</span> len; i<span style="color: #333333">++</span>) {
+        persons[i].usefulfunction();
+    }
+    
+    log.show();
+}
+</pre></div>
+
+</body>
+
+</html>

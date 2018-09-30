@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">IAbstractEmployee</span><span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">operationA1</span><span style="color: #333333">();</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">operationA2</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StandardEmployee</span> <span style="color: #008800; font-weight: bold">extends</span> IAbstractEmployee<span style="color: #333333">{</span>
+    StandardEmployee<span style="color: #333333">(</span>String arg<span style="color: #333333">){</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Hello &quot;</span> <span style="color: #333333">+</span> arg<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span> <span style="color: #888888">// Implement the code here</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">operationA1</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">};</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">operationA2</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">};</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PreferredEmployee</span> <span style="color: #008800; font-weight: bold">extends</span> IAbstractEmployee<span style="color: #333333">{</span>
+    PreferredEmployee<span style="color: #333333">(</span>String arg<span style="color: #333333">){</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Hello &quot;</span> <span style="color: #333333">+</span> arg<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span> <span style="color: #888888">// Implement the code here</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">operationA1</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">};</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">operationA2</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">};</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">IAbstractConsultant</span><span style="color: #333333">{</span>
+    <span style="color: #888888">//public abstract void operationB1();</span>
+    <span style="color: #888888">//public abstract void operationB2();</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StandardConsultant</span> <span style="color: #008800; font-weight: bold">extends</span> IAbstractConsultant<span style="color: #333333">{</span>
+    StandardConsultant<span style="color: #333333">(</span>String arg<span style="color: #333333">){</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Hello &quot;</span> <span style="color: #333333">+</span> arg<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span> <span style="color: #888888">// Implement the code here</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PreferredConsultant</span> <span style="color: #008800; font-weight: bold">extends</span> IAbstractConsultant<span style="color: #333333">{</span>
+    PreferredConsultant<span style="color: #333333">(</span>String arg<span style="color: #333333">){</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Hello &quot;</span> <span style="color: #333333">+</span> arg<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span> <span style="color: #888888">// Implement the code here</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">AbstractFactory</span><span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">abstract</span> IAbstractEmployee <span style="color: #0066BB; font-weight: bold">createEmployee</span><span style="color: #333333">();</span>
+    <span style="color: #008800; font-weight: bold">abstract</span> IAbstractConsultant <span style="color: #0066BB; font-weight: bold">createConsultant</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StandardFactory</span> <span style="color: #008800; font-weight: bold">extends</span> AbstractFactory<span style="color: #333333">{</span>
+    IAbstractEmployee <span style="color: #0066BB; font-weight: bold">createEmployee</span><span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">StandardEmployee</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;StandardEmployee&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    IAbstractConsultant <span style="color: #0066BB; font-weight: bold">createConsultant</span><span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">StandardConsultant</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;StandardConsultant&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PreferredFactory</span> <span style="color: #008800; font-weight: bold">extends</span> AbstractFactory<span style="color: #333333">{</span>
+    IAbstractEmployee <span style="color: #0066BB; font-weight: bold">createEmployee</span><span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">PreferredEmployee</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;PreferredEmployee&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    IAbstractConsultant <span style="color: #0066BB; font-weight: bold">createConsultant</span><span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">PreferredConsultant</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;PreferredConsultant&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">//Factory creator - an indirect way of instantiating the factories</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">FactoryMaker</span><span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> AbstractFactory pf<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">static</span> AbstractFactory <span style="color: #0066BB; font-weight: bold">getFactory</span><span style="color: #333333">(</span>String choice<span style="color: #333333">){</span>
+        <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(</span>choice<span style="color: #333333">.</span><span style="color: #0000CC">equals</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;s&quot;</span><span style="color: #333333">)){</span>
+            pf<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">new</span> StandardFactory<span style="color: #333333">();</span>
+        <span style="color: #333333">}</span><span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(</span>choice<span style="color: #333333">.</span><span style="color: #0000CC">equals</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;p&quot;</span><span style="color: #333333">)){</span>
+            pf<span style="color: #333333">=</span><span style="color: #008800; font-weight: bold">new</span> PreferredFactory<span style="color: #333333">();</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">return</span> pf<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// Client</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Client</span><span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String args<span style="color: #333333">[]){</span>
+        AbstractFactory f <span style="color: #333333">=</span> FactoryMaker<span style="color: #333333">.</span><span style="color: #0000CC">getFactory</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;s&quot;</span><span style="color: #333333">);</span>
+        IAbstractEmployee employee <span style="color: #333333">=</span> f<span style="color: #333333">.</span><span style="color: #0000CC">createEmployee</span><span style="color: #333333">();</span>
+        <span style="color: #888888">//more function calls on product</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+</body>
+
+</html>

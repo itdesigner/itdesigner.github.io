@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+
+<span style="color: #008800; font-weight: bold">namespace</span> <span style="color: #0e84b5; font-weight: bold">AbstractFactory</span>
+{
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Program</span>
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>(<span style="color: #333399; font-weight: bold">string</span>[] args)
+        {
+            <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">Client</span>().Main();
+        }
+    }
+    
+    <span style="color: #008800; font-weight: bold">interface</span> IAbstractFactory
+    {
+        IAbstractEmployee <span style="color: #0066BB; font-weight: bold">CreateEmployee</span>();
+        IAbstractConsultant <span style="color: #0066BB; font-weight: bold">CreateConsultant</span>();
+    }
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StandardFactory</span> : IAbstractFactory
+    {
+        <span style="color: #008800; font-weight: bold">public</span> IAbstractEmployee <span style="color: #0066BB; font-weight: bold">CreateEmployee</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">StandardEmployee</span>();
+        }
+        <span style="color: #008800; font-weight: bold">public</span> IAbstractConsultant <span style="color: #0066BB; font-weight: bold">CreateConsultant</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">StandardConsultant</span>();
+        }
+    }
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PreferrecFactory</span> : IAbstractFactory
+    {
+        <span style="color: #008800; font-weight: bold">public</span> IAbstractEmployee <span style="color: #0066BB; font-weight: bold">CreateEmployee</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">PreferredEmployee</span>();
+        }
+        <span style="color: #008800; font-weight: bold">public</span> IAbstractConsultant <span style="color: #0066BB; font-weight: bold">CreateConsultant</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">PreferredConsultant</span>();
+        }
+    }
+
+
+    <span style="color: #008800; font-weight: bold">interface</span> IAbstractEmployee
+    {
+        <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">UsefulFunctionA</span>();
+    }
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StandardEmployee</span> : IAbstractEmployee
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">UsefulFunctionA</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;I am a standard employee.&quot;</span>;
+        }
+    }
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PreferredEmployee</span> : IAbstractEmployee
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">UsefulFunctionA</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;I am a preferred employee.&quot;</span>;
+        }
+    }
+
+
+    <span style="color: #008800; font-weight: bold">interface</span> IAbstractConsultant
+    {
+        <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">UsefulFunctionB</span>();
+        <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">AnotherUsefulFunctionB</span>(IAbstractEmployee collaborator);
+    }
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StandardConsultant</span> : IAbstractConsultant
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">UsefulFunctionB</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;I am a standard consultant.&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">AnotherUsefulFunctionB</span>(IAbstractEmployee collaborator)
+        {
+            <span style="color: #333399; font-weight: bold">var</span> result = collaborator.UsefulFunctionA();
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;I am the result of the standard consultant collaborating with &quot;</span> + result;
+        }
+    }
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PreferredConsultant</span> : IAbstractConsultant
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">UsefulFunctionB</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;I am a preferred consultant.&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">AnotherUsefulFunctionB</span>(IAbstractEmployee collaborator)
+        {
+            <span style="color: #333399; font-weight: bold">var</span> result = collaborator.UsefulFunctionA();
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;I am the result of the preferred consultant collaborating with &quot;</span> + result;
+        }
+    }
+
+
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Client</span>
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>()
+        {
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Client: Testing client code with the standard factory type...&quot;</span>);
+            ClientMethod(<span style="color: #008800; font-weight: bold">new</span> StandardFactory());
+            Console.WriteLine();
+
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Client: Testing the same client code with the preferred factory type...&quot;</span>);
+            ClientMethod(<span style="color: #008800; font-weight: bold">new</span> PreferrecFactory());
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">ClientMethod</span>(IAbstractFactory factory)
+        {
+            <span style="color: #333399; font-weight: bold">var</span> productA = factory.CreateEmployee();
+            <span style="color: #333399; font-weight: bold">var</span> productB = factory.CreateConsultant();
+
+            Console.WriteLine(productB.UsefulFunctionB());
+            Console.WriteLine(productB.AnotherUsefulFunctionB(productA));
+        }
+    }
+}
+</pre></div>
+</body>
+
+</html>

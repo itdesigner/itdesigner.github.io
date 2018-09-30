@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">interface</span> IAbstractEmployee {
+    usefulfunction()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span>;
+}
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">interface</span> IAbstractConsultant {
+    usefulfunction()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span>;
+}
+
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">interface</span> IAbstractFactory {
+    createEmployee(param?: <span style="color: #333399; font-weight: bold">any</span>) <span style="color: #333333">:</span> IAbstractEmployee;
+    createConsultant() <span style="color: #333333">:</span> IAbstractConsultant;
+}
+
+
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> StandardEmployee <span style="color: #008800; font-weight: bold">implements</span> IAbstractEmployee {
+    usefulfunction <span style="color: #333333">=</span> () <span style="color: #333333">=&gt;</span> {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;This is methodA of StandardEmployee&quot;</span>;
+    }
+}
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> StandardConsultant <span style="color: #008800; font-weight: bold">implements</span> IAbstractConsultant {
+    usefulfunction <span style="color: #333333">=</span> () <span style="color: #333333">=&gt;</span> {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;This is methodB of StandardConsultant&quot;</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> PreferredEmployee <span style="color: #008800; font-weight: bold">implements</span> IAbstractEmployee {
+    usefulfunction <span style="color: #333333">=</span> () <span style="color: #333333">=&gt;</span> {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;This is methodA of PreferredEmployee&quot;</span>;
+    }
+}
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> PreferredConsultant <span style="color: #008800; font-weight: bold">implements</span> IAbstractConsultant {
+    usefulfunction <span style="color: #333333">=</span> () <span style="color: #333333">=&gt;</span> {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;This is methodB of PreferredConsultant&quot;</span>;
+    }
+}
+
+
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> StandardFactory <span style="color: #008800; font-weight: bold">implements</span> AbstractFactory {
+    createEmployee(param?: <span style="color: #333399; font-weight: bold">any</span>) <span style="color: #333333">:</span> IAbstractEmployee {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> StandardEmployee();
+    }
+
+    createConsultant(param?: <span style="color: #333399; font-weight: bold">any</span>) <span style="color: #333333">:</span> IAbstractConsultant {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> StandardConsultant();
+    }
+}
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> PreferredFactory <span style="color: #008800; font-weight: bold">implements</span> AbstractFactory {
+    createEmployee(param?: <span style="color: #333399; font-weight: bold">any</span>) <span style="color: #333333">:</span> IAbstractEmployee {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> PreferredEmployee();
+    }
+
+    createConsultant(param?: <span style="color: #333399; font-weight: bold">any</span>) <span style="color: #333333">:</span> IAbstractConsultant {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> PreferredConsultant();
+    }
+}
+
+<span style="color: #008800; font-weight: bold">var</span> persons <span style="color: #333333">=</span> [];
+<span style="color: #008800; font-weight: bold">var</span> standardFactory: <span style="color: #333399; font-weight: bold">IAbstractFactory</span>  <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> StandardFactory();
+<span style="color: #008800; font-weight: bold">var</span> preferredFactory: <span style="color: #333399; font-weight: bold">IAbstractFactory</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> PreferredFactory();
+
+
+persons.push(standardFactory.createEmployee());
+persons.push(standardFactory.createConsultant());
+persons.push(preferredFactory.createEmployee());
+persons.push(preferredFactory.createConsultant());
+
+<span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>, len <span style="color: #333333">=</span> persons.length; i <span style="color: #333333">&lt;</span> len; i<span style="color: #333333">++</span>) {
+    persons[i].usefulfunction();
+}
+
+log.show();
+</pre></div>
+
+
+</body>
+
+</html>
