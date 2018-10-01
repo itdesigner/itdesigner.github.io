@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typscript Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+        <pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> Singleton <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">var</span> instance;
+    
+    <span style="color: #008800; font-weight: bold">function</span> createInstance() {
+        <span style="color: #008800; font-weight: bold">var</span> object <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Object</span>(<span style="background-color: #fff0f0">&quot;I am the instance&quot;</span>);
+        <span style="color: #008800; font-weight: bold">return</span> object;
+    }
+    
+    <span style="color: #008800; font-weight: bold">return</span> {
+        getInstance<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span> () {
+            <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #333333">!</span>instance) {
+                instance <span style="color: #333333">=</span> createInstance();
+            }
+            <span style="color: #008800; font-weight: bold">return</span> instance;
+        }
+    };
+})();
+    
+<span style="color: #008800; font-weight: bold">function</span> run() {
+    
+    <span style="color: #008800; font-weight: bold">var</span> instance1 <span style="color: #333333">=</span> Singleton.getInstance();
+    <span style="color: #008800; font-weight: bold">var</span> instance2 <span style="color: #333333">=</span> Singleton.getInstance();
+    
+    alert(<span style="background-color: #fff0f0">&quot;Same instance? &quot;</span> <span style="color: #333333">+</span> (instance1 <span style="color: #333333">===</span> instance2));  
+}
+</pre></div>
+
+</body>
+
+</html>

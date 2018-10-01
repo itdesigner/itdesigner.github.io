@@ -726,9 +726,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-8e5057dca554d41c0adf">
-                                        <div class="sqs-block-content">&nbsp;</div>
-                                    </div>
                                     <!-- PROBLEM STATEMENT -->
                                     <div class="row sqs-row">
                                         <div class="col sqs-col-8 span-8">
@@ -742,9 +739,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col sqs-col-11 span-11">
                                     <!-- DISCUSSION -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="discussion" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Discussion</h3>
@@ -764,7 +763,7 @@
                                     </div>
                                     <!-- STRUCTURE -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="structure" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Structure</h3>
@@ -774,8 +773,9 @@
                                                         for the traditional definition or <a href="#intent">INTENT</a> above. <i><b>A method whose sole responsibility is to abstract the creation process of an object and return that object.</b></i>. You
                                                         may notices that this is a very narrow, special case of the classic <a href="#intent">Intent</a> of the pattern. Given this definiton, the simplest way to implement this pattern is via a static method,</p>
                                                     <br>
-                                                    <img alt="factory method structure" src="/images/Abstract-Factory-Structure.jpg" data-src="/images/Abstract-Factory-Structure.jpg" data-image="/images/Abstract-Factory-Structure.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <img alt="factory method structure" src="/images/Abstract-Factory-Structure.png" data-src="/images/Abstract-Factory-Structure.png" data-image="/images/Abstract-Factory-Structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
+                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <br>
                                                     <p>As you can see in the diagram above, the client is totally decoupled from the implementation details of derived classes. Polymorphic creation is now possible.</p>
                                                 </div>
                                             </div>
@@ -783,7 +783,7 @@
                                     </div>
                                     <!-- PRACTICAL EXAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="example" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Practical Example</h3>
@@ -794,8 +794,9 @@
                                                         The traditional example is usually shapes, so, in the interest of being different, lets focus on a Factory Method example that concentrates on something near and dear - <b>currency</b>.</p>
 
                                                     <br>
-                                                    <img alt="factory method structure" src="/images/currency-factory-method.jpg" data-src="/images/currency-factory-method.jpg" data-image="/images/currency-factory-method.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <img alt="factory method structure" src="/images/currency-factory-method.png" data-src="/images/currency-factory-method.png" data-image="/images/currency-factory-method.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
+                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <br>
                                                     <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that creates currency could return any of the defined type instances (yen, euros, or US dollars).</p>
                                                     <p>Let's extend this sample with some practical code below.</p>
                                                 </div>
@@ -804,7 +805,7 @@
                                     </div>
                                     <!-- CODE SAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="code-sample" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Code Samples</h3>
@@ -881,7 +882,7 @@
                                     </div>
                                     <!-- CONSIDERATIONS -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="notes" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header panel-header-light">&nbsp;&nbsp;
                                                     <h3>Considerations</h3>
@@ -899,7 +900,7 @@
                                     </div>
                                     <!-- ADDITIONAL NOTES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header panel-header-light">&nbsp;&nbsp;
                                                     <h3>Additional Notes</h3>

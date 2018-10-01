@@ -30180,13 +30180,14 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
     border: 1px solid #ddd;
     overflow: hidden;
     border-radius: 3px;
+    background-color: floralwhite;
 }
 
 .panel-header {
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    border-bottom-color: #173C6F;
-    background-color: #173C6F;
+    border-bottom-color: cadetblue;
+    background-color: cadetblue;
     color: white;
     height: 30px;
     line-height: 35px;
@@ -30210,6 +30211,7 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
     padding-bottom: 20px;
     background-color: white;
     margin-top: 10px;
+    background-color: floralwhite;
 }
 
 
@@ -30217,8 +30219,8 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    /* border: 1px solid #ccc; */
+    /* background-color: #f1f1f1; */
 }
 
 
@@ -30235,6 +30237,7 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
     -webkit-appearance: none;
     border-radius: 0;
     min-width: 50px;
+    margin-right: 4px;
     /* font-size: 17px; */
 }
 
@@ -30242,16 +30245,18 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
 /* Change background color of buttons on hover */
 
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #86d3d6;
     -webkit-appearance: none;
     border-radius: 0;
+    color: white;
 }
 
 
 /* Create an active/current tablink class */
 
 .tab button.active {
-    background-color: #ccc;
+    background-color: cadetblue;
+    color: white;
 }
 
 
@@ -30307,6 +30312,12 @@ body:not(.tweak-mobile-overlay-menu-secondary-style-button):not(.tweak-mobile-ov
     border: solid gray;
     border-width: .1em .1em .1em .8em;
     padding: .2em .6em;
+}
+
+.code-copy-button {
+    -webkit-appearance: none;
+    border-radius: 0;
+    float: right;
 }
 
 .js-keyword {

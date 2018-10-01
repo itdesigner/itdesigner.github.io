@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typscript Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('java-code')">Copy</button>
+        <pre id="java-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">package</span> com<span style="color: #333333">.</span><span style="color: #0000CC">sample</span><span style="color: #333333">.</span><span style="color: #0000CC">singleton</span><span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Singleton</span> <span style="color: #333333">{</span>
+
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #0066BB; font-weight: bold">Singleton</span><span style="color: #333333">(){}</span>
+    
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">SingletonHelper</span><span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">final</span> Singleton INSTANCE <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Singleton<span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+    
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> Singleton <span style="color: #0066BB; font-weight: bold">getInstance</span><span style="color: #333333">(){</span>
+        <span style="color: #008800; font-weight: bold">return</span> SingletonHelper<span style="color: #333333">.</span><span style="color: #0000CC">INSTANCE</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+
+
+</body>
+
+</html>

@@ -8,8 +8,7 @@
     <!-- This is Squarespace. -->
     <!-- apple-tangerine-rl55 -->
     <base href="">
-    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Classic Design Patterns - Strategic and Architectural Leader, driving success through innovation and excellence. Strategic Leadership requires innovation and creativity and includes examining the voice of the customer, the employee and industry best practices. It is a process of examining everything we do in our various roles, understanding the needs of our customers and ensuring that all of this is linked to clearly defined strategic imperatives."
-    />
+    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Classic Design Patterns - Singleton Design Pattern." />
     <title>Jerry Shaughnessy - Patterns - Strategic and Architectural Leader</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
@@ -674,7 +673,7 @@
                     <section class="Main-content" data-content-field="main-content">
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
-                                <h1>Factory Pattern</h1>
+                                <h1>Singleton Pattern</h1>
                                 <h2 class="sub-heading">Classic GOF Constructional Design Patterns</h2>
                             </div>
                             <div class="row sqs-row">
@@ -700,11 +699,12 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The classic Factory pattern is one of the most used design patterns in any object oriented language. The Factory pattern falls under creational patterns as this pattern provides one of the best ways
-                                                        to create an object. In the Factory pattern, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface.</p>
+                                                    <p>The singleton pattern is a design pattern that restricts the instantiation of a class to one object.</p>
                                                     <p>It is used when:</p>
                                                     <ul>
-                                                        <li>Defining an interface for creating an object; but, we desire that subclasses decide which exact class to instantiate. Essentially, this pattern lets a class defer instantiation to subclasses. </li>
+                                                        <li>Ensuring that a class has one and only one instance, and provide a global point of access to it.</li>
+                                                        <li>Encapsulating "just-in-time initialization" or "initialization on first use" and then enabling resuse of the object.</li>
+                                                        <li>Creating an object that is designed to be reused over and over again that is expensive to create and also requires a single shared instance.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -716,16 +716,13 @@
                                             <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none">
                                                 <div class="intrinsic" style="max-width:800.0px;">
                                                     <div style="padding-bottom:30.0%;" class="image-block-wrapper   has-aspect-ratio" data-description="">
-                                                        <noscript><img src="/images/factory-process.jpg"  alt="factory patterns image"  /></noscript>
-                                                        <img class="thumb-image" alt="factory patterns" data-src="/images/factory-process.jpg" data-image="/images/factory-process.jpg" data-image-dimensions="1500x750" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
+                                                        <noscript><img src="/images/singleton-concept.jpg"  alt="singleton patterns image"  /></noscript>
+                                                        <img class="thumb-image" alt="singleton patterns" data-src="/images/singleton-concept.jpg" data-image="/images/singleton-concept.jpg" data-image-dimensions="1024x399" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
                                                             data-type="image" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-8e5057dca554d41c0adf">
-                                        <div class="sqs-block-content">&nbsp;</div>
                                     </div>
                                     <!-- PROBLEM STATEMENT -->
                                     <div class="row sqs-row">
@@ -735,75 +732,95 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>We need to simplify and standardize a model for a range of applications, but allow for individual applications to define their own domain specific objects and provide for their creation.</p>
+                                                    <p>Sometimes it's important to have only one instance for a class. For example, in a application you might want to ensure that there should be only one database connection (or only a single settings or
+                                                        configuration object). Usually singletons are used for centralized management of internal or external resources and they provide a global point of access to themselves.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col sqs-col-11 span-11">
                                     <!-- DISCUSSION -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="discussion" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Discussion</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>A Factory Method creates new objects as instructed by the client. One way to create objects is by invoking a constructor function with the new operator. There are situations however, where the client
-                                                        does not, or should not, know which one of several candidate objects to instantiate. The Factory Method allows the client to delegate object creation while still retaining control over which type
-                                                        to instantiate.</p>
+                                                    <p>The singleton pattern is one of the simplest design patterns: it involves only one class which is responsible to instantiate itself, to make sure it creates not more than one instance; in the same time
+                                                        it provides a global point of access to that instance. In this case the same instance can be used from everywhere and should only be accessible from a single place.</p>
+                                                    <p>Singleton's allow us to have only a single instance of the object throughout the life-cycle of the application. Why would that be important? Because first, you don’t want to create more than one heavy
+                                                        resource consuming objects when you really want only one. Second, sometimes, not only creating more than one instance is costly, it can take you to inconsistent state. For example, you wouldn’t want
+                                                        to have multiple database or settings objects because changes in one, may make others inconsistent. Singletons also reduce the need for global variables which is particularly important in languages
+                                                        such as JavaScript because it limits namespace pollution and associated risk of name collisions. Several other patterns, such as, Factory, Prototype, and Façade are frequently implemented as Singletons
+                                                        when only one instance is needed.</p>
+                                                    <p>Singletons should be considered only if all three of the following conditions are required:</p>
+                                                    <ul>
+                                                        <li>Ownership of the single instance cannot be reasonably assigned</li>
+                                                        <li>Lazy initialization is desirable</li>
+                                                        <li>Global access is not otherwise provided for</li>
+                                                    </ul>
+                                                    <p>It should be noted that Singletons are often misused when they are not required. They are also often implemented incorrectly or not completely - especially when dealing with multi-threading situations.</p>
+                                                    <p></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- STRUCTURE -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="structure" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>For the sake of this series, I will be focusing on the more current approach of how the Factory Method design pattern is implemented. In many cases today, the following definition is commonly substituted
-                                                        for the traditional definition or <a href="#intent">INTENT</a> above. <i><b>A method whose sole responsibility is to abstract the creation process of an object and return that object.</b></i>. You
-                                                        may notices that this is a very narrow, special case of the classic <a href="#intent">Intent</a> of the pattern. Given this definiton, the simplest way to implement this pattern is via a static method,</p>
+                                                    <p>There are various different ways of implementing the singleton pattern - typically; however many of them are challenged in one way or another. Here we will discuss a fully lazily-loaded, thread-safe,
+                                                        simple and highly performant version.</p>
+                                                    <p>All Singleton implementations share four common characteristics, however:</p>
+                                                    <ul>
+                                                        <li>A single constructor, which is private and parameterless. This prevents other classes from instantiating it (which would be a violation of the pattern). Note that it also prevents subclassing - if
+                                                            a singleton can be subclassed once, it can be subclassed twice, and if each of those subclasses can create an instance, the pattern is violated. The factory pattern can be used if you need a
+                                                            single instance of a base type, but the exact type isn't known until runtime.</li>
+                                                        <li>The class is sealed - where supported by the programming language choice.. This is unnecessary, strictly speaking, due to the above point, but may help the JIT to optimise things more.</li>
+                                                        <li>A static variable which holds a reference to the single created instance, if any.</li>
+                                                        <li>A public static means of getting the reference to the single created instance, creating one if necessary.</li>
+                                                    </ul>
                                                     <br>
-                                                    <img alt="factory method structure" src="/images/Abstract-Factory-Structure.jpg" data-src="/images/Abstract-Factory-Structure.jpg" data-image="/images/Abstract-Factory-Structure.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>As you can see in the diagram above, the client is totally decoupled from the implementation details of derived classes. Polymorphic creation is now possible.</p>
+                                                    <img alt="singleton structure" src="/images/gof-singleton-structure.png" data-src="/images/gof-singleton-structure.png" data-image="/images/gof-singleton-structure..png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
+                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>As one of the most basic design patterns, this is about as simple as it gets. The Singleton contains a private static object that is completely inaccessible from outside. This object can only be accessed
+                                                        via the <i><b>getInstance()</b></i> static method.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- PRACTICAL EXAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="example" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The Factory Method defines an interface for creating objects, but lets subclasses decide which classes to instantiate. This pattern can be applied many situations where you will need to create something
-                                                        specific that matches an interface. For example, it could be used to create shapes (circles, squares, triangles), dogs (german shepards, huskies, chihuahuas), or types of money (dollars, euros, yen).
-                                                        The traditional example is usually shapes, so, in the interest of being different, lets focus on a Factory Method example that concentrates on something near and dear - <b>currency</b>.</p>
-                                                    <br>
-                                                    <img alt="factory method structure" src="/images/currency-factory-method.jpg" data-src="/images/currency-factory-method.jpg" data-image="/images/currency-factory-method.jpg" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 70%; height: 90%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that creates currency could return any of the defined type instances (yen, euros, or US dollars).</p>
+                                                    <p>As stated in the <a href="#structure">STRUCTURE</a> discussion above, the Singleton is one of the most fundamental and basic design patterns. >For our purposes, lets choose using a singleton to create
+                                                        and provide access to an expensive resource - a database connection.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- CODE SAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="code-sample" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header">&nbsp;&nbsp;
                                                     <h3>Code Samples</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Factory Method</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
+                                                    <p>Below, you will find examples of the <i><b>Singleton Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in
+                                                        the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a factory method to return a specific currency instance.</p>
+                                                    <p>Each sample will use a singleton pattern to create and return an expensive databse connection object.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -813,41 +830,49 @@
                                                     </div>
 
                                                     <div id="NETC" class="tabcontent">
-                                                        <h3>C# Factory Method Code Sample for Currency</h3>
-                                                        <p>In this C# example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is the
-                                                            actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
+                                                        <h3>C# Singleton Code Sample</h3>
+                                                        <p>In this C# example, we take advantage of a number of features of the .NET platform that make this extremely simple to implement. The version provided here is highly performant, if not perfectly lazy-loaded.
+                                                            It is a compromise.</p>
+                                                        <p>It is possible to extend this sample to also include perfect lazy loading; however, the code becomes much more complex and typically involves locking. For most practical situations where the class
+                                                            is responsible for only returning a single type instance, this performs outstanding. It will prematurely load the instance only in scenarios if there are other things going on with the class
+                                                            (probably not a great idea in any case). </p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-csharp.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-csharp.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
-                                                        <h3>Java Factory Method Code Sample for Currency</h3>
-                                                        <p>In this Java example, the CurrencyFactory creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method is</p>
+                                                        <h3>Java Singleton Code Sample</h3>
+                                                        <p>In this Java example, we take a page from a Java expert.</p>
+                                                        <p>Prior to Java 5, the java memory model had a lot of issues and many approaches used to fail in certain scenarios where too many threads try to get the instance of the Singleton class simultaneously.
+                                                            So Bill Pugh came up with a different approach to create the Singleton class using an <a href="https://www.journaldev.com/996/java-inner-class">inner static helper</a> class. The Bill Pugh Singleton
+                                                            implementation goes like this;</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-java.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-java.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Factory Method Code Sample for Currency</h3>
-                                                        <p>In this TypeScript example, the Factory interface creates three different types of currency. Each currency type has a different conversion rate, name, and country of origin. The createCurrency method
-                                                            is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
+                                                        <h3>Typescript Singleton Code Sample</h3>
+                                                        <p>In this TypeScript example, it is again about as basic as it can get.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-ts.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-ts.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Factory Method Code Sample for Currency</h3>
-                                                        <p>In this JavaScript example, the Factory object creates three different types of currency. Each currency type has a different comparison rate, nme, and country of origin. The createCurrency method
-                                                            is the actual <i>Factory Method</i>. The client instructs the factory what type of currency to create by passing a type argument into the Factory Method.</p>
+                                                        <h3>JavaScript Singleton Code Sample</h3>
+                                                        <p>In this JavaScript example, The Singleton object is implemented as an immediate anonymous function. The function executes immediately by wrapping it in brackets followed by two additional brackets.
+                                                            It is called anonymous because it doesn't have a name.</p>
+                                                        <p>The getInstance method is Singleton's gatekeeper. It returns the one and only instance of the object while maintaining a private reference to it which is not accessible to the outside world.</p>
+                                                        <p>The getInstance method demonstates another design pattern called Lazy Load. Lazy Load checks if an instance has already been created; if not, it creates one and stores it for future reference. All
+                                                            subsequent calls will receive the stored instance. Lazy loading is a CPU and memory saving technique by creating objects only when absolutely necessary.</p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-factorymethod-js.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-js.html" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -856,14 +881,18 @@
                                     </div>
                                     <!-- CONSIDERATIONS -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div id="notes" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header panel-header-light">&nbsp;&nbsp;
                                                     <h3>Considerations</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">If you have an inheritance hierarchy that exercises polymorphism, consider adding a polymorphic creation capability by defining a static factory method in the base class.</li>
+                                                        <li style="padding-left: 10px;">Define a private static attribute in the "single instance" class.</li>
+                                                        <li style="padding-left: 10px;">Define a public static accessor function in the class.</li>
+                                                        <li style="padding-left: 10px;">Do "lazy initialization" (creation on first use) in the accessor function.</li>
+                                                        <li style="padding-left: 10px;">Define all constructors to be protected or private.</li>
+                                                        <li style="padding-left: 10px;">Clients may only use the accessor function to manipulate the Singleton.</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -871,14 +900,25 @@
                                     </div>
                                     <!-- ADDITIONAL NOTES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
+                                        <div class="col sqs-col-11 span-11">
                                             <div class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="panel-header panel-header-light">&nbsp;&nbsp;
                                                     <h3>Additional Notes</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
-                                                        <li>Abstract Factory classes are often implemented with Factory Methods, but they can also be implemented using Prototype.</li>
+                                                        <li>Abstract Factory, Builder, and Prototype can and often do use Singleton in their implementation.
+                                                        </li>
+                                                        <li>Facade objects are often Singletons because only one Facade object is required.</li>
+                                                        <li>State objects are often Singletons.</li>
+                                                        <li>The advantage of Singleton over global variables is that you are absolutely sure of the number of instances when you use Singleton, and, you can change your mind and manage any number of instances.</li>
+                                                        <li>The Singleton design pattern is one of the most inappropriately used patterns. Singletons are intended to be used when a class must have exactly one instance, no more, no less. Designers frequently
+                                                            use Singletons in a misguided attempt to replace global variables. A Singleton is, for intents and purposes, a global variable. The Singleton does not do away with the global; it merely renames
+                                                            it
+                                                        </li>
+                                                        <li>When is Singleton unnecessary? Short answer: most of the time. Long answer: when it's simpler to pass an object resource as a reference to the objects that need it, rather than letting objects access
+                                                            the resource globally. The real problem with Singletons is that they give you such a good excuse not to think carefully about the appropriate visibility of an object. Finding the right balance
+                                                            of exposure and protection for an object is critical for maintaining flexibility.</li>
                                                     </ul>
                                                 </div>
                                             </div>
