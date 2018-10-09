@@ -879,11 +879,9 @@
                                                     </div>
                                                     <div id="JS" class="tabcontent">
                                                         <h3>JavaScript Object Pool Code Sample</h3>
-                                                        <p>In this JavaScript example, The Singleton object is implemented as an immediate anonymous function. The function executes immediately by wrapping it in brackets followed by two additional brackets.
-                                                            It is called anonymous because it doesn't have a name.</p>
-                                                        <p>The getInstance method is Singleton's gatekeeper. It returns the one and only instance of the object while maintaining a private reference to it which is not accessible to the outside world.</p>
-                                                        <p>The getInstance method demonstates another design pattern called Lazy Load. Lazy Load checks if an instance has already been created; if not, it creates one and stores it for future reference. All
-                                                            subsequent calls will receive the stored instance. Lazy loading is a CPU and memory saving technique by creating objects only when absolutely necessary.</p>
+                                                        <p>In this JavaScript example, the Object Pool is implemented very simply using an Array. While this choice is not exactly the most performant method of storing the objects, it is simple and still very
+                                                            quick in comparision to creating the objects from scratch each time.</p>
+                                                        <p>Here, unlike the C# and Java examples, we have implemented a maximum size on the pool. Again, as stated before, this is useful in scenarios where we want to limit the maximum number of managed objects.</p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-objectpool-js.html" />

@@ -7,6 +7,61 @@
 </head>
 
 <body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> ObjectPool(iLimit, fnConstructor) {
+    <span style="color: #008800; font-weight: bold">this</span>._aObjects <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Array</span>(iLimit);
+    <span style="color: #008800; font-weight: bold">this</span>._fnConstructor <span style="color: #333333">=</span> fnConstructor;
+    <span style="color: #008800; font-weight: bold">this</span>._iLimit <span style="color: #333333">=</span> iLimit;
+    <span style="color: #008800; font-weight: bold">this</span>._iSize <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+
+    <span style="color: #008800; font-weight: bold">this</span>.acquire <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">var</span> oTemp;
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>._iSize <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">0</span>) {
+            <span style="color: #008800; font-weight: bold">this</span>._iSize<span style="color: #333333">--</span>;
+            oTemp <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>._aObjects[<span style="color: #008800; font-weight: bold">this</span>._iSize];
+            <span style="color: #008800; font-weight: bold">this</span>._aObjects[<span style="color: #008800; font-weight: bold">this</span>._iSize] <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span>;
+            <span style="color: #008800; font-weight: bold">return</span> oTemp;
+        }
+
+        <span style="color: #008800; font-weight: bold">return</span> fnConstructor();
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.release <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(oRecyclable) {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #333333">!</span>oRecyclable <span style="color: #008800; font-weight: bold">instanceof</span> <span style="color: #008800; font-weight: bold">this</span>._fnConstructor) {
+            <span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Error</span>(<span style="background-color: #fff0f0">&quot;Trying to recycle the wrong object for pool.&quot;</span>);
+        }
+
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>._iSize <span style="color: #333333">&lt;</span> <span style="color: #008800; font-weight: bold">this</span>._iLimit) {
+            oRecyclable.reset();
+            <span style="color: #008800; font-weight: bold">this</span>._aObjects[<span style="color: #008800; font-weight: bold">this</span>._iSize] <span style="color: #333333">=</span> oRecyclable;
+            <span style="color: #008800; font-weight: bold">this</span>._iSize<span style="color: #333333">++</span>;
+        } <span style="color: #008800; font-weight: bold">else</span> {
+            <span style="color: #888888">// The pool is full, object will be deferred to GC for cleanup.</span>
+        }
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.getSize <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>._iSize;
+    };
+}
+<span style="color: #008800; font-weight: bold">function</span> PoolItem() {
+    <span style="color: #008800; font-weight: bold">this</span>.nums <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #008800; font-weight: bold">int</span>[<span style="color: #0000DD; font-weight: bold">1000000</span>];
+    <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>; i <span style="color: #333333">&lt;</span> nums.length; i<span style="color: #333333">++</span>) {
+        nums[i] <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">int</span>)(<span style="color: #007020">Math</span>.random()<span style="color: #333333">*</span><span style="color: #0000DD; font-weight: bold">20</span> <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span>);
+    }
+    <span style="color: #008800; font-weight: bold">this</span>.getValue <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(i) {
+        <span style="color: #008800; font-weight: bold">return</span> nums[i];
+    }
+    <span style="color: #008800; font-weight: bold">this</span>.reset <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #888888">// nothing to do here for this sample</span>
+    }
+}
+<span style="color: #008800; font-weight: bold">var</span> oPool <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ObjectPool(<span style="color: #0000DD; font-weight: bold">10</span>, PoolItem);
+<span style="color: #008800; font-weight: bold">var</span> item1 <span style="color: #333333">=</span> oPool.acquire();
+<span style="color: #008800; font-weight: bold">var</span> item2 <span style="color: #333333">=</span> oPool.acquire();
+<span style="color: #888888">// do something with retrieved pool items</span>
+oPointPool.release(item1);
+oPointPool.release(item2);
+</pre></div>
 
 </body>
 
