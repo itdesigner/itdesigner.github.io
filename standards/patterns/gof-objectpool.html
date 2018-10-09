@@ -673,7 +673,7 @@
                     <section class="Main-content" data-content-field="main-content">
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
-                                <h1>ObjectPool Pattern</h1>
+                                <h1>Object Pool Pattern</h1>
                                 <h2 class="sub-heading">Classic GOF Constructional Design Patterns</h2>
                             </div>
                             <div class="row sqs-row">
@@ -775,22 +775,35 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>There are various different ways of implementing the singleton pattern - typically; however many of them are challenged in one way or another. Here we will discuss a fully lazily-loaded, thread-safe,
-                                                        simple and highly performant version.</p>
-                                                    <p>All Singleton implementations share four common characteristics, however:</p>
+                                                    <p>Fundamentally, an Object pool is merely a container which contains some amount of objects. So, when an object is taken from the pool, it is not available in the pool until it is put back. Objects in
+                                                        the pool have a lifecycle:</p>
                                                     <ul>
-                                                        <li>A single constructor, which is private and parameterless. This prevents other classes from instantiating it (which would be a violation of the pattern). Note that it also prevents subclassing - if
-                                                            a singleton can be subclassed once, it can be subclassed twice, and if each of those subclasses can create an instance, the pattern is violated. The factory pattern can be used if you need a
-                                                            single instance of a base type, but the exact type isn't known until runtime.</li>
-                                                        <li>The class is sealed - where supported by the programming language choice.. This is unnecessary, strictly speaking, due to the above point, but may help the JIT to optimise things more.</li>
-                                                        <li>A static variable which holds a reference to the single created instance, if any.</li>
-                                                        <li>A public static means of getting the reference to the single created instance, creating one if necessary.</li>
+                                                        <li>Creation</li>
+                                                        <li>Validation</li>
+                                                        <li>Destroy</li>
                                                     </ul>
                                                     <br>
                                                     <img alt="object pool structure" src="/images/gof-objectpool-structure.png" data-src="/images/gof-objectpool-structure.png" data-image="/images/gof-objectpool-structure..png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>As one of the most basic design patterns, this is about as simple as it gets. The Singleton contains a private static object that is completely inaccessible from outside. This object can only be accessed
-                                                        via the <i><b>getInstance()</b></i> static method.</p>
+                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width:60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>The basic object pool design pattern consists of three basic objects that accomplish all work:</p>
+                                                    <ul>
+                                                        <li><b>Client</b> - This is the class that uses an object of the Reusable Object type.</li>
+                                                        <li><b>Reusable Object</b> - The PooledObject class is the type that is expensive or slow to instantiate, or that has limited availability, so is to be held in the object pool.</li>
+                                                        <li><b>Object Pool</b> - The Pool class is the most important class in the object pool design pattern. The Object Pool maintains a list of available objects and a collection of objects that have already
+                                                            been requested from the pool.</li>
+                                                    </ul>
+                                                    <p>In general, it is desirable to keep all Reusable objects that are not currently in use in the same object pool so that they can be managed by a single set of rules. In order to achieve this, the Object
+                                                        Pool class is generally designed to be a singleton class. Its constructor(s) are private, which forces other classes to call the Object Pool's <i>acquireReusable()</i> method to get an instance of
+                                                        the Reusable Object class.</p>
+                                                    <p>A Client calls an Object Pool's <i>acquireReusable()</i> method when it needs a Reusable object. The Object Pool needs to manage the collection of Reusable Objects and keep track of what has been given
+                                                        out and what is still available. If there are any Reusable objects in the pool when the <i>acquireReusable()</i> method is called, it removes a Reusable object from the pool and returns it to the
+                                                        requester. If the pool is empty, then the <i>acquireReusable()</i> method creates a Reusable object if it can. If the <i>acquireReusable()</i> method cannot create a new Reusable object, then it
+                                                        waits until a Reusable object is returned to the collection.</p>
+                                                    <p>Client objects pass a Reusable object to a Object Pool's <i>releaseReusable()</i> method when they are finished with the object. The <i>releaseReusable()</i> method returns a Reusable object to the pool
+                                                        of Reusable objects that are not in use; but, only after ensuring that the object has been reset to common starting state.</p>
+                                                    <p>In many applications of the Object Pool pattern, there are reasons for limiting the total number of Reusable objects that may exist. In such cases, the Object Pool object that creates Reusable objects
+                                                        is responsible for not creating more than a specified maximum number of Reusable objects. If Object Pool objects are responsible for limiting the number of objects they will create, then the Object
+                                                        Pool class will have a method for specifying the maximum number of objects to be created. That method is not indicated in the above diagram.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -803,8 +816,9 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>As stated in the <a href="#structure">STRUCTURE</a> discussion above, the Singleton is one of the most fundamental and basic design patterns. >For our purposes, lets choose using a singleton to create
-                                                        and provide access to an expensive resource - a database connection.</p>
+                                                    <p>As stated in the <a href="#structure">STRUCTURE</a> discussion above, the Object is a common approach to returning and managing expensive, time consuming, or limited resources for use in an application.
+                                                        Our example is going to be pretty basic to cover the typical scenarios in where you will find this pattern useful. Here, we will create and manage a pool of expensive to create resources.</p>
+                                                    <p>From a real world perspective, there a a number of resources that utilize the object pool pattern: database connections, threads, and things like limiting remote API calls.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -817,10 +831,9 @@
                                                     <h3>Code Samples</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Singleton Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in
-                                                        the
-                                                        <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a singleton pattern to create and return an expensive databse connection object.</p>
+                                                    <p>Below, you will find examples of the <i><b>Object Pool Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described
+                                                        in the <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
+                                                    <p>Each sample will use the object pool pattern to create and return an expensive object.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -830,7 +843,7 @@
                                                     </div>
 
                                                     <div id="NETC" class="tabcontent">
-                                                        <h3>C# Singleton Code Sample</h3>
+                                                        <h3>C# Object Pool Code Sample</h3>
                                                         <p>In this C# example, we take advantage of a number of features of the .NET platform that make this extremely simple to implement. The version provided here is highly performant, if not perfectly lazy-loaded.
                                                             It is a compromise.</p>
                                                         <p>It is possible to extend this sample to also include perfect lazy loading; however, the code becomes much more complex and typically involves locking. For most practical situations where the class
@@ -843,7 +856,7 @@
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
-                                                        <h3>Java Singleton Code Sample</h3>
+                                                        <h3>Java Object Pool Code Sample</h3>
                                                         <p>In this Java example, we take a page from a Java expert.</p>
                                                         <p>Prior to Java 5, the java memory model had a lot of issues and many approaches used to fail in certain scenarios where too many threads try to get the instance of the Singleton class simultaneously.
                                                             So Bill Pugh came up with a different approach to create the Singleton class using an <a href="https://www.journaldev.com/996/java-inner-class">inner static helper</a> class. The Bill Pugh Singleton
@@ -855,7 +868,7 @@
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Singleton Code Sample</h3>
+                                                        <h3>Typescript Object Pool Code Sample</h3>
                                                         <p>In this TypeScript example, it is again about as basic as it can get.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
@@ -864,7 +877,7 @@
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Singleton Code Sample</h3>
+                                                        <h3>JavaScript Object Pool Code Sample</h3>
                                                         <p>In this JavaScript example, The Singleton object is implemented as an immediate anonymous function. The function executes immediately by wrapping it in brackets followed by two additional brackets.
                                                             It is called anonymous because it doesn't have a name.</p>
                                                         <p>The getInstance method is Singleton's gatekeeper. It returns the one and only instance of the object while maintaining a private reference to it which is not accessible to the outside world.</p>
@@ -888,11 +901,16 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">Define a private static attribute in the "single instance" class.</li>
-                                                        <li style="padding-left: 10px;">Define a public static accessor function in the class.</li>
-                                                        <li style="padding-left: 10px;">Do "lazy initialization" (creation on first use) in the accessor function.</li>
-                                                        <li style="padding-left: 10px;">Define all constructors to be protected or private.</li>
-                                                        <li style="padding-left: 10px;">Clients may only use the accessor function to manipulate the Singleton.</li>
+                                                        <li style="padding-left: 10px;">Validate that you have a need to use an object pooling:
+                                                            <ul>
+                                                                <li>You must create objects that are expensive to create</li>
+                                                                <li>The frequency of creating further objects is also high.</li>
+                                                                <li>The number of objects in use is small.</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li style="padding-left: 10px;">Create Object Pool class with private array of Reusable Objects inside</li>
+                                                        <li style="padding-left: 10px;">Create acquire and release methods in Object Pool class</li>
+                                                        <li style="padding-left: 10px;">Make sure that your Object Pool is Singleton</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -907,18 +925,11 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
-                                                        <li>Abstract Factory, Builder, and Prototype can and often do use Singleton in their implementation.
+                                                        <li>The Factory Method, Abstract Factory, and Builder patterns can be used to encapsulate the creation logic for objects. However, it does not manage them after their creation, the object pool pattern
+                                                            keeps track of the objects it creates.
                                                         </li>
-                                                        <li>Facade objects are often Singletons because only one Facade object is required.</li>
-                                                        <li>State objects are often Singletons.</li>
-                                                        <li>The advantage of Singleton over global variables is that you are absolutely sure of the number of instances when you use Singleton, and, you can change your mind and manage any number of instances.</li>
-                                                        <li>The Singleton design pattern is one of the most inappropriately used patterns. Singletons are intended to be used when a class must have exactly one instance, no more, no less. Designers frequently
-                                                            use Singletons in a misguided attempt to replace global variables. A Singleton is, for intents and purposes, a global variable. The Singleton does not do away with the global; it merely renames
-                                                            it
-                                                        </li>
-                                                        <li>When is Singleton unnecessary? Short answer: most of the time. Long answer: when it's simpler to pass an object resource as a reference to the objects that need it, rather than letting objects access
-                                                            the resource globally. The real problem with Singletons is that they give you such a good excuse not to think carefully about the appropriate visibility of an object. Finding the right balance
-                                                            of exposure and protection for an object is critical for maintaining flexibility.</li>
+                                                        <li>Object Pools are usually implemented as Singletons.</li>
+                                                        <li>Although optional, many Object Pool implementations have the ability to control the minimum and maximum number of items to manage.</li>
                                                     </ul>
                                                 </div>
                                             </div>
