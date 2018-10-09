@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Java Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ObjectPool</span><span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">long</span> expirationTime<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">private</span> Hashtable<span style="color: #333333">&lt;</span>T<span style="color: #333333">,</span> Long<span style="color: #333333">&gt;</span> locked<span style="color: #333333">,</span> unlocked<span style="color: #333333">;</span>
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ObjectPool</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        locked <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Hashtable<span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;();</span>
+        unlocked <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Hashtable<span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;();</span>
+    <span style="color: #333333">}</span>
+
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #008800; font-weight: bold">abstract</span> T <span style="color: #0066BB; font-weight: bold">create</span><span style="color: #333333">();</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #0066BB; font-weight: bold">validate</span><span style="color: #333333">(</span>T o<span style="color: #333333">);</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">synchronized</span> T <span style="color: #0066BB; font-weight: bold">acquireObject</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        T t<span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>unlocked<span style="color: #333333">.</span><span style="color: #0000CC">size</span><span style="color: #333333">()</span> <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            Enumeration<span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span> e <span style="color: #333333">=</span> unlocked<span style="color: #333333">.</span><span style="color: #0000CC">keys</span><span style="color: #333333">();</span>
+            <span style="color: #008800; font-weight: bold">while</span> <span style="color: #333333">(</span>e<span style="color: #333333">.</span><span style="color: #0000CC">hasMoreElements</span><span style="color: #333333">())</span> <span style="color: #333333">{</span>
+                t <span style="color: #333333">=</span> e<span style="color: #333333">.</span><span style="color: #0000CC">nextElement</span><span style="color: #333333">();</span>
+                <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>validate<span style="color: #333333">(</span>t<span style="color: #333333">))</span> <span style="color: #333333">{</span>
+                    unlocked<span style="color: #333333">.</span><span style="color: #0000CC">remove</span><span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+                    locked<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+                    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+                <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">else</span> <span style="color: #333333">{</span>
+                    <span style="color: #888888">// object failed validation</span>
+                    unlocked<span style="color: #333333">.</span><span style="color: #0000CC">remove</span><span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+                    t <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+                <span style="color: #333333">}</span>
+            <span style="color: #333333">}</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #888888">// no objects available, create a new one</span>
+        t <span style="color: #333333">=</span> create<span style="color: #333333">();</span>
+        locked<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">synchronized</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">releaseObject</span><span style="color: #333333">(</span>T t<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        locked<span style="color: #333333">.</span><span style="color: #0000CC">remove</span><span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+        <span style="color: #888888">// ensure that the item is reset to a known state before making this</span>
+        <span style="color: #888888">// available again</span>
+        t<span style="color: #333333">.</span><span style="color: #0000CC">resetItem</span><span style="color: #333333">();</span>
+        unlocked<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span>t<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">//The two remaining methods are abstract</span>
+<span style="color: #888888">//and therefore must be implemented by the subclass</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ItemPool</span> <span style="color: #008800; font-weight: bold">extends</span> ObjectPool<span style="color: #333333">&lt;</span>PoolItem<span style="color: #333333">&gt;</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> String dsn<span style="color: #333333">,</span> usr<span style="color: #333333">,</span> pwd<span style="color: #333333">;</span>
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ItemPool</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">protected</span> PoolItem <span style="color: #0066BB; font-weight: bold">create</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">PoolItem</span><span style="color: #333333">();</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>Exception e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            e<span style="color: #333333">.</span><span style="color: #0000CC">printStackTrace</span><span style="color: #333333">();</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #0066BB; font-weight: bold">validate</span><span style="color: #333333">(</span>Connection o<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">try</span> <span style="color: #333333">{</span>
+            <span style="color: #888888">// complex validation logic or expiration could be checked here</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">true</span><span style="color: #333333">);</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">catch</span> <span style="color: #333333">(</span>Exception e<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            e<span style="color: #333333">.</span><span style="color: #0000CC">printStackTrace</span><span style="color: #333333">();</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PoolItem</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span><span style="color: #333333">[]</span> nums<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">double</span> <span style="color: #0066BB; font-weight: bold">getValue</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">long</span> i<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">return</span> nums<span style="color: #333333">[</span>i<span style="color: #333333">];</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">PoolItem</span><span style="color: #333333">()</span>
+    <span style="color: #333333">{</span>
+        nums <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">int</span><span style="color: #333333">[</span><span style="color: #0000DD; font-weight: bold">1000000</span><span style="color: #333333">];</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i <span style="color: #333333">&lt;</span> Nums<span style="color: #333333">.</span><span style="color: #0000CC">Length</span><span style="color: #333333">;</span> i<span style="color: #333333">++)</span>
+            nums<span style="color: #333333">[</span>i<span style="color: #333333">]</span> <span style="color: #333333">=</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span><span style="color: #333333">)(</span>Math<span style="color: #333333">.</span><span style="color: #0000CC">random</span><span style="color: #333333">()*</span><span style="color: #0000DD; font-weight: bold">20</span> <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">resetItem</span><span style="color: #333333">()</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #888888">// nothing to do here - but there could be</span>
+        <span style="color: #888888">// nums = new int[1000000];</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Main</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String args<span style="color: #333333">[])</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">// Do something...</span>
+        <span style="color: #333333">...</span>
+
+        <span style="color: #888888">// Create the ConnectionPool:</span>
+        ItemPool pool <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ItemPool<span style="color: #333333">();</span>
+
+        <span style="color: #888888">// Get a pooled item:</span>
+        PoolItem item <span style="color: #333333">=</span> pool<span style="color: #333333">.</span><span style="color: #0000CC">acquireObject</span><span style="color: #333333">();</span>
+
+        <span style="color: #888888">// Use the retrieved pooled item</span>
+        <span style="color: #333333">...</span>
+
+        <span style="color: #888888">// Return the pooled item:</span>
+        pool<span style="color: #333333">.</span><span style="color: #0000CC">releaseObject</span><span style="color: #333333">(</span>item<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+</body>
+
+</html>

@@ -844,26 +844,27 @@
 
                                                     <div id="NETC" class="tabcontent">
                                                         <h3>C# Object Pool Code Sample</h3>
-                                                        <p>In this C# example, we take advantage of a number of features of the .NET platform that make this extremely simple to implement. The version provided here is highly performant, if not perfectly lazy-loaded.
-                                                            It is a compromise.</p>
-                                                        <p>It is possible to extend this sample to also include perfect lazy loading; however, the code becomes much more complex and typically involves locking. For most practical situations where the class
-                                                            is responsible for only returning a single type instance, this performs outstanding. It will prematurely load the instance only in scenarios if there are other things going on with the class
-                                                            (probably not a great idea in any case). </p>
+                                                        <p>In this C# example, we take advantage of a number of features of the .NET platform that make this extremely simple to implement. The version provided here is highly performant and lazy-loads the
+                                                            items when given a first time use. Here we use the ConcurrentBag as our storage mechanism, although many other types could have been used as weel. In this sample, we chose the ConcurrentBag to
+                                                            address concerns around threading and they are handled in a solid manner in this class.
+                                                        </p>
+                                                        <p>It is possible to extend this sample to also include items such as items that expire after a given period of time or the use of complex validations for objects that are getting returned. For example,
+                                                            if we were returning connection objects, we might want to ensure their state before handing them out. There would be reason to hand out disconnected cnnection objects in that scenario. </p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-csharp.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-objectpool-csharp.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
                                                         <h3>Java Object Pool Code Sample</h3>
-                                                        <p>In this Java example, we take a page from a Java expert.</p>
-                                                        <p>Prior to Java 5, the java memory model had a lot of issues and many approaches used to fail in certain scenarios where too many threads try to get the instance of the Singleton class simultaneously.
-                                                            So Bill Pugh came up with a different approach to create the Singleton class using an <a href="https://www.journaldev.com/996/java-inner-class">inner static helper</a> class. The Bill Pugh Singleton
-                                                            implementation goes like this;</p>
+                                                        <p>In this Java example, we are taking advantage of HashTable internally to store instances of the pooled items. It is fairly efficient and provides for quick retrieval of items. Alternately, we could
+                                                            have chosen queues or some other storage class without ill effects.</p>
+                                                        <p>Unlike the C# example above, we are managing the collection of both the "acquired" and "available" items. This could be done, as it was in the other sample by only tracking the available items. In
+                                                            this sample, I wanted to show how that could be done as it might be valuable if you needed to expire or otherwise do something with loaned out objects.</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-java.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-objectpool-java.html" />
                                                         </div>
 
                                                     </div>
@@ -872,7 +873,7 @@
                                                         <p>In this TypeScript example, it is again about as basic as it can get.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-ts.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-objectpool-ts.html" />
                                                         </div>
 
                                                     </div>
@@ -885,7 +886,7 @@
                                                             subsequent calls will receive the stored instance. Lazy loading is a CPU and memory saving technique by creating objects only when absolutely necessary.</p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-singleton-js.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-objectpool-js.html" />
                                                         </div>
                                                     </div>
                                                 </div>

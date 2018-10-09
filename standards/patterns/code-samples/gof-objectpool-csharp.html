@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Collections.Concurrent</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Threading</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Threading.Tasks</span>;
+
+
+<span style="color: #008800; font-weight: bold">namespace</span> <span style="color: #0e84b5; font-weight: bold">ObjectPoolExample</span>
+{
+    <span style="color: #888888">// the generic object pool container</span>
+    <span style="color: #888888">// in this case we are using a CurrentBag to stored pooled items</span>
+    <span style="color: #888888">// There are alternatives to the ConcurrentBag - depending on the</span>
+    <span style="color: #888888">// goal of the pool and the version of the .NET framework available</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ObjectPool</span>&lt;T&gt;
+    {
+        <span style="color: #008800; font-weight: bold">private</span> ConcurrentBag&lt;T&gt; _objects;
+        <span style="color: #008800; font-weight: bold">private</span> Func&lt;T&gt; _objectGenerator;
+
+        <span style="color: #888888">// constructor</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ObjectPool</span>(Func&lt;T&gt; objectGenerator)
+        {
+            <span style="color: #008800; font-weight: bold">if</span> (objectGenerator == <span style="color: #008800; font-weight: bold">null</span>) <span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> ArgumentNullException(<span style="background-color: #fff0f0">&quot;objectGenerator&quot;</span>);
+            _objects = <span style="color: #008800; font-weight: bold">new</span> ConcurrentBag&lt;T&gt;();
+            _objectGenerator = objectGenerator;
+        }
+        <span style="color: #888888">// retrieve a pool instance</span>
+        <span style="color: #008800; font-weight: bold">public</span> T <span style="color: #0066BB; font-weight: bold">AcquireObject</span>()
+        {
+            T item;
+            <span style="color: #008800; font-weight: bold">if</span> (_objects.TryTake(<span style="color: #008800; font-weight: bold">out</span> item)) <span style="color: #008800; font-weight: bold">return</span> item;
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #0066BB; font-weight: bold">_objectGenerator</span>();
+        }
+        <span style="color: #888888">// return a pooled instance</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">ReleaseObject</span>(T item)
+        {
+            <span style="color: #888888">// ensure the item is in a predefined state before returning to pool</span>
+            item.ResetItem();
+            _objects.Add(item);
+        }
+    }
+    <span style="color: #888888">// sample usage code</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Program</span>
+    {
+        <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>(<span style="color: #333399; font-weight: bold">string</span>[] args)
+        {
+            CancellationTokenSource cts = <span style="color: #008800; font-weight: bold">new</span> CancellationTokenSource();
+
+            <span style="color: #888888">// Create an opportunity for the user to cancel.</span>
+            Task.Run(() =&gt;
+                {
+                    <span style="color: #008800; font-weight: bold">if</span> (Console.ReadKey().KeyChar == <span style="color: #0044DD">&#39;c&#39;</span> || Console.ReadKey().KeyChar == <span style="color: #0044DD">&#39;C&#39;</span>)
+                        cts.Cancel();
+                });
+            <span style="color: #888888">// create and populate the object pool</span>
+            ObjectPool&lt;PoolItem&gt; pool = <span style="color: #008800; font-weight: bold">new</span> ObjectPool&lt;PoolItem&gt; (() =&gt; <span style="color: #008800; font-weight: bold">new</span> PoolItem());
+
+            <span style="color: #888888">// simulate a high demand for PoolItem objects.</span>
+            Parallel.For(<span style="color: #6600EE; font-weight: bold">0</span>, <span style="color: #6600EE; font-weight: bold">1000000</span>, (i, loopState) =&gt;
+                {
+                    PoolItem pi = pool.AcquireObject();
+                    Console.CursorLeft = <span style="color: #6600EE; font-weight: bold">0</span>;
+                    <span style="color: #888888">// This is the bottleneck in our application. All threads in this loop</span>
+                    <span style="color: #888888">// must serialize their access to the static Console class.  A more accurate</span>
+                    <span style="color: #888888">// timing test would probably either omit this or queue up the writes so</span>
+                    <span style="color: #888888">//that they did not impact timing measurements</span>
+                    Console.WriteLine(<span style="background-color: #fff0f0">&quot;{0:####.####}&quot;</span>, pi.GetValue(i));
+
+                    pool.ReleaseObject(pi);
+                    <span style="color: #008800; font-weight: bold">if</span> (cts.Token.IsCancellationRequested)
+                        loopState.Stop();
+
+                });
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Press the Enter key to exit.&quot;</span>);
+            Console.ReadLine();
+            cts.Dispose();
+        }
+
+    }
+
+    <span style="color: #888888">// An example class that requires some resources to create.</span>
+    <span style="color: #888888">// You can experiment here to measure the performance of the</span>
+    <span style="color: #888888">// object pool vs. ordinary instantiation.</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">PoolItem</span>
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span>[] Nums {<span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>;}
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">double</span> <span style="color: #0066BB; font-weight: bold">GetValue</span>(<span style="color: #333399; font-weight: bold">long</span> i)
+        {
+            <span style="color: #008800; font-weight: bold">return</span> Math.Sqrt(Nums[i]);
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">PoolItem</span>()
+        {
+            Nums = <span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">int</span>[<span style="color: #6600EE; font-weight: bold">1000000</span>];
+            Random rand = <span style="color: #008800; font-weight: bold">new</span> Random();
+            <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #333399; font-weight: bold">int</span> i = <span style="color: #6600EE; font-weight: bold">0</span>; i &lt; Nums.Length; i++)
+                Nums[i] = rand.Next();
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">ResetItem</span>()
+        {
+            <span style="color: #888888">// nothing to do here - but there could be</span>
+        }
+    }
+}
+</pre></div>
+
+
+
+</body>
+
+</html>
