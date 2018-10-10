@@ -7,6 +7,131 @@
 </head>
 
 <body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Collections.Generic</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Linq</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Text</span>;
+
+<span style="color: #008800; font-weight: bold">namespace</span> <span style="color: #0e84b5; font-weight: bold">Builder</span>
+{
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Message</span>
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Subject { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Body { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> To { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> From { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">ToString</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> String.Format(<span style="background-color: #fff0f0">&quot;Subject:{0} From:{1} To:{2} Body:{3:C}&quot;</span>, Subject, From, To, Body);
+        }
+    }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">interface</span> IMessageBuilder
+    {
+        <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddSubject</span>();
+        <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddRecipient</span>();
+        <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddFrom</span>();
+        <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddBody</span>();
+        Message <span style="color: #0066BB; font-weight: bold">GetMessage</span>();
+    }
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">EmailBuilder</span> : IMessageBuilder
+    {
+        <span style="color: #008800; font-weight: bold">private</span> Message _message = <span style="color: #008800; font-weight: bold">new</span> Message();
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddSubject</span>()
+        {
+            _message.Subject = <span style="background-color: #fff0f0">&quot;This is an important Email Message&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddRecipient</span>()
+        {
+            _message.To = <span style="background-color: #fff0f0">&quot;valuedCustomer@somewhere.com&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddFrom</span>()
+        {
+            _message.From = <span style="background-color: #fff0f0">&quot;Me@somewhere.com&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddBody</span>()
+        {
+            _message.Body = <span style="background-color: #fff0f0">&quot;My important message&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> Message <span style="color: #0066BB; font-weight: bold">GetMessage</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> _message;
+        }
+    }
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">TextBuilder</span> : IMessageBuilder
+    {
+        <span style="color: #008800; font-weight: bold">private</span> Message _message = <span style="color: #008800; font-weight: bold">new</span> Message();
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddSubject</span>()
+        {
+            _message.Subject = <span style="background-color: #fff0f0">&quot;This is an important Text message!&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddRecipient</span>()
+        {
+            _message.To = <span style="background-color: #fff0f0">&quot;555-1212&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddFrom</span>()
+        {
+            _message.From = <span style="background-color: #fff0f0">&quot;555-1212&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddBody</span>()
+        {
+            _message.Body = <span style="background-color: #fff0f0">&quot;My importnt message.&quot;</span>;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> Message <span style="color: #0066BB; font-weight: bold">GetMessage</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> _message;
+        }
+    }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MessageMaster</span>
+    {
+        IMessageBuilder _messageBuilder;
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">SetMessageBuilder</span>(IMessageBuilder messageBuilder)
+        {
+            _messageBuilder = messageBuilder;
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> Message <span style="color: #0066BB; font-weight: bold">GetMessage</span>()
+        {
+            <span style="color: #008800; font-weight: bold">return</span> _messageBuilder.GetMessage();
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">CreateMessage</span>()
+        {
+            _messageBuilder.AddSubject();
+            _messageBuilder.AddRecipient();
+            _messageBuilder.AddFrom();
+            _messageBuilder.AddBody();
+        }
+    }
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Program</span>
+    {
+        <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>(<span style="color: #333399; font-weight: bold">string</span>[] args)
+        {
+            MessageMaster msgMaster = <span style="color: #008800; font-weight: bold">new</span> MessageMaster();
+            msgMaster.SetMessageBuilder(<span style="color: #008800; font-weight: bold">new</span> EmailBuilder());
+            msgMaster.CreateMessage();
+            Message emailMsg = msgMaster.GetMessage();
+            Console.WriteLine(emailMsg);
+            msgMaster.SetMessageBuilder(<span style="color: #008800; font-weight: bold">new</span> TextBuilder());
+            msgMaster.CreateMessage();
+            Message textMsg = msgMaster.GetMessage();
+            Console.WriteLine(textMsg);
+            Console.ReadLine();
+        }
+    }
+}
+</pre></div>
 
 </body>
 
