@@ -7,6 +7,56 @@
 </head>
 
 <body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// the base object pool class (generic)</span>
+<span style="color: #008800; font-weight: bold">class</span> Pool<span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span> {
+    <span style="color: #008800; font-weight: bold">private</span> pool: <span style="color: #333399; font-weight: bold">T</span>[];
+    <span style="color: #008800; font-weight: bold">private</span> Func: <span style="color: #333399; font-weight: bold">Pool.Resettable</span><span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span>;
+
+    <span style="color: #008800; font-weight: bold">constructor</span>(Func: <span style="color: #333399; font-weight: bold">Pool.Resettable</span><span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span>) {
+    <span style="color: #008800; font-weight: bold">this</span>.pool <span style="color: #333333">=</span> [];
+    <span style="color: #008800; font-weight: bold">this</span>.Func <span style="color: #333333">=</span> Func;
+    }
+
+    acquire()<span style="color: #333333">:</span> T {
+    <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.pool.length) {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>.pool.splice(<span style="color: #0000DD; font-weight: bold">0</span>, <span style="color: #0000DD; font-weight: bold">1</span>)[<span style="color: #0000DD; font-weight: bold">0</span>];
+    }
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #008800; font-weight: bold">this</span>.Func();
+    }
+
+    release(obj: <span style="color: #333399; font-weight: bold">T</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+    <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.Func.reset) {<span style="color: #008800; font-weight: bold">this</span>.Func.reset(obj)}
+    <span style="color: #008800; font-weight: bold">this</span>.pool.push(obj);
+    }
+}
+
+<span style="color: #008800; font-weight: bold">module</span> Pool {
+    <span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">interface</span> Resettable<span style="color: #333333">&lt;</span>T <span style="color: #008800; font-weight: bold">extends</span> <span style="color: #007020">Object</span><span style="color: #333333">&gt;</span> {
+    <span style="color: #888888">// constructor</span>
+    <span style="color: #008800; font-weight: bold">new</span> ()<span style="color: #333333">:</span> T;
+    <span style="color: #888888">// static</span>
+    reset<span style="color: #333333">?</span>(obj: <span style="color: #333399; font-weight: bold">T</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">class</span> PoolItem {
+    <span style="color: #008800; font-weight: bold">constructor</span>() {
+    PoolItem.reset(<span style="color: #008800; font-weight: bold">this</span>);
+    }
+    <span style="color: #008800; font-weight: bold">static</span> reset(obj: <span style="color: #333399; font-weight: bold">PoolItem</span>) {
+    <span style="color: #888888">// do something here to reset the object back to a clean known state</span>
+    }
+}
+
+<span style="color: #888888">// usage</span>
+<span style="color: #008800; font-weight: bold">var</span> pool <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Pool(PoolItem);
+<span style="color: #008800; font-weight: bold">const</span> obj1 <span style="color: #333333">=</span> pool.acquire(); <span style="color: #888888">// returns new PoolItem</span>
+<span style="color: #008800; font-weight: bold">const</span> obj2 <span style="color: #333333">=</span> pool.acquire(); <span style="color: #888888">// returns new PoolItem</span>
+
+pool.release(obj1); <span style="color: #888888">// reset() is automatically called here</span>
+
+<span style="color: #008800; font-weight: bold">const</span> obj3 <span style="color: #333333">=</span> pool.acquire(); <span style="color: #888888">// obj3 is now identical to obj1</span>
+</pre></div>
 
 </body>
 
