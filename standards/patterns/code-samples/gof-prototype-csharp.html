@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// The &#39;Prototype&#39; interface</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">interface</span> IEmployee
+{
+    IEmployee <span style="color: #0066BB; font-weight: bold">Clone</span>();
+    <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">GetDetails</span>();
+}
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// A &#39;ConcretePrototype&#39; class</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Developer</span> : IEmployee
+{
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> WordsPerMinute { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Name { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Role { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> PreferredLanguage { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+
+    <span style="color: #008800; font-weight: bold">public</span> IEmployee <span style="color: #0066BB; font-weight: bold">Clone</span>()
+    {
+        <span style="color: #888888">// Shallow Copy: only top-level objects are duplicated</span>
+        <span style="color: #008800; font-weight: bold">return</span> (IEmployee)MemberwiseClone();
+
+        <span style="color: #888888">// Deep Copy: all objects are duplicated</span>
+        <span style="color: #888888">//return (IEmployee)this.Clone();</span>
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">GetDetails</span>()
+    {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333399; font-weight: bold">string</span>.Format(<span style="background-color: #fff0f0">&quot;{0} - {1} - {2}&quot;</span>, Name, Role, PreferredLanguage);
+    }
+}
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// A &#39;ConcretePrototype&#39; class</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Admin</span> : IEmployee
+{
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> WordsPerMinute { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Name { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Role { <span style="color: #008800; font-weight: bold">get</span>; <span style="color: #008800; font-weight: bold">set</span>; }
+
+    <span style="color: #008800; font-weight: bold">public</span> IEmployee <span style="color: #0066BB; font-weight: bold">Clone</span>()
+    {
+        <span style="color: #888888">// Shallow Copy: only top-level objects are duplicated</span>
+        <span style="color: #008800; font-weight: bold">return</span> (IEmployee)MemberwiseClone();
+
+        <span style="color: #888888">// Deep Copy: all objects are duplicated</span>
+        <span style="color: #888888">//return (IEmployee)this.Clone();</span>
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> <span style="color: #0066BB; font-weight: bold">GetDetails</span>()
+    {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #333399; font-weight: bold">string</span>.Format(<span style="background-color: #fff0f0">&quot;{0} - {1} - {2}wpm&quot;</span>, Name, Role, WordsPerMinute);
+    }
+}
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// Prototype Pattern Demo</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Program</span>
+{
+    <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>(<span style="color: #333399; font-weight: bold">string</span>[] args)
+    {
+        Developer dev = <span style="color: #008800; font-weight: bold">new</span> Developer();  <span style="color: #888888">//let&#39;s pretend that this is expensive</span>
+        dev.Name = <span style="background-color: #fff0f0">&quot;Michael&quot;</span>;
+        dev.Role = <span style="background-color: #fff0f0">&quot;Team Leader&quot;</span>;
+        dev.PreferredLanguage = <span style="background-color: #fff0f0">&quot;C#&quot;</span>;
+
+        Developer devCopy = (Developer)dev.Clone();
+        devCopy.Name = <span style="background-color: #fff0f0">&quot;Nathan&quot;</span>; <span style="color: #888888">//Not mention Role and PreferredLanguage, it will copy above</span>
+
+        Console.WriteLine(dev.GetDetails());
+        Console.WriteLine(devCopy.GetDetails());
+
+        Admin assistant = <span style="color: #008800; font-weight: bold">new</span> Admin();  <span style="color: #888888">//let&#39;s pretend that this is expensive</span>
+        assistant.Name = <span style="background-color: #fff0f0">&quot;Jane&quot;</span>;
+        assistant.Role = <span style="background-color: #fff0f0">&quot;Admin Assistant&quot;</span>;
+        assistant.WordsPerMinute = <span style="color: #6600EE; font-weight: bold">120</span>;
+
+        Typist assistantCopy = (Typist)typist.Clone();
+        assistantCopy.Name = <span style="background-color: #fff0f0">&quot;Robert&quot;</span>;
+        assistantCopy.WordsPerMinute = <span style="color: #6600EE; font-weight: bold">115</span>; <span style="color: #888888">//Not mention Role, it will copy above</span>
+
+        Console.WriteLine(assistant.GetDetails());
+        Console.WriteLine(assistantCopy.GetDetails());
+
+        Console.ReadKey();
+    }
+}
+</pre></div>
+
+
+</body>
+
+</html>

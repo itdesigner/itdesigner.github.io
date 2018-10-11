@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Java Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.Objects</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.ArrayList</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.List</span><span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">interface</span> <span style="color: #BB0066; font-weight: bold">IEmployee</span> <span style="color: #333333">{</span>
+    IEmployee <span style="color: #0066BB; font-weight: bold">clone</span><span style="color: #333333">();</span>
+    String <span style="color: #0066BB; font-weight: bold">getDetails</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+<span style="color: #888888">// concrete prototype</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Developer</span> <span style="color: #008800; font-weight: bold">implements</span> IEmployee <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> WordsPerMinute<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Name<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Role<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String PreferredLanguage<span style="color: #333333">;</span>
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Developer</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Developer</span><span style="color: #333333">(</span>Developer target<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(</span>target <span style="color: #333333">!=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">WordsPerMinute</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">WordsPerMinute</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">Name</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Role</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">Role</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">PreferredLanguage</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">PreferredLanguage</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> IEmployee <span style="color: #0066BB; font-weight: bold">clone</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">//here we might want to use a native clone method</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">Developer</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> String <span style="color: #0066BB; font-weight: bold">getDetails</span><span style="color: #333333">()</span>
+    <span style="color: #333333">{</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Role</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">PreferredLanguage</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; language&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+<span style="color: #888888">// concrete prototype</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Admin</span> <span style="color: #008800; font-weight: bold">implements</span> IEmployee <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">int</span> WordsPerMinute<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Name<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Role<span style="color: #333333">;</span>
+
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Admin</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Admin</span><span style="color: #333333">(</span>Admin target<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(</span>target <span style="color: #333333">!=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">WordsPerMinute</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">WordsPerMinute</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">Name</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Role</span> <span style="color: #333333">=</span> target<span style="color: #333333">.</span><span style="color: #0000CC">Role</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> IEmployee <span style="color: #0066BB; font-weight: bold">clone</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">//here we might want to use a native clone method</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #0066BB; font-weight: bold">Admin</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> String <span style="color: #0066BB; font-weight: bold">getDetails</span><span style="color: #333333">()</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Role</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">WordsPerMinute</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;wpm&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Demo</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        List<span style="color: #333333">&lt;</span>IEmployee<span style="color: #333333">&gt;</span> employees <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ArrayList<span style="color: #333333">&lt;&gt;();</span>
+
+        Developer dev <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Developer<span style="color: #333333">();</span>
+        dev<span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Michael&quot;</span><span style="color: #333333">;</span>
+        dev<span style="color: #333333">.</span><span style="color: #0000CC">Role</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Team Lead&quot;</span><span style="color: #333333">;</span>
+        dev<span style="color: #333333">.</span><span style="color: #0000CC">PreferredLanguage</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Java&quot;</span><span style="color: #333333">;</span>
+        employees<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span>dev<span style="color: #333333">);</span>
+
+        Developer anotherDev <span style="color: #333333">=</span> <span style="color: #333333">(</span>Developer<span style="color: #333333">)</span> dev<span style="color: #333333">.</span><span style="color: #0000CC">clone</span><span style="color: #333333">();</span>
+        anotherDev<span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Jose&quot;</span><span style="color: #333333">;</span>
+        employees<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span>anotherDev<span style="color: #333333">);</span>
+
+        Admin admin <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Admin<span style="color: #333333">();</span>
+        admin<span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Jane&quot;</span><span style="color: #333333">;</span>
+        admin<span style="color: #333333">.</span><span style="color: #0000CC">Role</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Administrative Assistant&quot;</span><span style="color: #333333">;</span>
+        admin<span style="color: #333333">.</span><span style="color: #0000CC">WordsPerMinute</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">150</span><span style="color: #333333">;</span>
+        employees<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span>admin<span style="color: #333333">);</span>
+
+        Admin anotherAdmin <span style="color: #333333">=</span> <span style="color: #333333">(</span>Admin<span style="color: #333333">)</span> admin<span style="color: #333333">.</span><span style="color: #0000CC">clone</span><span style="color: #333333">();</span>
+        anotherAdmin<span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Robert&quot;</span><span style="color: #333333">;</span>
+        employees<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span>anotherAdmin<span style="color: #333333">);</span>
+        
+        <span style="color: #008800; font-weight: bold">for</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i <span style="color: #333333">&lt;</span> employees<span style="color: #333333">.</span><span style="color: #0000CC">size</span><span style="color: #333333">();</span> i<span style="color: #333333">++)</span> <span style="color: #333333">{</span>
+            System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>i <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> employees<span style="color: #333333">.</span><span style="color: #0000CC">get</span><span style="color: #333333">(</span>i<span style="color: #333333">).</span><span style="color: #0000CC">getDetails</span><span style="color: #333333">());</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+</body>
+
+</html>
