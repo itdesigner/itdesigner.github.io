@@ -8,6 +8,83 @@
 
 <body>
 
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">interface</span> IEmployee {
+        clone()<span style="color: #333333">:</span> IEmployee;
+        getDetails()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span>;
+    }
+
+<span style="color: #008800; font-weight: bold">class</span> Developer <span style="color: #008800; font-weight: bold">implements</span> IEmployee {
+      <span style="color: #008800; font-weight: bold">public</span> WordsPerMinute: <span style="color: #333399; font-weight: bold">number</span>;
+      <span style="color: #008800; font-weight: bold">public</span> Name: <span style="color: #333399; font-weight: bold">string</span>;
+      <span style="color: #008800; font-weight: bold">public</span> Role: <span style="color: #333399; font-weight: bold">string</span>;
+      <span style="color: #008800; font-weight: bold">public</span> PreferredLanguage: <span style="color: #333399; font-weight: bold">string</span>;
+
+      <span style="color: #008800; font-weight: bold">constructor</span>(obj?: <span style="color: #333399; font-weight: bold">any</span>) {
+          <span style="color: #008800; font-weight: bold">if</span>(obj <span style="color: #333333">!=</span><span style="color: #008800; font-weight: bold">null</span>) {
+              <span style="color: #008800; font-weight: bold">this</span>.WordsPerMinute <span style="color: #333333">=</span> obj.WordsPerMinute;
+              <span style="color: #008800; font-weight: bold">this</span>.Name <span style="color: #333333">=</span> obj.Name;
+              <span style="color: #008800; font-weight: bold">this</span>.Role <span style="color: #333333">=</span> obj.Role;
+              <span style="color: #008800; font-weight: bold">this</span>.PreferredLanguage <span style="color: #333333">=</span> obj.PreferredLanguage;
+          }
+        }
+        <span style="color: #008800; font-weight: bold">public</span> clone()<span style="color: #333333">:</span> Developer {
+            <span style="color: #008800; font-weight: bold">return</span> (<span style="color: #008800; font-weight: bold">new</span> Developer(<span style="color: #008800; font-weight: bold">this</span>));
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> getDetails()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot; DEV: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Role <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.PreferredLanguage;;
+        }
+    }
+
+<span style="color: #008800; font-weight: bold">class</span> Admin <span style="color: #008800; font-weight: bold">implements</span> IEmployee {
+      <span style="color: #008800; font-weight: bold">public</span> WordsPerMinute: <span style="color: #333399; font-weight: bold">number</span>;
+      <span style="color: #008800; font-weight: bold">public</span> Name: <span style="color: #333399; font-weight: bold">string</span>;
+      <span style="color: #008800; font-weight: bold">public</span> Role: <span style="color: #333399; font-weight: bold">string</span>;
+
+      <span style="color: #008800; font-weight: bold">constructor</span>(obj?: <span style="color: #333399; font-weight: bold">any</span>) {
+          <span style="color: #008800; font-weight: bold">if</span>(obj <span style="color: #333333">!=</span><span style="color: #008800; font-weight: bold">null</span>) {
+              <span style="color: #008800; font-weight: bold">this</span>.WordsPerMinute <span style="color: #333333">=</span> obj.WordsPerMinute;
+              <span style="color: #008800; font-weight: bold">this</span>.Name <span style="color: #333333">=</span> obj.Name;
+              <span style="color: #008800; font-weight: bold">this</span>.Role <span style="color: #333333">=</span> obj.Role;
+          }
+        }
+        <span style="color: #008800; font-weight: bold">public</span> clone()<span style="color: #333333">:</span> Admin {
+            <span style="color: #008800; font-weight: bold">return</span> (<span style="color: #008800; font-weight: bold">new</span> Admin(<span style="color: #008800; font-weight: bold">this</span>));
+        }
+
+        <span style="color: #008800; font-weight: bold">public</span> getDetails()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="background-color: #fff0f0">&quot;ADMIN: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Role <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.WordsPerMinute <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;wpm&quot;</span>;
+        }
+    }
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">class</span> log {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> _log: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">static</span> add(message: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    }
+    <span style="color: #008800; font-weight: bold">static</span> show()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">var</span> admin: <span style="color: #333399; font-weight: bold">Admin</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Admin();
+admin.Name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Jane&quot;</span>;
+admin.Role <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Administrative Assistant&quot;</span>;
+admin.WordsPerMinute <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">140</span>;
+<span style="color: #008800; font-weight: bold">var</span> anotherAdmin: <span style="color: #333399; font-weight: bold">Admin</span> <span style="color: #333333">=</span> admin.clone();
+anotherAdmin.Name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Robert&quot;</span>;
+log.add(admin.getDetails());
+log.add(anotherAdmin.getDetails());
+<span style="color: #008800; font-weight: bold">var</span> dev: <span style="color: #333399; font-weight: bold">Developer</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Developer();
+dev.Name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Michael&quot;</span>;
+dev.Role <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Team Lead&quot;</span>;
+dev.PreferredLanguage <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Typescript&quot;</span>;
+<span style="color: #008800; font-weight: bold">var</span> anotherDev: <span style="color: #333399; font-weight: bold">Developer</span> <span style="color: #333333">=</span> dev.clone();
+anotherDev.Name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Jose&quot;</span>;
+log.add(dev.getDetails());
+log.add(anotherDev.getDetails());
+</pre></div>
 
 </body>
 

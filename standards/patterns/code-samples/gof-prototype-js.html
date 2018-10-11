@@ -8,6 +8,53 @@
 
 <body>
 
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> EmployeePrototype(proto) {
+    <span style="color: #008800; font-weight: bold">this</span>.proto <span style="color: #333333">=</span> proto;
+
+    <span style="color: #008800; font-weight: bold">this</span>.clone <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">var</span> dev <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Developer();
+
+        dev.name <span style="color: #333333">=</span> proto.name;
+        dev.role <span style="color: #333333">=</span> proto.role;
+        dev.preferredLanguage <span style="color: #333333">=</span> proto.preferredLanguage;
+
+        <span style="color: #008800; font-weight: bold">return</span> dev;
+    };
+}
+
+<span style="color: #008800; font-weight: bold">function</span> Developer(name, role, preferredLanguage) {
+
+    <span style="color: #008800; font-weight: bold">this</span>.name <span style="color: #333333">=</span> name;
+    <span style="color: #008800; font-weight: bold">this</span>.role <span style="color: #333333">=</span> role;
+    <span style="color: #008800; font-weight: bold">this</span>.preferredLanguage <span style="color: #333333">=</span> preferredLanguage;
+
+    <span style="color: #008800; font-weight: bold">this</span>.getDetails <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> (<span style="background-color: #fff0f0">&quot;name: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span>  <span style="color: #333333">+</span>
+                <span style="background-color: #fff0f0">&quot;, role: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.role <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - language: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.preferredLanguage);
+    };
+}
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">class</span> log {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> _log<span style="color: #333333">:</span> string <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">static</span> add(message<span style="color: #333333">:</span> string)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    }
+    <span style="color: #008800; font-weight: bold">static</span> show()<span style="color: #333333">:</span> string {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">var</span> proto <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Developer(<span style="background-color: #fff0f0">&quot;Michael&quot;</span>, <span style="background-color: #fff0f0">&quot;Team Lead&quot;</span>, <span style="background-color: #fff0f0">&quot;JS&quot;</span>);
+log.add(proto.getDetails());
+<span style="color: #008800; font-weight: bold">var</span> prototype <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> EmployeePrototype(proto);
+
+<span style="color: #008800; font-weight: bold">var</span> customer <span style="color: #333333">=</span> prototype.clone();
+customer.name <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Jose&quot;</span>;
+log.add(customer.getDetails());
+
+log.show();
+</pre></div>
 
 </body>
 
