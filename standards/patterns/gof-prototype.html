@@ -699,15 +699,19 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>In very simple term, this design pattern means To Reuse objects which are very costly to create. Object pooling is creating objects of the class at the time of creation and put them into one common pool.
-                                                        Now whenever application needs object of that class instead of instantiating new object we will return the object from the object pool. Once the task is completed the object will be return back to
-                                                        the pool.</p>
-                                                    <p>This pattern is very common when you desire: perfromance or need the ability to limit the number of critical resources.</p>
+                                                    <p>Similar to the Object Pool pattern, the <b>Prototype Pattern</b> seeks to reduce the time and cost of creating objects. In the case of the <b>Prototype Pattern</b>, a base-line object (<i>the prototype</i>)
+                                                        is copied or cloned and returned rather than creating the object from scratch.</p>
+                                                    <p>This pattern is very common when:</p>
+                                                    <ul>
+                                                        <li>you desire performance in creating / returning a costly to create object</li>
+                                                        <li>you want to initialize an object to a custom known state repeatedly</li>
+                                                        <li>the use of the <i>new</i> operator is considered harmful</li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- IMAGE VISUALIZATION -->s
+                                    <!-- IMAGE VISUALIZATION -->
                                     <div class="sqs-block image-block sqs-block-image" data-aspect-ratio="30" data-block-type="5" id="block-3d8b09b340f3a6109439">
                                         <div class="sqs-block-content">
                                             <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none">
@@ -729,8 +733,10 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>When building applications, you often come across objects that are either expensive to create or need to be limited to some number above one (1). In some scenarios, the cost of creating new objects is
-                                                        high enough to impact application performance. This is where the object pool design pattern comes to the rescue. </p>
+                                                    <p>When building applications, you often come across objects that are either expensive to create or regularly need to be pre-configured to a specific state that you want to have occur automatically. In
+                                                        some scenarios, the cost of creating new objects is high enough to impact application performance. Alternately, the time spent configuring an object could be high or make the code cluttered. This
+                                                        is where the prototype design pattern shines. </p>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -745,24 +751,23 @@
                                                     <h3>Discussion</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The object pool design pattern is used to recycle objects rather than recreate them each time the application needs them. By keeping reusable instances of objects in a resource pool, and doling them
-                                                        out as needed, this pattern helps to minimize the overhead of initializing, instantiating, and disposing of objects and to boost the performance of your application. This is also beneficial in scenarios
-                                                        where it is desired to maintain no more than a specific number of instances of an object around at a time.</p>
-                                                    <p>When the application requests an object, and the object is available from the pool, it is returned from the pool. If the object of the requested type is not available from the pool, then a new instance
-                                                        of the object is created and returned. When the application no longer needs the object, the object is sent back to the pool.</p>
-                                                    <p>The minimum and maximum number of objects that an object pool can hold is configurable. If the application needs an object from the pool but the maximum number of objects has been allocated, a typical
-                                                        custom object pool implementation can adopt one or more of the following strategies:</p>
+                                                    <p>The <b>Prototype Pattern</b> is a high performance method of returning objects with a known state to a caller. Unlike the <b>Object Pool</b> which creates collections of objects to pass out, the <b>Prototype</b>                                                        maintains one instance of the desired object and doles our "copies" as required.</p>
+                                                    <p>The <b>Prototype pattern</b> should be considered when:</p>
                                                     <ul>
-                                                        <li>Return null or throw an exception</li>
-                                                        <li>Block the call until an object is available</li>
-                                                        <li>Increase the pool size to accommodate more objects</li>
+                                                        <li>Composition, creation and representation of objects should be decoupled from the system</li>
+                                                        <li>Classes to be created are specified at runtime</li>
+                                                        <li>You need to hide the complexity of creating new instance from the client</li>
+                                                        <li>Creating an object is an expensive operation and it would be more efficient to copy an object.</li>
+                                                        <li>Objects are required that are similar to existing objects.</li>
                                                     </ul>
-                                                    <p>An object pool is very similar to a database connection or thread pools. Just as the connection pool controls the maximum number of connections to the database, the object pool controls the number of
-                                                        class instances that the application will use.</p>
-                                                    <p>One of the key factors when using object pools is that the pool itself MUST account for resetting all returned objects to some pre-defined state. Without this, we can run into objects that have the wrong
-                                                        state or contain information left over from its last use. It is CRITICALLY important that the object pool itself perform this "reset" when the object is returned because we should never rely on the
-                                                        fact that the last process to use one of the objects will do so. This is just good practice and provides guarantees on the state of the object.</p>
-                                                    <p></p>
+                                                    <p>Consider the following typical problem case. You have an object and want to create a duplicate. How would you typically do it? First, you need to create a fresh object of the same class. Then you have
+                                                        to go over through all fields of the original object and copy their values to the new object. But there is (often) a catch. Not all objects can be copied this way. Some of the objects can have private
+                                                        fields not accessible from the outside - short of some languages abilities to do things like reflection.
+                                                    </p>
+                                                    <p>The final problem with this "create and copy" approach is that you also tightly couple actual classes - losing the ability to use objects strictly through their defined interfaces.</p>
+                                                    <p>The prototype pattern helps in this scenario by taking an already created and configured instance of an object (<i>the prototype</i>) and handing out copies as needed. Unlike the <b>object pool</b>,
+                                                        the <b>prototype pattern</b> does not limit or typically control the number of copies that have been created (although this functionality could be added if desired).</p>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -775,35 +780,19 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Fundamentally, an Object pool is merely a container which contains some amount of objects. So, when an object is taken from the pool, it is not available in the pool until it is put back. Objects in
-                                                        the pool have a lifecycle:</p>
-                                                    <ul>
-                                                        <li>Creation</li>
-                                                        <li>Validation</li>
-                                                        <li>Destroy</li>
-                                                    </ul>
+                                                    <p>Fundamentally, a Ptotype pattern is implemented by having the desired objects support a <i>cloneable</i> interface.</p>
                                                     <br>
-                                                    <img alt="object pool structure" src="/images/gof-objectpool-structure.png" data-src="/images/gof-objectpool-structure.png" data-image="/images/gof-objectpool-structure..png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
+                                                    <img alt="prototype structure" src="/images/gof-prototype-structure.png" data-src="/images/gof-prototype-structure.png" data-image="/images/gof-prototype-structure.png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width:60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>The basic object pool design pattern consists of three basic objects that accomplish all work:</p>
-                                                    <ul>
-                                                        <li><b>Client</b> - This is the class that uses an object of the Reusable Object type.</li>
-                                                        <li><b>Reusable Object</b> - The PooledObject class is the type that is expensive or slow to instantiate, or that has limited availability, so is to be held in the object pool.</li>
-                                                        <li><b>Object Pool</b> - The Pool class is the most important class in the object pool design pattern. The Object Pool maintains a list of available objects and a collection of objects that have already
-                                                            been requested from the pool.</li>
-                                                    </ul>
-                                                    <p>In general, it is desirable to keep all Reusable objects that are not currently in use in the same object pool so that they can be managed by a single set of rules. In order to achieve this, the Object
-                                                        Pool class is generally designed to be a singleton class. Its constructor(s) are private, which forces other classes to call the Object Pool's <i>acquireReusable()</i> method to get an instance of
-                                                        the Reusable Object class.</p>
-                                                    <p>A Client calls an Object Pool's <i>acquireReusable()</i> method when it needs a Reusable object. The Object Pool needs to manage the collection of Reusable Objects and keep track of what has been given
-                                                        out and what is still available. If there are any Reusable objects in the pool when the <i>acquireReusable()</i> method is called, it removes a Reusable object from the pool and returns it to the
-                                                        requester. If the pool is empty, then the <i>acquireReusable()</i> method creates a Reusable object if it can. If the <i>acquireReusable()</i> method cannot create a new Reusable object, then it
-                                                        waits until a Reusable object is returned to the collection.</p>
-                                                    <p>Client objects pass a Reusable object to a Object Pool's <i>releaseReusable()</i> method when they are finished with the object. The <i>releaseReusable()</i> method returns a Reusable object to the pool
-                                                        of Reusable objects that are not in use; but, only after ensuring that the object has been reset to common starting state.</p>
-                                                    <p>In many applications of the Object Pool pattern, there are reasons for limiting the total number of Reusable objects that may exist. In such cases, the Object Pool object that creates Reusable objects
-                                                        is responsible for not creating more than a specified maximum number of Reusable objects. If Object Pool objects are responsible for limiting the number of objects they will create, then the Object
-                                                        Pool class will have a method for specifying the maximum number of objects to be created. That method is not indicated in the above diagram.</p>
+                                                    <p>The basic prototype design pattern consists of a basic interface that all prototype instances need to implement. In the diagram above, this interface is identified as the <i>Prototype Interface</i>.
+                                                        The Prototype Interface declares the common interface for all objects that allow cloning. It allows cloning objects without tight coupling to their concrete classes. Usually, the prototype interface
+                                                        contains a single clone method.</p>
+                                                    <p>The implementation of clone method is similar for all classes. The method creates an object of a current class and copies all its field values into the new object. Most of the programming languages allow
+                                                        accessing private fields in an object of the same class, so the copying process is straightforward.</p>
+                                                    <p>Objects that can be cloned are called prototypes. Sometimes, especially when your objects have a ton of fields and hundreds of possible configurations, prototypes can serve as an alternative to subclassing.
+                                                        In this case, the program creates a bunch of prototypes beforehand and then clones them instead of reconstructing objects from scratch.</p>
+                                                    <p>The actual implementation of the "copy" or "clone" functionality depends greatly on the platform or language that you use to implement it. Some of the classic OO langagues have native support for cloning
+                                                        (shallow and deep) where as other languages leave it up to the designer to implement this behavior.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -816,12 +805,12 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>As stated in the <a href="#structure">STRUCTURE</a> discussion above, the Object is a common approach to returning and managing expensive, time consuming, or limited resources for use in an application.
-                                                        Our example is going to be pretty basic to cover the typical scenarios in where you will find this pattern useful. Here, we will create and manage a pool of expensive to create resources.</p>
+                                                    <p>As stated in the <a href="#structure">STRUCTURE</a> discussion above, the Prototype is a common approach to returning or configuring expensive or time consuming objects in an application. Our example
+                                                        is going to be pretty basic to cover the typical scenarios in where you will find this pattern useful. Here, we will create and deliver some (simulated) expensive to create resources.</p>
                                                     <br>
-                                                    <img alt="object pool example structure" src="/images/object-pool-example-diagram.png" data-src="/images/object-pool-example-diagram.png" data-image="/images/object-pool-example-diagram.png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5"
-                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width:60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>From a real world perspective, there a a number of resources that utilize the object pool pattern: database connections, threads, and things like limiting remote API calls.</p>
+                                                    <img alt="prototype example structure" src="/images/gof-prototoype-example.png" data-src="/images/gof-prototoype-example.png" data-image="/images/gof-prototoype-example.png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
+                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width:60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>In our examples, we will be using the <b>prototype pattern</b> to create employees of varous types.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -904,16 +893,16 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">Validate that you have a need to use an object pooling:
+                                                        <li style="padding-left: 10px;">Validate that you have a need to use a prototype:
                                                             <ul>
-                                                                <li>You must create objects that are expensive to create</li>
-                                                                <li>The frequency of creating further objects is also high.</li>
-                                                                <li>The number of objects in use is small.</li>
+                                                                <li>You must create objects that are expensive to create, or</li>
+                                                                <li>You must create objects that are complex to configure before use.</li>
                                                             </ul>
                                                         </li>
-                                                        <li style="padding-left: 10px;">Create Object Pool class with private array of Reusable Objects inside</li>
-                                                        <li style="padding-left: 10px;">Create acquire and release methods in Object Pool class</li>
-                                                        <li style="padding-left: 10px;">Make sure that your Object Pool is Singleton</li>
+                                                        <li style="padding-left: 10px;">Add a <i>clone()</i> method to all objects to be delivered</li>
+                                                        <li style="padding-left: 10px;">Where interfaces are supported, make all objects to be delivered support the prototype interface</li>
+                                                        <li style="padding-left: 10px;">Create a "cache" or storage system for the prototypes that you will copy</li>
+                                                        <li style="padding-left: 10px;">Optionally, create a factory method that will select the correct prototype and return a copy</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -928,11 +917,13 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
-                                                        <li>The Factory Method, Abstract Factory, and Builder patterns can be used to encapsulate the creation logic for objects. However, it does not manage them after their creation, the object pool pattern
-                                                            keeps track of the objects it creates.
-                                                        </li>
-                                                        <li>Object Pools are usually implemented as Singletons.</li>
-                                                        <li>Although optional, many Object Pool implementations have the ability to control the minimum and maximum number of items to manage.</li>
+                                                        <li>Prototypes perform creation through delegation.</li>
+                                                        <li>Prototype doesn't require subclassing, but it does require an "initialize" operation. Factory Method requires subclassing, but doesn't require Initialize.</li>
+                                                        <li>Designs that make heavy use of the Composite and Decorator patterns often can benefit from Prototype as well.</li>
+                                                        <li>Prototype co-opts one instance of a class for use as a breeder of all future instances.</li>
+                                                        <li>Prototype is unique among the other creational patterns in that it doesn't require a class – only an object. Object-oriented languages like Self and Omega that do away with classes completely rely
+                                                            on prototypes for creating new objects.</li>
+                                                        <li>Complex objects with lots of references to other objects can be difficult to clone.</li>
                                                     </ul>
                                                 </div>
                                             </div>
