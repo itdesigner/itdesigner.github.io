@@ -7,6 +7,56 @@
 </head>
 
 <body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Message</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">EmailBuilder</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">private</span> String subject<span style="color: #333333">;</span> <span style="color: #888888">//This is important, so we&#39;ll pass it to the constructor.</span>
+        <span style="color: #008800; font-weight: bold">private</span> String body<span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">private</span> String to<span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">private</span> String from<span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">double</span> interestRate<span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Builder</span><span style="color: #333333">(</span>String subject<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">subject</span> <span style="color: #333333">=</span> subject<span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">public</span> Builder <span style="color: #0066BB; font-weight: bold">withBody</span><span style="color: #333333">(</span>String body<span style="color: #333333">){</span>
+            <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">body</span> <span style="color: #333333">=</span> body<span style="color: #333333">;</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">;</span>  <span style="color: #888888">//By returning the builder each time, we can create a fluent interface.</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">public</span> Builder <span style="color: #0066BB; font-weight: bold">withRecipient</span><span style="color: #333333">(</span>String to<span style="color: #333333">){</span>
+            <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">to</span> <span style="color: #333333">=</span> to<span style="color: #333333">;</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">public</span> Builder <span style="color: #0066BB; font-weight: bold">withSender</span><span style="color: #333333">(</span>String from<span style="color: #333333">){</span>
+            <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">from</span> <span style="color: #333333">=</span> from<span style="color: #333333">;</span>
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">public</span> Message <span style="color: #0066BB; font-weight: bold">build</span><span style="color: #333333">(){</span>
+            <span style="color: #888888">//Here we create the actualMessage object, which is always in a fully initialised state when it&#39;s returned.</span>
+            Message account <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Message<span style="color: #333333">();</span>  <span style="color: #888888">//Since the builder is in the Message class, we can invoke its private constructor.</span>
+            account<span style="color: #333333">.</span><span style="color: #0000CC">subject</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">subject</span><span style="color: #333333">;</span>
+            account<span style="color: #333333">.</span><span style="color: #0000CC">body</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">body</span><span style="color: #333333">;</span>
+            account<span style="color: #333333">.</span><span style="color: #0000CC">to</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">to</span><span style="color: #333333">;</span>
+            account<span style="color: #333333">.</span><span style="color: #0000CC">from</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">from</span><span style="color: #333333">;</span>
+            <span style="color: #008800; font-weight: bold">return</span> account<span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #888888">//Fields omitted for brevity.</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #0066BB; font-weight: bold">Message</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">//Constructor is now private.</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #888888">//Getters and setters omitted for brevity.</span>
+<span style="color: #333333">}</span>
+
+Message account <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Message<span style="color: #333333">.</span><span style="color: #0000CC">EmailBuilder</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Important Subject&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">withBody</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;important body&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">withRecipient</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;someone@somewhere.com&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">withSender</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;someone-else@somewhere.com&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">build</span><span style="color: #333333">();</span>
+Message anotherAccount <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Message<span style="color: #333333">.</span><span style="color: #0000CC">EmailBuilder</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Another Subject&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">withBody</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;another body&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">withRecipient</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;someone@somewhere.com&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">withSender</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;someone-else@somewhere.com&quot;</span><span style="color: #333333">)</span>
+            <span style="color: #333333">.</span><span style="color: #0000CC">build</span><span style="color: #333333">();</span>
+</pre></div>
 
 </body>
 

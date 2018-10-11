@@ -7,6 +7,97 @@
 </head>
 
 <body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">class</span> Message {
+    Subject: <span style="color: #333399; font-weight: bold">String</span>;
+    Body: <span style="color: #333399; font-weight: bold">String</span>;
+    To: <span style="color: #333399; font-weight: bold">String</span>;
+    From: <span style="color: #333399; font-weight: bold">String</span>;
+    show()<span style="color: #333333">:</span> <span style="color: #007020">String</span> {
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>.Subject <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.To <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.From <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Body;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">interface</span> IMessageBuilder {
+    addSubject()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    addBody()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    addFrom()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    addRecipient()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    getMessage()<span style="color: #333333">:</span> Message;
+}
+
+<span style="color: #008800; font-weight: bold">class</span> EmailBuilder <span style="color: #008800; font-weight: bold">implements</span> IMessageBuilder {
+    <span style="color: #008800; font-weight: bold">private</span> _msg: <span style="color: #333399; font-weight: bold">Message</span>;
+
+    <span style="color: #008800; font-weight: bold">constructor</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>._msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Message();
+    }
+    addSubject()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.Subject <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;I am the email subject&quot;</span>;
+    }
+    addBody()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.Body <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;I am the email body&quot;</span>;
+    }
+    addRecipient()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.To <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;someone@somewhere.com&quot;</span>;
+    }
+    addFrom()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.From <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;someone-else@somewhere.com&quot;</span>;
+    }
+    getMessage()<span style="color: #333333">:</span> Message {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>._msg;
+    }
+}
+<span style="color: #008800; font-weight: bold">class</span> TextBuilder <span style="color: #008800; font-weight: bold">implements</span> IMessageBuilder {
+    <span style="color: #008800; font-weight: bold">private</span> _msg: <span style="color: #333399; font-weight: bold">Message</span>;
+
+    <span style="color: #008800; font-weight: bold">constructor</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>._msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Message();
+    }
+    addSubject()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.Subject <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;I am the text subject&quot;</span>;
+    }
+    addBody()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.Body <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;I am the text body&quot;</span>;
+    }
+    addRecipient()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.To <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;someone@somewhere.com&quot;</span>;
+    }
+    addFrom()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>._msg.From <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;someone-else@somewhere.com&quot;</span>;
+    }
+    getMessage()<span style="color: #333333">:</span> Message {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>._msg;
+    }
+}
+<span style="color: #008800; font-weight: bold">class</span> MessageService{
+        <span style="color: #008800; font-weight: bold">static</span> createMessage(builder: <span style="color: #333399; font-weight: bold">IMessageBuilder</span>)<span style="color: #333333">:</span> Message {
+                builder.addSubject();
+        builder.addBody();
+        builder.addRecipient();
+        builder.addFrom();
+                <span style="color: #008800; font-weight: bold">return</span> builder.getMessage();
+        }
+}
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">class</span> log {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> _log: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">static</span> add(message: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    }
+    <span style="color: #008800; font-weight: bold">static</span> show()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">let</span> emailBuilder: <span style="color: #333399; font-weight: bold">IMessageBuilder</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> EmailBuilder();
+<span style="color: #008800; font-weight: bold">let</span> textBuilder: <span style="color: #333399; font-weight: bold">IMessageBuilder</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> TextBuilder();
+<span style="color: #008800; font-weight: bold">let</span> email: <span style="color: #333399; font-weight: bold">Message</span> <span style="color: #333333">=</span> MessageService.createMessage(emailBuilder);
+log.add(<span style="background-color: #fff0f0">&quot;EMAIL: &quot;</span> <span style="color: #333333">+</span> email.show());
+<span style="color: #008800; font-weight: bold">let</span> text: <span style="color: #333399; font-weight: bold">Message</span> <span style="color: #333333">=</span> MessageService.createMessage(textBuilder);
+log.add(<span style="background-color: #fff0f0">&quot;TEXT:&quot;</span> <span style="color: #333333">+</span> text.show());
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
 
 </body>
 

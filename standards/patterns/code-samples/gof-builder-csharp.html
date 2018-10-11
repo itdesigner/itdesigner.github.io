@@ -92,7 +92,7 @@
             <span style="color: #008800; font-weight: bold">return</span> _message;
         }
     }
-    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MessageMaster</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MessageService</span>
     {
         IMessageBuilder _messageBuilder;
 
@@ -118,14 +118,14 @@
     {
         <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>(<span style="color: #333399; font-weight: bold">string</span>[] args)
         {
-            MessageMaster msgMaster = <span style="color: #008800; font-weight: bold">new</span> MessageMaster();
-            msgMaster.SetMessageBuilder(<span style="color: #008800; font-weight: bold">new</span> EmailBuilder());
-            msgMaster.CreateMessage();
-            Message emailMsg = msgMaster.GetMessage();
+            MessageService msgSvc = <span style="color: #008800; font-weight: bold">new</span> MessageService();
+            msgSvc.SetMessageBuilder(<span style="color: #008800; font-weight: bold">new</span> EmailBuilder());
+            msgSvc.CreateMessage();
+            Message emailMsg = msgSvc.GetMessage();
             Console.WriteLine(emailMsg);
-            msgMaster.SetMessageBuilder(<span style="color: #008800; font-weight: bold">new</span> TextBuilder());
-            msgMaster.CreateMessage();
-            Message textMsg = msgMaster.GetMessage();
+            msgSvc.SetMessageBuilder(<span style="color: #008800; font-weight: bold">new</span> TextBuilder());
+            msgSvc.CreateMessage();
+            Message textMsg = msgSvc.GetMessage();
             Console.WriteLine(textMsg);
             Console.ReadLine();
         }

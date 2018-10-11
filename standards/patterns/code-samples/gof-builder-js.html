@@ -7,6 +7,122 @@
 </head>
 
 <body>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> MessageService() {
+    <span style="color: #008800; font-weight: bold">this</span>.construct <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>(builder) {
+        builder.addSubject();
+        builder.addRecipient();
+        builder.addFrom();
+        builder.addBody()
+        <span style="color: #008800; font-weight: bold">return</span> builder.getMessage();
+    }
+}
+
+<span style="color: #008800; font-weight: bold">function</span> EmailBuilder() {
+    <span style="color: #008800; font-weight: bold">this</span>.msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span>;
+
+    <span style="color: #008800; font-weight: bold">this</span>.addSubject <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>.msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Email();
+        <span style="color: #008800; font-weight: bold">this</span>.msg.subject <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;subject&quot;</span>;
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.addRecipient <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #888888">// here the work is getting handled by the email class</span>
+        <span style="color: #008800; font-weight: bold">this</span>.msg.addRecipients();
+    };
+    <span style="color: #008800; font-weight: bold">this</span>.addFrom <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>.msg.from <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;someone-else@somewhere.com&quot;</span>;
+    };
+    <span style="color: #008800; font-weight: bold">this</span>.addBody <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>.msg.body <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;important body&quot;</span>
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.getMessage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>.msg;
+    };
+}
+
+<span style="color: #008800; font-weight: bold">function</span> TextBuilder() {
+    <span style="color: #008800; font-weight: bold">this</span>.msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span>;
+
+    <span style="color: #008800; font-weight: bold">this</span>.addSubject <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>.msg <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Text();
+        <span style="color: #008800; font-weight: bold">this</span>.msg.subject <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;subject&quot;</span>;
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.addRecipient <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #888888">// here the work is getting handled by the text class</span>
+        <span style="color: #008800; font-weight: bold">this</span>.msg.addRecipients();
+    };
+    <span style="color: #008800; font-weight: bold">this</span>.addFrom <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>.msg.from <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;555-1212&quot;</span>;
+    };
+    <span style="color: #008800; font-weight: bold">this</span>.addBody <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">this</span>.msg.body <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;important body&quot;</span>
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.getMessage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>.msg;
+    };
+}
+
+<span style="color: #008800; font-weight: bold">function</span> Email() {
+    <span style="color: #008800; font-weight: bold">this</span>.subject <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">this</span>.body <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">this</span>.to <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">this</span>.from <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+
+    <span style="color: #008800; font-weight: bold">this</span>.addRecipients <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #888888">// we could have allowed for all kinds of complex logic Here</span>
+        <span style="color: #008800; font-weight: bold">this</span>.to <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;someone@somewhere.com&quot;</span>;
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.say <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        log.add(<span style="background-color: #fff0f0">&quot;EMAIL MSG: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.subject <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; TO: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.to <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; FROM: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.from <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; BODY: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.body);
+    };
+}
+
+<span style="color: #008800; font-weight: bold">function</span> Text() {
+    <span style="color: #008800; font-weight: bold">this</span>.subject <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">this</span>.body <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">this</span>.to <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">this</span>.from <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+
+    <span style="color: #008800; font-weight: bold">this</span>.addRecipients <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        <span style="color: #888888">// we could have allowed for all kinds of complex logic Here</span>
+        <span style="color: #008800; font-weight: bold">this</span>.to <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;555-1212&quot;</span>;
+    };
+
+    <span style="color: #008800; font-weight: bold">this</span>.say <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span>() {
+        log.add(<span style="background-color: #fff0f0">&quot;TEXT MSG: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.subject <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; TO: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.to <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; FROM: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.from <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; BODY: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.body);
+    };
+}
+
+<span style="color: #888888">// log helper</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span>() {
+    <span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> {
+        add<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span>(msg) { log <span style="color: #333333">+=</span> msg <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;\n&quot;</span>; },
+        show<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span>() {
+            alert(log);
+            log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+        }
+    }
+})();
+
+<span style="color: #008800; font-weight: bold">function</span> run() {
+    <span style="color: #008800; font-weight: bold">var</span> msgSvc <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MessageService();
+    <span style="color: #008800; font-weight: bold">var</span> emailBuilder <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> EmailBuilder();
+    <span style="color: #008800; font-weight: bold">var</span> textBuilder <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> TextBuilder();
+    <span style="color: #008800; font-weight: bold">var</span> email <span style="color: #333333">=</span> msgSvc.construct(emailBuilder);
+    <span style="color: #008800; font-weight: bold">var</span> text <span style="color: #333333">=</span> msgSvc.construct(textBuilder);
+
+    email.say();
+    text.say();
+
+    log.show();
+}
+run();
+</pre></div>
 
 </body>
 
