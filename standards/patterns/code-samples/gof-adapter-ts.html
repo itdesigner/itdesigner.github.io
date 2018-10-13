@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typescript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('ts-code')">Copy</button>
+        <pre id="ts-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// this is a simplified third party service that has been &quot;updated&quot;</span>
+<span style="color: #008800; font-weight: bold">class</span> ThirdPartyMailer {
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> sendSecureMail(secureToken: <span style="color: #333399; font-weight: bold">string</span>, recipients: <span style="color: #333399; font-weight: bold">string</span>[], subject: <span style="color: #333399; font-weight: bold">string</span>, body: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">boolean</span> {
+        <span style="color: #888888">// something exciting to send Mail</span>
+        log.add(<span style="background-color: #fff0f0">&quot;sending a message: &quot;</span> <span style="color: #333333">+</span> subject <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;, &quot;</span> <span style="color: #333333">+</span> body <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; to &quot;</span> <span style="color: #333333">+</span> recipients.length <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; users&quot;</span>);
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    }
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> getSecureMail(secureToken: <span style="color: #333399; font-weight: bold">string</span>, accountId: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> Message[] {
+        <span style="color: #888888">// something exciting to receive Mail</span>
+        <span style="color: #008800; font-weight: bold">var</span> messages: <span style="color: #333399; font-weight: bold">Message</span>[] <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span>;
+        <span style="color: #008800; font-weight: bold">return</span> messages;
+    }
+}
+
+<span style="color: #888888">// a basic message class</span>
+<span style="color: #008800; font-weight: bold">class</span> Message {
+    <span style="color: #008800; font-weight: bold">public</span> Message(sender: <span style="color: #333399; font-weight: bold">string</span>, subject: <span style="color: #333399; font-weight: bold">string</span>, body: <span style="color: #333399; font-weight: bold">string</span>) {
+        <span style="color: #008800; font-weight: bold">this</span>.Sender <span style="color: #333333">=</span> sender;
+        <span style="color: #008800; font-weight: bold">this</span>.Subject <span style="color: #333333">=</span> subject;
+        <span style="color: #008800; font-weight: bold">this</span>.Body <span style="color: #333333">=</span> body;
+    }
+    <span style="color: #008800; font-weight: bold">public</span> Sender: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">public</span> Subject: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">public</span> Body: <span style="color: #333399; font-weight: bold">string</span>;
+}
+
+<span style="color: #888888">// this is the legacy interface that the client expects to use</span>
+<span style="color: #008800; font-weight: bold">interface</span> ILegacyMailer {
+    sendMail(recipients: <span style="color: #333399; font-weight: bold">string</span>[], subject: <span style="color: #333399; font-weight: bold">string</span>, body: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    getMail(accountId: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> Message[];
+}
+
+<span style="color: #888888">// the adapter class that allows the client to communicate with the new</span>
+<span style="color: #888888">// Third Party Mailer Service</span>
+<span style="color: #008800; font-weight: bold">class</span> MailAdapter <span style="color: #008800; font-weight: bold">implements</span> ILegacyMailer {
+    <span style="color: #008800; font-weight: bold">private</span> _secureToken: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;SUPER_SECURITY&quot;</span>;
+    <span style="color: #008800; font-weight: bold">public</span> sendMail(recipients: <span style="color: #333399; font-weight: bold">string</span>[], subject: <span style="color: #333399; font-weight: bold">string</span>, body: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #888888">// this is simple mapping logic from the old call to the new service format</span>
+        ThirdPartyMailer.sendSecureMail(<span style="color: #008800; font-weight: bold">this</span>._secureToken, recipients, subject, body);
+    }
+    <span style="color: #008800; font-weight: bold">public</span> getMail(accountId: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> Message[] {
+        <span style="color: #888888">// this is simple mapping logic from the old call to the new service format</span>
+        <span style="color: #008800; font-weight: bold">return</span> ThirdPartyMailer.getSecureMail(<span style="color: #008800; font-weight: bold">this</span>._secureToken, accountId);
+    }
+}
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">class</span> log {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> _log: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">static</span> add(message: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    }
+    <span style="color: #008800; font-weight: bold">static</span> show()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }
+}
+
+<span style="color: #008800; font-weight: bold">var</span> mailAdapter: <span style="color: #333399; font-weight: bold">MailAdapter</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MailAdapter();
+<span style="color: #008800; font-weight: bold">var</span> recipients: <span style="color: #333399; font-weight: bold">string</span>[] <span style="color: #333333">=</span> [
+    <span style="background-color: #fff0f0">&quot;michael@somewhere.com&quot;</span>,
+    <span style="background-color: #fff0f0">&quot;robert@somewhere.com&quot;</span>,
+    <span style="background-color: #fff0f0">&quot;claire@somewhere.com&quot;</span>
+];
+log.add(<span style="background-color: #fff0f0">&quot;sending mail to recipients&quot;</span>);
+mailAdapter.sendMail(recipients, <span style="background-color: #fff0f0">&quot;An Important Subject!&quot;</span>, <span style="background-color: #fff0f0">&quot;An important message&quot;</span>);
+
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+
+</body>
+
+</html>

@@ -7,7 +7,9 @@
 </head>
 
 <body>
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #888888">// the base object pool class (generic)</span>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('ts-code')">Copy</button>
+        <pre id="ts-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// the base object pool class (generic)</span>
 <span style="color: #008800; font-weight: bold">class</span> Pool<span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span> {
     <span style="color: #008800; font-weight: bold">private</span> pool: <span style="color: #333399; font-weight: bold">T</span>[];
     <span style="color: #008800; font-weight: bold">private</span> Func: <span style="color: #333399; font-weight: bold">Pool.Resettable</span><span style="color: #333333">&lt;</span>T<span style="color: #333333">&gt;</span>;

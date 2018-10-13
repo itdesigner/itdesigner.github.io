@@ -7,7 +7,9 @@
 </head>
 
 <body>
-    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> ObjectPool(iLimit, fnConstructor) {
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+        <pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">function</span> ObjectPool(iLimit, fnConstructor) {
     <span style="color: #008800; font-weight: bold">this</span>._aObjects <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Array</span>(iLimit);
     <span style="color: #008800; font-weight: bold">this</span>._fnConstructor <span style="color: #333333">=</span> fnConstructor;
     <span style="color: #008800; font-weight: bold">this</span>._iLimit <span style="color: #333333">=</span> iLimit;
