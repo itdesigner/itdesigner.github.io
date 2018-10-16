@@ -698,12 +698,13 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Adapter pattern works as a bridge between two incompatible interfaces. This pattern involves a single class which is responsible to join functionalities of independent or incompatible interfaces.</p>
-                                                    <p>It is used when you need to:</p>
+                                                    <p>The <b>Bridge Pattern</b> is used to decouple an abstraction from its implementation so that the two can vary independently. </p>
+                                                    <p>It is used when:</p>
                                                     <ul>
-                                                        <li>Convert the interface of a class into another interface that the clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.</li>
-                                                        <li>Wrap an existing class with a new interface to make it appear to be some other type.</li>
-                                                        <li>Reduce impedance mismatch to allow a component to work in the context of a new system</li>
+                                                        <li>Abstractions and implementations should not be bound at compile time.</li>
+                                                        <li>Abstractions and implementations should be independently extensible.</li>
+                                                        <li>Changes in the implementation of an abstraction should have no impact on clients.</li>
+                                                        <li>Implementation details should be hidden from the client.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -731,8 +732,8 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Two classes or services (components) need to be able to communicate; but have no common method or interface to do so. The <b>Adapter Pattern</b> allows the two to communicate by acting as a bridge between
-                                                        the two.</p>
+                                                    <p>The Bridge pattern should be used when both the class as well as what it does vary often. The bridge pattern can also be thought of as two layers of abstraction. It is commonly applied when the abstractions
+                                                        and implementations should not be bound at compile time, and they both should be independently extensible. </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -747,16 +748,25 @@
                                                     <h3>Discussion</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The real world is filled with adapters - they surround us everyday. The device you are reading this on requires an adapter to even work. Phones and Tablets require a low voltage to charge and work and
-                                                        yet the wall socket you plug them into everyday is 120 volts. The power adapter has a simple job, to change the 120V in the outlet to something much smaller to run your device. The adapter doesn't
-                                                        do anything else, just this one simple job - adapting your device to run from the electrical outlet.
+                                                    <p>Let's reiterate what the GoF say about the Bridge Pattern:
                                                     </p>
-                                                    <p>The key objective of the <b>Adapter Pattern</b> is to do the exact same thing between two mismatched componets in software. As an example, typially a client expects a specific interface when making a
-                                                        call. If the component that it is calling is updated to something new (one with different methods or different protocols), it won't work without updating every client. An adapter sits between the
-                                                        client and caller and implements the interface that the client expects. In effect, it is "pretending" to be the target that the client expects; but, is able to interact with the new component.</p>
-                                                    <p>The <b>Adapter Pattern</b> is about creating an intermediary abstraction that translates, or maps, an old component to a new system (or vice versa). Clients call methods on the Adapter object which redirects
-                                                        them into calls to the target component. This strategy can be implemented either with inheritance or with aggregation.</p>
-                                                    <p>As stated earlier, the <b>Adapter</b> functions as a wrapper or modifier of an existing class. It provides a different or translated view of that class.</p>
+                                                    <div class="gof-quote">Decouples an abstraction from its implementation so that the two can vary independently.</div>
+                                                    <p>An <b>abstraction</b>, in this definition, means a generalized way of looking at something without requiring you to understand how it actually is implemented. For example, a steering wheel is an abstraction
+                                                        on a car. Let's face it, for many folks, turning the steering wheel makes the car change direction; how it actually accomplishes this is completely abstracted away from the users. The abstraction
+                                                        of a steering wheel actually protects users from having to know all the mechanical details of how the change in direction is accomplished. If the methods were different from one car brand to another,
+                                                        the user doesn't care.</p>
+                                                    <p>Given this definition of an abstraction, it is easy to see what an <b>implementation</b> is - it is merely the realization of an abstraction. It makes the abstraction real in a specific case. As you
+                                                        can guess, abstractions and implementations are normally rather tightly coupled. For a specific class of problems, this coupling is beneficial and works to our advantage.</p>
+                                                    <p>But, let's expand the scope of our problem slightly. What happens if we want to use the steering wheel in other types of vehicles - boats, airplanes, or tanks. We can put a car steering wheel in each
+                                                        of these vehicles; however, steering these types of vehicles is dramatically different than how steering a car works. Since the steering wheel (abstraction) is tightly coupled to the implementation,
+                                                        it will not work for us in these cases. What we need to do is to decouple the abstraction of the steering wheel from its specific implementation of steering a car. We need an abstraction of an abstraction
+                                                        - we need to make a vehicle steering wheel rather that a car steering wheel. This is the purpose of the <b>bridge pattern</b> - to create an abstraction of an abstraction.</p>
+                                                    <br>
+                                                    <img alt="bridge pattern discussion example" src="/images/gof-bridge-discussion-example.png" data-src="/images/gof-bridge-discussion-example.png" data-image="/images/gof-bridge-discussion-example.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; width: 50%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <br>
+                                                    <p>With this approach, we can create different steering wheels for each type of vehicle that aren’t coupled to a specific steering system. The <b>bridge</b> pattern makes it so that the abstraction of a
+                                                        steering wheel is decoupled from the implementation of the specific steering systems, like using turning an axle or raising or lowering a wing-flap.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -769,23 +779,21 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Structurally, <b>Adapters</b> come in two basic flavors or approaches. If you do some research on the adapter pattern, you will find two different implementations of it:</p>
-                                                    <ul>
-                                                        <li>The class adapter pattern that implements the adapter using inheritance.</li>
-                                                        <li>The object adapter pattern that uses composition to reference an instance of the wrapped class within the adapter.</li>
-                                                    </ul>
-                                                    <p>Composition provides more flexibility and avoids unexpected side-effect when you need to change existing code. Due to this, the composition-based adapter pattern is by far the more popular approach and
-                                                        the one I will focus on here.</p>
+                                                    <p>The Client doesn't want to deal with platform-dependent details. The Bridge pattern encapsulates this complexity behind an abstraction "wrapper". The <b>Bridge</b> emphasizes identifying and decoupling
+                                                        "interface" abstraction from "implementation" abstraction.</p>
                                                     <br>
-                                                    <img alt="adapter pattern structure" src="/images/gof-adapter-structure.png" data-src="/images/gof-adapter-structure.png" data-image="/images/gof-adapter-structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; width: 50%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <img alt="bridge pattern structure" src="/images/gof-bridge-structure.png" data-src="/images/gof-bridge-structure.png" data-image="/images/gof-bridge-structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a31"
+                                                        data-type="image" style="left: 10%; width: 50%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>As you can see in the diagram above, the client is totally unaware that it is using an adapter to communicate with the target component. The components here are fairly basic:</p>
+                                                    <p>As you can see in the diagram above, the the structure is fairly basic (note that the actual "bridge" in the pattern is outlined in red in the drawing above):</p>
                                                     <ul>
-                                                        <li><b>Client</b> - the component that makes the call. It expects a target that accepts an interface that it knows about.</li>
-                                                        <li><b>Expected Interface</b> - the interface that the caller knows about and expects to be able to use.</li>
-                                                        <li><b>Adapter</b> - a custom component that implements the expected interface and knows how to translate incoming calls to interact with the target</li>
-                                                        <li><b>Target</b> - the component that the caller needs to communicate with but can't without the adapter.</li>
+                                                        <li><b>Abstraction</b> - defines the abstraction's interface and maintains a reference to an object of type Implementor. The abstraction mainly contains a control logic like a user interface. Abstraction's
+                                                            code relies on the Implementation object to do the real job.</li>
+                                                        <li><b>Refined Abstraction</b> - extends the interface defined by Abstraction. Refined Abstractions may be created to provide several variants of the control logic. These classes, just as their parent,
+                                                            should use the Implementation interface to work with different implementations.</li>
+                                                        <li><b>Implementor</b> - defines the interface for implementation classes. This interface doesn't have to correspond exactly to Abstraction's interface; in fact the two interfaces can be quite different.
+                                                            Typically the Implementation interface provides only primitive operations, and Abstraction defines higher-level operations based on these primitives.</li>
+                                                        <li><b>ConcreteImplementor</b> - implements the Implementor interface and defines its concrete implementation. Essentially, Concrete Implementations contain platform-specific code.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -799,18 +807,21 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>For a practical example of the <b>Adapter Pattern</b> in a real world usage scenario, lets imagine that we have a service that interacts with a third party system outside our control. It could be a system
-                                                        for billing or even sending out emails - its purpose doesn't really matter for our example, only that it isn't something that we have control over. </p>
-                                                    <p>Now imagine that the provider of this thrid party service decides that they are going to update their service (this never happens, right?) and add some security. While they are adding these new features,
-                                                        they change up some of the methos that they expose and you discover that your services that use it will now be broken and no longer work. A similar scenario also plays out when you use third party
-                                                        components and they are "upgraded" - but they don't keep consistency with their previous interfaces.</p>
+                                                    <p>For a practical example of the <b>Bridge Pattern</b> in a real world usage scenario, lets imagine that we have a simple web application framework that allows you to create Blogs, host a Store, and a
+                                                        News site. Functionally, this is pretty basic. The situation gets more complicated though when we want to start introducing the concept of theming. Instead of a simple hierarchy, we can see that
+                                                        this can quickly lead to an explosion of classes. It gets even worse when we want to add additional themes in the future.</p>
                                                     <br>
-                                                    <img alt="gof adapter example structure" src="/images/gof-adapter-example.png" data-src="/images/gof-adapter-example.png" data-image="/images/gof-adapter-example.png" data-image-dimensions="880x596" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a31"
-                                                        data-type="image" style="width: 50%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <img alt="gof adapter example problem" src="/images/gof-bridge-example-problem-diagram.png" data-src="/images/gof-bridge-example-problem-diagram.png" data-image="/images/gof-bridge-example-problem-diagram.png" data-image-dimensions="880x596" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 50%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that previously communicated with the old version of the third party service will no longer work. The new version of
-                                                        this service has been improved by adding security tokens to the calls we were previously using. Because of this change, we have two options: first, to update every client that uses the third party
-                                                        service, or second, to add an adapter in front of the thrid party service so that our existing code doesn't have to be changed.</p>
+                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, by splitting the problem into two seperate hierarchies and allowing for a bridge approach, we can see that I would be able to
+                                                        vary either side of the bridge without effecting the other side. In otherwords, I could add additional web application types and take advantage of theming or I could add additional themes and still
+                                                        allow for my web application instances to take advantage of them. Another way of stating this is the definition of the bridge pattern, we have decoupled an abstraction from its implementation so
+                                                        that the two can vary independently</p>
+                                                    <br>
+                                                    <img alt="gof adapter example solution" src="/images/gof-bridge-example-solution.png" data-src="/images/gof-bridge-example-solution.png" data-image="/images/gof-bridge-example-solution.png" data-image-dimensions="880x596" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 40%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <br>
                                                     <p>Let's extend this sample with some practical code below.</p>
                                                 </div>
                                             </div>
@@ -824,9 +835,9 @@
                                                     <h3>Code Samples</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Adapter</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
+                                                    <p>Below, you will find examples of the <i><b>Bridge</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use an Adapter to allow communication between a legacy client and the "new and improved" thrid party service.</p>
+                                                    <p>Each sample will use a Bridge to allow for adding either new web application types or new themes..</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -836,8 +847,8 @@
                                                     </div>
 
                                                     <div id="NETC" class="tabcontent">
-                                                        <h3>C# Adapter Code Sample</h3>
-                                                        <p>In this C# example, we implement a simple <b>Adapter</b> to allow communication between a legacy client and a "new and improved" Third Party Mailer Service.</p>
+                                                        <h3>C# Bridge Code Sample</h3>
+                                                        <p>In this C# example, the <b>Bridge</b> pattern is used</p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-adapter-csharp.html" />
@@ -845,8 +856,8 @@
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
-                                                        <h3>Java Adapter Code Sample</h3>
-                                                        <p>In this Java example, the <b>Adapter</b> pattern is used to provide communication between a legacy client and a "new and improved" Third Party Mailing Service.</p>
+                                                        <h3>Java Bridge Code Sample</h3>
+                                                        <p>In this Java example, the <b>Bridge</b> pattern is used.</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-adapter-java.html" />
@@ -854,8 +865,8 @@
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Adapter Code Sample</h3>
-                                                        <p>In this TypeScript example, the <b>Adapter</b> pattern is used to provide communication between a legacy client and a "new and improved" Third Party Mailing Service.</p>
+                                                        <h3>Typescript Bridge Code Sample</h3>
+                                                        <p>In this TypeScript example, the <b>Bridge</b> pattern is used</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-adapter-ts.html" />
@@ -863,8 +874,8 @@
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Adapter Code Sample</h3>
-                                                        <p>In this JavaScript example, the <b>Adapter</b> pattern is used to provide communication between a legacy client and a "new and improved" Third Party Mailing Service.</p>
+                                                        <h3>JavaScript Bridge Code Sample</h3>
+                                                        <p>In this JavaScript example, the <b>Bridge</b> pattern is used.</p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-adapter-js.html" />
@@ -884,12 +895,12 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">Identify the players: the component(s) that want to be accommodated (i.e. the client), and the component that needs to adapt (i.e. the target).</li>
-                                                        <li style="padding-left: 10px;">Identify the interface that the client requires.</li>
-                                                        <li style="padding-left: 10px;">Design a "wrapper" class that can "impedance match" the adaptee to the client.</li>
-                                                        <li style="padding-left: 10px;">The adapter/wrapper class "has a" instance of the adaptee class.</li>
-                                                        <li style="padding-left: 10px;">The adapter/wrapper class "maps" the client interface to the adaptee interface.</li>
-                                                        <li style="padding-left: 10px;">The client uses (is coupled to) the new interface.</li>
+                                                        <li style="padding-left: 10px;">Identify the orthogonal dimensions in your classes. These independent concepts could be: abstraction/platform, or domain/infrastructure, or front-end/back-end, or interface/implementation.</li>
+                                                        <li style="padding-left: 10px;">Design the separation of concerns: what does the client want, and what do the platforms provide.</li>
+                                                        <li style="padding-left: 10px;">Design a platform-oriented interface that is minimal, necessary, and sufficient. Its goal is to decouple the abstraction from the platform.</li>
+                                                        <li style="padding-left: 10px;">Define a derived class of that interface for each platform.</li>
+                                                        <li style="padding-left: 10px;">Create the abstraction base class that "has a" platform object and delegates the platform-oriented functionality to it.</li>
+                                                        <li style="padding-left: 10px;">Define specializations of the abstraction class if desired.</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -904,16 +915,15 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
-                                                        <li>All requests are forwarded, so there is a slight increase in the overhead.</li>
-                                                        <li>Sometimes many adaptations are required along an adapter chain to reach the type which is required.</li>
                                                         <li>Adapter makes things work after they're designed; Bridge makes them work before they are.</li>
                                                         <li>Bridge is designed up-front to let the abstraction and the implementation vary independently. Adapter is retrofitted to make unrelated classes work together.</li>
-                                                        <li>Adapter provides a different interface to its subject. Proxy provides the same interface. Decorator provides an enhanced interface.</li>
-                                                        <li>Adapter is meant to change the interface of an existing object. Decorator enhances another object without changing its interface. Decorator is thus more transparent to the application than an adapter
-                                                            is. As a consequence, Decorator supports recursive composition, which isn't possible with pure Adapters.</li>
-                                                        <li>Facade defines a new interface, whereas Adapter reuses an old interface. Remember that Adapter makes two existing interfaces work together as opposed to defining an entirely new one.</li>
-                                                        <li>One advantage of the Adapter Pattern is that you don’t need to change the existing class or interface. By introducing a new class, which acts as an adapter between the interface and the class, you
-                                                            avoid any changes to the existing code. </li>
+                                                        <li>State, Strategy, Bridge (and to some degree Adapter) have similar solution structures. They all share elements of the "handle/body" idiom. They differ in intent - that is, they solve different problems.</li>
+                                                        <li>The structure of State and Bridge are identical (except that Bridge admits hierarchies of envelope classes, whereas State allows only one). The two patterns use the same structure to solve different
+                                                            problems: State allows an object's behavior to change along with its state, while Bridge's intent is to decouple an abstraction from its implementation so that the two can vary independently.</li>
+                                                        <li>If interface classes delegate the creation of their implementation classes (instead of creating/coupling themselves directly), then the design usually uses the Abstract Factory pattern to create
+                                                            the implementation objects.</li>
+                                                        <li>One of the major drawbacks of this pattern is that, in providing flexibility, it increases complexity. </li>
+                                                        <li>There's also possible performance issues with the indirection of messages - the abstraction needs to pass messages along to the implementator for the operation to get executed.</li>
                                                     </ul>
                                                 </div>
                                             </div>
