@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typescript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('ts-code')">Copy</button>
+        <pre id="ts-code" style="margin: 0; line-height: 125%">  <span style="color: #888888">// Abstraction</span>
+<span style="color: #008800; font-weight: bold">class</span> WebApplication {
+    Theme: <span style="color: #333399; font-weight: bold">ITheme</span>;
+    Title: <span style="color: #333399; font-weight: bold">string</span>;
+    SiteName: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">public</span> BuildPage()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Error</span>(<span style="background-color: #fff0f0">&quot;This method is abstract!&quot;</span>);
+    }
+}
+
+<span style="color: #888888">// RefinedAbstraction 1</span>
+<span style="color: #008800; font-weight: bold">class</span> BlogApp <span style="color: #008800; font-weight: bold">extends</span> WebApplication {
+    <span style="color: #008800; font-weight: bold">public</span> Content: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">public</span> BuildPage()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">var</span> pageBody: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span>  <span style="color: #008800; font-weight: bold">this</span>.Title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.SiteName <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Content;
+        <span style="color: #008800; font-weight: bold">this</span>.Theme.ApplyTheme(pageBody);
+    }
+}
+
+<span style="color: #888888">// RefinedAbstraction 2</span>
+<span style="color: #008800; font-weight: bold">class</span> NewsApp <span style="color: #008800; font-weight: bold">extends</span> WebApplication {
+    <span style="color: #008800; font-weight: bold">public</span> Story: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">public</span> BuildPage()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">var</span> pageBody: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span>  <span style="color: #008800; font-weight: bold">this</span>.Title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.SiteName <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Story;
+        <span style="color: #008800; font-weight: bold">this</span>.Theme.ApplyTheme(pageBody);
+    }
+}
+
+<span style="color: #888888">// RefinedAbstraction 3</span>
+<span style="color: #008800; font-weight: bold">class</span> StoreApp <span style="color: #008800; font-weight: bold">extends</span> WebApplication {
+    <span style="color: #008800; font-weight: bold">public</span> Items: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">public</span> BuildPage()<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">var</span> pageBody: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span>  <span style="color: #008800; font-weight: bold">this</span>.Title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.SiteName <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Items;
+        <span style="color: #008800; font-weight: bold">this</span>.Theme.ApplyTheme(pageBody);
+    }
+}
+
+<span style="color: #888888">// implementor</span>
+<span style="color: #008800; font-weight: bold">interface</span> ITheme {
+    ApplyTheme(content: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+}
+
+<span style="color: #888888">// concrete implementation 1</span>
+<span style="color: #008800; font-weight: bold">class</span> DarkTheme <span style="color: #008800; font-weight: bold">implements</span> ITheme {
+    <span style="color: #008800; font-weight: bold">public</span> ApplyTheme(content: <span style="color: #333399; font-weight: bold">string</span>) {
+        log.add(content <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; ...applied dark theme&quot;</span>);
+    }
+}
+
+<span style="color: #888888">// concrete implementation 2</span>
+<span style="color: #008800; font-weight: bold">class</span> LightTheme <span style="color: #008800; font-weight: bold">implements</span> ITheme {
+    <span style="color: #008800; font-weight: bold">public</span> ApplyTheme(content: <span style="color: #333399; font-weight: bold">string</span>) {
+        log.add(content <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; ...applied light theme&quot;</span>);
+    }
+}
+
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">class</span> log {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> _log: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">static</span> add(message: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    }
+    <span style="color: #008800; font-weight: bold">static</span> show()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }
+}
+
+
+<span style="color: #008800; font-weight: bold">var</span> dark: <span style="color: #333399; font-weight: bold">ITheme</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> DarkTheme();
+<span style="color: #008800; font-weight: bold">var</span> light: <span style="color: #333399; font-weight: bold">ITheme</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> LightTheme();
+
+<span style="color: #008800; font-weight: bold">var</span> app: <span style="color: #333399; font-weight: bold">WebApplication</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> BlogApp();
+app.Title <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Blog-o-rama&quot;</span>;
+app.SiteName <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;TestSite&quot;</span>;
+(<span style="color: #333333">&lt;</span>BlogApp<span style="color: #333333">&gt;</span>app).Content <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;my blog entry&quot;</span>;
+app.Theme <span style="color: #333333">=</span> dark;
+app.BuildPage();
+app.Theme <span style="color: #333333">=</span> light;
+app.BuildPage()
+
+<span style="color: #008800; font-weight: bold">var</span> news: <span style="color: #333399; font-weight: bold">WebApplication</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> NewsApp();
+news.Title <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;News-o-rama&quot;</span>;
+news.SiteName <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;TestSite&quot;</span>;
+(<span style="color: #333333">&lt;</span>NewsApp<span style="color: #333333">&gt;</span>news).Story <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;breaking news story&quot;</span>;
+news.Theme <span style="color: #333333">=</span> dark;
+news.BuildPage();
+
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+
+</body>
+
+</html>

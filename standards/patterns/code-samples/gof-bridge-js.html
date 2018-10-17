@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+        <pre id="js-code" style="margin: 0; line-height: 125%">  <span style="color: #008800; font-weight: bold">var</span> __extends <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">this</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.__extends) <span style="color: #333333">||</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">var</span> extendStatics <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) {
+        extendStatics <span style="color: #333333">=</span> <span style="color: #007020">Object</span>.setPrototypeOf <span style="color: #333333">||</span>
+            ({ __proto__<span style="color: #333333">:</span> [] } <span style="color: #008800; font-weight: bold">instanceof</span> <span style="color: #007020">Array</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) { d.__proto__ <span style="color: #333333">=</span> b; }) <span style="color: #333333">||</span>
+            <span style="color: #008800; font-weight: bold">function</span> (d, b) { <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> p <span style="color: #008800; font-weight: bold">in</span> b) <span style="color: #008800; font-weight: bold">if</span> (b.hasOwnProperty(p)) d[p] <span style="color: #333333">=</span> b[p]; };
+        <span style="color: #008800; font-weight: bold">return</span> extendStatics(d, b);
+    }
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) {
+        extendStatics(d, b);
+        <span style="color: #008800; font-weight: bold">function</span> __() { <span style="color: #008800; font-weight: bold">this</span>.constructor <span style="color: #333333">=</span> d; }
+        d.prototype <span style="color: #333333">=</span> b <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">?</span> <span style="color: #007020">Object</span>.create(b) <span style="color: #333333">:</span> (__.prototype <span style="color: #333333">=</span> b.prototype, <span style="color: #008800; font-weight: bold">new</span> __());
+    };
+})();
+<span style="color: #888888">// Abstraction</span>
+<span style="color: #008800; font-weight: bold">var</span> WebApplication <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> WebApplication() {
+    }
+    WebApplication.prototype.BuildPage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Error</span>(<span style="background-color: #fff0f0">&quot;This method is abstract!&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> WebApplication;
+}());
+
+<span style="color: #888888">// RefinedAbstraction 1</span>
+<span style="color: #008800; font-weight: bold">var</span> BlogApp <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(BlogApp, _super);
+    <span style="color: #008800; font-weight: bold">function</span> BlogApp() {
+        <span style="color: #008800; font-weight: bold">return</span> _super <span style="color: #333333">!==</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">&amp;&amp;</span> _super.apply(<span style="color: #008800; font-weight: bold">this</span>, arguments) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+    }
+    BlogApp.prototype.BuildPage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">var</span> pageBody <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>.Title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.SiteName <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Content;
+        <span style="color: #008800; font-weight: bold">this</span>.Theme.ApplyTheme(pageBody);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> BlogApp;
+}(WebApplication));
+
+<span style="color: #888888">// RefinedAbstraction 2</span>
+<span style="color: #008800; font-weight: bold">var</span> NewsApp <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(NewsApp, _super);
+    <span style="color: #008800; font-weight: bold">function</span> NewsApp() {
+        <span style="color: #008800; font-weight: bold">return</span> _super <span style="color: #333333">!==</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">&amp;&amp;</span> _super.apply(<span style="color: #008800; font-weight: bold">this</span>, arguments) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+    }
+    NewsApp.prototype.BuildPage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">var</span> pageBody <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>.Title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.SiteName <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Story;
+        <span style="color: #008800; font-weight: bold">this</span>.Theme.ApplyTheme(pageBody);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> NewsApp;
+}(WebApplication));
+
+<span style="color: #888888">// RefinedAbstraction 3</span>
+<span style="color: #008800; font-weight: bold">var</span> StoreApp <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(StoreApp, _super);
+    <span style="color: #008800; font-weight: bold">function</span> StoreApp() {
+        <span style="color: #008800; font-weight: bold">return</span> _super <span style="color: #333333">!==</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">&amp;&amp;</span> _super.apply(<span style="color: #008800; font-weight: bold">this</span>, arguments) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+    }
+    StoreApp.prototype.BuildPage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">var</span> pageBody <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>.Title <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.SiteName <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.Items;
+        <span style="color: #008800; font-weight: bold">this</span>.Theme.ApplyTheme(pageBody);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> StoreApp;
+}(WebApplication));
+
+<span style="color: #888888">// concrete implementation 1</span>
+<span style="color: #008800; font-weight: bold">var</span> DarkTheme <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> DarkTheme() {
+    }
+    DarkTheme.prototype.ApplyTheme <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (content) {
+        log.add(content <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; ...applied dark theme&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> DarkTheme;
+}());
+
+<span style="color: #888888">// concrete implementation 2</span>
+<span style="color: #008800; font-weight: bold">var</span> LightTheme <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> LightTheme() {
+    }
+    LightTheme.prototype.ApplyTheme <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (content) {
+        log.add(content <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; ...applied light theme&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> LightTheme;
+}());
+
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> log() {
+    }
+    log.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (message) {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    };
+    log.show <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    };
+    log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> log;
+}());
+
+<span style="color: #008800; font-weight: bold">var</span> dark <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> DarkTheme();
+<span style="color: #008800; font-weight: bold">var</span> light <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> LightTheme();
+<span style="color: #008800; font-weight: bold">var</span> app <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> BlogApp();
+app.Title <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Blog-o-rama&quot;</span>;
+app.SiteName <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;TestSite&quot;</span>;
+app.Content <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;my blog entry&quot;</span>;
+app.Theme <span style="color: #333333">=</span> dark;
+app.BuildPage();
+app.Theme <span style="color: #333333">=</span> light;
+app.BuildPage();
+<span style="color: #008800; font-weight: bold">var</span> news <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> NewsApp();
+news.Title <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;News-o-rama&quot;</span>;
+news.SiteName <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;TestSite&quot;</span>;
+news.Story <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;breaking news story&quot;</span>;
+news.Theme <span style="color: #333333">=</span> dark;
+news.BuildPage();
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+
+</body>
+
+</html>

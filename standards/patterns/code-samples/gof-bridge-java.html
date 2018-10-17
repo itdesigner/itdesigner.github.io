@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Java Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('j-code')">Copy</button>
+        <pre id="j-code" style="margin: 0; line-height: 125%"><span style="color: #888888">/**</span>
+<span style="color: #888888">* abstraction in bridge pattern</span>
+<span style="color: #888888">* */</span>
+<span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">WebApplication</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> ITheme Theme<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Title<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> String SiteName<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #0066BB; font-weight: bold">WebApplication</span><span style="color: #333333">()</span> <span style="color: #333333">{</span> <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">buildPage</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888"> * Refine abstraction 1 in bridge pattern</span>
+<span style="color: #888888"> */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">BlogApp</span> <span style="color: #008800; font-weight: bold">extends</span> WebApplication <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">BlogApp</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Content<span style="color: #333333">;</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">buildPage</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        String pageBody <span style="color: #333333">=</span>  <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Title</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">SiteName</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Content</span><span style="color: #333333">;</span>
+        Theme<span style="color: #333333">.</span><span style="color: #0000CC">ApplyTheme</span><span style="color: #333333">(</span>pageBody<span style="color: #333333">);;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888">* Refine abstraction 2 in bridge pattern</span>
+<span style="color: #888888">*/</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">NewsApp</span> <span style="color: #008800; font-weight: bold">extends</span> WebApplication <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">NewsApp</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Story<span style="color: #333333">;</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">buildPage</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        String pageBody <span style="color: #333333">=</span>  <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Title</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">SiteName</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Story</span><span style="color: #333333">;</span>
+        Theme<span style="color: #333333">.</span><span style="color: #0000CC">ApplyTheme</span><span style="color: #333333">(</span>pageBody<span style="color: #333333">);;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888">* Refine abstraction 3 in bridge pattern</span>
+<span style="color: #888888">*/</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">StoreApp</span> <span style="color: #008800; font-weight: bold">extends</span> WebApplication <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">StoreApp</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Items<span style="color: #333333">;</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">buildPage</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        String pageBody <span style="color: #333333">=</span>  <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Title</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">SiteName</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; - &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Items</span><span style="color: #333333">;</span>
+        Theme<span style="color: #333333">.</span><span style="color: #0000CC">ApplyTheme</span><span style="color: #333333">(</span>pageBody<span style="color: #333333">);;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888">* Implementor for bridge pattern</span>
+<span style="color: #888888">* */</span>
+<span style="color: #008800; font-weight: bold">interface</span> <span style="color: #BB0066; font-weight: bold">ITheme</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">ApplyTheme</span><span style="color: #333333">(</span>String content<span style="color: #333333">);</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888">* Concrete implementation 1 for bridge pattern</span>
+<span style="color: #888888">* */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">DarkTheme</span> <span style="color: #008800; font-weight: bold">implements</span> ITheme <span style="color: #333333">{</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">ApplyTheme</span><span style="color: #333333">(</span>String content<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">print</span><span style="color: #333333">(</span>content <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; ...applied dark theme\n&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/**</span>
+<span style="color: #888888">* Concrete implementation 2 for bridge pattern</span>
+<span style="color: #888888">* */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">LightTheme</span> <span style="color: #008800; font-weight: bold">implements</span> ITheme <span style="color: #333333">{</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">ApplyTheme</span><span style="color: #333333">(</span>String content<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>content <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; ...applied light theme\n&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/*</span>
+<span style="color: #888888">* Demonstration of bridge design pattern</span>
+<span style="color: #888888">*/</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Program</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        ITheme dark <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> DarkTheme<span style="color: #333333">();</span>
+        ITheme light <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> LightTheme<span style="color: #333333">();</span>
+
+        WebApplication app <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> BlogApp<span style="color: #333333">();</span>
+        app<span style="color: #333333">.</span><span style="color: #0000CC">Title</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Blog-o-rama&quot;</span><span style="color: #333333">;</span>
+        app<span style="color: #333333">.</span><span style="color: #0000CC">SiteName</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;TestSite&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #333333">((</span>BlogApp<span style="color: #333333">)</span>app<span style="color: #333333">).</span><span style="color: #0000CC">Content</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;My blog entry&quot;</span><span style="color: #333333">;</span>
+        app<span style="color: #333333">.</span><span style="color: #0000CC">Theme</span> <span style="color: #333333">=</span> dark<span style="color: #333333">;</span>
+        app<span style="color: #333333">.</span><span style="color: #0000CC">buildPage</span><span style="color: #333333">();</span>
+        app<span style="color: #333333">.</span><span style="color: #0000CC">Theme</span> <span style="color: #333333">=</span> light<span style="color: #333333">;</span>
+        app<span style="color: #333333">.</span><span style="color: #0000CC">buildPage</span><span style="color: #333333">();</span>
+
+        WebApplication news <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> NewsApp<span style="color: #333333">();</span>
+        news<span style="color: #333333">.</span><span style="color: #0000CC">Title</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;News-o-rama&quot;</span><span style="color: #333333">;</span>
+        news<span style="color: #333333">.</span><span style="color: #0000CC">SiteName</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;TestSite&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #333333">((</span>NewsApp<span style="color: #333333">)</span>news<span style="color: #333333">).</span><span style="color: #0000CC">Story</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;breaking news story&quot;</span><span style="color: #333333">;</span>
+        news<span style="color: #333333">.</span><span style="color: #0000CC">Theme</span> <span style="color: #333333">=</span> light<span style="color: #333333">;</span>
+        news<span style="color: #333333">.</span><span style="color: #0000CC">buildPage</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+</body>
+
+</html>
