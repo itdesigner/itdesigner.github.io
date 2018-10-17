@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('cs-code')">Copy</button>
+        <pre id="cs-code" style="margin: 0; line-height: 125%"> <span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+
+<span style="color: #008800; font-weight: bold">namespace</span> <span style="color: #0e84b5; font-weight: bold">FacadePattern</span>
+{
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// MainApp startup class for Real-World </span>
+    <span style="color: #888888">/// Facade Design Pattern.</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MainApp</span>
+
+    {
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// Entry point into console application.</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>()
+    {
+        <span style="color: #888888">// Facade</span>
+        Mortgage mortgage = <span style="color: #008800; font-weight: bold">new</span> Mortgage();
+        
+        <span style="color: #888888">// Evaluate mortgage eligibility for customer</span>
+        Customer customer = <span style="color: #008800; font-weight: bold">new</span> Customer(<span style="background-color: #fff0f0">&quot;Jerry Shaughnessy&quot;</span>);
+        <span style="color: #333399; font-weight: bold">bool</span> eligible = mortgage.IsEligible(customer, <span style="color: #6600EE; font-weight: bold">125000</span>);
+    
+        Console.WriteLine(<span style="background-color: #fff0f0">&quot;\n&quot;</span> + customer.Name +
+            <span style="background-color: #fff0f0">&quot; has been &quot;</span> + (eligible ? <span style="background-color: #fff0f0">&quot;Approved&quot;</span> : <span style="background-color: #fff0f0">&quot;Rejected&quot;</span>));
+    
+        <span style="color: #888888">// Wait for user</span>
+        Console.ReadKey();
+    }
+    }
+    
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;Subsystem ClassA&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Bank</span>
+    {
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">bool</span> <span style="color: #0066BB; font-weight: bold">HasSufficientSavings</span>(Customer c, <span style="color: #333399; font-weight: bold">int</span> amount)
+    {
+        Console.WriteLine(<span style="background-color: #fff0f0">&quot;Check bank for &quot;</span> + c.Name);
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    }
+    }
+    
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;Subsystem ClassB&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Credit</span>
+    {
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">bool</span> <span style="color: #0066BB; font-weight: bold">HasGoodCredit</span>(Customer c)
+    {
+        Console.WriteLine(<span style="background-color: #fff0f0">&quot;Check credit for &quot;</span> + c.Name);
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    }
+    }
+    
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;Subsystem ClassC&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Loan</span>
+    {
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">bool</span> <span style="color: #0066BB; font-weight: bold">HasNoBadLoans</span>(Customer c)
+    {
+        Console.WriteLine(<span style="background-color: #fff0f0">&quot;Check loans for &quot;</span> + c.Name);
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    }
+    }
+    
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// Customer class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Customer</span>
+    {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">string</span> _name;
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Customer</span>(<span style="color: #333399; font-weight: bold">string</span> name)
+    {
+        <span style="color: #008800; font-weight: bold">this</span>._name = name;
+    }
+    <span style="color: #888888">// Gets the name</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">string</span> Name
+    {
+        <span style="color: #008800; font-weight: bold">get</span> { <span style="color: #008800; font-weight: bold">return</span> _name; }
+    }
+    }
+    
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;Facade&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Mortgage</span>
+    {
+    <span style="color: #008800; font-weight: bold">private</span> Bank _bank = <span style="color: #008800; font-weight: bold">new</span> Bank();
+    <span style="color: #008800; font-weight: bold">private</span> Loan _loan = <span style="color: #008800; font-weight: bold">new</span> Loan();
+    <span style="color: #008800; font-weight: bold">private</span> Credit _credit = <span style="color: #008800; font-weight: bold">new</span> Credit();
+    
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">bool</span> <span style="color: #0066BB; font-weight: bold">IsEligible</span>(Customer cust, <span style="color: #333399; font-weight: bold">int</span> amount)
+    {
+        Console.WriteLine(<span style="background-color: #fff0f0">&quot;{0} applies for {1:C} loan\n&quot;</span>,
+        cust.Name, amount);
+        <span style="color: #333399; font-weight: bold">bool</span> eligible = <span style="color: #008800; font-weight: bold">true</span>;
+    
+        <span style="color: #888888">// Check creditworthyness of applicant</span>
+        <span style="color: #008800; font-weight: bold">if</span> (!_bank.HasSufficientSavings(cust, amount))
+        {
+        eligible = <span style="color: #008800; font-weight: bold">false</span>;
+        }
+        <span style="color: #008800; font-weight: bold">else</span> <span style="color: #0066BB; font-weight: bold">if</span> (!_loan.HasNoBadLoans(cust))
+        {
+        eligible = <span style="color: #008800; font-weight: bold">false</span>;
+        }
+        <span style="color: #008800; font-weight: bold">else</span> <span style="color: #0066BB; font-weight: bold">if</span> (!_credit.HasGoodCredit(cust))
+        {
+        eligible = <span style="color: #008800; font-weight: bold">false</span>;
+        }
+        <span style="color: #008800; font-weight: bold">return</span> eligible;
+    }
+    }
+}
+</pre></div>
+
+</body>
+
+</html>

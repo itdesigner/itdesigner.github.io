@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+        <pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// subsystem</span>
+<span style="color: #008800; font-weight: bold">var</span> Bank <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> Bank() {
+    }
+    Bank.prototype.hasSufficientSavings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (customer, amount) {
+        log.add(<span style="background-color: #fff0f0">&quot;checking savings balance for &quot;</span> <span style="color: #333333">+</span> customer.Name);
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    };
+    <span style="color: #008800; font-weight: bold">return</span> Bank;
+}());
+
+<span style="color: #888888">// subsystem</span>
+<span style="color: #008800; font-weight: bold">var</span> Loan <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> Loan() {
+    }
+    Loan.prototype.hasNoBadLoans <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (customer) {
+        log.add(<span style="background-color: #fff0f0">&quot;checking loan history for &quot;</span> <span style="color: #333333">+</span> customer.Name);
+        <span style="color: #888888">// complex history check logic</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    };
+    <span style="color: #008800; font-weight: bold">return</span> Loan;
+}());
+
+<span style="color: #888888">// subsystem</span>
+<span style="color: #008800; font-weight: bold">var</span> Credit <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> Credit() {
+    }
+    Credit.prototype.hasGoodCredit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (customer) {
+        log.add(<span style="background-color: #fff0f0">&quot;checking credit for &quot;</span> <span style="color: #333333">+</span> customer.Name);
+        <span style="color: #888888">// complex credit check logic</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span>;
+    };
+    <span style="color: #008800; font-weight: bold">return</span> Credit;
+}());
+
+<span style="color: #888888">// subsystem</span>
+<span style="color: #008800; font-weight: bold">var</span> Customer <span style="color: #333333">=</span>  (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> Customer(name) {
+        <span style="color: #008800; font-weight: bold">this</span>.Name <span style="color: #333333">=</span> name;
+    }
+    <span style="color: #008800; font-weight: bold">return</span> Customer;
+}());
+
+<span style="color: #888888">// facade</span>
+<span style="color: #008800; font-weight: bold">var</span> Mortgage <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> Mortgage() {
+        <span style="color: #008800; font-weight: bold">this</span>.bank <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Bank();
+        <span style="color: #008800; font-weight: bold">this</span>.loan <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Loan();
+        <span style="color: #008800; font-weight: bold">this</span>.credit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Credit();
+    }
+    Mortgage.prototype.isEligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (customer, amount) {
+        log.add(customer.Name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; applying for loan&quot;</span>);
+        <span style="color: #008800; font-weight: bold">var</span> eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>;
+        <span style="color: #888888">// check subsystems</span>
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.bank.hasSufficientSavings(customer, amount) <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">false</span>) {
+            eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>;
+        }
+        <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.loan.hasNoBadLoans(customer) <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">false</span>) {
+            eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>;
+        }
+        <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.credit.hasGoodCredit(customer) <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">false</span>) {
+            eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>;
+        }
+        <span style="color: #008800; font-weight: bold">return</span> eligible;
+    };
+    <span style="color: #008800; font-weight: bold">return</span> Mortgage;
+}());
+
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> log() {
+    }
+    log.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (message) {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    };
+    log.show <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    };
+    log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> log;
+}());
+
+<span style="color: #888888">// create facade</span>
+<span style="color: #008800; font-weight: bold">var</span> mortgage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Mortgage();
+<span style="color: #008800; font-weight: bold">var</span> customer <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Customer(<span style="background-color: #fff0f0">&quot;Jerry Shaughnessy&quot;</span>);
+<span style="color: #888888">// evaluate</span>
+<span style="color: #008800; font-weight: bold">var</span> result <span style="color: #333333">=</span> mortgage.isEligible(customer, <span style="color: #0000DD; font-weight: bold">129000</span>);
+<span style="color: #008800; font-weight: bold">if</span> (result) {
+    log.add(customer.Name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; has been Approved for a loan&quot;</span>);
+}
+<span style="color: #008800; font-weight: bold">else</span> {
+    log.add(customer.Name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; has been Rejected for a loan&quot;</span>);
+}
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+
+</body>
+
+</html>

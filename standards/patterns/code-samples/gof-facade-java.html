@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('j-code')">Copy</button>
+        <pre id="j-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// subsystem class 1</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Bank</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #0066BB; font-weight: bold">hasSufficientSavings</span><span style="color: #333333">(</span>Customer c<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> amount<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;checking bank amount for &quot;</span> <span style="color: #333333">+</span> c<span style="color: #333333">.</span><span style="color: #0000CC">Name</span><span style="color: #333333">);</span>
+        <span style="color: #888888">//complex logic to decide if this is enough of a balance</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// subsystem class 2</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Customer</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> String Name<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">Customer</span><span style="color: #333333">(</span>String name<span style="color: #333333">){</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">=</span> name<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// subsystem class 3</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Credit</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #0066BB; font-weight: bold">hasGoodCredit</span><span style="color: #333333">(</span>Customer c<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;checking credit for &quot;</span> <span style="color: #333333">+</span> c<span style="color: #333333">.</span><span style="color: #0000CC">Name</span><span style="color: #333333">);</span>
+        <span style="color: #888888">//complex logic to decide if this is good credit</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// subsystem class 4</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Loan</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #0066BB; font-weight: bold">hasNoBadLoans</span><span style="color: #333333">(</span>Customer c<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;checking loan history for &quot;</span> <span style="color: #333333">+</span> c<span style="color: #333333">.</span><span style="color: #0000CC">Name</span><span style="color: #333333">);</span>
+        <span style="color: #888888">//complex logic to decide if any bad loans for this customer</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">true</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// the Facade class</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Mortgage</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> Bank _bank <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Bank<span style="color: #333333">();</span>
+    <span style="color: #008800; font-weight: bold">private</span> Credit _credit <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Credit<span style="color: #333333">();</span>
+    <span style="color: #008800; font-weight: bold">private</span> Loan _loan <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Loan<span style="color: #333333">();</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">boolean</span> _eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span><span style="color: #333333">;</span>
+    
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #0066BB; font-weight: bold">isEligible</span><span style="color: #333333">(</span>Customer customer<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> amount<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(!</span>_bank<span style="color: #333333">.</span><span style="color: #0000CC">hasSufficientSavings</span><span style="color: #333333">(</span>customer<span style="color: #333333">,</span> amount<span style="color: #333333">))</span> <span style="color: #333333">{</span>
+            _eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(!</span>_loan<span style="color: #333333">.</span><span style="color: #0000CC">hasNoBadLoans</span><span style="color: #333333">(</span>customer<span style="color: #333333">))</span> <span style="color: #333333">{</span>
+            _eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">else</span> <span style="color: #008800; font-weight: bold">if</span><span style="color: #333333">(!</span>_credit<span style="color: #333333">.</span><span style="color: #0000CC">hasGoodCredit</span><span style="color: #333333">(</span>customer<span style="color: #333333">))</span> <span style="color: #333333">{</span>
+            _eligible <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> _eligible<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">TestFacade</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">// create Facade</span>
+        Mortgage mortgage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Mortgage<span style="color: #333333">();</span>
+        <span style="color: #888888">// check eligibility for customer</span>
+        Customer customer <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Customer<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Jerry Shaughnessy&quot;</span><span style="color: #333333">);</span>
+        <span style="color: #333399; font-weight: bold">boolean</span> eligible <span style="color: #333333">=</span> mortgage<span style="color: #333333">.</span><span style="color: #0000CC">isEligible</span><span style="color: #333333">(</span>customer<span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">125000</span><span style="color: #333333">);</span>
+        
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;\n&quot;</span> <span style="color: #333333">+</span> customer<span style="color: #333333">.</span><span style="color: #0000CC">Name</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; has been &quot;</span> <span style="color: #333333">+</span> <span style="color: #333333">(</span>eligible <span style="color: #333333">?</span> <span style="background-color: #fff0f0">&quot;Approved&quot;</span> <span style="color: #333333">:</span> <span style="background-color: #fff0f0">&quot;Rejected&quot;</span><span style="color: #333333">));</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+</body>
+
+</html>
