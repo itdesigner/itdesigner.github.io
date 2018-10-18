@@ -30442,3 +30442,20 @@
         margin-top: -20px;
         color: #4a4a4a;
     }
+    
+    .img-grow {
+        width: 50% !important;
+    }
+    
+    .img-grow-wide {
+        width: 90% !important;
+    }
+    
+    @media (max-width:640px) {
+        .img-grow {
+            width: 80% !important;
+        }
+        .img-grow-wide {
+            width: 100% !important;
+        }
+    }

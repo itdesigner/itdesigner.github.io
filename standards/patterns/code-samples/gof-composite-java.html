@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Java Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('j-code')">Copy</button>
+        <pre id="j-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.ArrayList</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.Iterator</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.List</span><span style="color: #333333">;</span>
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// MainApp startup class for Structural</span>
+<span style="color: #888888">/// Composite Design Pattern.</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MainApp</span>
+<span style="color: #333333">{</span>
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// Entry point into console application.</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span> <span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> 
+    <span style="color: #333333">{</span>
+        <span style="color: #888888">// Create a tree structure</span>
+        ConfigComponent root <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> GroupConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;root&quot;</span><span style="color: #333333">);</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;visible=true&quot;</span><span style="color: #333333">);</span>
+        ConfigComponent m1 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Machine R-1&quot;</span><span style="color: #333333">);</span>
+        m1<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;test=true&quot;</span><span style="color: #333333">);</span>
+        ConfigComponent m2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Machine R-2&quot;</span><span style="color: #333333">);</span>
+        m2<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;test=false&quot;</span><span style="color: #333333">);</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>m1<span style="color: #333333">);</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>m2<span style="color: #333333">);</span>
+
+        ConfigComponent comp <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> GroupConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Group A&quot;</span><span style="color: #333333">);</span>
+        comp<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;theme=blue&quot;</span><span style="color: #333333">);</span>
+        ConfigComponent m3 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Machine A-3&quot;</span><span style="color: #333333">);</span>
+        m3<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;network=public&quot;</span><span style="color: #333333">);</span>
+        ConfigComponent m4 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Machine A-4&quot;</span><span style="color: #333333">);</span>
+        m4<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;network=private&quot;</span><span style="color: #333333">);</span>
+        comp<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>m3<span style="color: #333333">);</span>
+        comp<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>m4<span style="color: #333333">);</span>
+
+        root<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>comp<span style="color: #333333">);</span>
+        ConfigComponent m5 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Machine R-5&quot;</span><span style="color: #333333">);</span>
+        m5<span style="color: #333333">.</span><span style="color: #0000CC">AddSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;type=internal&quot;</span><span style="color: #333333">);</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>m5<span style="color: #333333">);</span>
+
+        <span style="color: #888888">// Add and remove a leaf</span>
+        MachineConfig leaf <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Machine R-6&quot;</span><span style="color: #333333">);</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">Add</span><span style="color: #333333">(</span>leaf<span style="color: #333333">);</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">Remove</span><span style="color: #333333">(</span>leaf<span style="color: #333333">);</span>
+
+        <span style="color: #888888">// Recursively get settings</span>
+        root<span style="color: #333333">.</span><span style="color: #0000CC">GetSettings</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;&quot;</span><span style="color: #333333">,</span> <span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">);</span>
+
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// The &#39;Component&#39; abstract class</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ConfigComponent</span>
+<span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> String name<span style="color: #333333">;</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ConfigComponent</span><span style="color: #333333">(</span>String name<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">name</span> <span style="color: #333333">=</span> name<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Add</span><span style="color: #333333">(</span>ConfigComponent c<span style="color: #333333">);</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Remove</span><span style="color: #333333">(</span>ConfigComponent c<span style="color: #333333">);</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddSettings</span><span style="color: #333333">(</span>String setting<span style="color: #333333">);</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">GetSettings</span><span style="color: #333333">(</span>String parentSettings<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> depth<span style="color: #333333">);</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// The &#39;Composite&#39; class</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">GroupConfig</span> <span style="color: #008800; font-weight: bold">extends</span> ConfigComponent
+<span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> String _settings <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span><span style="color: #333333">;</span>
+    List<span style="color: #333333">&lt;</span>ConfigComponent<span style="color: #333333">&gt;</span> _children <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ArrayList<span style="color: #333333">&lt;</span>ConfigComponent<span style="color: #333333">&gt;();</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">GroupConfig</span><span style="color: #333333">(</span>String name<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">(</span>name<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Add</span><span style="color: #333333">(</span>ConfigComponent component<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        _children<span style="color: #333333">.</span><span style="color: #0000CC">add</span><span style="color: #333333">(</span>component<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Remove</span><span style="color: #333333">(</span>ConfigComponent component<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        _children<span style="color: #333333">.</span><span style="color: #0000CC">remove</span><span style="color: #333333">(</span>component<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddSettings</span><span style="color: #333333">(</span>String setting<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        _settings <span style="color: #333333">+=</span> setting <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">GetSettings</span><span style="color: #333333">(</span>String parentSettings<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> depth<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        String s <span style="color: #333333">=</span> parentSettings <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">_settings</span><span style="color: #333333">;</span>
+        String p <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">for</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>depth<span style="color: #333333">;</span> i<span style="color: #333333">++)</span> <span style="color: #333333">{</span>
+            p <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot;-&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>p <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">name</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; : &quot;</span> <span style="color: #333333">+</span> s<span style="color: #333333">);</span>
+        <span style="color: #888888">// Recursively display child nodes</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span>ConfigComponent component <span style="color: #333333">:</span> _children<span style="color: #333333">)</span>
+        <span style="color: #333333">{</span>
+            component<span style="color: #333333">.</span><span style="color: #0000CC">GetSettings</span><span style="color: #333333">(</span>s<span style="color: #333333">,</span> depth <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span><span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/// &lt;summary&gt;</span>
+<span style="color: #888888">/// The &#39;Leaf&#39; class</span>
+<span style="color: #888888">/// &lt;/summary&gt;</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MachineConfig</span> <span style="color: #008800; font-weight: bold">extends</span> ConfigComponent
+<span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> String _settings <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">MachineConfig</span><span style="color: #333333">(</span>String name<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">super</span><span style="color: #333333">(</span>name<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Add</span><span style="color: #333333">(</span>ConfigComponent c<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Cannot add to a leaf&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Remove</span><span style="color: #333333">(</span>ConfigComponent c<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Cannot remove from a leaf&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">AddSettings</span><span style="color: #333333">(</span>String setting<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">_settings</span> <span style="color: #333333">+=</span> setting <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;;&quot;</span><span style="color: #333333">;;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">GetSettings</span><span style="color: #333333">(</span>String parentSettings<span style="color: #333333">,</span> <span style="color: #333399; font-weight: bold">int</span> depth<span style="color: #333333">)</span>
+    <span style="color: #333333">{</span>
+        String s <span style="color: #333333">=</span> parentSettings <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">_settings</span><span style="color: #333333">;</span>
+        String p <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">for</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> i<span style="color: #333333">=</span><span style="color: #0000DD; font-weight: bold">0</span><span style="color: #333333">;</span> i<span style="color: #333333">&lt;</span>depth<span style="color: #333333">;</span> i<span style="color: #333333">++)</span> <span style="color: #333333">{</span>
+            p <span style="color: #333333">+=</span> <span style="background-color: #fff0f0">&quot;-&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #333333">}</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>p <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">name</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; : &quot;</span> <span style="color: #333333">+</span> s<span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+
+</body>
+
+</html>

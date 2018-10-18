@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+        <pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> GroupConfig <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> GroupConfig(name) {
+        <span style="color: #008800; font-weight: bold">this</span>._children <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Array</span>();
+        <span style="color: #008800; font-weight: bold">this</span>._settings <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+        <span style="color: #008800; font-weight: bold">this</span>._name <span style="color: #333333">=</span> name;
+    }
+    <span style="color: #007020">Object</span>.defineProperty(GroupConfig.prototype, <span style="background-color: #fff0f0">&quot;Name&quot;</span>, {
+        get<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span> () { <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>._name; },
+        enumerable<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">true</span>,
+        configurable<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">true</span>
+    });
+    GroupConfig.prototype.addSettings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (setting) {
+        <span style="color: #008800; font-weight: bold">this</span>._settings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>._settings <span style="color: #333333">+</span> setting <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;;&quot;</span>;
+    };
+    GroupConfig.prototype.getSettings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (parentSettings, depth) {
+        <span style="color: #008800; font-weight: bold">var</span> s <span style="color: #333333">=</span> parentSettings <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>._settings;
+        <span style="color: #008800; font-weight: bold">var</span> p <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>; i <span style="color: #333333">&lt;</span> depth; i<span style="color: #333333">++</span>) {
+            p <span style="color: #333333">=</span> p <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;-&quot;</span>;
+        }
+        log.add(p <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>._name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; : &quot;</span> <span style="color: #333333">+</span> s);
+        <span style="color: #888888">// Recursively display child nodes</span>
+        <span style="color: #008800; font-weight: bold">this</span>._children.forEach(<span style="color: #008800; font-weight: bold">function</span> (child) {
+            child.getSettings(s, depth <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span>);
+        });
+    };
+    GroupConfig.prototype.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (c) {
+        <span style="color: #008800; font-weight: bold">this</span>._children.push(c);
+    };
+    GroupConfig.prototype.remove <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (i) {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>._children.length <span style="color: #333333">&lt;=</span> i) {
+            <span style="color: #008800; font-weight: bold">throw</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Error</span>(<span style="background-color: #fff0f0">&quot;index out of bound!&quot;</span>);
+        }
+        <span style="color: #008800; font-weight: bold">this</span>._children.splice(i, <span style="color: #0000DD; font-weight: bold">1</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> GroupConfig;
+}());
+
+<span style="color: #008800; font-weight: bold">var</span> MachineConfig <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> MachineConfig(name) {
+        <span style="color: #008800; font-weight: bold">this</span>._name <span style="color: #333333">=</span> name;
+        <span style="color: #008800; font-weight: bold">this</span>._settings <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+    }
+    <span style="color: #007020">Object</span>.defineProperty(MachineConfig.prototype, <span style="background-color: #fff0f0">&quot;Name&quot;</span>, {
+        get<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">function</span> () { <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>._name; },
+        enumerable<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">true</span>,
+        configurable<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">true</span>
+    });
+    MachineConfig.prototype.addSettings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (setting) {
+        <span style="color: #008800; font-weight: bold">this</span>._settings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>._settings <span style="color: #333333">+</span> setting <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;;&quot;</span>;
+    };
+    MachineConfig.prototype.getSettings <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (parentSettings, depth) {
+        <span style="color: #008800; font-weight: bold">var</span> s <span style="color: #333333">=</span> parentSettings <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>._settings;
+        <span style="color: #008800; font-weight: bold">var</span> p <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;&quot;</span>;
+        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>; i <span style="color: #333333">&lt;</span> depth; i<span style="color: #333333">++</span>) {
+            p <span style="color: #333333">=</span> p <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;-&quot;</span>;
+        }
+        log.add(p <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>._name <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; : &quot;</span> <span style="color: #333333">+</span> s);
+    };
+    MachineConfig.prototype.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (c) {
+        log.add(<span style="background-color: #fff0f0">&quot;can not add to a leaf&quot;</span>);
+    };
+    MachineConfig.prototype.remove <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (i) {
+        log.add(<span style="background-color: #fff0f0">&quot;can not remove from leaf&quot;</span>);
+        l;
+    };
+    <span style="color: #008800; font-weight: bold">return</span> MachineConfig;
+}());
+
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> log() {
+    }
+    log.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (message) {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;\n&#39;</span>;
+    };
+    log.show <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    };
+    log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> log;
+}());
+
+<span style="color: #888888">// Create a tree structure</span>
+<span style="color: #008800; font-weight: bold">var</span> root <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> GroupConfig(<span style="background-color: #fff0f0">&quot;root&quot;</span>);
+root.addSettings(<span style="background-color: #fff0f0">&quot;visible=true&quot;</span>);
+<span style="color: #008800; font-weight: bold">var</span> m1 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig(<span style="background-color: #fff0f0">&quot;Machine R-1&quot;</span>);
+m1.addSettings(<span style="background-color: #fff0f0">&quot;test=true&quot;</span>);
+<span style="color: #008800; font-weight: bold">var</span> m2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig(<span style="background-color: #fff0f0">&quot;Machine R-2&quot;</span>);
+m2.addSettings(<span style="background-color: #fff0f0">&quot;test=false&quot;</span>);
+root.add(m1);
+root.add(m2);
+<span style="color: #008800; font-weight: bold">var</span> comp <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> GroupConfig(<span style="background-color: #fff0f0">&quot;Group A&quot;</span>);
+comp.addSettings(<span style="background-color: #fff0f0">&quot;theme=blue&quot;</span>);
+<span style="color: #008800; font-weight: bold">var</span> m3 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig(<span style="background-color: #fff0f0">&quot;Machine A-3&quot;</span>);
+m3.addSettings(<span style="background-color: #fff0f0">&quot;network=public&quot;</span>);
+<span style="color: #008800; font-weight: bold">var</span> m4 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig(<span style="background-color: #fff0f0">&quot;Machine A-4&quot;</span>);
+m4.addSettings(<span style="background-color: #fff0f0">&quot;network=private&quot;</span>);
+comp.add(m3);
+comp.add(m4);
+root.add(comp);
+<span style="color: #008800; font-weight: bold">var</span> m5 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> MachineConfig(<span style="background-color: #fff0f0">&quot;Machine R-5&quot;</span>);
+m5.addSettings(<span style="background-color: #fff0f0">&quot;type=internal&quot;</span>);
+root.add(m5);
+<span style="color: #888888">// Recursively get settings</span>
+root.getSettings(<span style="background-color: #fff0f0">&quot;&quot;</span>, <span style="color: #0000DD; font-weight: bold">1</span>);
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+
+
+</body>
+
+</html>

@@ -777,8 +777,8 @@
                                                     <p>Composition provides more flexibility and avoids unexpected side-effect when you need to change existing code. Due to this, the composition-based adapter pattern is by far the more popular approach and
                                                         the one I will focus on here.</p>
                                                     <br>
-                                                    <img alt="adapter pattern structure" src="/images/gof-adapter-structure.png" data-src="/images/gof-adapter-structure.png" data-image="/images/gof-adapter-structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; width: 50%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <img class="img-grow" alt="adapter pattern structure" src="/images/gof-adapter-structure.png" data-src="/images/gof-adapter-structure.png" data-image="/images/gof-adapter-structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
                                                     <p>As you can see in the diagram above, the client is totally unaware that it is using an adapter to communicate with the target component. The components here are fairly basic:</p>
                                                     <ul>
@@ -805,8 +805,8 @@
                                                         they change up some of the methos that they expose and you discover that your services that use it will now be broken and no longer work. A similar scenario also plays out when you use third party
                                                         components and they are "upgraded" - but they don't keep consistency with their previous interfaces.</p>
                                                     <br>
-                                                    <img alt="gof adapter example structure" src="/images/gof-adapter-example.png" data-src="/images/gof-adapter-example.png" data-image="/images/gof-adapter-example.png" data-image-dimensions="880x596" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a31"
-                                                        data-type="image" style="width: 50%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <img class="img-grow" alt="gof adapter example structure" src="/images/gof-adapter-example.png" data-src="/images/gof-adapter-example.png" data-image="/images/gof-adapter-example.png" data-image-dimensions="880x596" data-image-focal-point="0.5,0.5" data-load="false"
+                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
                                                     <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that previously communicated with the old version of the third party service will no longer work. The new version of
                                                         this service has been improved by adding security tokens to the calls we were previously using. Because of this change, we have two options: first, to update every client that uses the third party
