@@ -30196,6 +30196,17 @@
         background-color: floralwhite;
     }
     
+    .toc {
+        background-color: black;
+        border-style: solid;
+        margin: 20px;
+        float: right;
+    }
+    
+    .toc-header {
+        color: white;
+    }
+    
     .panel-header {
         border-bottom-width: 1px;
         border-bottom-style: solid;
