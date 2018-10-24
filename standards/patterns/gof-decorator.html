@@ -751,18 +751,20 @@
                                                     <p>The <b>Decorator</b> changes the functionality of objects at runtime without impacting its blueprint or the existing functionality. While working with these patterns, we might confuse decorators with
                                                         an inheritance. However, there is a difference between the two. Decorators are used when we have to add and remove responsibilities from an object dynamically. Whereas, inheritance can do the same,
                                                         but not at run time.</p>
-                                                    <p>When dealing with Tree-structured data, programmers often have to discriminate between a leaf-node and a branch. This makes code more complex, and therefore, error prone. The solution is an interface
-                                                        that allows treating complex and primitive objects uniformly. In object-oriented programming, a composite is an object designed as a composition of one-or-more similar objects, all exhibiting similar
-                                                        functionality. This is known as a “has-a” relationship between objects</p>
-                                                    <br>
-                                                    <img class="img-grow" alt="composite pattern discussion example" src="/images/gof-composite-discussion-sample.png" data-src="/images/gof-composite-discussion-sample.png" data-image="/images/gof-composite-discussion-sample.png" data-image-dimensions="500x564"
-                                                        data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <br>
-                                                    <p>When thinking about this pattern, it might be useful to think of a real world scenario. Consider an organization that has a Director. Under that Director are one or more Senior Managers. Under each Senior
-                                                        Manager are one or more Managers...and, under them are developers. This is a classic hierarchy. The objects in this hierarchy are very similar but they are just different enough that using them would
-                                                        possibly require treating them differently in code. The <b>Composite Pattern</b> allows you to treat these objects in a consistent manner.</p>
-                                                    <p>The key concept for this pattern is that you can manipulate a single instance of the object just as you would manipulate a group of them. The operations you can perform on all the composite objects often
-                                                        have a least common denominator relationship.</p>
+                                                    <p>Essentially, the <b>Decorator Pattern</b> relies on special objects called, aptly enough, <i>decorators</i> (or wrappers) - their purpose is to "wrap" the object so that it mimics its interface. This
+                                                        is important because it means that the client code will not know that you have handed it a wrapper rather than the original object. All wrappers have a field for storing an instance of the original
+                                                        object (the one eing decorated). Most wrappers initialize that field by getting passed the object to wrap in the constructor.</p>
+                                                    <p>Remember that <b>Decorators</b> have the same interface as the object that they wrap. When a method is called on the decorator, it merely calls the same method on the wrapped object. So why even have
+                                                        the decorator? This is where decorators really shine - the call to the wrapped object could have additional logic executed both before and after it, adding all kinds of behavior to the original object
+                                                        without ever modifying it. Another thing to note is that <b>Decorators</b> can be nested on top of each other, with one calling another and so on before the final wrapped object is called - similar
+                                                        to those nested Russian Dolls (Matryoshka dolls). This allows you to create a number of basic, single-purpose decorators that, together, can add a tremendous amount of functionality to the original
+                                                        object.
+                                                    </p>
+                                                    <p>A useful way to think about <b>Decorators</b> in the everyday world are clothes. Each human being is unique and starts out naked. Adding your first layer of clothes can change your appearance and behavior
+                                                        - a suit for a busy professional or celebratory day, or a tshirt and jeans for working in the yard. Each can make you feel and act differently. The clothes act as a decorator - adding and changing
+                                                        behaviors to the fundamental you. Remeber how we discussed that decorators can be nested? Clothes work EXACTLY the same way. Over those clothes, you can add a sweater or jacket to make you a little
+                                                        warmer. And over that, you could add a rain coat.</p>
+                                                    <p></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -778,9 +780,6 @@
                                                     <p>There is not really much to the structure of a <b>Composite</b> design pattern. It consists of treating each node in two ways - Composite or Leaf. A Composite means it can have other objects below it.
                                                         A Leaf means it has no objects below it.</p>
                                                     <br>
-                                                    <img class="img-grow" alt="composite pattern structure simplified" src="/images/gof-composite-structure-simplified.png" data-src="/images/gof-composite-structure-simplified.png" data-image="/images/gof-composite-structure-simplified.png" data-image-dimensions="500x564"
-                                                        data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <br>
                                                     <p>What makes the Composite pattern one of the most beautiful is the power of recursion. This is simply explained with the simple organization example such as that in the <a href="#discussion">DISCUSSION</a>                                                        above. You want to find the total salary paid to all employees of the organization. It is nothing but the salary of CEO + the salary paid to all the departments. What is the salary of a department?
                                                         It is the salary of the department head + the salary of all projects. What is the total salary of a project? It is the salary of the project manager + the salary of all the project members. In short,
                                                         the salary of anything is the salary of self + the salary of all its sub groups.
@@ -793,11 +792,10 @@
                                                         forwards the request to its child components - possibly performing additional operations before and after forwarding.</p>
                                                     <p>As you can see in the diagram above, the the structure is straightforward and consists of:</p>
                                                     <ul>
-                                                        <li><b>Component</b> - declares interface for objects in composition, implements the default behaviour for the interface common to all classes as appropriate, and declares an interface for accessing
-                                                            and managing its child components</li>
-                                                        <li><b>Composite</b> - defines behaviour for components having children, stores the children objects, and implements child related operations in the component interface.</li>
-                                                        <li><b>Leaf</b> - represents leaf objects in the composition (a leaf has no children) and defines the behaviour for primitive objects in the composition.</li>
-                                                        <li><b>Client</b> - manipulates objects in the composition through the component interface.</li>
+                                                        <li><b>Component</b> - defines the interfae for objects that can have responsibilities added to them dynamically.</li>
+                                                        <li><b>ConcreteComponent</b> - defines an object to which additional responsibilities can be attached.</li>
+                                                        <li><b>Decorator</b> - maintains a reference to the Component object and defines an interface that conforms to the Component's interface.</li>
+                                                        <li><b>ConcreateDecorator</b> - adds responsibilities and behaviors to the component.</li>
                                                     </ul>
                                                 </div>
                                             </div>
