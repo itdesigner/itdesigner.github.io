@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('cs-code')">Copy</button>
+
+      <pre id-"cs-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+<span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System.Collections.Generic</span>;
+
+<span style="color: #008800; font-weight: bold">namespace</span> <span style="color: #0e84b5; font-weight: bold">FlyweightPattern</span>
+{
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// MainApp startup class for Real-World </span>
+    <span style="color: #888888">/// Flyweight Design Pattern.</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MainApp</span>
+    {
+        <span style="color: #888888">/// &lt;summary&gt;</span>
+        <span style="color: #888888">/// Entry point into console application.  This is also acting as a container</span>
+        <span style="color: #888888">/// as in the original structure definition for the Flyweight</span>
+        <span style="color: #888888">/// &lt;/summary&gt;</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>()
+        {
+            <span style="color: #888888">// Build a document with text</span>
+            <span style="color: #333399; font-weight: bold">string</span> document = <span style="background-color: #fff0f0">&quot;AZAZZBBZB&quot;</span>;
+            <span style="color: #333399; font-weight: bold">char</span>[] chars = document.ToCharArray();
+            CharacterFactory factory = <span style="color: #008800; font-weight: bold">new</span> CharacterFactory();
+            <span style="color: #888888">// extrinsic state</span>
+            <span style="color: #333399; font-weight: bold">int</span> pointSize = <span style="color: #6600EE; font-weight: bold">10</span>;
+            <span style="color: #888888">// For each character use a flyweight object</span>
+            <span style="color: #008800; font-weight: bold">foreach</span> (<span style="color: #333399; font-weight: bold">char</span> c <span style="color: #008800; font-weight: bold">in</span> chars)
+            {
+                pointSize++;
+                Character character = factory.GetCharacter(c);
+                character.Display(pointSize);
+            }
+        }
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;FlyweightFactory&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterFactory</span>
+    {
+        <span style="color: #008800; font-weight: bold">private</span> Dictionary&lt;<span style="color: #333399; font-weight: bold">char</span>, Character&gt; _characters = <span style="color: #008800; font-weight: bold">new</span> Dictionary&lt;<span style="color: #333399; font-weight: bold">char</span>, Character&gt;();
+        <span style="color: #008800; font-weight: bold">public</span> Character <span style="color: #0066BB; font-weight: bold">GetCharacter</span>(<span style="color: #333399; font-weight: bold">char</span> key)
+        {
+            <span style="color: #888888">// Uses &quot;lazy initialization&quot;</span>
+            Character character = <span style="color: #008800; font-weight: bold">null</span>;
+            <span style="color: #008800; font-weight: bold">if</span> (_characters.ContainsKey(key))
+            {
+                character = _characters[key];
+		Console.WriteLine(key + <span style="background-color: #fff0f0">&quot; found in cache&quot;</span>);
+            }
+            <span style="color: #008800; font-weight: bold">else</span>
+            {
+                <span style="color: #008800; font-weight: bold">switch</span> (key)
+                {
+                    <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0044DD">&#39;A&#39;</span>: character = <span style="color: #008800; font-weight: bold">new</span> CharacterA(); <span style="color: #008800; font-weight: bold">break</span>;
+                    <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0044DD">&#39;B&#39;</span>: character = <span style="color: #008800; font-weight: bold">new</span> CharacterB(); <span style="color: #008800; font-weight: bold">break</span>;
+                    <span style="color: #888888">//...</span>
+                    <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0044DD">&#39;Z&#39;</span>: character = <span style="color: #008800; font-weight: bold">new</span> CharacterZ(); <span style="color: #008800; font-weight: bold">break</span>;
+                }
+                _characters.Add(key, character);
+		Console.WriteLine(key + <span style="background-color: #fff0f0">&quot; NOT found in cache&quot;</span>);
+            }
+            <span style="color: #008800; font-weight: bold">return</span> character;
+        }
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;Flyweight&#39; abstract class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Character</span>
+    {
+        <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">char</span> symbol;
+        <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">int</span> width;
+        <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">int</span> height;
+        <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">int</span> pointSize;
+        <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">string</span> font;
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Display</span>(<span style="color: #333399; font-weight: bold">int</span> pointSize);
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// A &#39;ConcreteFlyweight&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterA</span> : Character
+    {
+        <span style="color: #888888">// Constructor</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterA</span>()
+        {
+            <span style="color: #008800; font-weight: bold">this</span>.symbol = <span style="color: #0044DD">&#39;A&#39;</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.height = <span style="color: #6600EE; font-weight: bold">100</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.width = <span style="color: #6600EE; font-weight: bold">120</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.font = <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Display</span>(<span style="color: #333399; font-weight: bold">int</span> pointSize)
+        {
+            <span style="color: #008800; font-weight: bold">this</span>.pointSize = pointSize;
+            Console.WriteLine(<span style="color: #008800; font-weight: bold">this</span>.symbol + <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> + <span style="color: #008800; font-weight: bold">this</span>.pointSize + <span style="background-color: #fff0f0">&quot; font: &quot;</span> + <span style="color: #008800; font-weight: bold">this</span>.font + <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+        }
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// A &#39;ConcreteFlyweight&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterB</span> : Character
+    {
+        <span style="color: #888888">// Constructor</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterB</span>()
+        {
+            <span style="color: #008800; font-weight: bold">this</span>.symbol = <span style="color: #0044DD">&#39;B&#39;</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.height = <span style="color: #6600EE; font-weight: bold">100</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.width = <span style="color: #6600EE; font-weight: bold">140</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.font = <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Display</span>(<span style="color: #333399; font-weight: bold">int</span> pointSize)
+        {
+            <span style="color: #008800; font-weight: bold">this</span>.pointSize = pointSize;
+            Console.WriteLine(<span style="color: #008800; font-weight: bold">this</span>.symbol + <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> + <span style="color: #008800; font-weight: bold">this</span>.pointSize + <span style="background-color: #fff0f0">&quot; font: &quot;</span> + <span style="color: #008800; font-weight: bold">this</span>.font + <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+        }
+    }
+    <span style="color: #888888">// ... C, D, E, etc.</span>
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// A &#39;ConcreteFlyweight&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterZ</span> : Character
+    {
+        <span style="color: #888888">// Constructor</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterZ</span>()
+        {
+            <span style="color: #008800; font-weight: bold">this</span>.symbol = <span style="color: #0044DD">&#39;Z&#39;</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.height = <span style="color: #6600EE; font-weight: bold">100</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.width = <span style="color: #6600EE; font-weight: bold">100</span>;
+            <span style="color: #008800; font-weight: bold">this</span>.font = <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Display</span>(<span style="color: #333399; font-weight: bold">int</span> pointSize)
+        {
+            <span style="color: #008800; font-weight: bold">this</span>.pointSize = pointSize;
+            Console.WriteLine(<span style="color: #008800; font-weight: bold">this</span>.symbol + <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> + <span style="color: #008800; font-weight: bold">this</span>.pointSize + <span style="background-color: #fff0f0">&quot; font: &quot;</span> + <span style="color: #008800; font-weight: bold">this</span>.font + <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+        }
+    }
+}
+</pre></div>
+
+
+
+</body>
+
+</html>
