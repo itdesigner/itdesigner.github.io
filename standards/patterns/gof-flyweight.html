@@ -761,23 +761,21 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The structure of the <b>Decorator</b> is fairly straightforward in almost every programming language. Fundamentally, it consists of a decorator object that mimics the interfae of the Component that you
-                                                        are attempting to wrap. That decorator merely makes calls to the existing wrapped object.</p>
-                                                    <p>Many programming languages allow you to use <b>attributes</b> to implement decorators rather than writing the wrapping logic directly - this certainly speeds up the process of developing <b>decorators</b>.</p>
+                                                    <p>The structure of the <b>Flyweight</b> is fairly straightforward in almost every programming language. Fundamentally, it consists of a <b>flyweight</b> object and a factory which can serve them up as needed.</p>
+                                                    <p>The most challenging part of the <b>flyweight pattern</b> is how to split up the data between <i>extrinsic</i> and <i>intrinsic</i> representations and where to store that external state data (extrinsic).  In many cases, that external data is moved to a container that is specifically design to manage that on behalf of your application - this is a <i>container</i>.  This <i>context</i> would be responsible for linling or associating the extrinsic state with a particular flyweight object.  The context class would store all fields of extrinsic state - requiring just one array field for storing references to context objects.</p>  
+                                                  <p>But how does this benefit us?  Isn't this still the same number of objects that we started with?  While technically that is true, each one of the objects is much smaller than before - the most memory intensive fields are stored in the intrinsic elements of the flyweight which are shared.  Thousands of these contextual objects can share a single flyweight object instead of each storing a full representation.</p>
                                                     <br>
                                                     <img class="img-grow" alt="flyweight pattern structure" src="/images/gof-flyweight-structure.png" data-src="/images/gof-flyweight-structure.png" data-image="/images/gof-flyweight-structure.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5"
                                                         data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>The whole point of <b>decorators</b> is to add dynamic behavior to an object without modifying it. This is critically important when you start thinking about object models and the potential explosion
-                                                        of sub-classing that could take place if you were to go down an inheritance path. For example, you could have a object that represents a car. You wouldn't want to subclass it to support red and blue
-                                                        and green cars and every other color you could imagine- you would simply add a color decorator. This makes the code much more manageable and compact.</p>
-                                                    <p>In this basic diagram of the <b>Decorator Pattern</b> the <i>Client</i> expects to call the <i>Component</i> in order to execute some logic or complete an operation. Instead, the client can call a <i>ConcreteDecorator</i>                                                        which can execute its additional functionality both before and after calling the original <i>Component</i>. </p>
+                                                    <p>In this basic diagram of the <b>Flyweight Pattern</b> the <i>Client</i> communicates with a <i>Context</i> object which manages the extrinsic state and linking to flyweights.  The <i>Context</i> can either retrieve a <i>Flyweight</i> object that it already has or can request a new one from the <i>FlyweightFactory</i>. In practically every scenario, the <b>Flyweight Object</b> is immutable - once it is created, it's internal or intrinsic data should never change.  If this were not so, it would be very difficult to reuse them as intended.</p>
+                                                  <p>It is important to remember that the <b>Flyweight Pattern</b> optimization only makes sense in problems that are dealing with a giagantic number of similar objects.  The most important consideration to use it is to perform an analysis of your code to see if you would benefit from its use.</p>
                                                     <p>The structure is straightforward and consists of:</p>
                                                     <ul>
-                                                        <li><b>Component</b> - defines the interfae for objects that can have responsibilities added to them dynamically.</li>
-                                                        <li><b>ConcreteComponent</b> - defines an object to which additional responsibilities can be attached.</li>
-                                                        <li><b>Decorator</b> - maintains a reference to the Component object and defines an interface that conforms to the Component's interface.</li>
-                                                        <li><b>ConcreteDecorator</b> - adds responsibilities and behaviors to the component.</li>
+                                                        <li><b>Context</b> - contains extrinsic state, which was unique across all original objects. When a context is paired with one of the flyweight objects, it represents the full state of the original object.</li>
+                                                      <li><b>IFlyweight</b> - declares an interface through which flyweights can receive and act on extrinsic state.</li>
+                                                        <li><b>ConcreteFlyweight</b> - implements the IFlyweight interface and holds the portion of original object's state that can be shared among multiple objects. The same flyweight object can be used in many different contexts. The state stored inside flyweight is called "intrinsic state." The other part of original object's state passed to flyweight's parameters is called "extrinsic state."</li>
+                                                        <li><b>Flyweight Factory</b> - manages a pool of existing flyweights. Clients do not create Flyweights directly. Instead, they call a flyweight factory and describe the desired flyweight by passing intrinsic state to factory's creational method. Factory looks over previously created flyweights and either returns existing one or creates new if it had not be found.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -791,15 +789,22 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>For a practical example of the <b>Decorator Pattern</b> in a real world usage scenario, lets focus on a simple scenario that will measure the length of time it takes to call a method. Essentially, we
-                                                        are dealing with a metrics or measurement problem. We don't want to manually write code for every possible method and so we will use a decorator to help us with this measurement. </p>
-                                                    <p>Let's walk through an example of how this would work. We are going to assume that the <i>Component</i> in our example is some critical piece of logic that we want to be able to time easily. We might
-                                                        be doing this because we wnt to monitor it's performance over time or get advanced notification when it takes too long.</p>
+                                                    <p>For a practical example of the <b>Flyweight Pattern</b> in a real world usage scenario, lets focus on a simple scenario that is addressed in the original <a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
+                            target="_blank">Gang of Four Book</a> - a simple sharing of character objects within a document.  Here we will be focusing on the fact that a document is composed of many characters and those charaters can be used over and over again within the document.</p>
+                                                    <p>First let's think about how to split up what should go into  the flyweight object (<i>intrinsic</i>) and what should be stored as external (<i>extrinsic</i>) state. What are the immutable features of a character in a document?  A quick reflection comes up with the following items:
+                                                  <ul>
+                                                    <li>the actual symbol to display</li>
+                                                    <li>its width</li>
+                                                    <li>height</li>
+                                                    <li>point size</li>
+                                                    <li>font</li>
+                                                   </ul></p>
+                                              <p>Everything else about the character should most likely be <i>extrinsic</i>.  This includes position in document, etc...</p>
                                                     <br>
                                                     <img class="img-grow" alt="gof flyweight example" src="/images/gof-flyweight-example.png" data-src="/images/gof-flyweight-example.png" data-image="/images/gof-flyweight-example.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the Decorator will provide a convenient way of adding functionality to an existing object, in this case by adding timing measurements..</p>
+                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the Flyweight will an efficient way of sharing flyweight objects (in this case characters) to be used repeatedly in a document.  The only major difference between out implementation and the "idealized" structure is that we don't really need a full context for this example and so it will be ahndled by the client application directly.</p>
                                                     <p>Let's expand on this practical example with some code below.</p>
                                                 </div>
                                             </div>
@@ -813,11 +818,9 @@
                                                     <h3>Code Samples</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Decorator</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
+                                                    <p>Below, you will find examples of the <i><b>Flyweight Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a Decorator to allow for easily adding the ability to measure the time it takes to executre a method. It should be noted that what is shown in the sample code may not be the most
-                                                        efficient method of measuring times in different programming languages. This is meant to demonstrate the usage of decorators and not necessarily the most efficient way to measure times.</p>
-                                                    <p>It i also possible to take advantage of <b>attribute-based</b> decorators where it is supported in the language.</p>
+                                                    <p>Each sample will use a flyweight to allow for easily manage a huge number of characters in a document efficiently.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -828,7 +831,7 @@
 
                                                     <div id="NETC" class="tabcontent">
                                                         <h3>C# Flyweight Code Sample</h3>
-                                                        <p>In this C# example, the <b>Flyweight</b> pattern is used. Here we will demonstrate the basic approach to using a decorator.</p>
+                                                        <p>In this C# example, the <b>Flyweight</b> pattern is used.</p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-csharp.html" />
@@ -837,7 +840,7 @@
                                                     </div>
                                                     <div id="Java" class="tabcontent">
                                                         <h3>Java Flyweight Code Sample</h3>
-                                                        <p>In this Java example, the <b>Flyweight</b> pattern is used. Here we will demonstrate the basic approach to using a decorator.</p>
+                                                        <p>In this Java example, the <b>Flyweight</b> pattern is used.</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-java.html" />
@@ -846,8 +849,7 @@
                                                     </div>
                                                     <div id="TS" class="tabcontent">
                                                         <h3>Typescript Flyweight Code Sample</h3>
-                                                        <p>In this TypeScript example, the <b>Flyweight</b> pattern is used. Here we will demonstrate the basic approach to using a decorator. This could easily also be done using an attribute-based approach
-                                                            (see my measures library for an example of this apporach).</p>
+                                                        <p>In this TypeScript example, the <b>Flyweight</b> pattern is used.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-ts.html" />
@@ -856,7 +858,7 @@
                                                     </div>
                                                     <div id="JS" class="tabcontent">
                                                         <h3>JavaScript Flyweight Code Sample</h3>
-                                                        <p>In this JavaScript example, the <b>Flyweight</b> pattern is used. Because attributes are not directly supported in native JS, we will use the classic approach only for decorators.</p>
+                                                        <p>In this JavaScript example, the <b>Flyweight</b> pattern is used. </p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
                                                             <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-js.html" />
@@ -876,16 +878,17 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">Make sure that your task can be represented as one primary component and several optional extensions over it</li>
-                                                        <li style="padding-left: 10px;">Create the Component interface that should describe all common methods for that primary component ant its extensions.</li>
-                                                        <li style="padding-left: 10px;">Create the Concrete Component class and put the primary business logic in it.</li>
-                                                        <li style="padding-left: 10px;">Create the Base Decorator class. Create a field for storing wrapped objects. It should have a Component interface type to allow storing both components and decorators inside.</li>
-                                                        <li style="padding-left: 10px;">Make sure that all classes implement the Component interface.</li>
-                                                        <li style="padding-left: 10px;">Make all the methods of the Base Decorator delegating execution to the methods of the wrapped object. It will allow Concrete Decorators to extend only a portion of the component's behavior and leave
-                                                            the rest intact.</li>
-                                                        <li style="padding-left: 10px;">Create Concrete Decorator classes by extending them from the Base Decorator.</li>
-                                                        <li style="padding-left: 10px;">A Concrete Decorator should execute its behavior prior or after the call to the same method in a wrapped object (you can just call a parent's method since it will end up calling the wrapped method).</li>
-                                                        <li style="padding-left: 10px;">Client code must be responsible for configuring layers of wrapping. Client should work with all classes through a Component's interface to make the decorators interchangeable.</li>
+                                                        <li style="padding-left: 10px;">Ensure that object overhead (memory footprint) is an issue needing attention, and, the client of the class is able and willing to absorb responsibility realignment.</li>
+                                                        <li style="padding-left: 10px;">Divide fields of a class that should become a flyweight into two parts:
+                                                      <ul>
+                                                        <li><i>intrinsic</i> state for fields that contain unchanging data duplicated acrosss many instances</li>
+                                                        <li><i>extrinsic</i> state for fields that contain contextual data that is unique for each instance</li>
+                                                          </ul>
+                                                      </li>
+                                                        <li style="padding-left: 10px;">Leave the fields that represent the intrinsic state in the class, but make sure they are immutable. They should accept any values only inside the constructor.</li>
+                                                        <li style="padding-left: 10px;">Turn the fields of the extrinsic state into the arguments of methods that referred to them.</li>
+                                                        <li style="padding-left: 10px;">Create a flyweight factory class. It should check for existing flyweight before creating a new one. Clients must request flyweights from the flyweight factory. They should describe the desired flyweight by passing its intrinsic state to the factory method.</li>
+                                                        <li style="padding-left: 10px;">Clients must store or calculate values of extrinsic state (context) to be able to call methods of flyweight objects.</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -900,20 +903,12 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
-                                                        <li>Decorators can complicate the process of instantiating the component because you not only have to instantiate the component, but wrap it in a number of decorators.</li>
-                                                        <li>It can be complicated to have decorators keep track of other decorators, because to look back into multiple layers of the decorator chain starts to push the decorator pattern beyond its true intent.</li>
-                                                        <li>Decorator offers a pay-as-you-go approach to adding responsibilities. Instead of trying to support all foreseeable features in a complex, customizable class, you can define a simple class and add
-                                                            functionality incrementally with Decorator objects.</li>
-                                                        <li>Adapter provides a different interface to its subject. Proxy provides the same interface. Decorator provides an enhanced interface.</li>
-                                                        <li>Adapter changes an object's interface, Decorator enhances an object's responsibilities. Decorator is thus more transparent to the client. As a consequence, Decorator supports recursive composition,
-                                                            which isn't possible with pure Adapters.</li>
-                                                        <li>Composite and Decorator have similar structure diagrams, reflecting the fact that both rely on recursive composition to organize an open-ended number of objects.</li>
-                                                        <li>A Decorator can be viewed as a degenerate Composite with only one component. However, a Decorator adds additional responsibilities - it isn't intended for object aggregation.</li>
-                                                        <li>Decorator is designed to let you add responsibilities to objects without subclassing. Composite's focus is not on embellishment but on representation. These intents are distinct but complementary.
-                                                            Consequently, Composite and Decorator are often used in concert.</li>
-                                                        <li>Decorator and Proxy have different purposes but similar structures. Both describe how to provide a level of indirection to another object, and the implementations keep a reference to the object to
-                                                            which they forward requests.</li>
-                                                        <li>Decorator lets you change the skin of an object. Strategy lets you change the internals.</li>
+                                                        <li>Saves RAM, thus allowing a program to support much more objects.</li>
+                                                        <li>Increases overall code complexity by creating multiple additional classes.</li>
+                                                      <li>An inefficient <i>Context</i> implementation can waste nearly as much in the way of CPU time in finding or calculating the actual context needed.</li>
+                                                        <li>Flyweight shows how to make lots of little objects and Facade shows how to make a single object represent an entire subsystem.</li>
+                                                        <li>Flyweight is often combined with Composite to implement shared leaf nodes.</li>
+                                                        <li>Flyweight explains when and how State objects can be shared.</li>
                                                     </ul>
                                                 </div>
                                             </div>
