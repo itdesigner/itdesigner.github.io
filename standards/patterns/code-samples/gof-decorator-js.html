@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+        <pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">var</span> __extends <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">this</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.__extends) <span style="color: #333333">||</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">var</span> extendStatics <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) {
+        extendStatics <span style="color: #333333">=</span> <span style="color: #007020">Object</span>.setPrototypeOf <span style="color: #333333">||</span>
+            ({ __proto__<span style="color: #333333">:</span> [] } <span style="color: #008800; font-weight: bold">instanceof</span> <span style="color: #007020">Array</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) { d.__proto__ <span style="color: #333333">=</span> b; }) <span style="color: #333333">||</span>
+            <span style="color: #008800; font-weight: bold">function</span> (d, b) { <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> p <span style="color: #008800; font-weight: bold">in</span> b) <span style="color: #008800; font-weight: bold">if</span> (b.hasOwnProperty(p)) d[p] <span style="color: #333333">=</span> b[p]; };
+        <span style="color: #008800; font-weight: bold">return</span> extendStatics(d, b);
+    }
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) {
+        extendStatics(d, b);
+        <span style="color: #008800; font-weight: bold">function</span> __() { <span style="color: #008800; font-weight: bold">this</span>.constructor <span style="color: #333333">=</span> d; }
+        d.prototype <span style="color: #333333">=</span> b <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">?</span> <span style="color: #007020">Object</span>.create(b) <span style="color: #333333">:</span> (__.prototype <span style="color: #333333">=</span> b.prototype, <span style="color: #008800; font-weight: bold">new</span> __());
+    };
+})();
+
+<span style="color: #008800; font-weight: bold">var</span> ConcreteComponent <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> ConcreteComponent(s) {
+        <span style="color: #008800; font-weight: bold">this</span>.s <span style="color: #333333">=</span> s;
+    }
+    ConcreteComponent.prototype.operation <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (args) {
+        <span style="color: #888888">// something that takes time to measure</span>
+        <span style="color: #008800; font-weight: bold">var</span> k <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>;
+        <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>; i <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">200000</span>; i<span style="color: #333333">++</span>) {
+            k <span style="color: #333333">+=</span> i;
+        }
+        log.add(<span style="background-color: #fff0f0">&quot;ConcreteComponent.Operation(&quot;</span> <span style="color: #333333">+</span> args <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;) - DONE&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> ConcreteComponent;
+}());
+
+<span style="color: #008800; font-weight: bold">var</span> BaseDecorator <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> BaseDecorator(comp) {
+        <span style="color: #008800; font-weight: bold">this</span>.component <span style="color: #333333">=</span> comp;
+    }
+    BaseDecorator.prototype.setComponent <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (component) {
+        <span style="color: #008800; font-weight: bold">this</span>.component <span style="color: #333333">=</span> component;
+    };
+    BaseDecorator.prototype.operation <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (args) {
+        <span style="color: #008800; font-weight: bold">this</span>.component.operation(args);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> BaseDecorator;
+}());
+
+<span style="color: #008800; font-weight: bold">var</span> TimingDecorator <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(TimingDecorator, _super);
+    <span style="color: #008800; font-weight: bold">function</span> TimingDecorator(comp) {
+        <span style="color: #008800; font-weight: bold">return</span> _super.call(<span style="color: #008800; font-weight: bold">this</span>, comp) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+    }
+    TimingDecorator.prototype.setComponent <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (component) {
+        _super.prototype.setComponent.call(<span style="color: #008800; font-weight: bold">this</span>, component);
+    };
+    TimingDecorator.prototype.operation <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (args) {
+        log.add(<span style="background-color: #fff0f0">&quot;TimingDecorator.pre-Operation()&quot;</span>);
+        <span style="color: #008800; font-weight: bold">var</span> t0 <span style="color: #333333">=</span> performance.now();
+        _super.prototype.operation.call(<span style="color: #008800; font-weight: bold">this</span>, args);
+        <span style="color: #008800; font-weight: bold">var</span> t1 <span style="color: #333333">=</span> performance.now();
+        log.add(<span style="background-color: #fff0f0">&quot;TimingDecorator.post-Operation(): &quot;</span> <span style="color: #333333">+</span> (t1 <span style="color: #333333">-</span> t0) <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;ms&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> TimingDecorator;
+}(BaseDecorator));
+
+<span style="color: #008800; font-weight: bold">var</span> ConcreteDecoratorB <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(ConcreteDecoratorB, _super);
+    <span style="color: #008800; font-weight: bold">function</span> ConcreteDecoratorB(comp) {
+        <span style="color: #008800; font-weight: bold">return</span> _super.call(<span style="color: #008800; font-weight: bold">this</span>, comp) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+    }
+    ConcreteDecoratorB.prototype.setComponent <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (component) {
+        _super.prototype.setComponent.call(<span style="color: #008800; font-weight: bold">this</span>, component);
+    };
+    ConcreteDecoratorB.prototype.operation <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (args) {
+        log.add(<span style="background-color: #fff0f0">&quot;ConcreteDecoratorB pre-Operation()&quot;</span>);
+        _super.prototype.operation.call(<span style="color: #008800; font-weight: bold">this</span>, args);
+        log.add(<span style="background-color: #fff0f0">&quot;ConcreteDecoratorB post-Operation()&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> ConcreteDecoratorB;
+}(BaseDecorator));
+
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> log() {
+    }
+    log.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (message) {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+        <span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+    };
+    log.show <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    };
+    log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> log;
+}());
+
+<span style="color: #008800; font-weight: bold">var</span> comp <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ConcreteComponent(<span style="background-color: #fff0f0">&quot;MyComponent&quot;</span>);
+<span style="color: #008800; font-weight: bold">var</span> d1 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> TimingDecorator(comp);
+<span style="color: #008800; font-weight: bold">var</span> d2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ConcreteDecoratorB(d1);
+d2.operation(<span style="background-color: #fff0f0">&quot;abcd&quot;</span>);
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+
+
+</body>
+
+</html>
