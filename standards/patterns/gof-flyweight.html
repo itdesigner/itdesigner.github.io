@@ -698,14 +698,12 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The <b>Decorator Pattern</b> is used where we need to attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
+                                                    <p>The <b>Flyweight Pattern</b> is used to reduce the number of objects created and to decrease memory footprint and increase performance.  The flyweight pattern tries to reuse already existing similar kinds of objects by storing them and creates new objects when no matching object is found.
                                                     </p>
-                                                    <p>It is used when:</p>
+                                                    <p>It is used to:</p>
                                                     <ul>
-                                                        <li>Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.</li>
-                                                        <li>you need to allow client-specified embellishment of a core object by recursively wrapping it</li>
-                                                        <li>you want to extend an existing objects functionality on a case by case basis without modifying the base object or dealing with inheritance</li>
-                                                        <li>you are dealing with a third party object that you want to add your own functionality to</li>
+                                                        <li>share and support large numbers of fine-grained objects efficiently.</li>
+                                                        <li>reduce memory footprint for maintaining objects</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -733,7 +731,7 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>It is useful when you want to add behavior or state to individual objects at run-time - expecially where inheritance is not feasible because it is static and applies to an entire class.</p>
+                                                  <p>The <b>Flyweight Pattern</b> is used to provide a balance to a common problem - granularity of objects versus memory and performance.  Designing objects down to the lowest levels of granularity provides an amazing amout of flexibility; but, it comes at the cost (a sometimes unacceptable cost) of memory usage and perfromance.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -748,22 +746,8 @@
                                                     <h3>Discussion</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The <b>Decorator</b> changes the functionality of objects at runtime without impacting its blueprint or the existing functionality. While working with these patterns, we might confuse decorators with
-                                                        an inheritance. However, there is a difference between the two. Decorators are used when we have to add and remove responsibilities from an object dynamically. Whereas, inheritance can do the same,
-                                                        but not at run time.</p>
-                                                    <p>Essentially, the <b>Decorator Pattern</b> relies on special objects called, aptly enough, <i>decorators</i> (or wrappers) - their purpose is to "wrap" the object so that it mimics its interface. This
-                                                        is important because it means that the client code will not know that you have handed it a wrapper rather than the original object. All wrappers have a field for storing an instance of the original
-                                                        object (the one eing decorated). Most wrappers initialize that field by getting passed the object to wrap in the constructor.</p>
-                                                    <p>Remember that <b>Decorators</b> have the same interface as the object that they wrap. When a method is called on the decorator, it merely calls the same method on the wrapped object. So why even have
-                                                        the decorator? This is where decorators really shine - the call to the wrapped object could have additional logic executed both before and after it, adding all kinds of behavior to the original object
-                                                        without ever modifying it. Another thing to note is that <b>Decorators</b> can be nested on top of each other, with one calling another and so on before the final wrapped object is called - similar
-                                                        to those nested Russian Dolls (Matryoshka dolls). This allows you to create a number of basic, single-purpose decorators that, together, can add a tremendous amount of functionality to the original
-                                                        object.
-                                                    </p>
-                                                    <p>A useful way to think about <b>Decorators</b> in the everyday world are clothes. Each human being is unique and starts out naked. Adding your first layer of clothes can change your appearance and behavior
-                                                        - a suit for a busy professional or celebratory day, or a tshirt and jeans for working in the yard. Each can make you feel and act differently. The clothes act as a decorator - adding and changing
-                                                        behaviors to the fundamental you. Remeber how we discussed that decorators can be nested? Clothes work EXACTLY the same way. Over those clothes, you can add a sweater or jacket to make you a little
-                                                        warmer. And over that, you could add a rain coat and even a pair of boots.</p>
+                                                    <p>The <b>Flyweight</b> provides a pattern to use to allow sharing of objects and enabling them to be used at a fine-grained level without a prohibitive cost.  How is this magic accomplished?  Each <b>Flyweight</b> object is broken down into two pieces: an <i>extrinsic</i> and an <i>intrinsic</i> part.  The <i>intrinsic</i> part is state-independent and is stored in the flyweight object to be reused and shared over and over again.  The <i>extrinsic</i> part of the flyweight is state-dependent and is only passed to the flyweight object when operations on it are called by clients - when the call is done, the extrinsic data is returned to the client and no longer part of the flyweight.</p>
+                                                    <p>A useful way to think about <b>Flyweights</b> in the everyday world is in the context of web browsers. Almost every modern browser takes advantage of flyweights to prevent fetching the same image multiple times.  Imagine you have a web page where you have multiple copies of an image - all in different locations and with different sizes.  The browser is smart enough (because of the flyweight pattern) to download the image once - this is the <i>intrinsic</i> part of the flyweight, it doesn't change no matter where or how it is used.  The browser then takes that single shared image and places it all around the page based on position and size information provided - this is the <i>extrinsic</i> part of the flyweight and it is managed by the browser.  The image knows nothing about how it is placed.</p>
                                                     <p></p>
                                                 </div>
                                             </div>
