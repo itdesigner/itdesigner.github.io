@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<button id="button1" class="code-copy-button" onclick="CopyToClipboard('j-code')">Copy</button>
+<pre id="j-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.Map</span><span style="color: #333333">;</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">java.util.HashMap</span><span style="color: #333333">;</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">Demo</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span>String<span style="color: #333333">[]</span> args<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">/* Build a document with text */</span>
+        String document <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;AZAZZBBZB&quot;</span><span style="color: #333333">;</span>
+        <span style="color: #333399; font-weight: bold">char</span><span style="color: #333333">[]</span> chars <span style="color: #333333">=</span> document<span style="color: #333333">.</span><span style="color: #0000CC">toCharArray</span><span style="color: #333333">();</span>
+        <span style="color: #888888">/* extrinsic state */</span>
+        <span style="color: #333399; font-weight: bold">int</span> pointSize <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">10</span><span style="color: #333333">;</span>
+        <span style="color: #888888">/* character creation */</span>
+        CharacterFactory factory <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterFactory<span style="color: #333333">();</span>
+        <span style="color: #888888">// For each character use a flyweight object</span>
+        <span style="color: #008800; font-weight: bold">for</span> <span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">char</span> c <span style="color: #333333">:</span> chars<span style="color: #333333">)</span> 
+        <span style="color: #333333">{</span>
+            pointSize<span style="color: #333333">++;</span>
+            CharacterBase character <span style="color: #333333">=</span> factory<span style="color: #333333">.</span><span style="color: #0000CC">getCharacter</span><span style="color: #333333">(</span>c<span style="color: #333333">);</span>
+            character<span style="color: #333333">.</span><span style="color: #0000CC">display</span><span style="color: #333333">(</span>pointSize<span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/* Flyweight Factory class */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterFactory</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">final</span> Map<span style="color: #333333">&lt;</span>Character<span style="color: #333333">,</span> CharacterBase<span style="color: #333333">&gt;</span> _characters<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterFactory</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        _characters <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> HashMap<span style="color: #333333">&lt;</span>Character<span style="color: #333333">,</span> CharacterBase<span style="color: #333333">&gt;();</span>
+    <span style="color: #333333">}</span>
+
+    CharacterBase <span style="color: #0066BB; font-weight: bold">getCharacter</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">char</span> key<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">/* lazy initialization */</span>
+        CharacterBase character <span style="color: #333333">=</span> _characters<span style="color: #333333">.</span><span style="color: #0000CC">get</span><span style="color: #333333">(</span>key<span style="color: #333333">);</span>
+        <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>character <span style="color: #333333">==</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>key <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; NOT found in cache&quot;</span><span style="color: #333333">);</span>
+            <span style="color: #008800; font-weight: bold">switch</span> <span style="color: #333333">(</span>key<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+                <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0044DD">&#39;A&#39;</span><span style="color: #333333">:</span>
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterA<span style="color: #333333">();</span>
+                    _characters<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span>key<span style="color: #333333">,</span> character<span style="color: #333333">);</span>
+                    <span style="color: #008800; font-weight: bold">break</span><span style="color: #333333">;</span>
+                <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0044DD">&#39;B&#39;</span><span style="color: #333333">:</span>
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterB<span style="color: #333333">();</span>
+                    _characters<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span>key<span style="color: #333333">,</span> character<span style="color: #333333">);</span>
+                    <span style="color: #008800; font-weight: bold">break</span><span style="color: #333333">;</span>
+                <span style="color: #888888">/* ... */</span>
+                <span style="color: #008800; font-weight: bold">case</span> <span style="color: #0044DD">&#39;Z&#39;</span><span style="color: #333333">:</span>
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterZ<span style="color: #333333">();</span>
+                    _characters<span style="color: #333333">.</span><span style="color: #0000CC">put</span><span style="color: #333333">(</span>key<span style="color: #333333">,</span> character<span style="color: #333333">);</span>
+                    <span style="color: #008800; font-weight: bold">break</span><span style="color: #333333">;</span>
+                <span style="color: #008800; font-weight: bold">default</span><span style="color: #333333">:</span>
+                    <span style="color: #008800; font-weight: bold">break</span><span style="color: #333333">;</span>
+            <span style="color: #333333">}</span>
+        <span style="color: #333333">}</span> <span style="color: #008800; font-weight: bold">else</span> <span style="color: #333333">{</span>
+            System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span>key <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; found in cache&quot;</span><span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+        <span style="color: #008800; font-weight: bold">return</span> character<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/* Flyweight class */</span>
+<span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterBase</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">char</span> symbol<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">int</span> width<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">int</span> height<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #333399; font-weight: bold">int</span> pointSize<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">protected</span> String font<span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">protected</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> pointSize<span style="color: #333333">);</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/* ConcreteFlyweight class */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterA</span> <span style="color: #008800; font-weight: bold">extends</span> CharacterBase <span style="color: #333333">{</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterA</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">symbol</span> <span style="color: #333333">=</span> <span style="color: #0044DD">&#39;A&#39;</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">height</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">width</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">font</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> pointSize<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">symbol</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">font</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">/* ConcreteFlyweight class */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterB</span> <span style="color: #008800; font-weight: bold">extends</span> CharacterBase <span style="color: #333333">{</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterB</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">symbol</span> <span style="color: #333333">=</span> <span style="color: #0044DD">&#39;B&#39;</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">height</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">width</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">font</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> pointSize<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">symbol</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">font</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// ...more for C through Y</span>
+
+<span style="color: #888888">/* ConcreteFlyweight class */</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">CharacterZ</span> <span style="color: #008800; font-weight: bold">extends</span> CharacterBase <span style="color: #333333">{</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">CharacterZ</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">symbol</span> <span style="color: #333333">=</span> <span style="color: #0044DD">&#39;Z&#39;</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">height</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">width</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span><span style="color: #333333">;</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">font</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span><span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">display</span><span style="color: #333333">(</span><span style="color: #333399; font-weight: bold">int</span> pointSize<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">symbol</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">font</span> <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+
+
+
+</body>
+
+</html>
