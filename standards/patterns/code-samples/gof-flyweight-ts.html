@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<button id="button1" class="code-copy-button" onclick="CopyToClipboard('ts-code')">Copy</button>
+<pre id="ts-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// the Flyweight class</span>
+<span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> CharacterBase {
+    <span style="color: #008800; font-weight: bold">abstract</span> display(pointSize: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span>;
+    <span style="color: #008800; font-weight: bold">protected</span> symbol: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #008800; font-weight: bold">protected</span> width: <span style="color: #333399; font-weight: bold">number</span>;
+    <span style="color: #008800; font-weight: bold">protected</span> height: <span style="color: #333399; font-weight: bold">number</span>;
+    <span style="color: #008800; font-weight: bold">protected</span> pointSize: <span style="color: #333399; font-weight: bold">number</span>;
+    <span style="color: #008800; font-weight: bold">protected</span> font: <span style="color: #333399; font-weight: bold">string</span>;
+}
+
+<span style="color: #888888">// a ConcreteFlyweight class</span>
+<span style="color: #008800; font-weight: bold">class</span> CharacterA <span style="color: #008800; font-weight: bold">extends</span> CharacterBase {
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">constructor</span>() {
+        <span style="color: #008800; font-weight: bold">super</span>();
+        <span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;A&#39;</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.height <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.width <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        
+    }
+    <span style="color: #008800; font-weight: bold">public</span> display(pointSize: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">=</span> pointSize;
+        log.add(<span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+    }
+}
+
+<span style="color: #888888">// a ConcreteFlyweight class</span>
+<span style="color: #008800; font-weight: bold">class</span> CharacterB <span style="color: #008800; font-weight: bold">extends</span> CharacterBase {
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">constructor</span>() {
+        <span style="color: #008800; font-weight: bold">super</span>();
+        <span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;B&#39;</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.height <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.width <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        
+    }
+    <span style="color: #008800; font-weight: bold">public</span> display(pointSize: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">=</span> pointSize;
+        log.add(<span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+    }
+}
+
+<span style="color: #888888">// ...more implementations for C - Y</span>
+
+<span style="color: #888888">// a ConcreteFlyweight class</span>
+<span style="color: #008800; font-weight: bold">class</span> CharacterZ <span style="color: #008800; font-weight: bold">extends</span> CharacterBase {
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">constructor</span>() {
+        <span style="color: #008800; font-weight: bold">super</span>();
+        <span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;Z&#39;</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.height <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.width <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span>;
+        <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        
+    }
+    <span style="color: #008800; font-weight: bold">public</span> display(pointSize: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">=</span> pointSize;
+        log.add(<span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+    }
+}
+
+<span style="color: #888888">// the Flyweight Factory</span>
+<span style="color: #008800; font-weight: bold">class</span> CharacterFactory {
+    <span style="color: #888888">// this is the &quot;cache&quot;</span>
+    <span style="color: #008800; font-weight: bold">private</span> fliesMap<span style="color: #333333">:</span> { [s: <span style="color: #333399; font-weight: bold">string</span>]<span style="color: #333333">:</span> CharacterBase; } <span style="color: #333333">=</span> <span style="color: #333333">&lt;</span>any<span style="color: #333333">&gt;</span>{};
+    <span style="color: #888888">// constructor</span>
+    <span style="color: #008800; font-weight: bold">constructor</span>() { }
+    <span style="color: #008800; font-weight: bold">public</span> getCharacter(key: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> CharacterBase {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.fliesMap[key] <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">undefined</span> <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">null</span>) {
+            <span style="color: #008800; font-weight: bold">var</span> character: <span style="color: #333399; font-weight: bold">CharacterBase</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span>;
+            log.add(key <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; NOT found in cache&quot;</span>);
+            <span style="color: #008800; font-weight: bold">switch</span> (key)
+            {
+                <span style="color: #008800; font-weight: bold">case</span> <span style="background-color: #fff0f0">&#39;A&#39;</span><span style="color: #333333">:</span> 
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterA(); 
+                    <span style="color: #008800; font-weight: bold">break</span>;
+                <span style="color: #008800; font-weight: bold">case</span> <span style="background-color: #fff0f0">&#39;B&#39;</span><span style="color: #333333">:</span> 
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterB(); 
+                    <span style="color: #008800; font-weight: bold">break</span>;
+                <span style="color: #888888">//...</span>
+                <span style="color: #008800; font-weight: bold">case</span> <span style="background-color: #fff0f0">&#39;Z&#39;</span><span style="color: #333333">:</span> 
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterZ(); 
+                    <span style="color: #008800; font-weight: bold">break</span>;
+            }
+            <span style="color: #008800; font-weight: bold">this</span>.fliesMap[key] <span style="color: #333333">=</span> character;
+        } <span style="color: #008800; font-weight: bold">else</span> {
+            log.add(key <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; found in cache&quot;</span>);
+        }
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>.fliesMap[key];
+    }
+}
+
+<span style="color: #008800; font-weight: bold">class</span> log {
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #008800; font-weight: bold">static</span> _log: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">static</span> add(message: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #008800; font-weight: bold">void</span> {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+        <span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+    }
+    <span style="color: #008800; font-weight: bold">static</span> show()<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">string</span> {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    }
+}
+
+<span style="color: #888888">// Build a document with text</span>
+<span style="color: #008800; font-weight: bold">var</span> doc: <span style="color: #333399; font-weight: bold">string</span> <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;AZAZZBBZB&quot;</span>;
+<span style="color: #008800; font-weight: bold">var</span> chars: <span style="color: #333399; font-weight: bold">string</span>[] <span style="color: #333333">=</span> doc.split(<span style="background-color: #fff0f0">&#39;&#39;</span>);
+<span style="color: #008800; font-weight: bold">let</span> factory: <span style="color: #333399; font-weight: bold">CharacterFactory</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterFactory();
+<span style="color: #888888">// extrinsic state</span>
+<span style="color: #008800; font-weight: bold">let</span> pointSize: <span style="color: #333399; font-weight: bold">number</span> <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">10</span>;
+<span style="color: #888888">// For each character use a flyweight object</span>
+chars.forEach(<span style="color: #008800; font-weight: bold">function</span> (c) {
+    pointSize<span style="color: #333333">++</span>;
+    <span style="color: #008800; font-weight: bold">var</span> characterResult: <span style="color: #333399; font-weight: bold">CharacterBase</span> <span style="color: #333333">=</span> factory.getCharacter(c);
+    characterResult.display(pointSize);
+});
+</pre></div>
+
+
+
+</body>
+
+</html>
