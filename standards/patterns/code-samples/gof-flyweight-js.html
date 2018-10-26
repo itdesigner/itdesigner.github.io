@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+
+<button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>
+<pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// the Flyweight class</span>
+<span style="color: #008800; font-weight: bold">var</span> CharacterBase <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> CharacterBase() {
+    }
+    <span style="color: #008800; font-weight: bold">return</span> CharacterBase;
+}());
+
+<span style="color: #888888">// a ConcreteFlyweight class</span>
+<span style="color: #008800; font-weight: bold">var</span> CharacterA <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(CharacterA, _super);
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">function</span> CharacterA() {
+        <span style="color: #008800; font-weight: bold">var</span> _this <span style="color: #333333">=</span> _super.call(<span style="color: #008800; font-weight: bold">this</span>) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+        _this.symbol <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;A&#39;</span>;
+        _this.height <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+        _this.width <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span>;
+        _this.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        <span style="color: #008800; font-weight: bold">return</span> _this;
+    }
+    CharacterA.prototype.display <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (pointSize) {
+        <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">=</span> pointSize;
+        log.add(<span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> CharacterA;
+}(CharacterBase));
+
+<span style="color: #888888">// a ConcreteFlyweight class</span>
+<span style="color: #008800; font-weight: bold">var</span> CharacterB <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(CharacterB, _super);
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">function</span> CharacterB() {
+        <span style="color: #008800; font-weight: bold">var</span> _this <span style="color: #333333">=</span> _super.call(<span style="color: #008800; font-weight: bold">this</span>) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+        _this.symbol <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;B&#39;</span>;
+        _this.height <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+        _this.width <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span>;
+        _this.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        <span style="color: #008800; font-weight: bold">return</span> _this;
+    }
+    CharacterB.prototype.display <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (pointSize) {
+        <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">=</span> pointSize;
+        log.add(<span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> CharacterB;
+}(CharacterBase));
+
+<span style="color: #888888">// ...more implementations for C - Y</span>
+
+<span style="color: #888888">// a ConcreteFlyweight class</span>
+<span style="color: #008800; font-weight: bold">var</span> CharacterZ <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> (_super) {
+    __extends(CharacterZ, _super);
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">function</span> CharacterZ() {
+        <span style="color: #008800; font-weight: bold">var</span> _this <span style="color: #333333">=</span> _super.call(<span style="color: #008800; font-weight: bold">this</span>) <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>;
+        _this.symbol <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;Z&#39;</span>;
+        _this.height <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">100</span>;
+        _this.width <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">120</span>;
+        _this.font <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;Arial&quot;</span>;
+        <span style="color: #008800; font-weight: bold">return</span> _this;
+    }
+    CharacterZ.prototype.display <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (pointSize) {
+        <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">=</span> pointSize;
+        log.add(<span style="color: #008800; font-weight: bold">this</span>.symbol <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; (pointsize: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.pointSize <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; font: &quot;</span> <span style="color: #333333">+</span> <span style="color: #008800; font-weight: bold">this</span>.font <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot;)&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> CharacterZ;
+}(CharacterBase));
+
+<span style="color: #888888">// the Flyweight Factory</span>
+<span style="color: #008800; font-weight: bold">var</span> CharacterFactory <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #888888">// constructor</span>
+    <span style="color: #008800; font-weight: bold">function</span> CharacterFactory() {
+        <span style="color: #888888">// this is the &quot;cache&quot;</span>
+        <span style="color: #008800; font-weight: bold">this</span>.fliesMap <span style="color: #333333">=</span> {};
+    }
+    CharacterFactory.prototype.getCharacter <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (key) {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.fliesMap[key] <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">undefined</span> <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">null</span>) {
+            <span style="color: #008800; font-weight: bold">var</span> character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span>;
+            log.add(key <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; NOT found in cache&quot;</span>);
+            <span style="color: #008800; font-weight: bold">switch</span> (key) {
+                <span style="color: #008800; font-weight: bold">case</span> <span style="background-color: #fff0f0">&#39;A&#39;</span><span style="color: #333333">:</span>
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterA();
+                    <span style="color: #008800; font-weight: bold">break</span>;
+                <span style="color: #008800; font-weight: bold">case</span> <span style="background-color: #fff0f0">&#39;B&#39;</span><span style="color: #333333">:</span>
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterB();
+                    <span style="color: #008800; font-weight: bold">break</span>;
+                <span style="color: #888888">//...</span>
+                <span style="color: #008800; font-weight: bold">case</span> <span style="background-color: #fff0f0">&#39;Z&#39;</span><span style="color: #333333">:</span>
+                    character <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterZ();
+                    <span style="color: #008800; font-weight: bold">break</span>;
+            }
+            <span style="color: #008800; font-weight: bold">this</span>.fliesMap[key] <span style="color: #333333">=</span> character;
+        }
+        <span style="color: #008800; font-weight: bold">else</span> {
+            log.add(key <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&quot; found in cache&quot;</span>);
+        }
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>.fliesMap[key];
+    };
+    <span style="color: #008800; font-weight: bold">return</span> CharacterFactory;
+}());
+
+<span style="color: #888888">// log helper</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> log() {
+    }
+    log.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (message) {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+        <span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+    };
+    log.show <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    };
+    log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> log;
+}());
+
+<span style="color: #888888">// extension helper</span>
+<span style="color: #008800; font-weight: bold">var</span> __extends <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">this</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">this</span>.__extends) <span style="color: #333333">||</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">var</span> extendStatics <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) {
+        extendStatics <span style="color: #333333">=</span> <span style="color: #007020">Object</span>.setPrototypeOf <span style="color: #333333">||</span>
+            ({ __proto__<span style="color: #333333">:</span> [] } <span style="color: #008800; font-weight: bold">instanceof</span> <span style="color: #007020">Array</span> <span style="color: #333333">&amp;&amp;</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) { d.__proto__ <span style="color: #333333">=</span> b; }) <span style="color: #333333">||</span>
+            <span style="color: #008800; font-weight: bold">function</span> (d, b) { <span style="color: #008800; font-weight: bold">for</span> (<span style="color: #008800; font-weight: bold">var</span> p <span style="color: #008800; font-weight: bold">in</span> b) <span style="color: #008800; font-weight: bold">if</span> (b.hasOwnProperty(p)) d[p] <span style="color: #333333">=</span> b[p]; };
+        <span style="color: #008800; font-weight: bold">return</span> extendStatics(d, b);
+    }
+    <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">function</span> (d, b) {
+        extendStatics(d, b);
+        <span style="color: #008800; font-weight: bold">function</span> __() { <span style="color: #008800; font-weight: bold">this</span>.<span style="color: #008800; font-weight: bold">constructor</span> <span style="color: #333333">=</span> d; }
+        d.prototype <span style="color: #333333">=</span> b <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">?</span> <span style="color: #007020">Object</span>.create(b) <span style="color: #333333">:</span> (__.prototype <span style="color: #333333">=</span> b.prototype, <span style="color: #008800; font-weight: bold">new</span> __());
+    };
+})();
+
+<span style="color: #888888">// Build a document with text</span>
+<span style="color: #008800; font-weight: bold">var</span> doc <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&quot;AZAZZBBZB&quot;</span>;
+<span style="color: #008800; font-weight: bold">var</span> chars <span style="color: #333333">=</span> doc.split(<span style="background-color: #fff0f0">&#39;&#39;</span>);
+<span style="color: #008800; font-weight: bold">var</span> factory <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> CharacterFactory();
+<span style="color: #888888">// extrinsic state</span>
+<span style="color: #008800; font-weight: bold">var</span> pointSize <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">10</span>;
+<span style="color: #888888">// For each character use a flyweight object</span>
+chars.forEach(<span style="color: #008800; font-weight: bold">function</span> (c) {
+    pointSize<span style="color: #333333">++</span>;
+    <span style="color: #008800; font-weight: bold">var</span> characterResult <span style="color: #333333">=</span> factory.getCharacter(c);
+    characterResult.display(pointSize);
+});
+</pre></div>
+
+
+</body>
+
+</html>
