@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<button id="button1" class="code-copy-button" onclick="CopyToClipboard('j-code')">Copy</button>  
+<pre id="j-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// the ISubject interface</span>
+<span style="color: #008800; font-weight: bold">interface</span> <span style="color: #BB0066; font-weight: bold">ISubject</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">draw</span><span style="color: #333333">();</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// the RealSubject class</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">BrowserImage</span> <span style="color: #008800; font-weight: bold">implements</span> ISubject <span style="color: #333333">{</span>
+
+    <span style="color: #008800; font-weight: bold">private</span> String filename <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">byte</span><span style="color: #333333">[]</span> imageData <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+    <span style="color: #888888">//Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">BrowserImage</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">final</span> String filename<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">filename</span> <span style="color: #333333">=</span> filename<span style="color: #333333">;</span>
+        loadImageFromDisk<span style="color: #333333">();</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Creating BrowserImage&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">loadImageFromDisk</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #888888">// load the image</span>
+        imageData <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">byte</span><span style="color: #333333">[]{};</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">draw</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        System<span style="color: #333333">.</span><span style="color: #0000CC">out</span><span style="color: #333333">.</span><span style="color: #0000CC">println</span><span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;Called BrowserImage.draw()&quot;</span><span style="color: #333333">);</span>
+    <span style="color: #333333">}</span>
+
+<span style="color: #333333">}</span>
+
+<span style="color: #888888">// the Proxy class</span>
+<span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ProxyImage</span> <span style="color: #008800; font-weight: bold">implements</span> ISubject <span style="color: #333333">{</span>
+
+    <span style="color: #008800; font-weight: bold">private</span> BrowserImage image <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+    <span style="color: #008800; font-weight: bold">private</span> String filename <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">;</span>
+    <span style="color: #888888">// Constructor</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ProxyImage</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">final</span> String filename<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">this</span><span style="color: #333333">.</span><span style="color: #0000CC">filename</span> <span style="color: #333333">=</span> filename<span style="color: #333333">;</span>
+    <span style="color: #333333">}</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">draw</span><span style="color: #333333">()</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">if</span> <span style="color: #333333">(</span>image <span style="color: #333333">==</span> <span style="color: #008800; font-weight: bold">null</span><span style="color: #333333">)</span> <span style="color: #333333">{</span>
+            image <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> BrowserImage<span style="color: #333333">(</span>filename<span style="color: #333333">);</span>
+        <span style="color: #333333">}</span>
+        image<span style="color: #333333">.</span><span style="color: #0000CC">draw</span><span style="color: #333333">();</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+
+<span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ProxyExample</span> <span style="color: #333333">{</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #333399; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">main</span><span style="color: #333333">(</span><span style="color: #008800; font-weight: bold">final</span> String<span style="color: #333333">[]</span> arguments<span style="color: #333333">)</span> <span style="color: #333333">{</span>
+        <span style="color: #008800; font-weight: bold">final</span> ISubject image1 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ProxyImage<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;test-image1.jpg&quot;</span><span style="color: #333333">);</span>
+        <span style="color: #008800; font-weight: bold">final</span> ISubject image2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ProxyImage<span style="color: #333333">(</span><span style="background-color: #fff0f0">&quot;test-image2.jpg&quot;</span><span style="color: #333333">);</span>
+
+        image1<span style="color: #333333">.</span><span style="color: #0000CC">draw</span><span style="color: #333333">();</span> <span style="color: #888888">// loading necessary</span>
+        image1<span style="color: #333333">.</span><span style="color: #0000CC">draw</span><span style="color: #333333">();</span> <span style="color: #888888">// loading unnecessary</span>
+        image2<span style="color: #333333">.</span><span style="color: #0000CC">draw</span><span style="color: #333333">();</span> <span style="color: #888888">// loading necessary</span>
+        image2<span style="color: #333333">.</span><span style="color: #0000CC">draw</span><span style="color: #333333">();</span> <span style="color: #888888">// loading unnecessary</span>
+        image1<span style="color: #333333">.</span><span style="color: #0000CC">draw</span><span style="color: #333333">();</span> <span style="color: #888888">// loading unnecessary</span>
+    <span style="color: #333333">}</span>
+<span style="color: #333333">}</span>
+</pre></div>
+            
+
+</body>
+
+</html>

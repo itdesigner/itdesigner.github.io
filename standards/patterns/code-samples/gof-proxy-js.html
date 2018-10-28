@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>   
+<pre id="js-code" style="margin: 0; line-height: 125%"><span style="color: #888888">// the Proxy class</span>
+<span style="color: #008800; font-weight: bold">var</span> ProxyImage <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #888888">// constructor</span>
+    <span style="color: #008800; font-weight: bold">function</span> ProxyImage(filename) {
+        <span style="color: #008800; font-weight: bold">this</span>.filename <span style="color: #333333">=</span> filename;
+        log.add(<span style="background-color: #fff0f0">&quot;Called ProxyImage.ctor()&quot;</span>);
+    }
+    ProxyImage.prototype.draw <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        log.add(<span style="background-color: #fff0f0">&quot;Called ProxyImage.draw()&quot;</span>);
+        <span style="color: #888888">// lazy loading image</span>
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #008800; font-weight: bold">this</span>.browserImage <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">null</span> <span style="color: #333333">||</span> <span style="color: #008800; font-weight: bold">this</span>.browserImage <span style="color: #333333">===</span> <span style="color: #008800; font-weight: bold">undefined</span>) {
+            log.add(<span style="background-color: #fff0f0">&quot;creating a new RealSubject.&quot;</span>);
+            <span style="color: #008800; font-weight: bold">this</span>.browserImage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> BrowserImage(<span style="color: #008800; font-weight: bold">this</span>.filename);
+        }
+        <span style="color: #008800; font-weight: bold">this</span>.browserImage.draw();
+        log.add(<span style="background-color: #fff0f0">&quot;Called ProxyImage.draw()&quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> ProxyImage;
+}());
+
+<span style="color: #888888">// the RealSubject class</span>
+<span style="color: #008800; font-weight: bold">var</span> BrowserImage <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #888888">// constructor</span>
+    <span style="color: #008800; font-weight: bold">function</span> BrowserImage(filename) {
+        <span style="color: #008800; font-weight: bold">this</span>.data <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>.loadImage(filename);
+        log.add(<span style="background-color: #fff0f0">&quot;Called BrowserImage.ctor()&quot;</span>);
+    }
+    BrowserImage.prototype.loadImage <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (fileName) {
+        <span style="color: #888888">// read and load the image into the byte array</span>
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">new</span> <span style="color: #007020">Array</span>();
+    };
+    BrowserImage.prototype.draw <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        log.add(<span style="background-color: #fff0f0">&quot;`Called BrowserImage.draw() &quot;</span>);
+    };
+    <span style="color: #008800; font-weight: bold">return</span> BrowserImage;
+}());
+
+<span style="color: #888888">// log helper class</span>
+<span style="color: #008800; font-weight: bold">var</span> log <span style="color: #333333">=</span> (<span style="color: #008800; font-weight: bold">function</span> () {
+    <span style="color: #008800; font-weight: bold">function</span> log() {
+    }
+    log.add <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> (message) {
+        log._log <span style="color: #333333">+=</span> message <span style="color: #333333">+</span> <span style="background-color: #fff0f0">&#39;&lt;br&gt;&#39;</span>;
+    };
+    log.show <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">function</span> () {
+        <span style="color: #008800; font-weight: bold">return</span> log._log;
+        log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    };
+    log._log <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;&#39;</span>;
+    <span style="color: #008800; font-weight: bold">return</span> log;
+}());
+
+<span style="color: #008800; font-weight: bold">var</span> proxy1 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ProxyImage(<span style="background-color: #fff0f0">&quot;test-image.jpg&quot;</span>);
+<span style="color: #008800; font-weight: bold">var</span> proxy2 <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> ProxyImage(<span style="background-color: #fff0f0">&quot;test-image2.jpg&quot;</span>);
+proxy1.draw();
+proxy1.draw();
+proxy2.draw();
+proxy2.draw();
+proxy1.draw();
+<span style="color: #007020">document</span>.body.innerHTML <span style="color: #333333">=</span> log.show();
+</pre></div>
+            
+
+</body>
+
+</html>
