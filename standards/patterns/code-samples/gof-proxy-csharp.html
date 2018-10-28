@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>C# Code Sample Page</title>
+</head>
+
+<body>
+
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+<button id="button1" class="code-copy-button" onclick="CopyToClipboard('cs-code')">Copy</button>    
+<pre id="cs-code" style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">using</span> <span style="color: #0e84b5; font-weight: bold">System</span>;
+
+<span style="color: #008800; font-weight: bold">namespace</span> <span style="color: #0e84b5; font-weight: bold">ProxySample</span>
+{
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// MainApp startup class for Structural Proxy Design Pattern.</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">MainApp</span>
+    {
+        <span style="color: #888888">/// &lt;summary&gt;</span>
+        <span style="color: #888888">/// Entry point into console application.</span>
+        <span style="color: #888888">/// &lt;/summary&gt;</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">static</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Main</span>()
+        {
+            <span style="color: #888888">// Create proxy and request a service</span>
+            <span style="color: #333399; font-weight: bold">string</span> filename = <span style="background-color: #fff0f0">&quot;test-image.jpg&quot;</span>;
+            ProxyImage proxy = <span style="color: #008800; font-weight: bold">new</span> ProxyImage(filename);
+            <span style="color: #888888">// called when needed by the client</span>
+            proxy.Draw();
+            <span style="color: #888888">// Wait for user...</span>
+        }
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;ISubject&#39; abstract class - could also be an interface</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ISubject</span>
+    {
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">abstract</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Draw</span>();
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;RealSubject&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">BrowserImage</span> : ISubject
+    {
+        <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">byte</span>[] imageData;
+        <span style="color: #888888">// constructor</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">BrowserImage</span>(<span style="color: #333399; font-weight: bold">string</span> fileName) {
+            <span style="color: #888888">//load the image</span>
+            imageData = LoadImage(fileName);
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Called BrowserImage.ctor()&quot;</span>);
+        }
+        <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">byte</span>[] <span style="color: #0066BB; font-weight: bold">LoadImage</span>(<span style="color: #333399; font-weight: bold">string</span> fileName) {
+            <span style="color: #888888">// read and load the image into the byte array</span>
+            <span style="color: #333399; font-weight: bold">var</span> _data = <span style="color: #008800; font-weight: bold">new</span> <span style="color: #333399; font-weight: bold">byte</span>[<span style="color: #6600EE; font-weight: bold">7000</span>];
+            <span style="color: #008800; font-weight: bold">return</span> _data;
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Draw</span>()
+        {
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Called BrowserImage.Draw()&quot;</span>);
+        }
+    }
+
+    <span style="color: #888888">/// &lt;summary&gt;</span>
+    <span style="color: #888888">/// The &#39;Proxy&#39; class</span>
+    <span style="color: #888888">/// &lt;/summary&gt;</span>
+    <span style="color: #008800; font-weight: bold">class</span> <span style="color: #BB0066; font-weight: bold">ProxyImage</span> : ISubject
+    {
+        <span style="color: #008800; font-weight: bold">private</span> BrowserImage _browserImage;
+        <span style="color: #008800; font-weight: bold">private</span> <span style="color: #333399; font-weight: bold">string</span> fileName;
+        <span style="color: #888888">// constructor</span>
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #0066BB; font-weight: bold">ProxyImage</span>(<span style="color: #333399; font-weight: bold">string</span> fileName) {
+            <span style="color: #008800; font-weight: bold">this</span>.fileName=fileName;
+            _browserImage = <span style="color: #008800; font-weight: bold">null</span>;
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Called ProxyImage.ctor()&quot;</span>);
+        }
+        <span style="color: #008800; font-weight: bold">public</span> <span style="color: #008800; font-weight: bold">override</span> <span style="color: #008800; font-weight: bold">void</span> <span style="color: #0066BB; font-weight: bold">Draw</span>()
+        {
+            Console.WriteLine(<span style="background-color: #fff0f0">&quot;Called ProxyImage.Draw()&quot;</span>);
+            <span style="color: #888888">// Use &#39;lazy initialization&#39;</span>
+            <span style="color: #008800; font-weight: bold">if</span> (_browserImage == <span style="color: #008800; font-weight: bold">null</span>)
+            {
+                _browserImage = <span style="color: #008800; font-weight: bold">new</span> BrowserImage(fileName);
+            }
+            _browserImage.Draw();
+        }
+    }
+}
+</pre></div>
+            
+
+
+</body>
+
+</html>
