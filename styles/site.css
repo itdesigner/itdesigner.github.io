@@ -133,7 +133,10 @@
     pre,
     samp {
         font-family: monospace, monospace;
-        font-size: 1em
+        font-size: 1em;
+    }
+    code[class^="language-"], div[class*=" language-"] {
+        background-color: lightblue;
     }
     
     button,
@@ -30467,6 +30470,20 @@
         color: #9a9a9a;
         font-size: large;
         font-weight: bold;
+    }
+    
+    .abstract-block {
+        border-style: solid;
+        padding: 20px;
+        border-color: lightgray;
+        border-width: 1px;
+        background-color: whitesmoke;
+    }
+    .abstract-block-btn {
+        background-color:white !important;
+    }
+    .abstract-block-btn:hover {
+        background-color:black !important;
     }
 
     .img-grow {
