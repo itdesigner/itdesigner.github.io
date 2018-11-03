@@ -719,11 +719,20 @@
 
                     <section class="Main-content" data-content-field="main-content" style="padding-left:10%">
                         <section><h2>Blog Posts</h2><br></section>
-                        <section id="entry-list" class="BlogList BlogList--posts-excerpt BlogList--empty sqs-blog-list clear" data-columns="1">
+                        <div class="sqs-row">
+                            <div id="archive" class="sqs-col-3 col-3" style="float: right; padding: 10px;" style="float:right">
+                                <h2 style="text-align:center">Archive List</h2>
+                                <p></p>
+                                <ul id="archive-list" style="list-style-type: none; display: inline-block; padding-inline-start: 0px;">
 
-                          <br>
+                                </ul>
+                            </div>
+                            <div id="entry-list" class="BlogList BlogList--posts-excerpt BlogList--empty sqs-blog-list clear sqs-col-8 col-8" data-columns="1">
 
-                        </section>
+                            <br>
+
+                            </div>
+                        </div>
                     </section>
 
                 </main>
@@ -795,14 +804,32 @@
                 setPage(currentPage+1);
             }
         }
+        function buildArchive(){
+            var aContent = '';
+            history.pages.forEach(page => {
+                page.entries.forEach(entry => {
+                    aContent +='<li style="background:url(http://templates.websitetemplatesonline.com/Action-Business-Theme/images/marker-1.gif)no-repeat 0px 8px; padding: 0px 0 6px 12px;"><a href="' + entry.path + '" style="text-transform: uppercase; text-decoration: underline;">' + entry.title + '</a></li>'
+                });
+            });
+            var archivetElement = document.getElementById('archive-list');
+            archivetElement.innerHTML = aContent;
+        }
         function setPage(newPageIndex) {
             var bodyContent = '';
             history.pages[newPageIndex].entries.forEach(entry => {
                 var title = '<h2><a href="' + entry.path + '">' + entry.title + '</a></h2>';
                 var date = '<h2 style="color: gray; font-size: x-large;"><i>' + entry.date + '</i></h2>';
                 var body = '<p>' + entry.abstract + '</p>';
-                var btn = '<div class="row sqs-row"><div class="sqs-block button-block sqs-block-button" data-block-type="53" id="block-yui_3_17_2_7_1471630032837_105825"><div class="sqs-block-content"><a href="' + entry.path + '" class="sqs-block-button-element--small sqs-block-button-element abstract-block-btn" data-initialized="true">Read More →</a></div></div></div>';
-                bodyContent += '<div class="abstract-block">' + title + date + body + btn + '</div>\n\n<br><br><br>\n\n';
+                var styleColor = (entry.type != 'normal') ? ' style="border-color: red; background-color:mistyrose;"' : '';
+                var labelColor = (entry.type != 'normal') ? ' background-color:maroon;' : '';
+                var tags ='';
+                if(entry.tags != undefined && entry.tags.length > 0) {
+                    entry.tags.forEach(tag => {
+                        tags += '<span class="label" style="float:right;' + labelColor + '">' + tag + '</span>';
+                    })
+                }
+                var btn = '<div class="row sqs-row"><div class="sqs-block button-block sqs-block-button" data-block-type="53" id="block-yui_3_17_2_7_1471630032837_105825"><div class="sqs-block-content"><a href="' + entry.path + '" class="sqs-block-button-element--small sqs-block-button-element abstract-block-btn" data-initialized="true">Read More →</a></div>' + tags + '</div></div>';
+               bodyContent += '<div class="abstract-block"' + styleColor + '>' + title + date + body + btn + '</div>\n\n<br><br><br>\n\n';
             });
             
             var pageList = '';
@@ -825,6 +852,7 @@
                 window.ImageLoader.bootstrap({}, document);
             }
             setPage(0);
+            buildArchive();
         })();
     </script>
     
