@@ -13580,7 +13580,7 @@
         padding: 20px;
         border-color: lightgray;
         border-width: 1px;
-        background-color: whitesmoke;
+        background-color: floralwhite;
     }
     .abstract-block-btn {
         background-color:white !important;
@@ -13646,4 +13646,10 @@
         vertical-align: baseline;
         border-radius: .25em;
         background-color: #47bcc2;
+    }
+    #archive-list li a {
+        font-size: large;
+    }
+    #archive-list li {
+        padding-bottom: 10px;
     }
