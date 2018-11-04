@@ -13649,7 +13649,32 @@
     }
     #archive-list li a {
         font-size: large;
+        color: black;
+        text-decoration: underline;
     }
     #archive-list li {
         padding-bottom: 10px;
+    }
+    @media (max-width:640px) {
+        #archive {
+            padding-left: 20px;
+        }
+    }
+
+     /* STYLES */
+     /* WARNING STYLE */
+    .abstract-block.warning{
+        border-color: maroon !important;
+        background-color: mistyrose;
+    }
+    .abstract-block.warning .label{
+        background-color: maroon;
+    }
+    /* THOUGHTS STYLE */
+    .abstract-block.thought{
+        border-color: maroon !important;
+        background-color: antiquewhite;
+    }
+    .abstract-block.thought .label{
+        background-color: black;
     }
