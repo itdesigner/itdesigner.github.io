@@ -8,9 +8,8 @@
     <!-- This is Squarespace. -->
     <!-- apple-tangerine-rl55 -->
     <base href="">
-    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Patterns - Strategic and Architectural Leader, driving success through innovation and excellence. Strategic Leadership requires innovation and creativity and includes examining the voice of the customer, the employee and industry best practices. It is a process of examining everything we do in our various roles, understanding the needs of our customers and ensuring that all of this is linked to clearly defined strategic imperatives."
-    />
-    <title>Jerry Shaughnessy - Patterns - Strategic and Architectural Leader</title>
+    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Classic Design Patterns - Interpreter Design Pattern" />
+    <title>Jerry Shaughnessy - Patterns - Interpreter Design Pattern</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
@@ -31,16 +30,15 @@
     <link rel="shortcut icon" type="image/png" href="/assets/favicon.ico" />
     <link rel="canonical" href="https://itdesigner.github.io/patterns" />
     <meta property="og:site_name" content="Jerry Shaughnessy - Strategic and Architectural Leader" />
-    <meta property="og:title" content="Jerry Shaughnessy - Patterns - Strategic and Architectural Leader" />
+    <meta property="og:title" content="Jerry Shaughnessy - GoF Patterns - Interpreter Design Pattern" />
     <meta property="og:url" content="https://itdesigner.github.io/patterns" />
     <meta property="og:type" content="website" />
-    <meta itemprop="name" content="Jerry Shaughnessy - Patterns" />
+    <meta itemprop="name" content="Jerry Shaughnessy - GoF Patterns" />
     <meta itemprop="url" content="https://itdesigner.github.io/patterns" />
-    <meta name="twitter:title" content="Jerry Shaughnessy - Patterns - Strategic and Architectural Leader" />
+    <meta name="twitter:title" content="Jerry Shaughnessy - GoF Patterns - Interpreter Design Pattern" />
     <meta name="twitter:url" content="https://itdesigner.github.io/patterns" />
-    <meta name="twitter:card" content="Jerry Shaughnessy - Patterns" />
-    <meta name="description" content="Jerry Shaughnessy - Patterns -  Strategic and Architectural Leader, driving success through innovation and excellence. Strategic Leadership requires innovation and creativity and includes examining the voice of the customer, the employee and industry best practices. It is a process of examining everything we do in our various roles, understanding the needs of our customers and ensuring that all of this is linked to clearly defined strategic imperatives."
-    />
+    <meta name="twitter:card" content="Jerry Shaughnessy - GoF Patterns" />
+    <meta name="description" content="Jerry Shaughnessy - GoF Patterns -  Interpreter Design Pattern" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Fjalla+One:400|Libre+Franklin:400,700,700i,400i,500" />
     <script type="text/javascript">
         SQUARESPACE_ROLLUPS = {};
@@ -265,7 +263,7 @@
             },
             "websiteCloneable": false,
             "collection": {
-                "title": "Jerry Shaughnessy - Patterns",
+                "title": "Jerry Shaughnessy - GoF Patterns - Interpreter Design Pattern",
                 "id": "1sd",
                 "fullUrl": "/patterns/",
                 "type": 10
@@ -672,212 +670,271 @@
             <div class="Content-outer">
                 <main class="Main Main--page">
                     <section class="Main-content" data-content-field="main-content">
-                        <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1536639724338" id="page-5b9742d91ae6cfbcdbd38ce3">
+                        <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
-                                <div class="col sqs-col-12 span-12">
+                                <h1>Interpreter Design Pattern</h1>
+                                <h2 class="sub-heading">Classic GOF Behavioral Design Patterns</h2>
+                            </div>
+                            <div class="row sqs-row">
+                                <div class="col sqs-col-1 span-1">
+                                    <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-fa7dc3ed79b819a248ef">
+                                        <div class="sqs-block-content">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row sqs-row">
+                                <!-- TOC -->
+                                <div id="TOC-CONTAINER">
+                                    <link data-wi-src="/standards/patterns/code-samples/gof-behavioral-toc.html" />
+                                </div>
+                                <!-- CONTENT -->
+                                <div class="col sqs-col-8 span-8">
+                                    <!-- INTENT -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_15_1471634480282_91413">
-                                                <div class="sqs-block-content">
-                                                    <h1 style="white-space: pre-wrap;">Guidance & Standards</h1>
-                                                    <h3 style="font-size:larger">Currently adding documentation. Please check back often!</b>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col sqs-col-8 span-8">
-                                            <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-yui_3_17_2_7_1471633367683_30367">
-                                                <div class="sqs-block-content">&nbsp;</div>
-                                            </div>
-                                        </div>
-                                        <div class="col sqs-col-8 span-8">
-                                            <div class="sqs-block image-block sqs-block-image" data-block-type="5" id="block-1bf830fb9c7b7756900f">
-                                                <div class="sqs-block-content">
-                                                    <div class="image-block-outer-wrapper layout-caption-below combination-animation-none individual-animation-none individual-text-animation-none design-layout-inline">
-                                                        <div class="intrinsic" style="max-width:2500.0px;">
-                                                            <div style="padding-bottom:60.0%;" class="image-block-wrapper   has-aspect-ratio" data-description="&lt;p&gt;Design Pattern&lt;/p&gt;">
-                                                                <noscript><img src="/images/director.jpg"  alt="Guidanceand Directionfor Technology"  /></noscript><img class="thumb-image" alt="Guidance and Direction for Technology" data-src="/images/director.jpg"
-                                                                    data-image="/images/director.jpg" data-image-dimensions="800x450" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5b91f287b8a04569a20b9d75" data-type="image"
-                                                                />
-                                                            </div>
-                                                            <!-- <div class="image-caption-wrapper">
-                                                                <div class="image-caption">
-                                                                    <p>Enterprise Architecture is all about identifying the business value. Every effort, every decision, is all about clarifying and highlighting <b>value</b>.</p>
-                                                                </div>
-                                                            </div> -->
-                                                        </div>
-                                                    </div>
+                                            <div id="intent" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header">&nbsp;&nbsp;
+                                                    <h3>Intent</h3>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col sqs-col-3 span-3" style="background-color: black; border-style: solid;margin:20px">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_15_1471634480282_91413">
-                                                <div class="sqs-block-content" style="padding-top:10px;">
-                                                    <h3 class="toc-header">Contents in this section</h3>
-                                                    <ul class="sqs-aclist-list">
-                                                        <li><a href="/standards/guidance/principles/principles.html">Engineering Principles</a></li>
-                                                        <li style="color:lightgray"><a href="/standards/guidance/security/security.html">Security</a></li>
-                                                        <li style="color:lightgray"><a href="/standards/guidance/principles/principles.html">Services Design</a></li>
-                                                        <li style="color:lightgray"><a href="/standards/guidance/dev-checklist.html" style="color: burlywood;">Development Checklist</a></li>
-                                                    </ul>
-                                                    <h3 class="toc-header">Additional Resources</h3>
-                                                    <ul class="sqs-aclist-list">
-                                                        <li><a href="https://medium.com/@treystout/engineering-principles-c58f5f8c264b" class="external-link" rel="nofollow">Engineering Principles - Trey Stout</a></li>
-                                                        <li><a href="https://www.botmetric.com/blog/aws-cloud-architecture-design-principles/" target="_blank">Design Principles for AWS Cloud Architecture</a></li>
-                                                        <li><a href="https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf" target="_blank">Architecting for the Cloud</a></li>
-                                                        <li><a href="https://aws.amazon.com/blogs/publicsector/aws-well-architected-framework-best-practices-for-building-and-deploying-an-optimized-cloud-environment/" target="_blank">AWS Well-Architected Framework</a></li>
-                                                        <li><a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/" target="_blank">Microsoft Azure Design Principles</a></li>
+                                                <div class="sqs-block-content panel-content">
+                                                    <p>The Abstract Factory is a creational design pattern that lets you produce families of related objects without specifying their concrete classes. Abstract Factory patterns work around a super-factory
+                                                        which creates other factories. This factory is also called as <b>factory of factories</b>.</p>
+                                                    <p>Typically, in the Abstract Factory pattern an interface is responsible for creating a factory of related objects without explicitly specifying their classes. Each generated factory can give the objects
+                                                        as per the Factory pattern.</p>
+                                                    <p>The Abstract Factory pattern is pretty common in code.</p>
+                                                    <p>It is used when:</p>
+                                                    <ul>
+                                                        <li>There is a need to provide an interface for creating families of related or dependent objects without specifying their concrete classes.</li>
+                                                        <li>There is a hierarchy that encapsulates: many possible object types, and their needs to be a facility to create them easily.</li>
+                                                        <li>The <i>new</i> operator considered harmful.</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- IMAGE VISUALIZATION -->
+                                    <div class="sqs-block image-block sqs-block-image" data-aspect-ratio="30" data-block-type="5" id="block-3d8b09b340f3a6109439">
+                                        <div class="sqs-block-content">
+                                            <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none">
+                                                <div class="intrinsic" style="max-width:800.0px;">
+                                                    <div style="padding-bottom:30.0%;" class="image-block-wrapper   has-aspect-ratio" data-description="">
+                                                        <noscript><img src="/images/factory-future.jpg"  alt="factory patterns image"  /></noscript>
+                                                        <img class="thumb-image" alt="factory patterns" data-src="/images/factory-future.jpg" data-image="/images/factory-future.jpg" data-image-dimensions="1500x750" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
+                                                            data-type="image" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PROBLEM STATEMENT -->
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-8 span-8">
+                                            <div id="problem" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header">&nbsp;&nbsp;
+                                                    <h3>Problem</h3>
+                                                </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <p>Many frameworks and libraries use it to provide a way to extend and customize their standard components.</p>
+                                                    <p>The pattern is easy to recognize by methods, which return a factory object. Then, the factory is used for creating specific sub-components as desired.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col sqs-col-11 span-11">
+                                    <!-- DISCUSSION -->
                                     <div class="row sqs-row">
                                         <div class="col sqs-col-11 span-11">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2">
-                                                <div class="sqs-block-content">
-                                                    <p>&nbsp;<br></p>
-                                                    <p>In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design. It is most useful to think of design patterns as a <b>"short-hand"</b> means
-                                                        of describing a possible solution. Design Patterns aren't intended to be directives and they certainly aren't the only way to solve a particular type of problem, they are <b>more akin to guidance</b>                                                        as to how similar problems are solved. A design pattern isn't a finished design that can be transformed directly into code. It is a description or template for how to solve a problem that can be
-                                                        used in many different situations.</p>
-                                                    <p>An analogy that I often use when talking about Design Patterns with developers and business leaders is that they are very similar to a roadmap (think <a href="https://maps.google.com/" target="_blank">Google Maps</a>).
-                                                        The map will show any number of ways to get from where you are to where you want to be; however, it will also provide a recommended way to travel there. A design pattern is the recommended route.
-                                                        Just as with nearly any map application, you can choose to go off the beaten path and solve problems your own way. However, the solution described by the design pattern also takes into account numerous
-                                                        things that the developer may not even be aware of - just as a map application takes into account accidents, traffic, and so on. Software design patterns include considerations such as scalability,
-                                                        resiliancy, portability, ease of understanding, etc. In general, the pattern is the how this sort of problem is typically solved and any veering away from it should have a pretty strong reason for
-                                                        doing so. </p>
-                                                    <p>Design patterns can <b>speed up the development process</b> by providing tested, proven development approaches. Effective software design requires considering issues that may not become visible until
-                                                        later in the implementation. Reusing design patterns helps to prevent subtle issues that can cause major problems and improves code readability for coders and architects familiar with the patterns.
-                                                        From a practical perspective, many developers only understand how to apply certain software design techniques to certain problems, particularly until they become more eperienced. These techniques
-                                                        are difficult to apply to a broader range of problems. Design patterns provide general solutions, documented in a format that doesn't require specifics tied to a particular problem or language.</p>
-                                                    <p>In addition, patterns allow developers to communicate using well-known, well understood names for software interactions. Common design patterns can be improved over time, making them more robust than
-                                                        ad-hoc designs. In most cases, they have been countless times and have been proven to be effective and efficient.</p>
+                                            <div id="discussion" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header">&nbsp;&nbsp;
+                                                    <h3>Discussion</h3>
+                                                </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <p>The Abstract Factory pattern is used to provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. Typically,
+                                                        a "factory" object has the responsibility for providing creation services for the entire object family. Clients never have to create objects directly, they ask the factory to do that on their behalf.</p>
+                                                    <p>This appraoch to creating objects makes exchanging entire object families easy because the specific class of the factory object appears only once in the application - where it is instantiated. This allows
+                                                        the application to perform wholesale replacement of the entire family of objects simply by instantiating a different concrete instance of the abstract factory.</p>
+                                                    <p>Because the service provided by the factory object is so pervasive, it is routinely implemented as a Singleton.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- STRUCTURE -->
                                     <div class="row sqs-row">
                                         <div class="col sqs-col-11 span-11">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2">
-                                                <div class="sqs-block-content">
-                                                    <h2>Types of Design Patterns</h2>
-                                                    <p>Design Patterns exist all around us in software development and in business. While a quick search on the interent can return hundreds of variations and types of design patterns; for the purposes of this
-                                                        discussion, let's break them down into 3 basic categories - based on their usage.</p>
+                                            <div id="structure" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header">&nbsp;&nbsp;
+                                                    <h3>Structure</h3>
+                                                </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <p>The Abstract Factory is an extremely common pattern, in fact, it enables architectures such as Dependency Injection.</p>
+                                                    <p>Unfortunately, it's also one of the patterns that's prone to overuse: it's easy to start using Abstract Factories anytime you need to create objects. Be aware of when you decide to use this pattern,
+                                                        and make sure you actually need it.</p>
+                                                    <br>
+                                                    <img alt="abstract factory structure" src="/images/gof-abstract-factory-structure.png" data-src="/images/gof-abstract-factory-structure.png" data-image="/images/gof-abstract-factory-structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>While it seems like there is a lot going on the the diagram above, it's actually very straight-forward to understand. The <b>AbstractFactory</b> defines the interface (where supported) which all of the
+                                                        concrete factories will need to implement in order to create Items. <b>ConcreteFactoryOne</b> and <b>ConcreteFactoryTwo</b> have both implemented this interface here, creating two seperate families
+                                                        of items. Meanwhile,
+                                                        <b>AbstractItemA</b> and <b>AbstractItemB</b> are interfaces for the different types of items to be created. Each factory will create one of each of these AbstractItems. </p>
+                                                    <p>The <b>Client</b> deals with <b>AbstractFactory</b>, <b>AbstractItemA</b> and <b>AbstractItemB</b>. The <b>Client</b> doesn't know anything about the implementations or even how they are instantiated.
+                                                        The actual implementation of <b>AbstractFactory</b> that the <b>Client</b> uses is determined at runtime.</p>
+                                                    <p>As you can see, one of the main benefits of this pattern is that the client is totally decoupled from the concrete products. Also, new item families can be easily added into the system, by just adding
+                                                        in a new type of ConcreteFactory that implements AbstractFactory, and creating the specific Product implementations.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row sqs-row" id="yui_3_17_2_1_1537490240334_70">
-                                        <div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1537490240334_69">
-                                            <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-203f003da88871cddfff">
-                                                <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_68">
-                                                    <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_67">
-                                                        <div class="intrinsic" style="max-width:550.0px;" id="yui_3_17_2_1_1537490240334_66">
-                                                            <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_65">
-                                                                <noscript><img src="/images/design_patterns_gof_book.png"  alt="gang of four"  /></noscript>
-                                                                <img class="thumb-image loaded" data-src="/images/design_patterns_gof_book.png" data-image="/images/design_patterns_gof_book.png" data-image-dimensions="300x250" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fee6a4222f88f1b2b3fd"
-                                                                    data-type="image" data-position-mode="standard" alt="gang of four book" src="/images/design_patterns_gof_book.png?format=750w" style="left: -24.9319%; top: 0%; position: absolute;" data-image-resolution="750w">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col sqs-col-7 span-7">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-b45f552aed8a49254d96">
-                                                <div class="sqs-block-content">
-                                                    <h3><a href="/standards/patterns/patterns-classic.html">CLASSIC DESIGN PATTERNS - The Gang of Four (GoF)</a></h3>
-                                                    <p>Here are the "classic" design patterns as described by the <a href="https://en.wikipedia.org/wiki/Design_Patterns" target="_blank">Gang of Four (GoF)</a>. Their work describes the fundamental patterns
-                                                        that are encountered in traditional Object-Oriented programming. Mostly likely, when you hear about design patterns in conversation, these are what are being referred to. <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612"
-                                                            target="_blank"><b>Design Patterns: Elements
-                                                        of Reusable Object-Oriented Software</b></a> is the first and probably the most famous book about the Design pattern. It was first published in 1995, but thankfully those design patterns are still
-                                                        valid and in common use today, the only outdated thing in this book may be the original Smalltalk programming language, used in some examples. </p>
-                                                    <p>As in their classic book, I break the patterns down into simple categories: Creational, Structural, and Behavioral - only here, I use samples in a number of languages in more common use today. The pages
-                                                        here represent a summary of their fantasic work; but, provide enough detail to begin using them in your everyday work.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!-- PRACTICAL EXAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-12 span-12">
-                                            <div class="sqs-block horizontalrule-block sqs-block-horizontalrule" data-block-type="47" id="block-1af013a9edd6f19170dd">
-                                                <div class="sqs-block-content">
-                                                    <hr>
+                                        <div class="col sqs-col-11 span-11">
+                                            <div id="example" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header">&nbsp;&nbsp;
+                                                    <h3>Practical Example</h3>
+                                                </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <p>A sample scenario that we will discuss using the Abstract Factory pattern uses employees and consultants. Imagine a large company that has different process for bringing consultants and employees into
+                                                        the organization based on whether they work at the corporate headquarters or at another satellite location. Employees and Vendors are used throughout the organization regardless of location, but
+                                                        the processes for adding/creating them is different.</p>
+                                                    <br>
+                                                    <img alt="abstract factory example" src="/images/gof-abstractfactory-example.png" data-src="/images/gof-abstractfactory-example.png" data-image="/images/gof-abstractfactory-example.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <p>This diagram should appear very similar to the generic diagram in <a href="#structure">STRUCTURE</a> above. In this specific case, the <b>AbstractItemA</b> and <b>AbstractItemB</b> interfaces have been
+                                                        replaced with <b>AbstractEmployee</b> and <b>AbstractConsultant</b> respectively. The <b>ConcreteFactories</b> have been exchanged for factories that are specific to the type of process used to acquire
+                                                        the person - here there is a <b>PreferredFactory</b> and a <b>StandardFactory</b>.</p>
+                                                    <p>Let's continue this sample with some practical code below.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row sqs-row" id="yui_3_17_2_1_1537490240334_95">
-                                        <div class="col sqs-col-7 span-7">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-6e45176a20c190e42770">
-                                                <div class="sqs-block-content">
-                                                    <h3>MICROSERVICES DESIGN PATTERNS</h3>
-                                                    <p>The main characteristics of microservices include: functional decomposition or domain-driven design, well-defined interfaces, explicitly published interface, single responsibility principle, and potentially
-                                                        polyglot. Each service is fully autonomous and full-stack. Thus changing a service implementation has no impact to other services as they communicate using well-defined interfaces. There are several
-                                                        advantages of such an application, but its not a free lunch and requires a significant effort.</p>
-                                                    <p>But lets say you understand the required effort, or at least some pieces of it, that is required to build such an application and willing to take a jump. What do you do? What is your approach for architecting
-                                                        such applications? Are there any design patterns on how these microservices work with each other? Look no further, you will find them here!</p>
-                                                    <p>Obviously, classic design patterns can be used within the context of microservices; however, the very nature of how microservices interact with each other pose challenges. The patterns described here
-                                                        focus on those interactions and provide proven solutions that you can leverage.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1537490240334_94">
-                                            <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-662ebfbbd0484ca86418">
-                                                <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_93">
-                                                    <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_92">
-                                                        <div class="intrinsic" style="max-width:550.0px;" id="yui_3_17_2_1_1537490240334_91">
-                                                            <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_90">
-                                                                <noscript><img src="/images/microservices-image.png"  alt="microservices"  /></noscript>
-                                                                <img class="thumb-image loaded" data-src="/images/microservices-image.png" data-image="/images/microservices-image.png" data-image-dimensions="200x200" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fef54192028eb6009d88" data-type="image"
-                                                                    data-position-mode="standard" alt="microservices" src="/images/microservices-image.png?format=750w" style="top: 0%; left:0px; position: absolute;" data-image-resolution="750w">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!-- CODE SAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-12 span-12">
-                                            <div class="sqs-block horizontalrule-block sqs-block-horizontalrule" data-block-type="47" id="block-1af013a9edd6f19170dd">
-                                                <div class="sqs-block-content">
-                                                    <hr>
+                                        <div class="col sqs-col-11 span-11">
+                                            <div id="code-sample" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header">&nbsp;&nbsp;
+                                                    <h3>Code Samples</h3>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row sqs-row" id="yui_3_17_2_1_1537490240334_70">
-                                        <div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1537490240334_69">
-                                            <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-203f003da88871cddfff">
-                                                <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_68">
-                                                    <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_67">
-                                                        <div class="intrinsic" style="max-width:550.0px;" id="yui_3_17_2_1_1537490240334_66">
-                                                            <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_65">
-                                                                <noscript><img src="/images/cimplementation-image.jpg"  alt="implementation patterns"  /></noscript>
-                                                                <img class="thumb-image loaded" data-src="/images/implementation-image.jpg" data-image="/images/implementation-image.jpg" data-image-dimensions="300x195" data-image-focal-point="0.5,0.8" data-load="false" data-image-id="5ba3fee6a4222f88f1b2b3fd" data-type="image"
-                                                                    data-position-mode="standard" alt="implemetation patterns" src="/images/implementation-image.jpg?format=750w" style="left: 0px; top: 0%; width: 100%; height: 70%; position: absolute; !important;"
-                                                                    data-image-resolution="750w">
-                                                            </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <p>Below, you will find examples of the <i><b>Abstract Factory</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in
+                                                        the
+                                                        <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
+                                                    <p>Each sample will use abstact factories to return proper instances.</p>
+                                                    <br>
+                                                    <div class="tab">
+                                                        <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
+                                                        <button class="tablinks" onclick="openCode(event, 'Java')">Java</button>
+                                                        <button class="tablinks" onclick="openCode(event, 'TS')">TypeScript</button>
+                                                        <button class="tablinks" onclick="openCode(event, 'JS')">JavaScript</button>
+                                                    </div>
+
+                                                    <div id="NETC" class="tabcontent">
+                                                        <h3>C# Abstract Factory Code Sample</h3>
+                                                        <p>In this C# example, the Abstract Factory pattern is used to create two different families of employee and consultants. </p>
+                                                        <p>The abstract definitions are created here using interfaces, although an abstract class could have been used as well. The AbstactEmployee and AbstractConsultant interfaces are required beacuse they
+                                                            are the only types known by the client (other than the AbstractFactory). They are also required because we still need to ensure that employee and consultant types have the same definiton (properties
+                                                            and methods) regardless of which factory is used to create them - done by implementing the interface on all child classes.</p>
+                                                        <p>Two different employee and consultant types are created.</p>
+                                                        <br>
+                                                        <div id="NET-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-csharp.html" />
                                                         </div>
+
+                                                    </div>
+                                                    <div id="Java" class="tabcontent">
+                                                        <h3>Java Abstract Factory Code Sample</h3>
+                                                        <p>In this java example, the Abstract Factory pattern is used to create two different families of employee and consultants - one standard and one preferred. </p>
+                                                        <p>The abstract definitions are created here using abstract classes, although an interface could have been used as well. The AbstactEmployee and AbstractConsultant classes are required beacuse they
+                                                            are the only types known by the client (other than the AbstractFactory). They are also required because we still need to ensure that employee and consultant types have the same definiton (properties
+                                                            and methods) regardless of which factory is used to create them - done by extending them in child classes.</p>
+                                                        <p>Two different employee and consultant types are created.</p>
+                                                        <br>
+                                                        <div id="JAVA-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-java.html" />
+                                                        </div>
+
+                                                    </div>
+                                                    <div id="TS" class="tabcontent">
+                                                        <h3>Typescript Abstract Factory Code Sample</h3>
+                                                        <p>In this example, the Abstract Factory pattern is used to create two different families of employee and consultants. </p>
+                                                        <p>The abstract definitions are created here using interfaces. The AbstactEmployee and AbstractConsultant interfaces are required beacuse they are the only types known by the client (other than the
+                                                            AbstractFactory). They are also required because we still need to ensure that employee and consultant types have the same definiton (properties and methods) regardless of which factory is used
+                                                            to create them - done by implementing the interface on all child classes.</p>
+                                                        <p>Two different employee and consultant types are created.</p>
+                                                        <br>
+                                                        <div id="TS-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-ts.html" />
+                                                        </div>
+
+                                                    </div>
+                                                    <div id="JS" class="tabcontent">
+                                                        <h3>JavaScript Abstract Factory Code Sample</h3>
+                                                        <p>JavaScript does not support class-based inheritance therefore the abstract classes as depicted in the diagram are not used in the JavaScript sample. Abstract classes and interfaces enforce consistent
+                                                            interfaces in derived classes. In JavaScript we must ensure this consistency ourselves by making sure that each 'Concrete' object has the same interface definition (i.e. properties and methods)
+                                                            as the others</p>
+                                                        <p>In the example we have two Concrete Factories: StandardFactory and PreferredFactory. The first one creates Standard instances, the second one Preferred instances. Both objects are person types (with
+                                                            the same interface) which allows the client to treat them the same. An array with two employees and two consultants is created. Each person is then asked to say what and who they are.</p>
+                                                        <p>The log function is just a helper which collects and displays results.</p>
+                                                        <br>
+                                                        <div id="JS-CONTAINER">
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-abstractfactory-js.html" />
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col sqs-col-7 span-7">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-b45f552aed8a49254d96">
-                                                <div class="sqs-block-content">
-                                                    <h3>IMPLEMENTATION DESIGN PATTERNS</h3>
-                                                    <p>While the other sections for design patterns are well established and documented in the real world, it will occur to you as it did to me that there are a number of things and decisions that we make every
-                                                        day in the engineering world that fall in to the concept of a design pattern - e.g. a solid solution to a specific set of problem conditions. As engineers, architects, and leaders there are certain
-                                                        ways in which we solve problems, repeatedly in the same way. We do this beacuse it works. We do this beacuse we understand the consequences of our designs and we can anticipate where and when it
-                                                        makes sense to use it.</p>
-                                                    <p>In this section, you will find (no doubt continually expanding) collection of "patterns" that you might find useful in your work. I know that they are an excellent reference for junior engineers, and
-                                                        like the other design pattern sections, provide a useful short hand way of describing solutions to common issues. Some of these patterns may be trivial to implement depending on your choice of programming
-                                                        language or environment. Others may not be necessary at all in some environments such as in the cloud.</p>
+                                    </div>
+                                    <!-- CONSIDERATIONS -->
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-11 span-11">
+                                            <div id="notes" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header panel-header-light">&nbsp;&nbsp;
+                                                    <h3>Considerations</h3>
+                                                </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <ol>
+                                                        <li style="padding-left: 10px;">Decide if independence of creation services are the current source of pain.</li>
+                                                        <li style="padding-left: 10px;">Map out a matrix of the hierarchy of "items".</li>
+                                                        <li style="padding-left: 10px;">Define a factory interface that consists of a factory method per item.</li>
+                                                        <li style="padding-left: 10px;">Define a factory derived class for each heirarchy branch that encapsulates all references to the new operator.</li>
+                                                        <li style="padding-left: 10px;">The client should retire all references to new, and use the factory methods to create the various objects</li>
+                                                    </ol>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <!-- ADDITIONAL NOTES -->
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-11 span-11">
+                                            <div class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="panel-header panel-header-light">&nbsp;&nbsp;
+                                                    <h3>Additional Notes</h3>
+                                                </div>
+                                                <div class="sqs-block-content panel-content">
+                                                    <ul>
+                                                        <li>Sometimes creational patterns are competitors: there are cases when either Prototype or Abstract Factory could be used profitably. At other times they are complementary: Abstract Factory might store
+                                                            a set of Prototypes from which to clone and return product objects, Builder can use one of the other patterns to implement which components get built. Abstract Factory, Builder, and Prototype
+                                                            can use Singleton in their implementation.</li>
+                                                        <li>Abstract Factory, Builder, and Prototype define a factory object that's responsible for knowing and creating the class of product objects, and make it a parameter of the system. Abstract Factory
+                                                            has the factory object producing objects of several classes. Builder has the factory object building a complex product incrementally using a correspondingly complex protocol. Prototype has the
+                                                            factory object (aka prototype) building a product by copying a prototype object.</li>
+                                                        <li>Abstract Factory classes are often implemented with Factory Methods, but they can also be implemented using Prototype.</li>
+                                                        <li>Abstract Factory can be used as an alternative to Facade to hide platform-specific classes.</li>
+                                                        <li>Builder focuses on constructing a complex object step by step. Abstract Factory emphasizes a family of product objects (either simple or complex). Builder returns the product as a final step, but
+                                                            as far as the Abstract Factory is concerned, the product gets returned immediately.</li>
+                                                        <li>Often, designs start out using Factory Method (less complicated, more customizable, subclasses proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
+                                                            as the designer discovers where more flexibility is needed.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col sqs-col-1 span-1">
+                                    <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-a20918e6bc3c012fcfaf">
+                                        <div class="sqs-block-content">&nbsp;</div>
                                     </div>
                                 </div>
                             </div>
@@ -935,6 +992,8 @@
     </div>
 
     <script src="/scripts/site-bundle.js" type="text/javascript"></script>
+    <script src="/scripts/code-samples.js" type="text/javascript"></script>
+    <script src="/scripts/wm-html-include.min.js"></script>
     <script type="text/javascript" data-sqs-type="imageloader-bootstraper">
         (function() {
             if (window.ImageLoader) {
