@@ -717,7 +717,7 @@
                                                     <ul class="sqs-aclist-list">
                                                         <li><a href="/standards/guidance/principles/principles.html">Engineering Principles</a></li>
                                                         <li style="color:lightgray"><a href="/standards/guidance/security/security.html">Security</a></li>
-                                                        <li style="color:lightgray"><a href="/standards/guidance/principles/principles.html">Services Design</a></li>
+                                                        <li style="color:lightgray"><a href="/standards/guidance/services/services.html">Services Design</a></li>
                                                         <li style="color:lightgray"><a href="/standards/guidance/dev-checklist.html" style="color: burlywood;">Development Checklist</a></li>
                                                     </ul>
                                                     <h3 class="toc-header">Additional Resources</h3>
@@ -737,46 +737,43 @@
                                             <div class="sqs-block html-block sqs-block-html" data-block-type="2">
                                                 <div class="sqs-block-content">
                                                     <p>&nbsp;<br></p>
-                                                    <p>In software engineering, a design pattern is a general repeatable solution to a commonly occurring problem in software design. It is most useful to think of design patterns as a <b>"short-hand"</b> means
-                                                        of describing a possible solution. Design Patterns aren't intended to be directives and they certainly aren't the only way to solve a particular type of problem, they are <b>more akin to guidance</b>                                                        as to how similar problems are solved. A design pattern isn't a finished design that can be transformed directly into code. It is a description or template for how to solve a problem that can be
-                                                        used in many different situations.</p>
-                                                    <p>An analogy that I often use when talking about Design Patterns with developers and business leaders is that they are very similar to a roadmap (think <a href="https://maps.google.com/" target="_blank">Google Maps</a>).
-                                                        The map will show any number of ways to get from where you are to where you want to be; however, it will also provide a recommended way to travel there. A design pattern is the recommended route.
-                                                        Just as with nearly any map application, you can choose to go off the beaten path and solve problems your own way. However, the solution described by the design pattern also takes into account numerous
-                                                        things that the developer may not even be aware of - just as a map application takes into account accidents, traffic, and so on. Software design patterns include considerations such as scalability,
-                                                        resiliancy, portability, ease of understanding, etc. In general, the pattern is the how this sort of problem is typically solved and any veering away from it should have a pretty strong reason for
-                                                        doing so. </p>
-                                                    <p>Design patterns can <b>speed up the development process</b> by providing tested, proven development approaches. Effective software design requires considering issues that may not become visible until
-                                                        later in the implementation. Reusing design patterns helps to prevent subtle issues that can cause major problems and improves code readability for coders and architects familiar with the patterns.
-                                                        From a practical perspective, many developers only understand how to apply certain software design techniques to certain problems, particularly until they become more eperienced. These techniques
-                                                        are difficult to apply to a broader range of problems. Design patterns provide general solutions, documented in a format that doesn't require specifics tied to a particular problem or language.</p>
-                                                    <p>In addition, patterns allow developers to communicate using well-known, well understood names for software interactions. Common design patterns can be improved over time, making them more robust than
-                                                        ad-hoc designs. In most cases, they have been countless times and have been proven to be effective and efficient.</p>
+                                                    <p>Throughout my careers in both engineering and software, I have been primarily focused on their design aspects.  Initially, this was a by-product
+                                                        of implementing solutions that always seemed challenged in one way or another.  I began to think about what it was that I thought worked well 
+                                                        and why that was.  Admittedly, this process was haphazard at first - but, over time and with more experience I started  to try and consolidate
+                                                        my thoughts on this subject.  
+                                                    </p>
+                                                    <p>What is it that makes a design good and how can you clarify that?  One you've identified a good design, how do you pass that on to others and see
+                                                        it implemented correctly and consistently?  These aren't easy questions and there aren't always simple answers.  The lazy answer is that you know 
+                                                        it when you see it.  For me, it is all about identifying <b>business value</b> - does it improve your organization, your processes, or provide 
+                                                        repeated success?  I constantly look around me to look for these.  I learn every day.  
+                                                    </p>
+                                                    <p>I use these pages to provide a place to share what I have learned.  Some of it is tried and true.  Other sections are concepts or approaches that 
+                                                        I have personally had success with.  Finally, some are merely a way to clarify my thoughts and address a concept or a common problem.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2">
-                                                <div class="sqs-block-content">
-                                                    <h2>Types of Design Patterns</h2>
-                                                    <p>Design Patterns exist all around us in software development and in business. While a quick search on the interent can return hundreds of variations and types of design patterns; for the purposes of this
-                                                        discussion, let's break them down into 3 basic categories - based on their usage.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <br><br>
                                     <div class="row sqs-row" id="yui_3_17_2_1_1537490240334_70">
+                                        <div class="row sqs-row">
+                                            <div class="col sqs-col-12 span-12">
+                                                <div class="sqs-block horizontalrule-block sqs-block-horizontalrule" data-block-type="47" id="block-1af013a9edd6f19170dd">
+                                                    <div class="sqs-block-content">
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1537490240334_69">
                                             <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-203f003da88871cddfff">
                                                 <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_68">
                                                     <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_67">
-                                                        <div class="intrinsic" style="max-width:550.0px;" id="yui_3_17_2_1_1537490240334_66">
+                                                        <div class="intrinsic" style="max-width:200.0px;" id="yui_3_17_2_1_1537490240334_66">
                                                             <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_65">
-                                                                <noscript><img src="/images/design_patterns_gof_book.png"  alt="gang of four"  /></noscript>
-                                                                <img class="thumb-image loaded" data-src="/images/design_patterns_gof_book.png" data-image="/images/design_patterns_gof_book.png" data-image-dimensions="300x250" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fee6a4222f88f1b2b3fd"
-                                                                    data-type="image" data-position-mode="standard" alt="gang of four book" src="/images/design_patterns_gof_book.png?format=750w" style="left: -24.9319%; top: 0%; position: absolute;" data-image-resolution="750w">
+                                                                <noscript><img src="/images/engineering-values.jpg"  alt="principles"  /></noscript>
+                                                                <img class="thumb-image loaded" data-src="/images/engineering-values.jpg" data-image="/images/engineering-values.jpg" data-image-dimensions="100x100" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fee6a4222f88f1b2b3fd"
+                                                                    data-type="image" data-position-mode="standard" alt="engineering principles" src="/images/engineering-values.jpg?format=100w" style="top: 0%; position: absolute;" data-image-resolution="100w">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -786,14 +783,11 @@
                                         <div class="col sqs-col-7 span-7">
                                             <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-b45f552aed8a49254d96">
                                                 <div class="sqs-block-content">
-                                                    <h3><a href="/standards/patterns/patterns-classic.html">CLASSIC DESIGN PATTERNS - The Gang of Four (GoF)</a></h3>
-                                                    <p>Here are the "classic" design patterns as described by the <a href="https://en.wikipedia.org/wiki/Design_Patterns" target="_blank">Gang of Four (GoF)</a>. Their work describes the fundamental patterns
-                                                        that are encountered in traditional Object-Oriented programming. Mostly likely, when you hear about design patterns in conversation, these are what are being referred to. <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612"
-                                                            target="_blank"><b>Design Patterns: Elements
-                                                        of Reusable Object-Oriented Software</b></a> is the first and probably the most famous book about the Design pattern. It was first published in 1995, but thankfully those design patterns are still
-                                                        valid and in common use today, the only outdated thing in this book may be the original Smalltalk programming language, used in some examples. </p>
-                                                    <p>As in their classic book, I break the patterns down into simple categories: Creational, Structural, and Behavioral - only here, I use samples in a number of languages in more common use today. The pages
-                                                        here represent a summary of their fantasic work; but, provide enough detail to begin using them in your everyday work.</p>
+                                                    <h2><a href="/standards/guidance/principles/principles.html">Engineering Principles</a></h3>
+                                                    <p>In this section, you will find best practices and principles for engineering and technology.  This is a distillation of what I have found that
+                                                        actually works in practice.  These fundamental principles work for both small and large teams and I have used these repeatedly in organizations
+                                                        that I have been part of.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -811,14 +805,11 @@
                                         <div class="col sqs-col-7 span-7">
                                             <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-6e45176a20c190e42770">
                                                 <div class="sqs-block-content">
-                                                    <h3>MICROSERVICES DESIGN PATTERNS</h3>
-                                                    <p>The main characteristics of microservices include: functional decomposition or domain-driven design, well-defined interfaces, explicitly published interface, single responsibility principle, and potentially
-                                                        polyglot. Each service is fully autonomous and full-stack. Thus changing a service implementation has no impact to other services as they communicate using well-defined interfaces. There are several
-                                                        advantages of such an application, but its not a free lunch and requires a significant effort.</p>
-                                                    <p>But lets say you understand the required effort, or at least some pieces of it, that is required to build such an application and willing to take a jump. What do you do? What is your approach for architecting
-                                                        such applications? Are there any design patterns on how these microservices work with each other? Look no further, you will find them here!</p>
-                                                    <p>Obviously, classic design patterns can be used within the context of microservices; however, the very nature of how microservices interact with each other pose challenges. The patterns described here
-                                                        focus on those interactions and provide proven solutions that you can leverage.</p>
+                                                    <h2><a href="/standards/guidance/services/services.html">Services Design</a></h2>
+                                                    <p>Here are best practices and principles that should be followed when designing and building services.  Much of the work done at the 
+                                                        enterprise level in technology involves services.  It is absolutely key that these be well thought out, performant, and are consistent
+                                                        across development teams.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -826,11 +817,11 @@
                                             <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-662ebfbbd0484ca86418">
                                                 <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_93">
                                                     <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_92">
-                                                        <div class="intrinsic" style="max-width:550.0px;" id="yui_3_17_2_1_1537490240334_91">
+                                                        <div class="intrinsic" style="max-width:200.0px;" id="yui_3_17_2_1_1537490240334_91">
                                                             <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_90">
-                                                                <noscript><img src="/images/microservices-image.png"  alt="microservices"  /></noscript>
-                                                                <img class="thumb-image loaded" data-src="/images/microservices-image.png" data-image="/images/microservices-image.png" data-image-dimensions="200x200" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fef54192028eb6009d88" data-type="image"
-                                                                    data-position-mode="standard" alt="microservices" src="/images/microservices-image.png?format=750w" style="top: 0%; left:0px; position: absolute;" data-image-resolution="750w">
+                                                                <noscript><img src="/images/services.jpg"  alt="microservices"  /></noscript>
+                                                                <img class="thumb-image loaded" data-src="/images/services.jpg" data-image="/images/services.jpg" data-image-dimensions="200x200" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fef54192028eb6009d88" data-type="image"
+                                                                    data-position-mode="standard" alt="services" src="/images/services.jpg?format=750w" style="top: 20%; left:0px; position: absolute;" data-image-resolution="750w">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -852,11 +843,11 @@
                                             <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-203f003da88871cddfff">
                                                 <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_68">
                                                     <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_67">
-                                                        <div class="intrinsic" style="max-width:550.0px;" id="yui_3_17_2_1_1537490240334_66">
+                                                        <div class="intrinsic" style="max-width:200.0px;" id="yui_3_17_2_1_1537490240334_66">
                                                             <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_65">
-                                                                <noscript><img src="/images/cimplementation-image.jpg"  alt="implementation patterns"  /></noscript>
-                                                                <img class="thumb-image loaded" data-src="/images/implementation-image.jpg" data-image="/images/implementation-image.jpg" data-image-dimensions="300x195" data-image-focal-point="0.5,0.8" data-load="false" data-image-id="5ba3fee6a4222f88f1b2b3fd" data-type="image"
-                                                                    data-position-mode="standard" alt="implemetation patterns" src="/images/implementation-image.jpg?format=750w" style="left: 0px; top: 0%; width: 100%; height: 70%; position: absolute; !important;"
+                                                                <noscript><img src="/images/security.png"  alt="security guidance"  /></noscript>
+                                                                <img class="thumb-image loaded" data-src="/images/security.png" data-image="/images/security.png" data-image-dimensions="200x200" data-image-focal-point="0.5,0.8" data-load="false" data-image-id="5ba3fee6a4222f88f1b2b3fd" data-type="image"
+                                                                    data-position-mode="standard" alt="security" src="/images/security.png?format=200w" style="left: 0px; top: 20%; width: 100%; position: absolute; !important;"
                                                                     data-image-resolution="750w">
                                                             </div>
                                                         </div>
@@ -867,14 +858,57 @@
                                         <div class="col sqs-col-7 span-7">
                                             <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-b45f552aed8a49254d96">
                                                 <div class="sqs-block-content">
-                                                    <h3>IMPLEMENTATION DESIGN PATTERNS</h3>
-                                                    <p>While the other sections for design patterns are well established and documented in the real world, it will occur to you as it did to me that there are a number of things and decisions that we make every
-                                                        day in the engineering world that fall in to the concept of a design pattern - e.g. a solid solution to a specific set of problem conditions. As engineers, architects, and leaders there are certain
-                                                        ways in which we solve problems, repeatedly in the same way. We do this beacuse it works. We do this beacuse we understand the consequences of our designs and we can anticipate where and when it
-                                                        makes sense to use it.</p>
-                                                    <p>In this section, you will find (no doubt continually expanding) collection of "patterns" that you might find useful in your work. I know that they are an excellent reference for junior engineers, and
-                                                        like the other design pattern sections, provide a useful short hand way of describing solutions to common issues. Some of these patterns may be trivial to implement depending on your choice of programming
-                                                        language or environment. Others may not be necessary at all in some environments such as in the cloud.</p>
+                                                    <h2><a href="/standards/guidance/security/security.html">Security</a></h2>
+                                                    <p>Regardless of the size of your organization, security is paramount.  Here you will find best practices and consistent standards on implementing
+                                                        secure solutions.  In addition to design and implementation practices, I also address basic concepts as regards security and explain how they 
+                                                        work in practice.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block horizontalrule-block sqs-block-horizontalrule" data-block-type="47" id="block-1af013a9edd6f19170dd">
+                                                <div class="sqs-block-content">
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row" id="yui_3_17_2_1_1537490240334_95">
+                                        <div class="col sqs-col-7 span-7">
+                                            <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-6e45176a20c190e42770">
+                                                <div class="sqs-block-content">
+                                                    <h2><a href="/standards/guidance/dev-checklist.html" style="color: goldenrod;">Development & Design Checklists</a></h2>
+                                                    <p>This section is a placeholder for development and implementation checklists that I find useful.  Each of the checklists here are cross-referenced 
+                                                        to other documents and articles that cover the item in detail. 
+
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1537490240334_94">
+                                            <div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="100" data-block-type="5" id="block-662ebfbbd0484ca86418">
+                                                <div class="sqs-block-content" id="yui_3_17_2_1_1537490240334_93">
+                                                    <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none sqs-narrow-width animation-loaded" id="yui_3_17_2_1_1537490240334_92">
+                                                        <div class="intrinsic" style="max-width:200.0px;" id="yui_3_17_2_1_1537490240334_91">
+                                                            <div style="padding-bottom: 100%; overflow: hidden;" class="image-block-wrapper   has-aspect-ratio" data-description="" id="yui_3_17_2_1_1537490240334_90">
+                                                                <noscript><img src="/images/checklist.png"  alt="checklist"  /></noscript>
+                                                                <img class="thumb-image loaded" data-src="/images/checklist.png" data-image="/images/checklist.png" data-image-dimensions="200x200" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fef54192028eb6009d88" data-type="image"
+                                                                    data-position-mode="standard" alt="checklist" src="/images/checklist.png?format=290w" style="top: 20%; left:0px; position: absolute;" data-image-resolution="750w">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block horizontalrule-block sqs-block-horizontalrule" data-block-type="47" id="block-1af013a9edd6f19170dd">
+                                                <div class="sqs-block-content">
+                                                    <hr>
                                                 </div>
                                             </div>
                                         </div>
