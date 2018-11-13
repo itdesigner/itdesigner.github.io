@@ -751,7 +751,7 @@
                                                         yet the wall socket you plug them into everyday is 120 volts. The power adapter has a simple job, to change the 120V in the outlet to something much smaller to run your device. The adapter doesn't
                                                         do anything else, just this one simple job - adapting your device to run from the electrical outlet.
                                                     </p>
-                                                    <p>The key objective of the <b>Adapter Pattern</b> is to do the exact same thing between two mismatched componets in software. As an example, typially a client expects a specific interface when making a
+                                                    <p>The key objective of the <b>Adapter Pattern</b> is to do the exact same thing between two mismatched components in software. As an example, typically a client expects a specific interface when making a
                                                         call. If the component that it is calling is updated to something new (one with different methods or different protocols), it won't work without updating every client. An adapter sits between the
                                                         client and caller and implements the interface that the client expects. In effect, it is "pretending" to be the target that the client expects; but, is able to interact with the new component.</p>
                                                     <p>The <b>Adapter Pattern</b> is about creating an intermediary abstraction that translates, or maps, an old component to a new system (or vice versa). Clients call methods on the Adapter object which redirects
@@ -801,8 +801,8 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <p>For a practical example of the <b>Adapter Pattern</b> in a real world usage scenario, lets imagine that we have a service that interacts with a third party system outside our control. It could be a system
                                                         for billing or even sending out emails - its purpose doesn't really matter for our example, only that it isn't something that we have control over. </p>
-                                                    <p>Now imagine that the provider of this thrid party service decides that they are going to update their service (this never happens, right?) and add some security. While they are adding these new features,
-                                                        they change up some of the methos that they expose and you discover that your services that use it will now be broken and no longer work. A similar scenario also plays out when you use third party
+                                                    <p>Now imagine that the provider of this third party service decides that they are going to update their service (this never happens, right?) and add some security. While they are adding these new features,
+                                                        they change up some of the methods that they expose and you discover that your services that use it will now be broken and no longer work. A similar scenario also plays out when you use third party
                                                         components and they are "upgraded" - but they don't keep consistency with their previous interfaces.</p>
                                                     <br>
                                                     <img class="img-grow" alt="gof adapter example structure" src="/images/gof-adapter-example.png" data-src="/images/gof-adapter-example.png" data-image="/images/gof-adapter-example.png" data-image-dimensions="880x596" data-image-focal-point="0.5,0.5" data-load="false"
@@ -810,7 +810,7 @@
                                                     <br>
                                                     <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, anything that previously communicated with the old version of the third party service will no longer work. The new version of
                                                         this service has been improved by adding security tokens to the calls we were previously using. Because of this change, we have two options: first, to update every client that uses the third party
-                                                        service, or second, to add an adapter in front of the thrid party service so that our existing code doesn't have to be changed.</p>
+                                                        service, or second, to add an adapter in front of the third party service so that our existing code doesn't have to be changed.</p>
                                                     <p>Let's extend this sample with some practical code below.</p>
                                                 </div>
                                             </div>
@@ -826,7 +826,7 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <p>Below, you will find examples of the <i><b>Adapter</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use an Adapter to allow communication between a legacy client and the "new and improved" thrid party service.</p>
+                                                    <p>Each sample will use an Adapter to allow communication between a legacy client and the "new and improved" third party service.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>

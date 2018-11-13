@@ -754,7 +754,7 @@
                                                     <p>The <b>Prototype pattern</b> should be considered when:</p>
                                                     <ul>
                                                         <li>Composition, creation and representation of objects should be decoupled from the system</li>
-                                                        <li>Classes to be created are specified at runtime</li>
+                                                        <li>Classes to be created are specified at run-time</li>
                                                         <li>You need to hide the complexity of creating new instance from the client</li>
                                                         <li>Creating an object is an expensive operation and it would be more efficient to copy an object.</li>
                                                         <li>Objects are required that are similar to existing objects.</li>
@@ -779,7 +779,7 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Fundamentally, a Ptotype pattern is implemented by having the desired objects support a <i>cloneable</i> interface.</p>
+                                                    <p>Fundamentally, a Prototype pattern is implemented by having the desired objects support a <i>cloneable</i> interface.</p>
                                                     <br>
                                                     <img alt="prototype structure" src="/images/gof-prototype-structure.png" data-src="/images/gof-prototype-structure.png" data-image="/images/gof-prototype-structure.png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width:60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
@@ -788,9 +788,9 @@
                                                         contains a single clone method.</p>
                                                     <p>The implementation of clone method is similar for all classes. The method creates an object of a current class and copies all its field values into the new object. Most of the programming languages allow
                                                         accessing private fields in an object of the same class, so the copying process is straightforward.</p>
-                                                    <p>Objects that can be cloned are called prototypes. Sometimes, especially when your objects have a ton of fields and hundreds of possible configurations, prototypes can serve as an alternative to subclassing.
+                                                    <p>Objects that can be cloned are called prototypes. Sometimes, especially when your objects have a ton of fields and hundreds of possible configurations, prototypes can serve as an alternative to sub-classing.
                                                         In this case, the program creates a bunch of prototypes beforehand and then clones them instead of reconstructing objects from scratch.</p>
-                                                    <p>The actual implementation of the "copy" or "clone" functionality depends greatly on the platform or language that you use to implement it. Some of the classic OO langagues have native support for cloning
+                                                    <p>The actual implementation of the "copy" or "clone" functionality depends greatly on the platform or language that you use to implement it. Some of the classic OO languages have native support for cloning
                                                         (shallow and deep) where as other languages leave it up to the designer to implement this behavior.</p>
                                                 </div>
                                             </div>
@@ -809,7 +809,7 @@
                                                     <br>
                                                     <img alt="prototype example structure" src="/images/gof-prototoype-example.png" data-src="/images/gof-prototoype-example.png" data-image="/images/gof-prototoype-example.png" data-image-dimensions="980x416" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width:60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <p>In our examples, we will be using the <b>prototype pattern</b> to create employees of varous types.</p>
+                                                    <p>In our examples, we will be using the <b>prototype pattern</b> to create employees of various types.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -908,7 +908,7 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
                                                         <li>Prototypes perform creation through delegation.</li>
-                                                        <li>Prototype doesn't require subclassing, but it does require an "initialize" operation. Factory Method requires subclassing, but doesn't require Initialize.</li>
+                                                        <li>Prototype doesn't require subclassing, but it does require an "initialize" operation. Factory Method requires sub-classing, but doesn't require Initialize.</li>
                                                         <li>Designs that make heavy use of the Composite and Decorator patterns often can benefit from Prototype as well.</li>
                                                         <li>Prototype co-opts one instance of a class for use as a breeder of all future instances.</li>
                                                         <li>Prototype is unique among the other creational patterns in that it doesn't require a class – only an object. Object-oriented languages like Self and Omega that do away with classes completely rely

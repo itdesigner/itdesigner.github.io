@@ -731,7 +731,7 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                  <p>The <b>Flyweight Pattern</b> is used to provide a balance to a common problem - granularity of objects versus memory and performance.  Designing objects down to the lowest levels of granularity provides an amazing amout of flexibility; but, it comes at the cost (a sometimes unacceptable cost) of memory usage and perfromance.</p>
+                                                  <p>The <b>Flyweight Pattern</b> is used to provide a balance to a common problem - granularity of objects versus memory and performance.  Designing objects down to the lowest levels of granularity provides an amazing amount of flexibility; but, it comes at the cost (a sometimes unacceptable cost) of memory usage and performance.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -762,14 +762,14 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <p>The structure of the <b>Flyweight</b> is fairly straightforward in almost every programming language. Fundamentally, it consists of a <b>flyweight</b> object and a factory which can serve them up as needed.</p>
-                                                    <p>The most challenging part of the <b>flyweight pattern</b> is how to split up the data between <i>extrinsic</i> and <i>intrinsic</i> representations and where to store that external state data (extrinsic).  In many cases, that external data is moved to a container that is specifically design to manage that on behalf of your application - this is a <i>container</i>.  This <i>context</i> would be responsible for linling or associating the extrinsic state with a particular flyweight object.  The context class would store all fields of extrinsic state - requiring just one array field for storing references to context objects.</p>  
+                                                    <p>The most challenging part of the <b>flyweight pattern</b> is how to split up the data between <i>extrinsic</i> and <i>intrinsic</i> representations and where to store that external state data (extrinsic).  In many cases, that external data is moved to a container that is specifically design to manage that on behalf of your application - this is a <i>container</i>.  This <i>context</i> would be responsible for linking or associating the extrinsic state with a particular flyweight object.  The context class would store all fields of extrinsic state - requiring just one array field for storing references to context objects.</p>  
                                                   <p>But how does this benefit us?  Isn't this still the same number of objects that we started with?  While technically that is true, each one of the objects is much smaller than before - the most memory intensive fields are stored in the intrinsic elements of the flyweight which are shared.  Thousands of these contextual objects can share a single flyweight object instead of each storing a full representation.</p>
                                                     <br>
                                                     <img class="img-grow" alt="flyweight pattern structure" src="/images/gof-flyweight-structure.png" data-src="/images/gof-flyweight-structure.png" data-image="/images/gof-flyweight-structure.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5"
                                                         data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
                                                     <p>In this basic diagram of the <b>Flyweight Pattern</b> the <i>Client</i> communicates with a <i>Context</i> object which manages the extrinsic state and linking to flyweights.  The <i>Context</i> can either retrieve a <i>Flyweight</i> object that it already has or can request a new one from the <i>FlyweightFactory</i>. In practically every scenario, the <b>Flyweight Object</b> is immutable - once it is created, it's internal or intrinsic data should never change.  If this were not so, it would be very difficult to reuse them as intended.</p>
-                                                  <p>It is important to remember that the <b>Flyweight Pattern</b> optimization only makes sense in problems that are dealing with a giagantic number of similar objects.  The most important consideration to use it is to perform an analysis of your code to see if you would benefit from its use.</p>
+                                                  <p>It is important to remember that the <b>Flyweight Pattern</b> optimization only makes sense in problems that are dealing with a gigantic number of similar objects.  The most important consideration to use it is to perform an analysis of your code to see if you would benefit from its use.</p>
                                                     <p>The structure is straightforward and consists of:</p>
                                                     <ul>
                                                         <li><b>Context</b> - contains extrinsic state, which was unique across all original objects. When a context is paired with one of the flyweight objects, it represents the full state of the original object.</li>
@@ -790,7 +790,7 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <p>For a practical example of the <b>Flyweight Pattern</b> in a real world usage scenario, lets focus on a simple scenario that is addressed in the original <a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
-                            target="_blank">Gang of Four Book</a> - a simple sharing of character objects within a document.  Here we will be focusing on the fact that a document is composed of many characters and those charaters can be used over and over again within the document.</p>
+                            target="_blank">Gang of Four Book</a> - a simple sharing of character objects within a document.  Here we will be focusing on the fact that a document is composed of many characters and those characters can be used over and over again within the document.</p>
                                                     <p>First let's think about how to split up what should go into  the flyweight object (<i>intrinsic</i>) and what should be stored as external (<i>extrinsic</i>) state. What are the immutable features of a character in a document?  A quick reflection comes up with the following items:
                                                   <ul>
                                                     <li>the actual symbol to display</li>
@@ -798,12 +798,12 @@
                                                     <li>height</li>
                                                     <li>font</li>
                                                    </ul></p>
-                                              <p>Everything else about the character should most likely be <i>extrinsic</i>.  This includes position in document, pointSize, etc...  Arguably, font could be extrinsic and height and width should be automatically calculated based on the point size; but, for our purposes, these divisions are adequate to demonstrate the flyweight pattern.</p>
+                                              <p>Everything else about the character should most likely be <i>extrinsic</i>.  This includes position in document, point Size, etc...  Arguably, font could be extrinsic and height and width should be automatically calculated based on the point size; but, for our purposes, these divisions are adequate to demonstrate the flyweight pattern.</p>
                                                     <br>
                                                     <img class="img-grow" alt="gof flyweight example" src="/images/gof-flyweight-example.png" data-src="/images/gof-flyweight-example.png" data-image="/images/gof-flyweight-example.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the Flyweight will an efficient way of sharing flyweight objects (in this case characters) to be used repeatedly in a document.  The only major difference between out implementation and the "idealized" structure is that we don't really need a full context for this example and so it will be ahndled by the client application directly.</p>
+                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the Flyweight will an efficient way of sharing flyweight objects (in this case characters) to be used repeatedly in a document.  The only major difference between out implementation and the "idealized" structure is that we don't really need a full context for this example and so it will be handled by the client application directly.</p>
                                                     <p>Let's expand on this practical example with some code below.</p>
                                                 </div>
                                             </div>
@@ -880,7 +880,7 @@
                                                         <li style="padding-left: 10px;">Ensure that object overhead (memory footprint) is an issue needing attention, and, the client of the class is able and willing to absorb responsibility realignment.</li>
                                                         <li style="padding-left: 10px;">Divide fields of a class that should become a flyweight into two parts:
                                                       <ul>
-                                                        <li><i>intrinsic</i> state for fields that contain unchanging data duplicated acrosss many instances</li>
+                                                        <li><i>intrinsic</i> state for fields that contain unchanging data duplicated across many instances</li>
                                                         <li><i>extrinsic</i> state for fields that contain contextual data that is unique for each instance</li>
                                                           </ul>
                                                       </li>

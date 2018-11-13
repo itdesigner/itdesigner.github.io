@@ -702,7 +702,7 @@
                                                         part as well as whole hierarchy. </p>
                                                     <p>It is used when:</p>
                                                     <ul>
-                                                        <li>you want to represent part-whole hierachies of objects</li>
+                                                        <li>you want to represent part-whole hierarchies of objects</li>
                                                         <li>you want client to be able to ignore difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly</li>
                                                     </ul>
                                                 </div>
@@ -791,10 +791,10 @@
                                                         forwards the request to its child components - possibly performing additional operations before and after forwarding.</p>
                                                     <p>As you can see in the diagram above, the the structure is straightforward and consists of:</p>
                                                     <ul>
-                                                        <li><b>Component</b> - declares interface for objects in composition, implements the default behaviour for the interface common to all classes as appropriate, and declares an interface for accessing
+                                                        <li><b>Component</b> - declares interface for objects in composition, implements the default behavior for the interface common to all classes as appropriate, and declares an interface for accessing
                                                             and managing its child components</li>
-                                                        <li><b>Composite</b> - defines behaviour for components having children, stores the children objects, and implements child related operations in the component interface.</li>
-                                                        <li><b>Leaf</b> - represents leaf objects in the composition (a leaf has no children) and defines the behaviour for primitive objects in the composition.</li>
+                                                        <li><b>Composite</b> - defines behavior for components having children, stores the children objects, and implements child related operations in the component interface.</li>
+                                                        <li><b>Leaf</b> - represents leaf objects in the composition (a leaf has no children) and defines the behavior for primitive objects in the composition.</li>
                                                         <li><b>Client</b> - manipulates objects in the composition through the component interface.</li>
                                                     </ul>
                                                 </div>
@@ -924,7 +924,7 @@
                                                             It could also use Decorator to override these properties on parts of the composition. It could use Observer to tie one object structure to another and State to let a component change its behavior
                                                             as its state changes.</li>
                                                         <li>Composite can let you compose a Mediator out of smaller pieces through recursive composition.</li>
-                                                        <li>Decorator is designed to let you add responsibilities to objects without subclassing. Composite's focus is not on embellishment but on representation. These intents are distinct but complementary.
+                                                        <li>Decorator is designed to let you add responsibilities to objects without sub-classing. Composite's focus is not on embellishment but on representation. These intents are distinct but complementary.
                                                             Consequently, Composite and Decorator are often used in concert.</li>
                                                         <li>Flyweight is often combined with Composite to implement shared leaf nodes.</li>
                                                         <li>Composite pattern should be applied only when the group of objects should behave as the single object.</li>

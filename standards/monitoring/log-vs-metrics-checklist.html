@@ -5,11 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="initial-scale=1">
 
-    <!-- This is Squarespace. -->
-    <!-- apple-tangerine-rl55 -->
     <base href="">
-    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Classic Design Patterns - Facade Design Pattern" />
-    <title>Jerry Shaughnessy - Patterns - Bridge Design Pattern</title>
+    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Monitoring Checklist" />
+    <title>Jerry Shaughnessy - Monitoring - Monitoring Checklist</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
@@ -28,17 +26,17 @@
     <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link rel="shortcut icon" type="image/png" href="/assets/favicon.ico" />
-    <link rel="canonical" href="https://itdesigner.github.io/patterns" />
+    <link rel="canonical" href="https://itdesigner.github.io/Monitoring" />
     <meta property="og:site_name" content="Jerry Shaughnessy - Strategic and Architectural Leader" />
-    <meta property="og:title" content="Jerry Shaughnessy - GoF Patterns - Facade Design Pattern" />
-    <meta property="og:url" content="https://itdesigner.github.io/patterns" />
+    <meta property="og:title" content="Jerry Shaughnessy - Monitoring - Monitoring Checklist" />
+    <meta property="og:url" content="https://itdesigner.github.io/Monitoring" />
     <meta property="og:type" content="website" />
-    <meta itemprop="name" content="Jerry Shaughnessy - GoF Patterns" />
-    <meta itemprop="url" content="https://itdesigner.github.io/patterns" />
-    <meta name="twitter:title" content="Jerry Shaughnessy - GoF Patterns - Facade Design Pattern" />
-    <meta name="twitter:url" content="https://itdesigner.github.io/patterns" />
-    <meta name="twitter:card" content="Jerry Shaughnessy - GoF Patterns" />
-    <meta name="description" content="Jerry Shaughnessy - GoF Patterns -  Facade Design Pattern" />
+    <meta itemprop="name" content="Jerry Shaughnessy - Monitoring" />
+    <meta itemprop="url" content="https://itdesigner.github.io/Monitoring" />
+    <meta name="twitter:title" content="Jerry Shaughnessy - Monitoring - Monitoring Checklists" />
+    <meta name="twitter:url" content="https://itdesigner.github.io/Monitoring" />
+    <meta name="twitter:card" content="Jerry Shaughnessy - Monitoring" />
+    <meta name="description" content="Jerry Shaughnessy - Monitoring - Monitoring Checklist" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Fjalla+One:400|Libre+Franklin:400,700,700i,400i,500" />
     <script type="text/javascript">
         SQUARESPACE_ROLLUPS = {};
@@ -263,7 +261,7 @@
             },
             "websiteCloneable": false,
             "collection": {
-                "title": "Jerry Shaughnessy - GoF Patterns - Factory Method",
+                "title": "Jerry Shaughnessy - Monitoring",
                 "id": "1sd",
                 "fullUrl": "/patterns/",
                 "type": 10
@@ -672,250 +670,135 @@
                     <section class="Main-content" data-content-field="main-content">
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
-                                <h1>Facade Design Pattern</h1>
-                                <h2 class="sub-heading">Classic GOF Structural Design Patterns</h2>
+                              <div class="txt-article txt-article-header">
+                                <h1>Monitoring vs. Logging Checklist</h1>
+                                <h2><i>How to choose what to use</i></h2>
+                              </div>
                             </div>
                             <div class="row sqs-row">
                                 <div class="col sqs-col-1 span-1">
-                                    <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-fa7dc3ed79b819a248ef">
-                                        <div class="sqs-block-content">&nbsp;</div>
-                                    </div>
+                                    <br>
                                 </div>
                             </div>
 
                             <div class="row sqs-row">
-                                <!-- TOC -->
-                                <div id="TOC-CONTAINER">
-                                    <link data-wi-src="/standards/patterns/code-samples/gof-structural-toc.html" />
-                                </div>
-                                <!-- CONTENT -->
-                                <div class="col sqs-col-8 span-8">
-                                    <!-- INTENT -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
-                                            <div id="intent" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header">&nbsp;&nbsp;
-                                                    <h3>Intent</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>The <b>Facade Pattern</b> is used to encapsulate or hide a complex subsystem behind a simple interface. It hides much of the complexity and makes the subsystem easy to use. A <b>facade</b> allows us
-                                                        to make changes to a complex subsystem and not affect any of the clients. </p>
-                                                    <p>It is used when:</p>
-                                                    <ul>
-                                                        <li>A simple interface is needed to provide access to a complex system.</li>
-                                                        <li>There are many dependencies between system implementations and clients</li>
-                                                        <li>Systems and subsystems should be layered.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- IMAGE VISUALIZATION -->
+                                <div class="col sqs-col-12 span-12">
                                     <div class="sqs-block image-block sqs-block-image" data-aspect-ratio="30" data-block-type="5" id="block-3d8b09b340f3a6109439">
                                         <div class="sqs-block-content">
                                             <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none">
-                                                <div class="intrinsic" style="max-width:800.0px;">
+                                                <div class="intrinsic img-article">
                                                     <div style="padding-bottom:30.0%;" class="image-block-wrapper   has-aspect-ratio" data-description="">
-                                                        <noscript><img src="/images/gof-facade-conceptual.jpg"  alt="facade patterns image"  /></noscript>
-                                                        <img class="thumb-image" alt="facade patterns" data-src="/images/gof-facade-conceptual.jpg" data-image="/images/gof-facade-conceptual.jpg" data-image-dimensions="906x372" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
+                                                        <noscript><img src="/images/monitoring-conceptual.jpg"  alt="monitoring concept"  /></noscript>
+                                                        <img class="thumb-image" alt="monitoring concept" data-src="/images/monitoring-conceptual.jpg" data-image="/images/monitoring-conceptual.jpg" data-image-dimensions="800x451" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
                                                             data-type="image" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- PROBLEM STATEMENT -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-8 span-8">
-                                            <div id="problem" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header">&nbsp;&nbsp;
-                                                    <h3>Problem</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>The Facade pattern should be used when you have a complex system or set of subsystems and want to provide a simplified interface to a client. This is especially important when the details of the "hidden"
-                                                        systems change frequently. </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col sqs-col-11 span-11">
-                                    <!-- DISCUSSION -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div id="discussion" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header">&nbsp;&nbsp;
-                                                    <h3>Discussion</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>The whole purpose of implementing a <b>Facade</b> is to simplify access to or hide the complexity of a complex system. Why would we want to do this? First of all, it reduces the learning curve dramatically
-                                                        for users accessing that system. Additionally, it serves to decouple the actual system details away from the clients so that it can be changed without effecting them.</p>
-                                                    <p>A perfect real world example of a facade is a blanket on a bed. Underneath the blanket, the sheets could be pulled tight or a rumpled mess. The blanket acts as a facade and hides the underlying details
-                                                        of how the bed is made. To any casual observer, the blanket is the only thing they will see and, in effect, "becomes" the bed as far as they are concerned.</p>
-                                                    <p>In practice, the <b>Facade</b> should merely be a simple facilitator. If you start moving down the path where the facade is an all-knowing powerful object, you are using the facade pattern incorrectly.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- STRUCTURE -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div id="structure" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header">&nbsp;&nbsp;
-                                                    <h3>Structure</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>There is not really much to the structure of a <b>Facade</b> design pattern. It consists of a single object that does two basic things (and shouldn't do much more):</p>
-                                                    <ul>
-                                                        <li>knows how to call and use objects in the subsystem that it is encapsulating, and</li>
-                                                        <li>can present a much simplified interface to any consumers of the facade</li>
-                                                    </ul>
-                                                    <p>This allows the details and complexity of the subsystem to be completely hidden from consumers. It also allows for radical alterations of the implementation of the system, up to and including wholesale
-                                                        replacement.
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="sqs-block-content">
+                                                    <p>To meet critical SLAs and maintain reliability, modern digital enterprises running applications both in the cloud and on on-premise must measure the performance 
+                                                        of their essential services, distributed applications, and infrastructures. For developers, DevOps and TechOps engineers, it can be confusing to know when to 
+                                                        use metrics or log monitoring to isolate code performance anomalies, proactively monitor and baseline their scaled out, dynamic and distributed applications.</p>
+                                                    <p>Metrics describe numeric measurements in time. The metric format includes the measured metric name, the metric data value, the timestamp, the metric source, and 
+                                                        an optional tag. Metrics convey small information bits, much lighter than logs. Logs, unlike metrics, contain textual information about an event that occurred. 
+                                                        Logs are meant to convey detailed information about the application, user, or system activity. The primary purpose of logs is troubleshooting a specific issue 
+                                                        after the fact, e.g., code error, exception, security issue, or other.</p>  
+                                                    <p>This checklist is designed to help you select the right approach for your environment and your specific application or service.
                                                     </p>
-                                                    <br>
-                                                    <img class="img-grow" alt="facade pattern structure" src="/images/gof-facade-structure.png" data-src="/images/gof-facade-structure.png" data-image="/images/gof-facade-structure.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <br>
-                                                    <p>As you can see in the diagram above, the the structure is fairly basic:</p>
-                                                    <ul>
-                                                        <li><b>Facade</b> - knows which subsystem classes are responsible for a request and delegates client requests to appropriate subsystem objects.</li>
-                                                        <li><b>Subsystem classes</b> - the actual workhorse - receives and processes requests from the facade object, have no knowledge of the outside world.</li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html txt-article" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
+                                                <div class="sqs-block-content">
+                                                    <h2>Metric-based Analytics</h2>
+                                                    <p>Metrics should be used if you need to:</p>
+                                                    <ul class="checkItem">
+                                                        <li>Need to continuously measure and get split-second insights from your cloud application code performance, business KPIs, and infrastructure metrics at high scale. The almost instant insights are essential for digital businesses generating revenue from customer-facing applications.</li>
+                                                        <li>Are concerned with CPU, memory, or storage consumption, in particular, when you are developing and monitoring complex distributed applications requiring benchmarking and storing large code performance data sets. As numeric measurements, metrics can be highly compressed.</li>
+                                                        <li>Run many microservices and containers.</li>
+                                                        <li>Use messaging pipelines for your application monitoring data including Kafka or others.</li>
+                                                        <li>Work for an organization that has many developers that need to collaborate and share metrics analysis and dashboards (such as self-service analytics for engineering teams).</li>
+                                                        <li>Need to apply complex processing on your code performance measurements or business KPI data such as using aggregates, histograms (distributions), and other mathematical transformations.</li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- PRACTICAL EXAMPLES -->
                                     <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div id="example" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header">&nbsp;&nbsp;
-                                                    <h3>Practical Example</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>For a practical example of the <b>Facade Pattern</b> in a real world usage scenario, lets imagine that we have a complex mortgage approval system. We certainly wouldn't want anyone directly interfacing
-                                                        with all the functions in the system, instead, we want to provide a simplified interface that allows consumers to get approval on a new mortgage. We want something simple and easy to consume and
-                                                        we want to "hide" or encapsulate the complex mortgage system.</p>
-                                                    <br>
-                                                    <img class="img-grow" alt="gof facade example" src="/images/gof-facade-example.png" data-src="/images/gof-facade-example.png" data-image="/images/gof-facade-example.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5" data-load="false"
-                                                        data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
-                                                    <br>
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the Mortgage Facade will act as the interface for the entire mortgage subsystem. It will provide a minimal surface area and
-                                                        it needs to be easy to consume. In this case, the Mortgage Facade will sit in front of a number of the subsystem's components - specifically, the bank, customer, credit, and loan systems.</p>
-                                                    <p>Let's solve this sample with some practical code below.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- CODE SAMPLES -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div id="code-sample" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header">&nbsp;&nbsp;
-                                                    <h3>Code Samples</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Facade</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
-                                                        <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a Facade to allow for easily accessing and encapsulating the mortgage system to approve a mortgage..</p>
-                                                    <br>
-                                                    <div class="tab">
-                                                        <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
-                                                        <button class="tablinks" onclick="openCode(event, 'Java')">Java</button>
-                                                        <button class="tablinks" onclick="openCode(event, 'TS')">TypeScript</button>
-                                                        <button class="tablinks" onclick="openCode(event, 'JS')">JavaScript</button>
-                                                    </div>
-
-                                                    <div id="NETC" class="tabcontent">
-                                                        <h3>C# Facade Code Sample</h3>
-                                                        <p>In this C# example, the <b>Facade</b> pattern is used</p>
-                                                        <br>
-                                                        <div id="NET-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-facade-csharp.html" />
-                                                        </div>
-
-                                                    </div>
-                                                    <div id="Java" class="tabcontent">
-                                                        <h3>Java Facade Code Sample</h3>
-                                                        <p>In this Java example, the <b>Facade</b> pattern is used.</p>
-                                                        <br>
-                                                        <div id="JAVA-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-facade-java.html" />
-                                                        </div>
-
-                                                    </div>
-                                                    <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Facade Code Sample</h3>
-                                                        <p>In this TypeScript example, the <b>Facade</b> pattern is used</p>
-                                                        <br>
-                                                        <div id="TS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-facade-ts.html" />
-                                                        </div>
-
-                                                    </div>
-                                                    <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Facade Code Sample</h3>
-                                                        <p>In this JavaScript example, the <b>Facade</b> pattern is used.</p>
-                                                        <br>
-                                                        <div id="JS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-facade-js.html" />
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- CONSIDERATIONS -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div id="notes" class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header panel-header-light">&nbsp;&nbsp;
-                                                    <h3>Considerations</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <ol>
-                                                        <li style="padding-left: 10px;">Identify a simpler, unified interface for the subsystem or component.</li>
-                                                        <li style="padding-left: 10px;">Design a 'wrapper' class that encapsulates the subsystem.</li>
-                                                        <li style="padding-left: 10px;">The facade/wrapper captures the complexity and collaborations of the component, and delegates to the appropriate methods.</li>
-                                                        <li style="padding-left: 10px;">The client uses (is coupled to) the Facade only.</li>
-                                                        <li style="padding-left: 10px;">Consider whether additional Facades would add value.</li>
-                                                    </ol>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ADDITIONAL NOTES -->
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-11 span-11">
-                                            <div class="sqs-block html-block sqs-block-html panel" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
-                                                <div class="panel-header panel-header-light">&nbsp;&nbsp;
-                                                    <h3>Additional Notes</h3>
-                                                </div>
-                                                <div class="sqs-block-content panel-content">
-                                                    <ul>
-                                                        <li>Facade defines a new interface, whereas Adapter uses an old interface. Remember that Adapter makes two existing interfaces work together as opposed to defining an entirely new one.</li>
-                                                        <li>Whereas Flyweight shows how to make lots of little objects, Facade shows how to make a single object represent an entire subsystem.</li>
-                                                        <li>Mediator is similar to Facade in that it abstracts functionality of existing classes. Mediator abstracts/centralizes arbitrary communications between colleague objects. It routinely "adds value",
-                                                            and it is known/referenced by the colleague objects. In contrast, Facade defines a simpler interface to a subsystem, it doesn't add new functionality, and it is not known by the subsystem classes.</li>
-                                                        <li>Abstract Factory can be used as an alternative to Facade to hide platform-specific classes.</li>
-                                                        <li>Facade objects are often Singletons because only one Facade object is required.</li>
-                                                        <li>Adapter and Facade are both wrappers; but they are different kinds of wrappers. The intent of Facade is to produce a simpler interface, and the intent of Adapter is to design to an existing interface.
-                                                            While Facade routinely wraps multiple objects and Adapter wraps a single object; Facade could front-end a single complex object and Adapter could wrap several legacy objects. </li>
-                                                        <li>By introducing the Facade into your code, you will be hard-wiring subsystems into the Facade. This is fine if the subsystem never changes, but if it does, your Facade could be broken. Therefore, developers
-                                                            working on the subsystem should be made aware of any Facade around their code.</li>
-                                                        <li>Sometimes the pattern can be overused in simple scenarios, which will lead to redundant implementations.</li>
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <h2>Log-based Analytics</h2>
+                                                    <p>Logs should be used if you need to:</p> 
+                                                    <ul class="checkItem">
+                                                        <li>Need to analyze only unstructured text-based data from your applications and infrastructure.</li>
+                                                        <li>Can afford application performance data under-sampling and coarser monitoring.</li>
+                                                        <li>Don’t need to develop and don’t need to run highly distributed applications that require high scalability.</li>
+                                                        <li>Are developing monolithic applications that typically do not require frequent code updates requiring continuous monitoring</li>
+                                                        <li>Are not concerned with slower processing of your application performance data, such as in batch-like processing. </li>
                                                     </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <h2>Both Metric and Log-based Analytics</h2>
+                                                    <p>Both should be used if you need to:
+                                                    </p>
+                                                    <ul class="checkItem">
+                                                        <li>Need to process both continuous metric data events and logs. Metrics analytics helps you get the first-pane of glass across the entire application stack. Then use log monitoring to deep-dive into a specific issue to investigate the root-cause after an issue happened.</li>
+                                                        <li>Need proactive query-driven smart alerting.</li>
+                                                        <li>Implementing DevOps principles and continuous delivery of your code.</li>
+                                                        <li>Need to troubleshoot and deep dive into a particular system such as storage or network, after an issue occurred that generated a log.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CONCLuSION SPACER-->
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content" style="text-align:center;">
+                                                    <h2>. . .</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CONCLuSION-->
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <p>It is important to keep in mind that the needs of the system you are attempting to monitor are what matters.  It is very 
+                                                        possible that different applications or services in your organization will use slightly different approaches for their 
+                                                        monitoring.  There is no absolute right or wrong answer other than do what works for you and your team.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col sqs-col-1 span-1">
                                     <div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-a20918e6bc3c012fcfaf">
                                         <div class="sqs-block-content">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="row sqs-row">
+                                    <div class="sqs-block button-block sqs-block-button" data-block-type="53" id="block-yui_3_17_2_7_1471630032837_105825">
+                                        <div class="sqs-block-content txt-article" style="padding-left: 15px;">
+                                            <a href="/monitoring.html" class="sqs-block-button-element--small sqs-block-button-element abstract-block-btn" data-initialized="true">Back to Monitoring →</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -973,8 +856,6 @@
     </div>
 
     <script src="/scripts/site-bundle.js" type="text/javascript"></script>
-    <script src="/scripts/code-samples.js" type="text/javascript"></script>
-    <script src="/scripts/wm-html-include.min.js"></script>
     <script type="text/javascript" data-sqs-type="imageloader-bootstraper">
         (function() {
             if (window.ImageLoader) {

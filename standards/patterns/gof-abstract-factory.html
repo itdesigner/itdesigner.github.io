@@ -753,7 +753,7 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <p>The Abstract Factory pattern is used to provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. Typically,
                                                         a "factory" object has the responsibility for providing creation services for the entire object family. Clients never have to create objects directly, they ask the factory to do that on their behalf.</p>
-                                                    <p>This appraoch to creating objects makes exchanging entire object families easy because the specific class of the factory object appears only once in the application - where it is instantiated. This allows
+                                                    <p>This approach to creating objects makes exchanging entire object families easy because the specific class of the factory object appears only once in the application - where it is instantiated. This allows
                                                         the application to perform wholesale replacement of the entire family of objects simply by instantiating a different concrete instance of the abstract factory.</p>
                                                     <p>Because the service provided by the factory object is so pervasive, it is routinely implemented as a Singleton.</p>
                                                 </div>
@@ -775,11 +775,11 @@
                                                     <img alt="abstract factory structure" src="/images/gof-abstract-factory-structure.png" data-src="/images/gof-abstract-factory-structure.png" data-image="/images/gof-abstract-factory-structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5"
                                                         data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="width: 60%; left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <p>While it seems like there is a lot going on the the diagram above, it's actually very straight-forward to understand. The <b>AbstractFactory</b> defines the interface (where supported) which all of the
-                                                        concrete factories will need to implement in order to create Items. <b>ConcreteFactoryOne</b> and <b>ConcreteFactoryTwo</b> have both implemented this interface here, creating two seperate families
+                                                        concrete factories will need to implement in order to create Items. <b>ConcreteFactoryOne</b> and <b>ConcreteFactoryTwo</b> have both implemented this interface here, creating two separate families
                                                         of items. Meanwhile,
                                                         <b>AbstractItemA</b> and <b>AbstractItemB</b> are interfaces for the different types of items to be created. Each factory will create one of each of these AbstractItems. </p>
                                                     <p>The <b>Client</b> deals with <b>AbstractFactory</b>, <b>AbstractItemA</b> and <b>AbstractItemB</b>. The <b>Client</b> doesn't know anything about the implementations or even how they are instantiated.
-                                                        The actual implementation of <b>AbstractFactory</b> that the <b>Client</b> uses is determined at runtime.</p>
+                                                        The actual implementation of <b>AbstractFactory</b> that the <b>Client</b> uses is determined at run time.</p>
                                                     <p>As you can see, one of the main benefits of this pattern is that the client is totally decoupled from the concrete products. Also, new item families can be easily added into the system, by just adding
                                                         in a new type of ConcreteFactory that implements AbstractFactory, and creating the specific Product implementations.</p>
                                                 </div>
@@ -819,7 +819,7 @@
                                                     <p>Below, you will find examples of the <i><b>Abstract Factory</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in
                                                         the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use abstact factories to return proper instances.</p>
+                                                    <p>Each sample will use abstract factories to return proper instances.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -897,7 +897,7 @@
                                                         <li style="padding-left: 10px;">Decide if independence of creation services are the current source of pain.</li>
                                                         <li style="padding-left: 10px;">Map out a matrix of the hierarchy of "items".</li>
                                                         <li style="padding-left: 10px;">Define a factory interface that consists of a factory method per item.</li>
-                                                        <li style="padding-left: 10px;">Define a factory derived class for each heirarchy branch that encapsulates all references to the new operator.</li>
+                                                        <li style="padding-left: 10px;">Define a factory derived class for each hierarchy branch that encapsulates all references to the new operator.</li>
                                                         <li style="padding-left: 10px;">The client should retire all references to new, and use the factory methods to create the various objects</li>
                                                     </ol>
                                                 </div>
@@ -923,7 +923,7 @@
                                                         <li>Abstract Factory can be used as an alternative to Facade to hide platform-specific classes.</li>
                                                         <li>Builder focuses on constructing a complex object step by step. Abstract Factory emphasizes a family of product objects (either simple or complex). Builder returns the product as a final step, but
                                                             as far as the Abstract Factory is concerned, the product gets returned immediately.</li>
-                                                        <li>Often, designs start out using Factory Method (less complicated, more customizable, subclasses proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
+                                                        <li>Often, designs start out using Factory Method (less complicated, more customizable, sub-classes proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
                                                             as the designer discovers where more flexibility is needed.</li>
                                                     </ul>
                                                 </div>

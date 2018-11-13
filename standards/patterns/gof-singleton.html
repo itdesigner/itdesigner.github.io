@@ -702,7 +702,7 @@
                                                     <p>It is used when:</p>
                                                     <ul>
                                                         <li>Ensuring that a class has one and only one instance, and provide a global point of access to it.</li>
-                                                        <li>Encapsulating "just-in-time initialization" or "initialization on first use" and then enabling resuse of the object.</li>
+                                                        <li>Encapsulating "just-in-time initialization" or "initialization on first use" and then enabling re-use of the object.</li>
                                                         <li>Creating an object that is designed to be reused over and over again that is expensive to create and also requires a single shared instance.</li>
                                                     </ul>
                                                 </div>
@@ -778,10 +778,10 @@
                                                         simple and highly performant version.</p>
                                                     <p>All Singleton implementations share four common characteristics, however:</p>
                                                     <ul>
-                                                        <li>A single constructor, which is private and parameterless. This prevents other classes from instantiating it (which would be a violation of the pattern). Note that it also prevents subclassing - if
-                                                            a singleton can be subclassed once, it can be subclassed twice, and if each of those subclasses can create an instance, the pattern is violated. The factory pattern can be used if you need a
-                                                            single instance of a base type, but the exact type isn't known until runtime.</li>
-                                                        <li>The class is sealed - where supported by the programming language choice.. This is unnecessary, strictly speaking, due to the above point, but may help the JIT to optimise things more.</li>
+                                                        <li>A single constructor, which is private and parameterless. This prevents other classes from instantiating it (which would be a violation of the pattern). Note that it also prevents sub-classing - if
+                                                            a singleton can be sub-classed once, it can be sub-classed twice, and if each of those sub-classes can create an instance, the pattern is violated. The factory pattern can be used if you need a
+                                                            single instance of a base type, but the exact type isn't known until run time.</li>
+                                                        <li>The class is sealed - where supported by the programming language choice.. This is unnecessary, strictly speaking, due to the above point, but may help the JIT to optimize things more.</li>
                                                         <li>A static variable which holds a reference to the single created instance, if any.</li>
                                                         <li>A public static means of getting the reference to the single created instance, creating one if necessary.</li>
                                                     </ul>
@@ -819,7 +819,7 @@
                                                     <p>Below, you will find examples of the <i><b>Singleton Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in
                                                         the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a singleton pattern to create and return an expensive databse connection object.</p>
+                                                    <p>Each sample will use a singleton pattern to create and return an expensive database connection object.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>

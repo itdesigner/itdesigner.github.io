@@ -702,7 +702,7 @@
                                                         to create an object. In the Factory pattern, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface.</p>
                                                     <p>It is used when:</p>
                                                     <ul>
-                                                        <li>Defining an interface for creating an object; but, we desire that subclasses decide which exact class to instantiate. Essentially, this pattern lets a class defer instantiation to subclasses. </li>
+                                                        <li>Defining an interface for creating an object; but, we desire that sub-classes decide which exact class to instantiate. Essentially, this pattern lets a class defer instantiation to sub-classes. </li>
                                                         <li>Defining a <i>virtual</i> constructor.</li>
                                                         <li>Using a <i>new</i> operator is considered harmful or a bad practice.</li>
                                                     </ul>
@@ -769,7 +769,7 @@
                                                 <div class="sqs-block-content panel-content">
                                                     <p>For the sake of this series, I will be focusing on the more current approach of how the Factory Method design pattern is implemented. In many cases today, the following definition is commonly substituted
                                                         for the traditional definition or <a href="#intent">INTENT</a> above. <i><b>A method whose sole responsibility is to abstract the creation process of an object and return that object.</b></i>. You
-                                                        may notices that this is a very narrow, special case of the classic <a href="#intent">Intent</a> of the pattern. Given this definiton, the simplest way to implement this pattern is via a static method,</p>
+                                                        may notices that this is a very narrow, special case of the classic <a href="#intent">Intent</a> of the pattern. Given this definition, the simplest way to implement this pattern is via a static method,</p>
                                                     <br>
                                                     <img alt="factory method structure" src="/images/Abstract-Factory-Structure.png" data-src="/images/Abstract-Factory-Structure.png" data-image="/images/Abstract-Factory-Structure.png" data-image-dimensions="515x204" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
@@ -787,7 +787,7 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The Factory Method defines an interface for creating objects, but lets subclasses decide which classes to instantiate. This pattern can be applied many situations where you will need to create something
+                                                    <p>The Factory Method defines an interface for creating objects, but lets sub-classes decide which classes to instantiate. This pattern can be applied many situations where you will need to create something
                                                         specific that matches an interface. For example, it could be used to create shapes (circles, squares, triangles), dogs (german shepards, huskies, chihuahuas), or types of money (dollars, euros, yen).
                                                         The traditional example is usually shapes, so, in the interest of being different, lets focus on a Factory Method example that concentrates on something near and dear - <b>currency</b>.</p>
 
@@ -908,10 +908,10 @@
                                                         <li>Abstract Factory classes are often implemented with Factory Methods, but they can also be implemented using Prototype.</li>
                                                         <li>Factory Methods are usually called within Template Methods.</li>
                                                         <li>Factory Method: creation through inheritance. Prototype: creation through delegation.</li>
-                                                        <li>Often, designs start out using Factory Method (less complicated, more customizable, subclasses proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
+                                                        <li>Often, designs start out using Factory Method (less complicated, more customizable, sub-classes proliferate) and evolve toward Abstract Factory, Prototype, or Builder (more flexible, more complex)
                                                             as the designer discovers where more flexibility is needed.</li>
-                                                        <li>Prototype doesn't require subclassing, but it does require an Initialize operation. Factory Method requires subclassing, but doesn't require Initialize.</li>
-                                                        <li>The advantage of a Factory Method is that it can return the same instance multiple times, or can return a subclass rather than an object of that exact type.</li>
+                                                        <li>Prototype doesn't require sub-classing, but it does require an Initialize operation. Factory Method requires sub-classing, but doesn't require Initialize.</li>
+                                                        <li>The advantage of a Factory Method is that it can return the same instance multiple times, or can return a sub-class rather than an object of that exact type.</li>
                                                         <li>Some Factory Method advocates recommend that as a matter of language design (or failing that, as a matter of style) absolutely all constructors should be private or protected. It's no one else's
                                                             business whether a class manufactures a new object or recycles an old one.</li>
                                                         <li>The new operator considered harmful. There is a difference between requesting an object and creating one. The new operator always creates an object, and fails to encapsulate object creation. A Factory

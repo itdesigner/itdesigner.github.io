@@ -13714,4 +13714,12 @@
     .abstract-block.thought .label{
         background-color: black;
     }
-
+    .checkItem {
+        list-style: none;
+    }
+    .checkItem li{
+        background: url(/assets/check-item.gif) no-repeat left top;
+        padding: 0px 0px 3px 30px;
+        list-style: none;
+        margin: 0;
+    }
