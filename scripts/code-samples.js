@@ -1,4 +1,4 @@
-function openCode(evt, cityName) {
+function openCode(evt, codeId) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -8,7 +8,7 @@ function openCode(evt, cityName) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(codeId).style.display = "block";
     evt.currentTarget.className += " active";
 }
 
@@ -34,5 +34,5 @@ function CopyToClipboard(containerid) {
         range.selectNode(document.getElementById(containerid));
         window.getSelection().addRange(range);
         document.execCommand("copy");
-    }
+    }   
 }
