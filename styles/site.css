@@ -13759,9 +13759,8 @@
         line-height: 50px;
     }
     .best-practices-block .bp-header h2 {
-        float:left;
         color: white;
-        display: contents;
+        display: inline;
     }
     .best-practices-block .bp-body {
         padding-left:20px;
