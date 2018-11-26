@@ -13731,3 +13731,47 @@
         list-style: none;
         margin: 0;
     }
+    .best-practices-block {
+        display: block;
+        border-style: solid;
+        border-color: lightgray;
+        background-color:floralwhite;
+    }
+    .best-practices-block .bp-header {
+        background-color: black;
+        color: white;
+        padding: 20px;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .best-practices-block .bp-header .id {
+        background-color: cadetblue;
+        color: white;
+        margin-left: -40px;
+        margin-top: -4px;
+        height: 50px;
+        width: 50px;
+        float: left;
+        margin-right: 30px;
+        font-weight: bold;
+        font-size: xx-large;
+        text-align: center;
+        line-height: 50px;
+    }
+    .best-practices-block .bp-header h2 {
+        float:left;
+        color: white;
+        display: contents;
+    }
+    .best-practices-block .bp-body {
+        padding-left:20px;
+        padding-right: 20px;
+    }
+    .best-practices-block .bp-body hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid cadetblue;
+        margin: 2em 0;
+        padding: 0; 
+    }

