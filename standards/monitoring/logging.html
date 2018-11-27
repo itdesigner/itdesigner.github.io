@@ -670,10 +670,10 @@
                     <section class="Main-content" data-content-field="main-content">
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
-                              <div class="txt-article txt-article-header">
-                                <h1>Logging</h1>
-                                <h2><i>What and how should you be logging?</i></h2>
-                              </div>
+                                <div class="txt-article txt-article-header">
+                                    <h1>Logging</h1>
+                                    <h2><i>What and how should you be logging?</i></h2>
+                                </div>
                             </div>
                             <div class="row sqs-row">
                                 <div class="col sqs-col-1 span-1">
@@ -764,6 +764,8 @@
                                         <div class="col sqs-col-12 span-12">
                                             <div class="sqs-block html-block sqs-block-html  txt-article" data-block-type="2" id="block-c15ad40843fc74840dfc">
                                                 <div class="sqs-block-content">
+                                                    
+
                                                     <h2>Standardize your approach</h2>
                                                     <p>The more standardized your approach to logging, the easier it is to find what you need and analyze them.  The logging framework you end up using will help you 
                                                         with this, but there is still plenty of work to be done to ensure your log messages are all constructed the same way.</p>
@@ -775,69 +777,167 @@
                                                     <p>In that spirit, I will attempt to set a few standards that I have found useful and should act as a starting point when you are deciding how to implement logging
                                                         in your application(s).</p>
                                                     <div style="padding-left: 25px; padding-top: 20px;">
-                                                        <h3 style="font-size: large;color: cadetblue;">Create entries that humans can actually read</h3>
-                                                        Avoid using complex encoding or layouts that make even the most basic information unintelligible.  Specifically, developers like the ability to read logs for details 
-                                                        of events while at the same time we want them to be processed by any monitoring system we may be using.  Developer-friendly formats like JavaScript Object Notation (JSON) 
-                                                        are readable by humans and machines.<br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use clear and unambiguous key-value pairs</h3>
-                                                        One of the most powerful features of proper logging is the ability to extract fields and create structured data that can be filtered and pivoted against.  Use the 
-                                                        template strategy for logging whenever possible.<br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Start small</h3>
-                                                        It is much better to start with a small number of logs and then add to them over time rather than to start with a large 
-                                                        collection and trying to winnow it down.  Let teams get used to using their logs, and let them add more where and when they see value.  Avoid the noise problem.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Be concise and descriptive</h3>
-                                                        Each logging statement should contain both data and description. See this as an example:<br><br>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">1</div>
+                                                                <h3>Create entries that humans can actually read</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Avoid using complex encoding or layouts that make even the most basic information unintelligible.  Specifically, developers like the ability to read logs for details 
+                                                                    of events while at the same time we want them to be processed by any monitoring system we may be using.  Developer-friendly formats like JavaScript Object Notation (JSON) 
+                                                                    are readable by humans and machines.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">2</div>
+                                                                <h3>Use clear and unambiguous key-value pairs</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p> One of the most powerful features of proper logging is the ability to extract fields and create structured data that can be filtered and pivoted against.  Use the 
+                                                                    template strategy for logging whenever possible.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">3</div>
+                                                                <h3>Start small</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>It is much better to start with a small number of logs and then add to them over time rather than to start with a large 
+                                                                    collection and trying to winnow it down.  Let teams get used to using their logs, and let them add more where and when they see value.  Avoid the noise problem.</p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">4</div>
+                                                                <h3>Be concise and descriptive</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>
+                                                                    Each logging statement should contain both data and description. See this as an example:</p>
 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">log.debug(<span style="background-color: #fff0f0">&quot;Message processed&quot;</span>);
 log.debug(message.getMessageID());
-	 
+        
 log.debug(<span style="background-color: #fff0f0">&quot;Message with id &#39;{}&#39; processed&quot;</span>, message.getMessageID());
 </pre></div>
-                                                        <br>You will notice here that the final logging statement contains far more information in a single line.  It is much easier for a human to read it and understand what is 
-                                                        happening. It is also more useful because, depending on the destination of where your logs are written, they may well be separated by dozens or hundreds of lines.<br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use timestamps on every log statement</h3>
-                                                        The correct time is critical to understanding the proper sequence of events.  Your selected framework should automatically timestamp logging events.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use unique identifiers</h3>
-                                                        Unique identifiers such as transaction IDs and user IDs are tremendously helpful when debugging, and even more helpful when you are gathering analytics. Unique IDs can 
-                                                        point you to the exact transaction. Without them, you might only have a time range to use. When possible, carry these IDs through multiple touch points and avoid changing 
-                                                        the format of these IDs between modules. That way, you can track transactions through the system and follow them across machines, networks, and services.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Log more than DEBUG statements</h3>
-                                                        Put semantic meaning in events to get more out of the data. Log audit trails, what users are doing, transactions, timing information, and so on. Log anything that can add 
-                                                        value when aggregated, charted, or further analyzed. In other words, log anything that is interesting to the business.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Identify sources and destinations</h3>
-                                                        Include the source and, if appropriate, the target of the log event.  This information should include system, sub-system, application domain, type, and any context 
-                                                        information available such as transaction ID, etc.  The goal here is to provide useful context in which a logging event occurred.  Why do this?  It will help you determine: 
-                                                        what went wrong, how badly it went wrong, in the case of recovery shortly describe how (especially on WARN level), and provide possible context / description for possible 
-                                                        causes of the error.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Use Logging Levels</h3>
-                                                        Categorize any logging events.  For example, use severity values like DEBUG, INFO, WARN, ERROR, and FATAL.  This is part of almost any logging framework and will automatically be 
-                                                        included.  There is more information on logging levels <a href="#loglevels" style="color: cadetblue;">below</a>.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Avoid string concatenation</h3>
-                                                        String concatenation is expensive and resource consuming, use substitution parameters instead.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Watch out for external systems</h3>
-                                                        If you communicate with an external system, consider logging every piece of data that comes out from your application and gets in. Period.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Log exceptions</h3>
-                                                        Logging exceptions is one of the most important roles of logging.  At a minimum, every Try/Catch should include a logging statement. Don’t swallow exceptions unless 
-                                                        you are 100% certain that you don’t need to handle them (this is rare).
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: maroon;">Do NOT log sensitive information</h3>
-                                                        This includes obvious things such as passwords, but it also includes business information that the log user doesn’t need to know.  
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Logging in production should only be set to WARN or above</h3>
-                                                        You want to have exception/problem information available for first-pass problem determination in a production level enterprise application without turning on 
-                                                        debug as a default log level. There is simply too much information in debug to be appropriate for day-to-day operations.
-                                                        <br><br>
-                                                        <h3 style="font-size: large;color: cadetblue;">Don't try and optimize until you need to</h3>
-                                                        Pre-optimization of logging performance is typically wasteful – don’t completely ignore performance while logging, but, in general, logging performance is good 
-                                                        and will not substantially affect your code if you are using it responsibly.
-                                                        <br><br>
+                                                                <p>You will notice here that the final logging statement contains far more information in a single line.  It is much easier for a human to read it and understand what is 
+                                                                happening. It is also more useful because, depending on the destination of where your logs are written, they may well be separated by dozens or hundreds of lines.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">5</div>
+                                                                <h3>Use timestamps on every log statement</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>The correct time is critical to understanding the proper sequence of events.  Your selected framework should automatically timestamp logging events.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">6</div>
+                                                                <h3>Use unique identifiers</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Unique identifiers such as transaction IDs and user IDs are tremendously helpful when debugging, and even more helpful when you are gathering analytics. Unique IDs can 
+                                                                    point you to the exact transaction. Without them, you might only have a time range to use. When possible, carry these IDs through multiple touch points and avoid changing 
+                                                                    the format of these IDs between modules. That way, you can track transactions through the system and follow them across machines, networks, and services.</p>
+                                                                <p>It is also a good idea to use a correlation ID when you have a need or desire to correlate responses from other systems.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">7</div>
+                                                                <h3>Log more than DEBUG statements</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Put semantic meaning in events to get more out of the data. Log audit trails, what users are doing, transactions, timing information, and so on. Log anything that can add 
+                                                                    value when aggregated, charted, or further analyzed. In other words, log anything that is interesting to the business.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">8</div>
+                                                                <h3>Identify sources and destinations</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Include the source and, if appropriate, the target of the log event.  This information should include system, sub-system, application domain, type, and any context 
+                                                                    information available such as transaction ID, etc.  The goal here is to provide useful context in which a logging event occurred.  Why do this?  It will help you determine: 
+                                                                    what went wrong, how badly it went wrong, in the case of recovery shortly describe how (especially on WARN level), and provide possible context / description for possible 
+                                                                    causes of the error.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">9</div>
+                                                                <h3>Use Logging Levels</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Categorize any logging events.  For example, use severity values like DEBUG, INFO, WARN, ERROR, and FATAL.  This is part of almost any logging framework and will automatically be 
+                                                                    included.  There is more information on logging levels <a href="#loglevels" style="color: cadetblue;">below</a>.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">10</div>
+                                                                <h3>Avoid string concatenation</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>String concatenation is expensive and resource consuming, use substitution parameters instead.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">11</div>
+                                                                <h3>Watch out for external systems</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>If you communicate with an external system, consider logging every piece of data that comes out from your application and gets in. Period.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">12</div>
+                                                                <h3>Log exceptions</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Logging exceptions is one of the most important roles of logging.  At a minimum, every Try/Catch should include a logging statement. Don’t swallow exceptions unless 
+                                                                    you are 100% certain that you don’t need to handle them (this is rare).</p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header" style="background-color: maroon;">
+                                                                <div class="id" style="background-color: white; border-style: solid; border-width: thin; border-color: black; color: maroon;">13</div>
+                                                                <h3>Do NOT log sensitive information</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>This includes obvious things such as passwords, but it also includes business information that the log user doesn’t need to know.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">14</div>
+                                                                <h3>Logging in production should only be set to WARN or above</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>You want to have exception/problem information available for first-pass problem determination in a production level enterprise application without turning on 
+                                                                        debug as a default log level. There is simply too much information in debug to be appropriate for day-to-day operations.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="best-practices-block-sm">
+                                                            <div class="bp-header">
+                                                                <div class="id">15</div>
+                                                                <h3>Don't try and optimize until you need to</h3>
+                                                            </div>
+                                                            <div class="bp-body">
+                                                                <p>Pre-optimization of logging performance is typically wasteful – don’t completely ignore performance while logging, but, in general, logging performance is good 
+                                                                        and will not substantially affect your code if you are using it responsibly.</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -888,7 +988,7 @@ log.debug(<span style="background-color: #fff0f0">&quot;Message with id &#39;{}&
                                                         <br><br>
                                                         <i>Considerations:  This is important information that should be logged under normal conditions such as successful initialization, services starting and stopping or successful completion 
                                                             of significant transactions. Viewing a log showing Info and above should give a quick overview of major state changes in the process providing top-level context for 
-                                                            understanding any warnings or errors that also occur. Don't have too many Info messages. <b>We typically have < 5% Info messages relative to Verbose.</b></i>
+                                                            understanding any warnings or errors that also occur. Don't have too many Info messages. <b>We typically have &lt; 5% Info messages relative to Verbose.</b></i>
                                                         <br><br>
                                                         <h3 style="font-size: large;color:mediumblue;">DEBUG</h3>
                                                         Internal control flow and diagnostic state dumps to facilitate pinpointing of recognized problems.  This level should not normally be enabled in a production environment 
@@ -903,11 +1003,12 @@ log.debug(<span style="background-color: #fff0f0">&quot;Message with id &#39;{}&
                                                         <i>Considerations:  This is the the most detailed level of logging and will only be used by developers with a deep understanding of the code to troubleshoot intricate problems.  This is 
                                                             typically the most commonly used severity level for things like performance metrics and logging specific details about internal state of functions in the environment.</i>
                                                         <br><br>
+                                                    </div>
+                                                    <p>When choosing an appropriate log level for a particular logging entry it is best to consider how the information will be used by the consumer of a log. <b>The Audience matters</b>! Administrative users 
+                                                        will typically only see logging levels at INFO and higher. The higher the level , the more importance that it should take in their mind and be more specific and actionable with 
+                                                        the messages as the level increases.  While developers will be able to see all logging levels, the information found in the DEBUG and certainly the VERBOSE log levels is mostly 
+                                                        of use to them and should be targeted appropriately.</p>
                                                 </div>
-                                                <p>When choosing an appropriate log level for a particular logging entry it is best to consider how the information will be used by the consumer of a log. <b>The Audience matters</b>! Administrative users 
-                                                    will typically only see logging levels at INFO and higher. The higher the level , the more importance that it should take in their mind and be more specific and actionable with 
-                                                    the messages as the level increases.  While developers will be able to see all logging levels, the information found in the DEBUG and certainly the VERBOSE log levels is mostly 
-                                                    of use to them and should be targeted appropriately.</p>
                                             </div>
                                         </div>
                                     </div>

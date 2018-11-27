@@ -13774,3 +13774,49 @@
         margin: 2em 0;
         padding: 0; 
     }
+
+    .best-practices-block-sm {
+        display: block;
+        border-style: solid;
+        border-color: lightgray;
+        background-color:floralwhite;
+        margin-bottom:20px;
+    }
+    .best-practices-block-sm .bp-header {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        display: block;
+        margin-bottom: 15px;
+    }
+    .best-practices-block-sm .bp-header .id {
+        background-color: cadetblue;
+        color: white;
+        margin-left: -20px;
+        margin-top: -4px;
+        height: 28px;
+        width: 28px;
+        float: left;
+        margin-right: 20px;
+        font-weight: bold;
+        font-size: large;
+        text-align: center;
+        line-height: 28px;
+    }
+    .best-practices-block-sm .bp-header h3 {
+        color: white;
+        display: inline;
+    }
+    .best-practices-block-sm .bp-body {
+        padding-left:20px;
+        padding-right: 20px;
+        padding-bottom: 15px
+    }
+    .best-practices-block-sm .bp-body hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid cadetblue;
+        margin: 2em 0;
+        padding: 0; 
+    }
