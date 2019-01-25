@@ -9,7 +9,7 @@
     <!-- apple-tangerine-rl55 -->
     <base href="">
     <meta charset="utf-8" name="Jerry Shaughnessy" content="Jerry Shaughnessy - Classic Design Patterns - Chain of Responsibility Design Pattern" />
-    <title>Jerry Shaughnessy - Patterns - Decorator Design Pattern</title>
+    <title>Jerry Shaughnessy - Patterns - Chain of Responsibility Design Pattern</title>
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png">
@@ -698,13 +698,13 @@
                                                     <h3>Intent</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The <b>Chain of Responsibility Pattern</b> is for interfacing with a structure, class, or some other type of object that is either large, complicated, or fragile. The intent of the proxy-pattern is to provide a placeholder or stand-in for another object to control access to it - however, it introduces an additional level of indirection. There are several reasons why you would want to do this, hence there are several uses for this pattern.
+                                                    <p>The <b>Chain of Responsibility Pattern</b> allows you to pass requests along a chain of handlers.  As each handler receives the request, it decides whether to (or whether it can) process the request or to pass it to next handler in the chain - or do both.
                                                     </p>
                                                     <p>It is used to:</p>
                                                     <ul>
-                                                        <li>Provide a placeholder for another object to control access to it - often to defer the full cost of its creation and initialization until we actually need to use it.</li>
-                                                        <li>Use an extra level of indirection to support distributed, controlled, or intelligent access.</li>
-                                                        <li>Add a wrapper and delegation to protect the real component from undue complexity.</li>
+                                                        <li>Avoid coupling of a request sender from a request receiver by giving one or more objects a chance to handle the request.</li>
+                                                        <li>Create a single processing pipeline that can hadle many different types of requests, typically one per handler.</li>
+                                                        <li>Pick a processing strategy dynamically at processing time.</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -732,7 +732,7 @@
                                                     <h3>Problem</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                  <p>The <b>Flyweight Pattern</b> is used to provide a balance to a common problem - granularity of objects versus memory and performance.  Designing objects down to the lowest levels of granularity provides an amazing amout of flexibility; but, it comes at the cost (a sometimes unacceptable cost) of memory usage and perfromance.</p>
+                                                  <p>The <b>Chain of Responsibility Pattern</b> is used to provide a solution to a common problem - where you have many possbile ways of handling a command or request that needs to be determined at runtime or where you have a single request pipeline that can have many possbile outputs.  As an additional benefit, the requester does not have to know anything about the which handler is actually doing the processing.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -747,9 +747,20 @@
                                                     <h3>Discussion</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The <b>Flyweight</b> provides a pattern to use to allow sharing of objects and enabling them to be used at a fine-grained level without a prohibitive cost.  How is this magic accomplished?  Each <b>Flyweight</b> object is broken down into two pieces: an <i>extrinsic</i> and an <i>intrinsic</i> part.  The <i>intrinsic</i> part is state-independent and is stored in the flyweight object to be reused and shared over and over again.  The <i>extrinsic</i> part of the flyweight is state-dependent and is only passed to the flyweight object when operations on it are called by clients - when the call is done, the extrinsic data is returned to the client and no longer part of the flyweight.</p>
-                                                    <p>A useful way to think about <b>Flyweights</b> in the everyday world is in the context of web browsers. Almost every modern browser takes advantage of flyweights to prevent fetching the same image multiple times.  Imagine you have a web page where you have multiple copies of an image - all in different locations and with different sizes.  The browser is smart enough (because of the flyweight pattern) to download the image once - this is the <i>intrinsic</i> part of the flyweight, it doesn't change no matter where or how it is used.  The browser then takes that single shared image and places it all around the page based on position and size information provided - this is the <i>extrinsic</i> part of the flyweight and it is managed by the browser.  The image knows nothing about how it is placed.</p>
-                                                    <p></p>
+                                                    <p>The <b>Chain of Responsibility Pattern</b>, at its most basic level, can be thought of as a "pipeline."  Requesters or clients simply deposit their requests at the start of the pipeline in a "fire and forget" approach.  The requests then flow through the pipeline from handler to handler until one of them can can actually process the request.</p>
+                                                    <p>The key fact about the <b>Chain of Responsibility</b> pattern is that the number of handlers is completely unknown by the caller - the only thing it is aware of is the entrance to that pipeline. Because of this, handlers can be added or removed as needed or as requirements change without affecting the basic operation of the system using it - they could even, depending on the platform, be provisioned dynamically.</p>
+                                                    <br>
+                                                    <img class="img-grow" alt="chain of responsibility pattern simplified" src="/images/gof-chain-of-responsibility-theory.png" data-src="/images/gof-chain-of-responsibility-theory.png" data-image="/images/gof-chain-of-responsibility-theory.png" data-image-dimensions="940x340" data-image-focal-point="0.5,0.5"
+                                                        data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
+                                                    <br>
+                                                    <p>As pointed out, <b>Chain of Responsibility</b> pattern allows the use of very simple object interconnections.  Clients or requesters need only know about the "head" of the pipeline.  The handlers need only keep a reference to the handler immediately after them in the chain</p>
+                                                    <p>The most common problem found when looking implementing a <b>Chain of Responsibility</b> pattern is in forgetting to include a final "fall through" handler to ensure that any unhandled requests are caught.  Think in terms of a <code>switch</code> or <code>case</code> statement in many programming languages - they should all have a final default in case any of the specific testsdo not succeed.</p>
+                                                    <p>The <b>Chain of Responsibility</b> pattern shouldn't be used, because of its increased complexity,  when:</p>
+                                                    <ul>
+                                                        <li>the client has to know which handler is processing the request or command</li>
+                                                        <li>there is only one handler</li>
+                                                        <li>the client has to be aware of or linked to every possbile handler</li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -762,21 +773,22 @@
                                                     <h3>Structure</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>The structure of the <b>Flyweight</b> is fairly straightforward in almost every programming language. Fundamentally, it consists of a <b>flyweight</b> object and a factory which can serve them up as needed.</p>
-                                                    <p>The most challenging part of the <b>flyweight pattern</b> is how to split up the data between <i>extrinsic</i> and <i>intrinsic</i> representations and where to store that external state data (extrinsic).  In many cases, that external data is moved to a container that is specifically design to manage that on behalf of your application - this is a <i>container</i>.  This <i>context</i> would be responsible for linling or associating the extrinsic state with a particular flyweight object.  The context class would store all fields of extrinsic state - requiring just one array field for storing references to context objects.</p>  
-                                                  <p>But how does this benefit us?  Isn't this still the same number of objects that we started with?  While technically that is true, each one of the objects is much smaller than before - the most memory intensive fields are stored in the intrinsic elements of the flyweight which are shared.  Thousands of these contextual objects can share a single flyweight object instead of each storing a full representation.</p>
+                                                    <p>The structure of the <b>Chain of Responsibility</b> is fairly straightforward in almost every programming language. Fundamentally, it consists of a series of concrete <b>handler</b> objects which extend or implement a base handler definition (<i>IHandler or BaseHandler</i>).</p>
+                                                    <p>The client sends a request to be handled to the <b>chain of handlers</b> - all of which extend IHandler.  Typically, each handler will take a turn at attempting to handle the request.  If the initial handler is successful, the sequence terminates and the request goes no further down the chain.  If the initial handler is unable to process the request, it then passes the request on to the next handler.  This process continues until either the request is handled or it ends up in the final default hadler.</p>
+                                                    <p>There are, of course, a number of variations in how this pipeline or "chain" can be implemented.  For example, it is possible that instead of a request being processed by only a single handler, we might want a request to be processed by every handler that is appropriate.  In that case, instead of terminating the processing with the first success, the request is passed down the chain regardless of any success that may have occurred.  Typially, in this scenario, additional metadata is passed along with the request to indicate any prior successes.  It is also important to note that 
+                                                        that in this scenario with more than one potential processor (handler), we normally see that the request is copied for use by each handler and the original message is passed down the chain unmodified.  This can,  naturally, vary depending on your specific needs.  Of course, this approach starts to become very similar to a typical enterprise pattern like <b>Publish and Subscribe</b>.
+                                                    </p>
+                                                    <p>Another common variation is that each handler will contain an additional method that can be used as a "pre-processor" that allows the handler to pre-determine if it is able to handle a request before expending resources on the actual work.  This is often as basic as examining some basic metadata included with the request such as filetype or another parameter.</p>
                                                     <br>
-                                                    <img class="img-grow" alt="flyweight pattern structure" src="/images/gof-flyweight-structure.png" data-src="/images/gof-flyweight-structure.png" data-image="/images/gof-flyweight-structure.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5"
+                                                    <img class="img-grow" alt="chain of responsibility pattern structure" src="/images/gof-chain-of-responsibility-structure.png" data-src="/images/gof-chain-of-responsibility-structure.png" data-image="/images/gof-chain-of-responsibility-structure.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5"
                                                         data-load="false" data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>In this basic diagram of the <b>Flyweight Pattern</b> the <i>Client</i> communicates with a <i>Context</i> object which manages the extrinsic state and linking to flyweights.  The <i>Context</i> can either retrieve a <i>Flyweight</i> object that it already has or can request a new one from the <i>FlyweightFactory</i>. In practically every scenario, the <b>Flyweight Object</b> is immutable - once it is created, it's internal or intrinsic data should never change.  If this were not so, it would be very difficult to reuse them as intended.</p>
-                                                  <p>It is important to remember that the <b>Flyweight Pattern</b> optimization only makes sense in problems that are dealing with a giagantic number of similar objects.  The most important consideration to use it is to perform an analysis of your code to see if you would benefit from its use.</p>
+                                                    <p>In this basic diagram of the <b>Chain of Responsibility Pattern</b> the <i>Client</i> only knows of and communicates with a <i>pipeline</i> object (or, more specifically, the entry or "head-end" point to the pipeline) </p>
                                                     <p>The structure is straightforward and consists of:</p>
                                                     <ul>
-                                                        <li><b>Context</b> - contains extrinsic state, which was unique across all original objects. When a context is paired with one of the flyweight objects, it represents the full state of the original object.</li>
-                                                      <li><b>IFlyweight</b> - declares an interface through which flyweights can receive and act on extrinsic state.</li>
-                                                        <li><b>ConcreteFlyweight</b> - implements the IFlyweight interface and holds the portion of original object's state that can be shared among multiple objects. The same flyweight object can be used in many different contexts. The state stored inside flyweight is called "intrinsic state." The other part of original object's state passed to flyweight's parameters is called "extrinsic state."</li>
-                                                        <li><b>Flyweight Factory</b> - manages a pool of existing flyweights. Clients do not create Flyweights directly. Instead, they call a flyweight factory and describe the desired flyweight by passing intrinsic state to factory's creational method. Factory looks over previously created flyweights and either returns existing one or creates new if it had not be found.</li>
+                                                        <li><b>IHandler</b> - an interface or abstract class that defines the basic structure of the concrete handlers. Typically, this includes, at a minimum, the handle function along with a reference to the next handler in the chain, and, optionally, another method that can be used to perform test if this is the appropriate handler.</li>
+                                                        <li><b>Client</b> - the originator of the request</li>
+                                                        <li><b>Concrete Handlers</b> - implements the IHandler interface and holds the referene to the next handler in the chain</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -790,21 +802,20 @@
                                                     <h3>Practical Example</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>For a practical example of the <b>Flyweight Pattern</b> in a real world usage scenario, lets focus on a simple scenario that is addressed in the original <a href="https://sophia.javeriana.edu.co/~cbustaca/docencia/DSBP-2018-01/recursos/Erich%20Gamma,%20Richard%20Helm,%20Ralph%20Johnson,%20John%20M.%20Vlissides-Design%20Patterns_%20Elements%20of%20Reusable%20Object-Oriented%20Software%20%20-Addison-Wesley%20Professional%20(1994).pdf"
-                            target="_blank">Gang of Four Book</a> - a simple sharing of character objects within a document.  Here we will be focusing on the fact that a document is composed of many characters and those charaters can be used over and over again within the document.</p>
-                                                    <p>First let's think about how to split up what should go into  the flyweight object (<i>intrinsic</i>) and what should be stored as external (<i>extrinsic</i>) state. What are the immutable features of a character in a document?  A quick reflection comes up with the following items:
-                                                  <ul>
-                                                    <li>the actual symbol to display</li>
-                                                    <li>its width</li>
-                                                    <li>height</li>
-                                                    <li>font</li>
-                                                   </ul></p>
-                                              <p>Everything else about the character should most likely be <i>extrinsic</i>.  This includes position in document, pointSize, etc...  Arguably, font could be extrinsic and height and width should be automatically calculated based on the point size; but, for our purposes, these divisions are adequate to demonstrate the flyweight pattern.</p>
+                                                    <p>For a practical example of the <b>Chain of  Responsibility Pattern</b> in a real world usage scenario, lets focus on a simple scenario 
+                                                         - a document conversion pipeline. Imagine that you are tasked with building a service that can accept documents of varying types and convert them into valid html representations.  You might be required to do this 
+                                                        because you need to display these documents to end-users via a browser even if the user does not have every application that might have generated the otiginal document type. For example, how many of you have lotus 1-2-3 installed on your local machine?  If your company has been around for a while, it is entirely possible 
+                                                        that you may have a number of these file types floating around on your storage media.</p>
+                                                    <p>Given this scenario, it is entirely possible to build a processor or <b>handler</b> that can convert this one particular document type.  But what if you also have some other document types you need to display?  Excel, WordPerfrect, DocMinder?  Writing a separate program for each possible document type without a pattern such as 
+                                                        the <b>Chain of Responsibility</b> would require that the client would have to contain a great deal of logic to route the requests to the appropriate end-point for conversion.  It will also necessitate that the client be updated and be redeployed to users whenever a new document type was added.  Of course, some of this could be abstracted 
+                                                        via a service or routing boundary - but, that would require that it have similar knowledge and complexity.  This scenario is where the <b>Chain of Responsibility</b> pattern comes to the rescue.
+                                                    </p>
+                                                    <p>For our practical example, we could create a series of handlers where each handler can process a single document type.  Chained together, these will form a "processong" pipeline that can be extended easily as future document types are added.</p>
                                                     <br>
-                                                    <img class="img-grow" alt="gof flyweight example" src="/images/gof-flyweight-example.png" data-src="/images/gof-flyweight-example.png" data-image="/images/gof-flyweight-example.png" data-image-dimensions="500x564" data-image-focal-point="0.5,0.5" data-load="false"
+                                                    <img class="img-grow" alt="gof chain of responsibility example" src="/images/gof-chain-of-responsibility-example.png" data-src="/images/gof-chain-of-responsibility-example.png" data-image="/images/gof-chain-of-responsibility-example.png" data-image-dimensions="620x360" data-image-focal-point="0.5,0.5" data-load="false"
                                                         data-image-id="5ba3fe9e9140b7f386765a31" data-type="image" style="left: 10%; top: 0px; display: block; margin-left:auto; margin-right:auto;" />
                                                     <br>
-                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the Flyweight will an efficient way of sharing flyweight objects (in this case characters) to be used repeatedly in a document.  The only major difference between out implementation and the "idealized" structure is that we don't really need a full context for this example and so it will be ahndled by the client application directly.</p>
+                                                    <p>Much like the generic diagram in <a href="#structure">STRUCTURE</a> above, the chain of responsibility will an efficient way of processing varying types of documents that can be added to over time.</p>
                                                     <p>Let's expand on this practical example with some code below.</p>
                                                 </div>
                                             </div>
@@ -818,9 +829,9 @@
                                                     <h3>Code Samples</h3>
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
-                                                    <p>Below, you will find examples of the <i><b>Flyweight Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
+                                                    <p>Below, you will find examples of the <i><b>Chain of Responsibility Pattern</b></i> implemented in four different commonly used languages. Each one of the examples implements the exact same scenario as described in the
                                                         <a href="#example">PRACTICAL EXAMPLE</a> section above.</p>
-                                                    <p>Each sample will use a flyweight to allow for easily manage a huge number of characters in a document efficiently.</p>
+                                                    <p>Each sample will use a chain of responsibility to allow for easily manage a document conversion pipeline efficiently.</p>
                                                     <br>
                                                     <div class="tab">
                                                         <button class="tablinks" onclick="openCode(event, 'NETC')">C#</button>
@@ -830,38 +841,38 @@
                                                     </div>
 
                                                     <div id="NETC" class="tabcontent">
-                                                        <h3>C# Flyweight Code Sample</h3>
-                                                        <p>In this C# example, the <b>Flyweight</b> pattern is used.</p>
+                                                        <h3>C# Chain of Responsibility Code Sample</h3>
+                                                        <p>In this C# example, the <b>Chain of Responsibility</b> pattern is used.</p>
                                                         <br>
                                                         <div id="NET-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-csharp.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-chain-of-responsibility-csharp.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="Java" class="tabcontent">
-                                                        <h3>Java Flyweight Code Sample</h3>
-                                                        <p>In this Java example, the <b>Flyweight</b> pattern is used.</p>
+                                                        <h3>Java Chain of Responsibility Code Sample</h3>
+                                                        <p>In this Java example, the <b>Chain of Responsibility</b> pattern is used.</p>
                                                         <br>
                                                         <div id="JAVA-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-java.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-chain-of-responsibility-java.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="TS" class="tabcontent">
-                                                        <h3>Typescript Flyweight Code Sample</h3>
-                                                        <p>In this TypeScript example, the <b>Flyweight</b> pattern is used.</p>
+                                                        <h3>Typescript Chain of Responsibility Code Sample</h3>
+                                                        <p>In this TypeScript example, the <b>Chain of Responsibility</b> pattern is used.</p>
                                                         <br>
                                                         <div id="TS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-ts.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-chain-of-responsibility-ts.html" />
                                                         </div>
 
                                                     </div>
                                                     <div id="JS" class="tabcontent">
-                                                        <h3>JavaScript Flyweight Code Sample</h3>
-                                                        <p>In this JavaScript example, the <b>Flyweight</b> pattern is used. </p>
+                                                        <h3>JavaScript Chain of Responsibility Code Sample</h3>
+                                                        <p>In this JavaScript example, the <b>Chain of Responsibility</b> pattern is used. </p>
                                                         <br>
                                                         <div id="JS-CONTAINER">
-                                                            <link data-wi-src="/standards/patterns/code-samples/gof-flyweight-js.html" />
+                                                            <link data-wi-src="/standards/patterns/code-samples/gof-chain-of-responsibility-js.html" />
                                                         </div>
 
                                                     </div>
@@ -878,17 +889,15 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ol>
-                                                        <li style="padding-left: 10px;">Ensure that object overhead (memory footprint) is an issue needing attention, and, the client of the class is able and willing to absorb responsibility realignment.</li>
-                                                        <li style="padding-left: 10px;">Divide fields of a class that should become a flyweight into two parts:
-                                                      <ul>
-                                                        <li><i>intrinsic</i> state for fields that contain unchanging data duplicated acrosss many instances</li>
-                                                        <li><i>extrinsic</i> state for fields that contain contextual data that is unique for each instance</li>
-                                                          </ul>
-                                                      </li>
-                                                        <li style="padding-left: 10px;">Leave the fields that represent the intrinsic state in the class, but make sure they are immutable. They should accept any values only inside the constructor.</li>
-                                                        <li style="padding-left: 10px;">Turn the fields of the extrinsic state into the arguments of methods that referred to them.</li>
-                                                        <li style="padding-left: 10px;">Create a flyweight factory class. It should check for existing flyweight before creating a new one. Clients must request flyweights from the flyweight factory. They should describe the desired flyweight by passing its intrinsic state to the factory method.</li>
-                                                        <li style="padding-left: 10px;">Clients must store or calculate values of extrinsic state (context) to be able to call methods of flyweight objects.</li>
+                                                        <li style="padding-left: 10px;">Ensure that you need the <b>Chain of Responsibility</b> pattern - typically when you need to process multiple "requests" from the same pipeline,</li>
+                                                        <li style="padding-left: 10px;">Ensure you understand the rules for understanding when a request can be specifically processed by a hnadler.</li>
+                                                        <li style="padding-left: 10px;">If you use a base class, ensure that it contains the pointer to the next object in the chain.</li>
+                                                        <li style="padding-left: 10px;">If you use an interface to define the handlers, be sure that it contains function placeholders for the <i>handle()</i>, <i>nextHandler()</i>, and the oprtional <i>canHandle()</i> methods.</li>
+                                                        <li style="padding-left: 10px;">Each of the concrete handler implementations should be able to handle a single request. </li>
+                                                        <li style="padding-left: 10px;">Each handler should also contain the logic to "pass" the request to the next one in the chain if it is unable to process it - typically via the base class "nextHandler" method.</li>
+                                                        <li style="padding-left: 10px;">Be sure to include a default or "fall through" handler in case none of the handlers canprocessthe request.</li>
+                                                        <li style="padding-left: 10px;">Some object that composes the "chain" or pipeline needs to be created and maintained - it should tell each of the handlers their place in the chain.</li>
+                                                        <li style="padding-left: 10px;">A mechanism to deposit or leave requests at the start of the chain must be created.</li>
                                                     </ol>
                                                 </div>
                                             </div>
@@ -903,12 +912,14 @@
                                                 </div>
                                                 <div class="sqs-block-content panel-content">
                                                     <ul>
-                                                        <li>Saves RAM, thus allowing a program to support much more objects.</li>
+                                                        <li>The <b>Chain of Responsibility</b> pattern is often used in conjunction with the <a href="/standards/patterns/gof-composite.html"><b>Gand of Four Composite Pattern</b></a> - allowing a component's parent can act as its successor.</li>
                                                         <li>Increases overall code complexity by creating multiple additional classes.</li>
-                                                      <li>An inefficient <i>Context</i> implementation can waste nearly as much in the way of CPU time in finding or calculating the actual context needed.</li>
-                                                        <li>Flyweight shows how to make lots of little objects and Facade shows how to make a single object represent an entire subsystem.</li>
-                                                        <li>Flyweight is often combined with Composite to implement shared leaf nodes.</li>
-                                                        <li>Flyweight explains when and how State objects can be shared.</li>
+                                                        <li>Only use the <b>Chain of Responsibility</b> pattern when your program is expected to process various types of requests in various ways - but the exact types and the sequence of operations are unknown in advance.</li>
+                                                        <li>Use thepattern when it is essential to process a request through several handelrs but in a specific order.</li>
+                                                        <li>This pattern is expecially handy when the order of handler processing needs to change at run time.</li>
+                                                        <li>Similar, although not identical, functionality can be achieved with the <a href="/standards/patterns/gof-command.html">Command</a>, <a href="/standards/patterns/gof-mediator.html">Mediator</a>, and  <a href="/standards/patterns/gof-observer.html">Observer</a> patterns - although they all  have varying trade-offs.</li>
+                                                        <li>This pattern allows you to apply the <i>Open/Closed Principle</i> such that new handlers can be added or injected into the application without breaking any existing code.</li>
+
                                                     </ul>
                                                 </div>
                                             </div>

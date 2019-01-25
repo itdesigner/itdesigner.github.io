@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typescript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('ts-code')">Copy</button>
+        <pre id="ts-code" style="margin: 0; line-height: 125%">
+
+    namespace ChainOfResponsibilityPattern {
+        <span style="color: #0000ff">class</span> BaseHandler {
+            <span style="color: #0000ff">private</span> _next: <span style="color: #2b91af">BaseHandler</span>;
+    
+            <span style="color: #0000ff">public</span> set nextHandler(successor: <span style="color: #2b91af">BaseHandler</span>) {
+                <span style="color: #0000ff">this</span>._next = successor;
+            }
+    
+            <span style="color: #0000ff">public</span> get nextHandler() {
+                <span style="color: #0000ff">return</span> <span style="color: #0000ff">this</span>._next;
+            }
+    
+            <span style="color: #0000ff">public</span> canHandle(msg: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">boolean</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>; };
+            <span style="color: #0000ff">public</span> handleRequest(msg: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">void</span> { };
+        }
+    
+        <span style="color: #0000ff">class</span> WordPerfectHandler <span style="color: #0000ff">extends</span> BaseHandler {
+            canHandle(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">boolean</span> {
+                <span style="color: #0000ff">if</span> (req &lt; 0) { <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>; }
+                <span style="color: #0000ff">else</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span>; }
+            }
+            handleRequest(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">void</span> {
+                <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                    log.add(<span style="border: 1px solid #FF0000">`</span>WordPerfectHandler processes ${req}<span style="border: 1px solid #FF0000">`</span>);
+                } <span style="color: #0000ff">else</span> {
+                    <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+                }
+            }
+        }
+    
+        <span style="color: #0000ff">class</span> Lotus123Handler <span style="color: #0000ff">extends</span> BaseHandler {
+            canHandle(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">boolean</span> {
+                <span style="color: #0000ff">if</span> (req &gt; 0) { <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>; }
+                <span style="color: #0000ff">else</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span>; }
+            }
+            handleRequest(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">void</span> {
+                <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                    log.add(<span style="border: 1px solid #FF0000">`</span>Lotus123Handler processes ${req}<span style="border: 1px solid #FF0000">`</span>);
+                } <span style="color: #0000ff">else</span> {
+                    <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+                }
+            }
+        }
+    
+        <span style="color: #0000ff">class</span> DocMinderHandler <span style="color: #0000ff">extends</span> BaseHandler {
+            canHandle(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">boolean</span> {
+                <span style="color: #0000ff">if</span> (req === 0) { <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>; }
+                <span style="color: #0000ff">else</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span>; }
+            }
+            handleRequest(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">void</span> {
+                <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                    log.add(<span style="border: 1px solid #FF0000">`</span>DocMinderHandler processes ${req}<span style="border: 1px solid #FF0000">`</span>);
+                } <span style="color: #0000ff">else</span> {
+                    <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+                }
+            }
+        }
+        <span style="color: #0000ff">class</span> DefaultHandler <span style="color: #0000ff">extends</span> BaseHandler {
+            canHandle(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">boolean</span> {
+                <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>; 
+            }
+            handleRequest(req: <span style="color: #2b91af">Number</span>): <span style="color: #0000ff">void</span> {
+                <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                    log.add(<span style="border: 1px solid #FF0000">`</span>DefaultHandler processes ${req}<span style="border: 1px solid #FF0000">`</span>);
+                } <span style="color: #0000ff">else</span> {
+                    <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+                }
+            }
+        }
+    
+        <span style="color: #008000">// log helper class</span>
+        <span style="color: #0000ff">class</span> log {
+            <span style="color: #0000ff">private</span> <span style="color: #0000ff">static</span> _log: <span style="color: #2b91af">string</span> = <span style="color: #a31515">&#39;&#39;</span>;
+            <span style="color: #0000ff">static</span> add(message: <span style="color: #2b91af">string</span>): <span style="color: #0000ff">void</span> {
+                log._log += message + <span style="color: #a31515">&#39;\n&#39;</span>;
+            }
+            <span style="color: #0000ff">static</span> show(): <span style="color: #2b91af">string</span> {
+                <span style="color: #0000ff">return</span> log._log;
+                log._log = <span style="color: #a31515">&#39;&#39;</span>;
+            }
+        }
+    
+        (<span style="color: #0000ff">function</span> main() {
+            <span style="color: #008000">// create the handlers</span>
+            <span style="color: #0000ff">const</span> wpHandler = <span style="color: #0000ff">new</span> WordPerfectHandler();
+            <span style="color: #0000ff">const</span> lotusHandler = <span style="color: #0000ff">new</span> Lotus123Handler();
+            <span style="color: #0000ff">const</span> dmHandler = <span style="color: #0000ff">new</span> DocMinderHandler();
+            <span style="color: #0000ff">const</span> defaultHandler = <span style="color: #0000ff">new</span> DefaultHandler();
+    
+            <span style="color: #008000">// chain them together in an ordered  pipeline</span>
+            wpHandler.nextHandler = lotusHandler;
+            lotusHandler.nextHandler = dmHandler;
+            dmHandler.nextHandler = defaultHandler;
+    
+            <span style="color: #008000">// process requests</span>
+            wpHandler.handleRequest(0);
+            wpHandler.handleRequest(1);
+            wpHandler.handleRequest(-1);
+            wpHandler.handleRequest(<span style="color: #a31515">&#39;abc&#39;</span>);
+    
+            <span style="color: #008000">// short circuit test processing</span>
+            document.body.innerHTML = log.show();
+        })();
+    }
+    </pre></div>
+    
+
+
+</body>
+
+</html>

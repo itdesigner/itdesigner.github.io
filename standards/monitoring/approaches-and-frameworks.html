@@ -670,9 +670,18 @@
                     <section class="Main-content" data-content-field="main-content">
                         <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1537474212286" id="page-5ba3fe861905f4a18415c878">
                             <div class="row sqs-row">
+                                <div class="sqs-col-8 span-8">
                                 <div class="txt-article txt-article-header">
                                     <h1>Monitoring Approaches</h1>
                                     <h2><i>Where do you even begin?</i></h2>
+                                </div>
+                                </div>
+                                <div class="sqs-col-3 span-3">
+                                    <div class="sqs-block button-block sqs-block-button" data-block-type="53" id="block-yui_3_17_2_7_1471630032837_105825">
+                                        <div class="sqs-block-content txt-article" style="padding-left: 15px;">
+                                            <a href="/monitoring.html" class="sqs-block-button-element--small sqs-block-button-element abstract-block-btn" data-initialized="true">Back to Monitoring →</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row sqs-row">
@@ -730,7 +739,7 @@
                                                 <div class="sqs-block-content">
                                                     <h2>Where do you start?</h2>
                                                     <p>When in doubt, I always start from the outside and work my way in.  After all, the applications that we build serve actual purposes in the real world - and they have actual users.  <b>Start with
-                                                        what matters to them</b>.</p>  
+                                                        what matters to your users</b>.</p>  
                                                     <p>Think about the fundamental things that you, as a user, would care about.  Typically, that means starting with something as basic as how responsive is the application 
                                                         from the users perspective.  Is the application or service even running? How long does it take to load?  How long does page navigation take?  Are there any pages that require queries and how "snappy" are they when you are the one sitting 
                                                         at a screen waiting on them to complete their work?  In these cases, seconds can seem like minutes.
@@ -742,14 +751,15 @@
                                                     <p>Given that basic timing information on your key applications, you can then use other tools that are easily and commonly available to begin the process of determining <b>why</b> it is slow. The data 
                                                         from these external sources can then be combined to provide a more holistic view of your environment.  Essentially, you start by treating your applications as a black box and monitor those things 
                                                         flowing into it, out of it, and around it that matter from a users perspective. Only once you have this information in hand should you start the laborious process of adding internal monitoring to 
-                                                        your applications - peering into the box.  Think of it this way, does the user really care that a particular function inside your application used to take 4ms and now takes 8ms?  Despite the fact that 
+                                                        your applications - peering into the box.</p>
+                                                    <p>Think of it this way, does the user really care that a particular function inside your application used to take 4ms and now takes 8ms?  Despite the fact that 
                                                         this is a 100% increase in time, we can probably say not. That is not something that they would notice.  The same percentage increase for the return of a query result that they are waiting on would be 
                                                         something that is noticed.
                                                     </p>
                                                     <p>I'm not saying that monitoring the internals of your application is not important.  It most definitely is.  Particularly when your developers or team is directly responsible for it in production.  Those 
                                                         internal metrics can provide a great deal of insight into limitations and bottlenecks of your application.  That internal data can be used to identify and help prioritize efforts when enhancing or 
-                                                        extending your applications.  I have a number of other detailed discussions on what you should think about when addressing internal monitoring and I won't repeat those here.  The key take-away that I 
-                                                        want to impress is to start simple and then work your way in.  Most metric-based frameworks and guidance concentrate on the more complicated internal capture process.  I hope that they do this because they
+                                                        extending your applications.  I have a number of other detailed discussions on what you should think about when addressing internal monitoring and I won't repeat those here. </p>
+                                                    <p>The key take-away that I want to impress is to start simple and then work your way in.  Most metric-based frameworks and guidance concentrate on the more complicated internal capture process.  I hope that they do this because they
                                                         just tacitly assume that this external monitoring is already taking place and not because it is not important.
                                                     </p>
                                                     <p>The goal of monitoring is to provide <b>immediate benefits</b> and then expand on those with more data as and only when needed.</p>

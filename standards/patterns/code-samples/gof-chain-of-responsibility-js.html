@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Typescript Code Sample Page</title>
+</head>
+
+<body>
+
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+        <button id="button1" class="code-copy-button" onclick="CopyToClipboard('js-code')">Copy</button>    
+    <pre id="js-code" style="margin: 0; line-height: 125%">
+        
+    <span style="color: #0000ff">class</span> wordPerfectHandler {
+        constructor() {
+            <span style="color: #0000ff">this</span>.next = <span style="color: #0000ff">null</span>;
+        }
+        nextHandler(fn) {
+            <span style="color: #0000ff">this</span>.next = fn;
+        }
+        canHandle(req) {
+            <span style="color: #0000ff">if</span> (req &lt; 0) {
+                <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>;
+            } <span style="color: #0000ff">else</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span>; }
+        }
+        handleRequest(req) {
+            <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                log.add(<span style="color: #a31515">&quot;WordPerfectHandler processes &quot;</span> + req);
+            } <span style="color: #0000ff">else</span> {
+                <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+            }
+        }
+    }
+    
+    <span style="color: #0000ff">class</span> lotus123Handler {
+        constructor() {
+            <span style="color: #0000ff">this</span>.next = <span style="color: #0000ff">null</span>;
+        }
+        nextHandler(fn) {
+            <span style="color: #0000ff">this</span>.next = fn;
+        }
+        canHandle(req) {
+            <span style="color: #0000ff">if</span> (req &gt; 0) {
+                <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>;
+            } <span style="color: #0000ff">else</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span>; }
+        }
+        handleRequest(req) {
+            <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                log.add(<span style="color: #a31515">&quot;LotusHandler processes &quot;</span> + req);
+            } <span style="color: #0000ff">else</span> {
+                <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+            }
+        }
+    }
+    
+    <span style="color: #0000ff">class</span>  docMinderHandler {
+        constructor() {
+            <span style="color: #0000ff">this</span>.next = <span style="color: #0000ff">null</span>;
+        }
+        nextHandler(fn) {
+            <span style="color: #0000ff">this</span>.next = fn;
+        }
+        canHandle(req) {
+            <span style="color: #0000ff">if</span> (req === 0) {
+                <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>;
+            } <span style="color: #0000ff">else</span> { <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span>; }
+        }
+        handleRequest(req) {
+            <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                log.add(<span style="color: #a31515">&quot;DocMinderHandler processes &quot;</span> + req);
+            } <span style="color: #0000ff">else</span> {
+                <span style="color: #0000ff">this</span>.nextHandler.handleRequest(req);
+            }
+        }
+    }
+    
+    <span style="color: #0000ff">class</span>  defaultHandler {
+        constructor() {
+            <span style="color: #0000ff">this</span>.next = <span style="color: #0000ff">null</span>;
+        }
+        nextHandler(fn) {
+            <span style="color: #0000ff">this</span>.next = fn;
+        }
+        canHandle(req) {
+            <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span>;
+        }
+        handleRequest(req) {
+            <span style="color: #0000ff">if</span> (<span style="color: #0000ff">this</span>.canHandle(req)) {
+                log.add(<span style="color: #a31515">&quot;DefaultHandler processes &quot;</span> + req);
+            } <span style="color: #0000ff">else</span> {
+                log.add(<span style="color: #a31515">&#39;No place to go - terminating&#39;</span>);
+            }
+        }
+    }
+    
+    
+    <span style="color: #008000">// log helper class</span>
+    <span style="color: #0000ff">var</span> log = (<span style="color: #0000ff">function</span> () {
+        <span style="color: #0000ff">function</span> log() {
+        }
+        log.add = <span style="color: #0000ff">function</span> (message) {
+            log._log += message + <span style="color: #a31515">&#39;\n&#39;</span>;
+        };
+        log.show = <span style="color: #0000ff">function</span> () {
+            <span style="color: #0000ff">return</span> log._log;
+            log._log = <span style="color: #a31515">&#39;&#39;</span>;
+        };
+        log._log = <span style="color: #a31515">&#39;&#39;</span>;
+        <span style="color: #0000ff">return</span> log;
+    }());
+    
+    <span style="color: #008000">// run CORcode</span>
+    <span style="color: #008000">// create the handlers</span>
+    <span style="color: #0000ff">var</span> wpHandler = <span style="color: #0000ff">new</span> wordPerfectHandler();
+    <span style="color: #0000ff">var</span> lotusHandler = <span style="color: #0000ff">new</span> lotus123Handler();
+    <span style="color: #0000ff">var</span> dmHandler = <span style="color: #0000ff">new</span> docMinderHandler();
+    <span style="color: #0000ff">var</span> defaultH = <span style="color: #0000ff">new</span> defaultHandler();
+    <span style="color: #008000">// chain them together in an ordered  pipeline</span>
+    wpHandler.nextHandler = lotusHandler;
+    lotusHandler.nextHandler = dmHandler;
+    dmHandler.nextHandler = defaultH;
+    <span style="color: #008000">// process requests</span>
+    wpHandler.handleRequest(0);
+    wpHandler.handleRequest(1);
+    wpHandler.handleRequest(-1);
+    wpHandler.handleRequest(<span style="color: #a31515">&#39;abc&#39;</span>);
+    <span style="color: #008000">// short circuit test processing</span>
+    document.body.innerHTML = log.show();
+    </pre></div>
+    
+    
+
+
+</body>
+
+</html>
