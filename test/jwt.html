@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="../css/site.css" />
+        <!--<link href="https://fonts.googleapis.com/css?family=Fjalla+One|Libre+Franklin|Roboto&display=swap" rel="stylesheet">-->
+        <title>Title</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="txt-article txt-article-header">
+                    <h2><i>{JSON Web Tokens} explained</i></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"><br/></div>
+            </div>
+
+            <div class="row">
+                <img class="img-article image-scaled" src="/teams/internal/ProdDev/architecturewiki/security/PublishingImages/jwt-diagram.jpg"  alt="jwt"  />
+            </div>
+            
+            <div class="row">
+                <div class="txt-article">
+                    <h2>What are JSON Web Tokens (JWT)?</h2>
+                    <p>
+                        JSON Web Tokens (JWT), pronounced "jot", are a standard since the information they carry is transmitted via JSON. We can read more about the <a href="https://tools.ietf.org/html/rfc7519">draft specification</a>, but that explanation isn't the most pretty to look at. JWTs essentially encode any sets of identity claims into a payload, provide some header data about how it is to be signed, then calculate a signature using one of several algorithms and append that signature to the header and claims.
+                    </p>
+                    <p>JWT's are used and supported widely in software because:</p>
+                    <ul>
+                        <li>
+                            <strong>JSON Web Tokens work across many different programming languages</strong>: JWTs work in .NET, Python, Node.js, Java, PHP, Ruby, Go, JavaScript, and Haskell. So you can see that these can be used in many different scenarios.
+                        </li>
+                        <li>
+                            <strong>JWTs are self-contained</strong>: They will carry all the information necessary within itself. This means that a JWT will be able to transmit basic information about itself, a payload (usually user information), and a signature.
+                        </li>
+                        <li>
+                            <strong>JWTs can be passed around easily</strong>: Since JWTs are self-contained, they are perfectly used inside an HTTP header when authenticating an API. You can also pass it through the URL
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>When are JWT's used?</h2>
+                    <p>
+                        JWT's can be used in many scenarios; however, they are most commonly used for the following purposes:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Authorization</strong>: This is the most common scenario for using JWT. Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily used across different domains.
+                        </li>
+                        <li>
+                            <strong>Information Exchange</strong>: JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed—for example, using public/private key pairs—you can be sure the senders are who they say they are. Additionally, as the signature is calculated using the header and the payload, you can also verify that the content hasn't been tampered with.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>So what does a JWT look like?</h2>
+                    <p>
+                        A JWT is easy to identify.  It is simply three strings which are separated by periods (<code class="gray">.</code>).
+                    </p>
+                    <p>
+                        For example:
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+    
+    <span style="color: #FF0000; background-color: lightgray; font-size:15px;">aaaa.bbbbbbbb.ccccccccc</span>
+
+</pre></div>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>How do JWT's work?</h2>
+                    <p>
+                        In authentication, when the user successfully logs in using their credentials, a JSON Web Token will be returned. Since tokens are credentials, great care must be taken to prevent security issues. In general, you should not keep tokens longer than required.
+                    </p>
+                    <p>Whenever the user wants to access a protected route or resource, the user agent should send the JWT, typically in the Authorization header using the Bearer schema. The content of the header should look like the following:</p>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+    
+    <span style="color: #f8f8f2">Authorization:</span> <span style="color: #f8f8f2">Bearer</span> <span style="color: #f8f8f2">&lt;token&gt;</span>
+
+</pre></div>
+
+                    <br/>
+                    <p>This can be, in certain cases, a stateless authorization mechanism. The server's protected routes will check for a valid JWT in the Authorization header, and if it's present, the user will be allowed to access protected resources. If the JWT contains the necessary data, the need to query the database for certain operations may be reduced, though this may not always be the case.</p>
+                    <p>If the token is sent in the Authorization header, Cross-Origin Resource Sharing (CORS) won't be an issue as it doesn't use cookies.</p>
+                    <p>The following shows a basic diagram of how tokens are used and validated by software:</p>
+                    <div class="img-article image-scaled" style="text-align:center">
+                        <img src="../images/jwt-exchange.png">
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>Breaking down a JSON Web Token</h2>
+                    <p>Since there are three parts separated by a period (<code class="gray">.</code>), each section serves a specific purpose and is used differently.  The three parts consist of:</p>
+                    <ul>
+                        <li>the <strong>header</strong></li>
+                        <li>the <strong>payload</strong></li>
+                        <li>the <strong>signature</strong></li>
+                    </ul>
+                    <img src="../images/jwt-sections.png" style="width:50%; height: auto">
+                    <br/><br/>
+                    <h3>The Header</h3>
+                    <p>The header typically contains information about how the JWT was created.  This includes things like the cryptographic sets used, keys types, and the like.  Essentially, this section is <strong><i>used to provide all the information necessary to verify and validate the rest of the JWT</i></strong>. Typically, there are from 2 - 5 keys in this section depending on the exact implementation and use case.</p>
+                    <p>Here is an example of a sample typical header section you might commonly see:</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+    
+    <span style="color: #008000">// Sample JWT Header Section</span>
+    {
+        <span style="color: #a31515">&quot;typ&quot;</span>: <span style="color: #a31515">&quot;JWT&quot;</span>,
+        <span style="color: #a31515">&quot;alg&quot;</span>: <span style="color: #a31515">&quot;HS256&quot;</span>,
+        <span style="color: #a31515">&quot;x5t&quot;</span>: <span style="color: #a31515">&quot;LqtvoOPBIKtWfiFZUnq1g0bTOC0&quot;</span>,
+        <span style="color: #a31515">&quot;kid&quot;</span>: <span style="color: #a31515">&quot;2EQB6FA0E3C120AB567E215927AB58106D3382D&quot;</span>
+    }
+      
+    <span style="color: #008000">// Base64 Encoded header</span>
+    eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsIng1dCI6IkxxdHZvT1BCSUt0V2ZpRlpVbnExZzBiVE9DMCIsImtpZCI6IjJFUUI2RkEwRTNDMTIwQUI1NjdFMjE1OTI3QUI1ODEwNkQzMzgyRCJ9
+      </pre></div>
+                    <br/>
+                    <p>This sample header contains 4 items:</p>
+                    <ul>
+                        <li><b>"typ"</b> - this is the type of token.  Here it is identified as a JWT</li>
+                        <li><b>"alg"</b> - the hashing algorithm used</li>
+                        <li><b>"kid"</b> - Key Identifier – Acts as an ‘alias’ for the key</li>
+                        <li><b>"x5t"</b> - X.509 Certificate Thumbprint – Used to identify specific certificates</li>
+                    </ul>
+                    <p>
+                        Most commonly, the algorithms used for signing JWTs are based upon public/private key cryptography. This facilitates a centralised identity provider (such as AAD B2C), which holds the private key, to issue signed tokens which can be validated by remote services using the public key, without them needing to communicate back to the identity provider more than once.  There are, of course as with everything in software, alternatives to this approach, although they are less commonly used and will not be covered here.
+                    </p>
+
+                    <br/>
+                    <br/>
+                    <h3>The Payload</h3>
+                    <p>The payload will carry the bulk of our JWT, also called the <a href="http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html#RegisteredClaimName">JWT Claims</a>. This is where we will put the information that we want to transmit and other information about our token.</p>
+                    <p>Claims are predefined keys and their values. There are three types of claims: registered, public, and private claims.</p>
+                    <div style="margin-left:30px">
+                        <h5>Registered Claims</h5>
+                        <p>These are a set of predefined keys which are not mandatory but recommended.  They are strictly reserved and, if included, should only be used for there intended purpose.  These registered claims include:</p>
+                        <ul>
+                            <li><code class="gray">iss</code>: The issuer of the token </li>
+                            <li><code class="gray">sub</code>: The subject of the token</li>
+                            <li><code class="gray">aud</code>: The audience of the token</li>
+                            <li><code class="gray">exp</code>: This will probably be the registered claim most often used. This will define the expiration in NumericDate value. The expiration MUST be after the current date/time. </li>
+                            <li><code class="gray">nbf</code>: Defines the time before which the JWT MUST NOT be accepted for processing</li>
+                            <li><code class="gray">iat</code>: The time the JWT was issued. Can be used to determine the age of the JWT</li>
+                            <li><code class="gray">jti</code>: Unique identifier for the JWT. Can be used to prevent the JWT from being replayed. This is helpful for a one time use token.</li>
+                        </ul>
+                        <br/>
+                        <h5>Public Claims</h5>
+                        <p>These are the claims that we create ourselves like user name, information, and other important information. These can be defined at will by those using JWTs. But to avoid collisions they should be defined in the IANA JSON Web Token Registry or be defined as a URI that contains a collision resistant namespace.</p>
+                        <br/>
+                        <h5>Private Claims</h5>
+                        <p>These are the custom key value pairs created to share information between parties that agree on using them and are neither registered or public claims.  In general, we should avoid using private claims as they are subject to collision.</p>
+                        <br/>
+                    </div>
+                    <p>Our example payload has three registered claims (<code class="gray">iss</code>, <code class="gray">sub</code>, and <code class="gray">exp</code>) and two public claims (<code class="gray">name</code> and <code class="gray">admin</code>):</p>
+                    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+                        
+<span style="color: #008000">// Sample Payload</span>
+{
+    <span style="color: #a31515">&quot;iss&quot;</span>: <span style="color: #a31515">&quot;sphera-id.com&quot;</span>,
+    <span style="color: #a31515">&quot;exp&quot;</span>: 1300819380,
+    <span style="color: #a31515">&quot;sub&quot;</span>: <span style="color: #a31515">&quot;1234567890&quot;</span>,
+    <span style="color: #a31515">&quot;name&quot;</span>: <span style="color: #a31515">&quot;Perry Marchant&quot;</span>,
+    <span style="color: #a31515">&quot;admin&quot;</span>: <span style="color: #0000ff">true</span>
+}
+  
+<span style="color: #008000">// Base64 Encoded payload</span>
+eyJpc3MiOiJzcGhlcmEtaWQuY29tIiwiZXhwIjoxMzAwODE5MzgwLCJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlBlcnJ5IE1hcmNoYW50IiwiYWRtaW4iOnRydWV9
+
+  </pre></div>
+                    <br/>
+                    <p>This becomes the second part of our JWT.</p>
+                    <br/>
+                    <h3>The Signature</h3>
+                    <p>
+                        The third and final part of our JSON Web Token is going to be the signature. The signature is used to verify that the sender of the JWT is who it says it is and to ensure that the message wasn't changed along the way. To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign it. Basically, this is a sample of how we generate a signature:
+                    </p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+    
+    <span style="color: #008000">// basic method to generate a signature key</span>
+    <span style="color: #2b91af">var</span> encodedString = base64UrlEncode(header) + <span style="color: #a31515">&quot;.&quot;</span> + base64UrlEncode(payload);
+
+    HMACSHA256(encodedString, <span style="border: 1px solid #FF0000">&#39;</span>secret<span style="border: 1px solid #FF0000">&#39;</span>);
+    
+    <span style="color: #008000">// Encoded sample signature</span>
+    OJeJOI21taNymu42ps-QwRVBuX6Egsqck5CGCMgVUd0
+    
+    </pre></div>
+                    <br/>
+                    <p>Now that we have the three parts and they are all encoded correctly, we can put them together to make a full JWT that can be passed via a header in our http requests.</p>
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+    
+    <span style="color: #2b91af">var</span> token = <span style="border: 1px solid #FF0000">`$</span>{enc_header}.<span style="border: 1px solid #FF0000">$</span>{enc_payload}.<span style="border: 1px solid #FF0000">$</span>{signature}<span style="border: 1px solid #FF0000">`</span>;
+    <span style="color: #008000">// ► eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIyMDE5LTAyLTE0IiwibWVzc2FnZSI6InJvc2VzIGFyZSByZWQifQ.0u-mkgLo5479CPjJJ4mXCwn2RW4dFT12fiYiopRWsZw</span>
+
+</pre></div>
+                    <br/>
+                    <p>Something important to remember here is that JWT tokens are used for authentication and not encryption, so even without knowing the secret key, someone can read your header and payload data.</p>
+                    <p>But upon receiving the token you can sign the header and payload again with your secret key and compare it with the received signature to detect tampering of token or the message.</p>
+                    <p>A good place to start will be by going to this <a href="https://jwt.io/#debugger">online JWT debugger at jwt.io</a> and play around with some tokens to get a feel for how they work.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article terminator">
+                    <h2>. . .</h2>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="txt-article">
+                        <p>If you want to learn more about JSON Web Tokens and even start using them to perform authentication in your own applications, browse to the JSON Web Token landing page at <a href="http://auth0.com/learn/json-web-tokens">Auth0</a>​ or at <a href="https://jwt.io/#debugger">JWT.io</a>.</p>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

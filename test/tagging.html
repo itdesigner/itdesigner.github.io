@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="../css/site.css" />
+        <!--<link href="https://fonts.googleapis.com/css?family=Fjalla+One|Libre+Franklin|Roboto&display=swap" rel="stylesheet">-->
+        <title>Title</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="txt-article txt-article-header">
+                    <h2><i>Better cloud management through resource tagging</i></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"><br/></div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <p>
+                        Enterprises are now, more than ever, managing  complex cloud environments, trying to come to grips with highly complex pricing 
+                        structures and an onslaught of new cloud services. The key to success is implementing enterprise-grade governance platforms that 
+                        enable you to efficiently optimize costs across all cloud providers and ensure that you have access to any and all of the cloud 
+                        services that our company requires.
+                    </p>
+                    <p>
+                        Tagging of cloud resources is a critical foundation for our cloud governance initiatives. We will need a consistent set of tags 
+                        specifically for governance and will apply globally across all of our resources. These global tags will add metadata specific to 
+                        our organization that helps us better categorize each of our cloud resources for cost allocation, reporting, chargeback and showback, 
+                        cost optimization, compliance, and security.
+                    </p>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <img class="img-article" src="/teams/internal/ProdDev/architecturewiki/governance/PublishingImages/tagging_lrg.png"  alt="tagging"  />
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>Tagging basics</h2>
+                    <p>
+                        Tags let you organize resources and resource groups by assigning them a name:value pair such as <code class="gray">CostCenter:Marketing</code>. This can 
+                        be especially useful when it comes to things like:
+                        <ul>
+                            <li><b>Access control and compliance</b>: keep track of who can interact with what, and protect sensitive data.</li>
+                            <li><b>Automation</b>: apply bulk actions to related resources automatically, e.g. “shut down all VMs with the tag Environment:dev overnight” or 
+                                “in resource-group-1, delete resources that have been inactive for 90 days”.</li>
+                            <li><b>Cost governance</b>: most tags assigned to resources are included in your detailed usage data CSV and, as of this year, in the Cost Management 
+                                Portal APIs. This lets you filter resources according to a common project, customer, department, etc., to facilitate reporting (how much is 
+                                a particular application/workload costing?) and chargebacks (which department is responsible for which costs?). However, the usefulness of 
+                                tags remains limited in Azure's native cost management offerings, which don't support tags assigned to resource groups, among other drawbacks.
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        Absent a tagging policy, it is common for teams or individuals within the same organization to use variations of the same tag, which makes it extremely 
+                        difficult to achieve accurate reporting. To effectively use tags for reporting and governance purposes, it is critical to create a policy that defines 
+                        consistent naming conventions including spelling, uppercase/lowercase conventions, and spacing.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>Tagging Best Practices</h2>
+                    <p>
+                        Adding tags to your Azure resources is very simple and can be done using Azure Portal, Azure
+                        PowerShell, CLI, or ARM JSON templates. You can tag any resources in Azure, and using this service
+                        is free. The tagging is done on the Azure platform level and does not impact the performance of the
+                        resource in any way. However, there are certain rules and limitations associated with tagging that
+                        users should be aware of:
+                        <ul>
+                            <li>Each resource can have a maximum of 15 tags associated with it. Resources in this case can be individual resources like VM, Network, etc., or the resource group that they are part of.</li>
+                            <li>Resources that are deployed using the classic deployment model do not support tagging. It is an exclusive feature of the ARM model.</li>
+                            <li>The maximum number of characters for a tag name is 512. For storage accounts, this is limited even further to 128 characters.</li>
+                            <li>The maximum number of characters for a tag value is 256.</li>
+                            <li>You should use JSON strings via ARM templates when you want to assign multiple values to a tag name.</li>
+                            <li>There is no inheritance hierarchy for tags (e.g., tags applied at the resource group level are not inherited by any member resources).</li>
+                            <li>The tag name prefixes “Azure,” “Windows,” and “Microsoft” are reserved and cannot be used.</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>Global Sphera Tags</h2>
+                    <p>
+                        These are the tags that are <strong>REQUIRED</strong> when creating a resource in our Azure environment:
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th scope="col">Tag Type</th>
+                                <th scope="col">Sample Allowed Values</th>
+                                <th scope="col">Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Environment</th>
+                                    <td>env = dev, test, stage, prod</td>
+                                    <td>Used to identify the environment type</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CostCenter</th>
+                                    <td>costcenter = sales, marketing, engineering, etc...</td>
+                                    <td>Tags used to allocate costs</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Region</th>
+                                    <td>region = emea, us, etc...</td>
+                                    <td>Used to determine the location of the resource for regulatory purposes</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Compliance</th>
+                                    <td>compliance = pii, hipaa, fedramp, nist-sp-800-171</td>
+                                    <td>One or more tags used to define compliance requirements</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Application</th>
+                                    <td>
+                                        <ul>
+                                            <li> app = "app name"</li>
+                                            <li> svc = "service name"</li>
+                                        </ul>
+                                    </td>
+                                    <td>One or more tags used to define the application or service</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tenancy</th>
+                                    <td>tenant = global, customerName</td>
+                                    <td>Tag used to define if a resource is multitenant or tenant specific</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Owner</th>
+                                    <td>owner = owner email</td>
+                                    <td>Tag used to define the owner of a praticular resource (whom to contact)</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article">
+                    <h2>Tag monitoring and compliance</h2>
+                    <p>
+                        As part of the longer term effort to ensure that we are tagging resources in Azure correctly, a process will be put in place via Azure Policies to 
+                        prevent deployments to an environment if a resource does not have appropriate tags.
+                    </p>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="txt-article terminator">
+                    <h2>. . .</h2>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="txt-article">
+                        <p>At a glance, tags are about as simple as it gets. But taking the time to consider your organization’s needs and design a solid framework for resource tagging will save you a lot of hassle moving forward. Management wants to know how much the VMs in your development environment have been costing lately? Need to target a set of related resources for automation purposes? There are so many circumstances in which a good set of tags can mean the difference between painstaking and painless.
+                        </p>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
