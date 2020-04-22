@@ -17,7 +17,7 @@
             "ManagementOfChange"
           ],
           "summary": "GetMOCById",
-          "description": "<i>Loads a record by class and identifier.</i>",
+          "description": "<i>Loads a record/MOC by class and identifier.</i>",
           "operationId": "get-getmocbyid",
           "parameters": [
             {
