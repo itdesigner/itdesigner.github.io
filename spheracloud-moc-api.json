@@ -1,0 +1,1775 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "SpheraCloud MOC API",
+      "description": "This API supports SpheraCloud Management of Change (MOC) functionality.\n\nManagement of Change (MOC) is a best practice used to ensure that safety, health, and environmental risks and hazards are properly controlled when an organization makes changes to their facilities, operations, or personnel",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://platform-api-dev.azure-api.net/platform-sc-moc-api-dev"
+      }
+    ],
+    "paths": {
+      "/records/{className}/{id}": {
+        "get": {
+          "tags": [
+            "ManagementOfChange"
+          ],
+          "summary": "GetMOCById",
+          "description": "<i>Loads a record by class and identifier.</i>",
+          "operationId": "get-getmocbyid",
+          "parameters": [
+            {
+              "required": true,
+              "name": "className",
+              "in": "path",
+              "description": "the type of data that should be returned, see the function description for valid values",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "Rivo.RiskEngine.DiaryEvents",
+                  "Rivo.RiskEngine.RelatedDocuments",
+                  "Rivo.RiskEngine.RecurringTasks",
+                  "Rivo.RiskEngine.Locations",
+                  "Rivo.RiskEngine.Lgroups",
+                  "Rivo.RiskEngine.Users",
+                  "Rivo.RiskEngine.Ugroups",
+                  "Rivo.RiskEngine.Forms",
+                  "Rivo.Santiago.Accidents",
+                  "Rivo.Santiago.DSE.Assessments",
+                  "Rivo.Santiago.ManagementOfChanges"
+                ]
+              },
+              "example": "Rivo.RiskEngine.ManagementOfChanges"
+            },
+            {
+              "required": true,
+              "name": "id",
+              "in": "path",
+              "description": "The identifier of the record to load.",
+              "schema": {
+                "type": "string",
+                "example": "390"
+              }
+            },
+            {
+              "required": true,
+              "name": "attributes",
+              "in": "query",
+              "description": "A list of comma separated attribute names (TempalteAttribtue Title) that should be returned within the record requested.",
+              "schema": {
+                "type": "string",
+                "example": "ManagementOfChanges.Id,ManagementOfChanges.Title,ManagementOfChanges.Description,ManagementOfChanges.LocationId"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Either the record or not found if the record doesn't exist",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MocRecord"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MocRecord"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized, if there are authentication issues"
+            },
+            "403": {
+              "description": "Forbidden, if you have no rights to this operation"
+            },
+            "404": {
+              "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "ManagementOfChange"
+          ],
+          "summary": "UpdateMOC",
+          "description": "<i>Updates an record by class and identifier.</i>",
+          "operationId": "put-updatemoc",
+          "parameters": [
+            {
+              "required": true,
+              "name": "className",
+              "in": "path",
+              "description": "the type of data that should be updated, see the function description for valid values",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "Rivo.RiskEngine.DiaryEvents",
+                  "Rivo.RiskEngine.RelatedDocuments",
+                  "Rivo.RiskEngine.RecurringTasks",
+                  "Rivo.RiskEngine.Locations",
+                  "Rivo.RiskEngine.Lgroups",
+                  "Rivo.RiskEngine.Users",
+                  "Rivo.RiskEngine.Ugroups",
+                  "Rivo.RiskEngine.Forms",
+                  "Rivo.Santiago.Accidents",
+                  "Rivo.Santiago.DSE.Assessments",
+                  "Rivo.Santiago.ManagementOfChanges"
+                ]
+              },
+              "example": "Rivo.RiskEngine.ManagementOfChanges"
+            },
+            {
+              "required": true,
+              "name": "id",
+              "in": "path",
+              "description": "The identifier of the record to load.",
+              "schema": {
+                "type": "string",
+                "example": "390"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "Updated object values and its associated attribute collection which should be set in the system.<br><br><i>Any values omitted during an update are left in their original state in the system.</i>",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref":"#/components/schemas/MocRecord"
+                    }
+                },
+                "application/xml": {
+                    "schema": {
+                        "$ref":"#/components/schemas/MocRecord"
+                    }
+                }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "The updated record is returned or not found if the record doesn't exist",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MocRecord"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MocRecord"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized, if there are authentication issues"
+            },
+            "403": {
+              "description": "Forbidden, if you have no rights to this operation"
+            },
+            "404": {
+              "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "ManagementOfChange"
+          ],
+          "summary": "DeleteMOC",
+          "description": "<i>Deletes an MOC record</i>",
+          "operationId": "del-deleteMOC",
+          "parameters": [
+            {
+              "required": true,
+              "name": "className",
+              "in": "path",
+              "description": "the class/type of parent data that should be unlinked from",
+              "schema": {
+                  "type": "string",
+                  "example": "Rivo.Santiago.ManagementOfChanges"
+              }
+            },
+            {
+              "required": true,
+              "name": "id",
+              "in": "path",
+              "description": "the instance id of the object to be unlinked from as the parent",
+              "schema": {
+                  "type": "string",
+                  "example": "390"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The MOC record with the Id has been successfully deleted"
+            },
+            "401": {
+              "description": "Unauthorized, if there are authentication issues"
+            },
+            "403": {
+              "description": "Forbidden, if you have no rights to this operation"
+            },
+            "404": {
+              "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+            }
+          }
+        },
+        "head": {
+          "tags": [
+            "ManagementOfChange"
+          ],
+          "summary": "CheckMocExists",
+          "description": "<i>Checks for the existance of a record.</i>",
+          "operationId": "head-checkmocexists",
+          "parameters":[
+            {
+              "required": true,
+              "name": "className",
+              "in": "path",
+              "description": "the type of data that should be returned, see the function description for valid values",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "Rivo.RiskEngine.DiaryEvents",
+                  "Rivo.RiskEngine.RelatedDocuments",
+                  "Rivo.RiskEngine.RecurringTasks",
+                  "Rivo.RiskEngine.Locations",
+                  "Rivo.RiskEngine.Lgroups",
+                  "Rivo.RiskEngine.Users",
+                  "Rivo.RiskEngine.Ugroups",
+                  "Rivo.RiskEngine.Forms",
+                  "Rivo.Santiago.Accidents",
+                  "Rivo.Santiago.DSE.Assessments",
+                  "Rivo.Santiago.ManagementOfChanges"
+                ]
+              },
+              "example": "Rivo.RiskEngine.ManagementOfChanges"
+            },
+            {
+              "required": true,
+              "name": "id",
+              "in": "path",
+              "description": "The identifier of the record to load.",
+              "schema": {
+                "type": "string",
+                "example": "390"
+              }
+            }
+            ],
+            "responses": {
+                "200": {
+                  "description": "the record exists"
+                },
+                "401": {
+                  "description": "Unauthorized, if there are authentication issues"
+                },
+                "403": {
+                  "description": "Forbidden, if you have no rights to this operation"
+                },
+                "404": {
+                  "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+                }
+              }
+        }
+      },
+      "/records/{className}": {
+        "get": {
+            "tags": [
+              "ManagementOfChange"
+            ],
+            "summary": "GetMOCs",
+            "description": "<i>Loads all available records for the provided class.</i>",
+            "operationId": "get-getmocs",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the type of data that should be returned, see the function description for valid values",
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "Rivo.RiskEngine.DiaryEvents",
+                    "Rivo.RiskEngine.RelatedDocuments",
+                    "Rivo.RiskEngine.RecurringTasks",
+                    "Rivo.RiskEngine.Locations",
+                    "Rivo.RiskEngine.Lgroups",
+                    "Rivo.RiskEngine.Users",
+                    "Rivo.RiskEngine.Ugroups",
+                    "Rivo.RiskEngine.Forms",
+                    "Rivo.Santiago.Accidents",
+                    "Rivo.Santiago.DSE.Assessments",
+                    "Rivo.Santiago.ManagementOfChanges"
+                  ]
+                },
+                "example": "Rivo.RiskEngine.ManagementOfChanges"
+              },
+              {
+                "required": true,
+                "name": "attributes",
+                "in": "query",
+                "description": "A list of comma separated attribute names (TempalteAttribtue Title) that should be returned within the record requested.",
+                "schema": {
+                  "type": "string",
+                  "example": "ManagementOfChanges.Id,ManagementOfChanges.Title,ManagementOfChanges.Description,ManagementOfChanges.LocationId"
+                }
+              },
+              {
+                "name": "sort",
+                "in": "query",
+                "description": "Sort expression as a comma separated list of attribute names and \"asc\" and \"desc\" ordering keywords. E.g. \"Tasks.Title asc, Tasks.ScheduledDate desc\"",
+                "schema": {
+                  "type": "string",
+                  "example": "Tasks.Title asc"
+                }
+              },
+              {
+                "required": true,
+                "name": "offset",
+                "in": "query",
+                "description": "The number of records to skip before starting to return data. Used for pagination.",
+                "schema": {
+                  "type": "string",
+                  "example": "0"
+                }
+              },
+              {
+                "required": true,
+                "name": "count",
+                "in": "query",
+                "description": "The number of records to return. Used for pagination.",
+                "schema": {
+                  "type": "string",
+                  "example": "10"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "A list of records and a total count (PagedRecords).",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecordCollection"
+                    }
+                  },
+                  "application/xml": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecordCollection"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        },
+        "post": {
+          "tags": [
+            "ManagementOfChange"
+          ],
+          "summary": "CreateMOC",
+          "description": "<i>Creates an empty non-committed MOC entry.</i><br><br>After the object is populated with appropriate values it can be updated and then committed to the system.",
+          "operationId": "post-createmoc",
+          "parameters": [
+            {
+              "required": true,
+              "name": "className",
+              "in": "path",
+              "description": "the type of data that should be created, see the function description for valid values",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "Rivo.RiskEngine.DiaryEvents",
+                  "Rivo.RiskEngine.RelatedDocuments",
+                  "Rivo.RiskEngine.RecurringTasks",
+                  "Rivo.RiskEngine.Locations",
+                  "Rivo.RiskEngine.Lgroups",
+                  "Rivo.RiskEngine.Users",
+                  "Rivo.RiskEngine.Ugroups",
+                  "Rivo.RiskEngine.Forms",
+                  "Rivo.Santiago.Accidents",
+                  "Rivo.Santiago.DSE.Assessments",
+                  "Rivo.Santiago.ManagementOfChanges"
+                ]
+              },
+              "example": "Rivo.RiskEngine.ManagementOfChanges"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The newly created record or not found if matching record doesn't exist",
+              "content": {
+                "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecord"
+                    }
+                  },
+                  "application/xml": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecord"
+                    }
+                  }
+              }
+            },
+            "400": {
+              "description": "Content, Invalid parameters supplied"
+            },
+            "401": {
+              "description": "Unauthorized, if there are authentication issues"
+            },
+            "403": {
+              "description": "Forbidden, if you have no rights to this operation"
+            },
+            "404": {
+              "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+            }
+          }
+        }
+      },
+      "/records/{className}/actions/query": {
+        "post": {
+          "tags": [
+            "ManagementOfChange"
+          ],
+          "summary": "SearchMOCs",
+          "description": "<i>Loads all matching records for the provided class and query criteria - includes related Task Data</i>",
+          "operationId": "post-searchmocs",
+          "parameters": [
+            {
+              "required": true,
+              "name": "className",
+              "in": "path",
+              "description": "the type of data that should be returned, see the function description for valid values",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "Rivo.RiskEngine.DiaryEvents",
+                  "Rivo.RiskEngine.RelatedDocuments",
+                  "Rivo.RiskEngine.RecurringTasks",
+                  "Rivo.RiskEngine.Locations",
+                  "Rivo.RiskEngine.Lgroups",
+                  "Rivo.RiskEngine.Users",
+                  "Rivo.RiskEngine.Ugroups",
+                  "Rivo.RiskEngine.Forms",
+                  "Rivo.Santiago.Accidents",
+                  "Rivo.Santiago.DSE.Assessments",
+                  "Rivo.Santiago.ManagementOfChanges"
+                ]
+              },
+              "example": "Rivo.RiskEngine.ManagementOfChanges"
+            }
+          ],
+          "requestBody": {
+            "description": "Query Parameters used to search and filter records",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref":"#/components/schemas/QueryParameters"
+                    }
+                },
+                "application/xml": {
+                    "schema": {
+                        "$ref":"#/components/schemas/QueryParameters"
+                    }
+                }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "The matching records or not found if matching record doesn't exist",
+              "content": {
+                "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ExtendedMocRecordCollection"
+                    }
+                  },
+                  "application/xml": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ExtendedMocRecordCollection"
+                    }
+                  }
+              }
+            },
+            "401": {
+              "description": "Unauthorized, if there are authentication issues"
+            },
+            "403": {
+              "description": "Forbidden, if you have no rights to this operation"
+            },
+            "404": {
+              "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+            }
+          }
+        }
+      },
+      "/records/{className}/{id}/actions/commit": {
+        "post": {
+            "tags": [
+              "ManagementOfChange"
+            ],
+            "summary": "CommitMOC",
+            "description": "<i>Commits a record of the specified class type and given id</i>",
+            "operationId": "post-commitrecord",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of data that should be updated",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.Santiago.ManagementOfChanges"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be committed",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object along with its defined attributes has been committed"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/records/{className}/{id}/actions/clone": {
+        "post": {
+            "tags": [
+              "ManagementOfChange"
+            ],
+            "summary": "CloneMOC",
+            "description": "<i>Clones and returns an copy existing record of the specified class type and given id</i>",
+            "operationId": "post-clonerecord",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of data that should be updated",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.Santiago.ManagementOfChanges"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be cloned",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The clone record is returned with a new valid id",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecord"
+                    }
+                  },
+                  "application/xml": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecord"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/records/{className}/{id}/linked/{linkedClass}": {
+        "get": {
+            "tags": [
+              "ManagementOfChange"
+            ],
+            "summary": "GetLinkedRecords",
+            "description": "<i>Loads any linked records by class and identifier.</i>",
+            "operationId": "get-getlinkedrecords",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the type of data that should be returned, see the function description for valid values",
+                "schema": {
+                  "type": "string",
+                  "enum": [
+                    "Rivo.RiskEngine.DiaryEvents",
+                    "Rivo.RiskEngine.RelatedDocuments",
+                    "Rivo.RiskEngine.RecurringTasks",
+                    "Rivo.RiskEngine.Locations",
+                    "Rivo.RiskEngine.Lgroups",
+                    "Rivo.RiskEngine.Users",
+                    "Rivo.RiskEngine.Ugroups",
+                    "Rivo.RiskEngine.Forms",
+                    "Rivo.Santiago.Accidents",
+                    "Rivo.Santiago.DSE.Assessments",
+                    "Rivo.Santiago.ManagementOfChanges"
+                  ]
+                },
+                "example": "Rivo.RiskEngine.ManagementOfChanges"
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "The identifier of the record to load.",
+                "schema": {
+                  "type": "string",
+                  "example": "390"
+                }
+              },
+              {
+                "required": true,
+                "name": "linkedClass",
+                "in": "path",
+                "description": "The class name of the linked records type.",
+                "schema": {
+                  "type": "string",
+                  "example": "Rivo.RiskEngine.Object_306"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Either the record or not found if the record doesn't exist",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecordCollection"
+                    }
+                  },
+                  "application/xml": {
+                    "schema": {
+                      "$ref": "#/components/schemas/MocRecordCollection"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/{className}": {
+        "post": {
+            "tags": [
+              "LessonsLearned"
+            ],
+            "summary": "CreateObject",
+            "description": "<i>Creates a new uncommitted record of the specified class type</i>",
+            "operationId": "post-createobject",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of data that should be created",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.RiskEngine.Object_306"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The created object along with its defined attributes",
+                "content": {
+                  "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/LessonsLearned"
+                      }
+                    },
+                    "application/xml": {
+                      "schema": {
+                        "$ref": "#/components/schemas/LessonsLearned"
+                      }
+                    }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/{className}/{id}": {
+        "put": {
+            "tags": [
+              "LessonsLearned"
+            ],
+            "summary": "UpdateObject",
+            "description": "<i>Updates a record of the specified class type and given id</i>",
+            "operationId": "post-updateobject",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of data that should be updated",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.RiskEngine.Object_306"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be updated",
+                "schema": {
+                    "type": "string",
+                    "example": "2408214"
+                }
+              }
+            ],
+            "requestBody": {
+                "description": "The attribute values to be updated.  Any that are not supplied will remain the same",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "attributeValues": {
+                                    "$ref": "#/components/schemas/LessonsLearnedAttributeValues"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+              "200": {
+                "description": "The updated object along with its defined attributes",
+                "content": {
+                  "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/LessonsLearned"
+                      }
+                    },
+                    "application/xml": {
+                      "schema": {
+                        "$ref": "#/components/schemas/LessonsLearned"
+                      }
+                    }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/{className}/{id}/actions/commit": {
+        "post": {
+            "tags": [
+              "LessonsLearned"
+            ],
+            "summary": "CommitObject",
+            "description": "<i>Commits a record of the specified class type and given id</i>",
+            "operationId": "post-commitobject",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of data that should be updated",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.RiskEngine.Object_306"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be committed",
+                "schema": {
+                    "type": "string",
+                    "example": "2408214"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object along with its defined attributes has been committed"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/{className}/{id}/linked/{linkedClass}":{
+        "post": {
+            "tags": [
+              "LessonsLearned"
+            ],
+            "summary": "LinkObject",
+            "description": "<i>Links records</i>\n\nFor example this could be used to Link a LessonsLearned to a MOC instance",
+            "operationId": "post-linkobject",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of parent data that should be linked to",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.Santiago.ManagementOfChanges"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be linked to as the parent",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              },
+              {
+                  "required": true,
+                  "name": "linkedClass",
+                  "in": "path",
+                  "description": "the class name of the object to be linked as a child",
+                  "schema": {
+                      "type": "string",
+                      "example": "Rivo.RiskEngine.Object_306"
+                  }
+              },
+              {
+                  "required": true,
+                  "name": "linkedIds",
+                  "in": "query",
+                  "description": "the identifier of the record to link",
+                  "schema": {
+                      "type": "string",
+                      "example": "2408214"
+                  }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object with the linkedId has been successfully linked to the parent object"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        },
+        "delete": {
+            "tags": [
+              "LessonsLearned"
+            ],
+            "summary": "UnLinkObject",
+            "description": "<i>UnLinks records</i>\n\nFor example this could be used to unlink a LessonsLearned to a MOC instance",
+            "operationId": "del-unlinkobject",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of parent data that should be unlinked from",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.Santiago.ManagementOfChanges"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be unlinked from as the parent",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              },
+              {
+                  "required": true,
+                  "name": "linkedClass",
+                  "in": "path",
+                  "description": "the class name of the object to be unlinked as a child",
+                  "schema": {
+                      "type": "string",
+                      "example": "Rivo.RiskEngine.Object_306"
+                  }
+              },
+              {
+                  "required": true,
+                  "name": "linkedIds",
+                  "in": "query",
+                  "description": "the identifier of the record to unlink",
+                  "schema": {
+                      "type": "string",
+                      "example": "2408214"
+                  }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object with the linkedId has been successfully unlinked from the parent object"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        },
+        "get": {
+            "tags": [
+              "LessonsLearned"
+            ],
+            "summary": "GetLinkObjects",
+            "description": "<i>Gets all linked records for a given parent</i>\n\nFor example this could be used to retrieve all LessonsLearned associated/linked to a MOC instance",
+            "operationId": "get-getlinkobjects",
+            "parameters": [
+              {
+                "required": true,
+                "name": "className",
+                "in": "path",
+                "description": "the class/type of parent data that should be unlinked from",
+                "schema": {
+                    "type": "string",
+                    "example": "Rivo.Santiago.ManagementOfChanges"
+                }
+              },
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be unlinked from as the parent",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              },
+              {
+                  "required": true,
+                  "name": "linkedClass",
+                  "in": "path",
+                  "description": "the class name of the object to be unlinked as a child",
+                  "schema": {
+                      "type": "string",
+                      "example": "Rivo.RiskEngine.Object_306"
+                  }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object with the linkedId has been successfully unlinked from the parent object",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/LessonsLearned"
+                            }
+                        }
+                    }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        }
+      },
+
+      "/object/Rivo.RiskEngine.DiaryEvents": {
+        "post": {
+            "tags": [
+              "Tasks"
+            ],
+            "summary": "CreateTask",
+            "description": "<i>Creates a new uncommitted task of the specified class type</i>",
+            "operationId": "post-createtask",
+            "responses": {
+              "200": {
+                "description": "The created object along with its defined attributes",
+                "content": {
+                  "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    },
+                    "application/xml": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/Rivo.RiskEngine.DiaryEvents/{id}": {
+        "put": {
+            "tags": [
+              "Tasks"
+            ],
+            "summary": "UpdateTask",
+            "description": "<i>Updates a task of the specified class type and given id</i>",
+            "operationId": "post-updatetask",
+            "parameters": [
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the task object to be updated",
+                "schema": {
+                    "type": "string",
+                    "example": "2408214"
+                }
+              }
+            ],
+            "requestBody": {
+                "description": "The attribute values to be updated.  Any that are not supplied will remain the same",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "attributeValues": {
+                                    "$ref": "#/components/schemas/Task"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+              "200": {
+                "description": "The updated task along with its defined attributes",
+                "content": {
+                  "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    },
+                    "application/xml": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/Rivo.RiskEngine.DiaryEvents/{id}/actions/commit": {
+        "post": {
+            "tags": [
+              "Tasks"
+            ],
+            "summary": "CommitTask",
+            "description": "<i>Commits a task of the specified class type and given id</i>",
+            "operationId": "post-committask",
+            "parameters": [
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be committed",
+                "schema": {
+                    "type": "string",
+                    "example": "2408214"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The task along with its defined attributes has been committed"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+          }
+      },
+      "/object/Rivo.RiskEngine.DiaryEvents/{id}/linked/{linkedClass}":{
+        "post": {
+            "tags": [
+              "Tasks"
+            ],
+            "summary": "LinkTask",
+            "description": "<i>Links tasks</i>\n\nFor example this could be used to Link a Task to a MOC instance",
+            "operationId": "post-linktask",
+            "parameters": [
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be linked to as the parent",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              },
+              {
+                  "required": true,
+                  "name": "linkedClass",
+                  "in": "path",
+                  "description": "the class name of the object to be linked as a child",
+                  "schema": {
+                      "type": "string",
+                      "example": "Rivo.RiskEngine.ManagementOfChanges"
+                  }
+              },
+              {
+                  "required": true,
+                  "name": "linkedIds",
+                  "in": "query",
+                  "description": "the identifier of the record to link",
+                  "schema": {
+                      "type": "string",
+                      "example": "2408214"
+                  }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object with the linkedId has been successfully linked to the parent object"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        },
+        "delete": {
+            "tags": [
+              "Tasks"
+            ],
+            "summary": "UnLinkTask",
+            "description": "<i>UnLinks tasks from a parent</i>\n\nFor example this could be used to unlink a Task from a MOC instance",
+            "operationId": "del-unlinktask",
+            "parameters": [
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object to be unlinked from as the parent",
+                "schema": {
+                    "type": "string",
+                    "example": "309"
+                }
+              },
+              {
+                  "required": true,
+                  "name": "linkedClass",
+                  "in": "path",
+                  "description": "the class name of the object to be unlinked as a child",
+                  "schema": {
+                      "type": "string",
+                      "example": "Rivo.RiskEngine.ManagementOfchanges"
+                  }
+              },
+              {
+                  "required": true,
+                  "name": "linkedIds",
+                  "in": "query",
+                  "description": "the identifier of the record to unlink",
+                  "schema": {
+                      "type": "string",
+                      "example": "2408214"
+                  }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object with the linkedId has been successfully unlinked from the parent object"
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        },
+        "get": {
+            "tags": [
+              "Tasks"
+            ],
+            "summary": "GetLinkedTasks",
+            "description": "<i>Gets all linked tasks for a given parent</i>\n\nFor example this could be used to retrieve all Tasks associated/linked to a MOC instance",
+            "operationId": "get-getlinkedtasks",
+            "parameters": [
+              {
+                "required": true,
+                "name": "id",
+                "in": "path",
+                "description": "the instance id of the object which the task belongs to as the parent",
+                "schema": {
+                    "type": "string",
+                    "example": "390"
+                }
+              },
+              {
+                  "required": true,
+                  "name": "linkedClass",
+                  "in": "path",
+                  "description": "the class name of the object to be retieved as a child",
+                  "schema": {
+                      "type": "string",
+                      "example": "Rivo.RiskEngine.DiaryEvents"
+                  }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "The object with the linkedId has been successfully unlinked from the parent object",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TaskCollection"
+                        }
+                    }
+                }
+              },
+              "401": {
+                "description": "Unauthorized, if there are authentication issues"
+              },
+              "403": {
+                "description": "Forbidden, if you have no rights to this operation"
+              },
+              "404": {
+                "description": "Not Found, if the current user or answer could not be found or the id is invalid"
+              }
+            }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "MocRecord": {
+          "required": [
+            "className",
+            "id",
+            "attributeValues"
+          ],
+          "type": "object",
+          "properties": {
+            "className": {
+              "type": "string",
+              "description": "the class name of the record requested",
+              "example": "Rivo.RiskEngine.ManagementOfChanges"
+            },
+            "id": {
+              "type": "object",
+              "description": "The record identifier",
+              "example": "390"
+            },
+            "attributeValues": {
+              "$ref": "#/components/schemas/MOCAttributeValues"
+            }
+          },
+          "description": "The requested record along with the attribute values that were selected."
+        },
+        "ExtendedMocRecord": {
+            "required": [
+              "className",
+              "id",
+              "attributeValues"
+            ],
+            "type": "object",
+            "properties": {
+              "className": {
+                "type": "string",
+                "description": "the class name of the record requested",
+                "example": "Rivo.RiskEngine.ManagementOfChanges"
+              },
+              "id": {
+                "type": "object",
+                "description": "The record identifier",
+                "example": "390"
+              },
+              "attributeValues": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AttributeValue"
+                }
+              },
+              "recordActions": {
+                  "type": "array",
+                  "items": {
+                      "$ref":"#/components/schemas/RecordAction"
+                  }
+              }
+            },
+            "description": "The requested record along with the attribute values that were selected."
+        },
+        "MocRecordCollection": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/MocRecord"
+                    }
+                },
+                "total": {
+                    "type": "number",
+                    "description": "the total number of records available",
+                    "example": 316
+                }
+            },
+            "description": "A collection of MOC Records"
+        },
+        "ExtendedMocRecordCollection": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/ExtendedMocRecord"
+                    }
+                },
+                "total": {
+                    "type": "number",
+                    "description": "the total number of records available",
+                    "example": 316
+                }
+            },
+            "description": "A collection of MOC Records"
+        },
+        "AttributeValue": {
+          "description": "The requested attribute values collection (array)",
+          "additionalProperties": {
+            "type": "string",
+            "example": "\"ManagementOfChanges.Title\": \"ChangeTitle\""
+          }
+        },
+        "SortParameter": {
+            "type": "object",
+            "description": "used to provide sorting",
+            "properties": {
+                "attributeName": {
+                    "type": "string",
+                    "description": "the attribute name to provide sorting on",
+                    "example": "ManagementOfChanges.Title"
+                },
+                "order": {
+                    "type": "string",
+                    "description": "the sort direction to use",
+                    "example": "asc"
+                }
+            }
+        },
+        "ConditionParameter": {
+            "type": "object",
+            "description": "search criteria",
+            "properties": {
+                "attributeName": {
+                    "type": "string",
+                    "description": "the name of the attribute to search on",
+                    "example": "ManagementOfChanges.Title"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "the type of filter to be applied",
+                    "example": "contains"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "the filter value for the attribute",
+                    "example": "sensor"
+                }
+            }
+        },
+        "QueryParameters": {
+            "type": "object",
+            "description": "values used to filter, sort, and page records",
+            "properties": {
+                "sort": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SortParameter"
+                    }
+                },
+                "offset": {
+                    "type": "string",
+                    "description": "the numbewr of records to skip",
+                    "example": "0"
+                },
+                "limit": {
+                    "type": "string",
+                    "description": "the number of records to return",
+                    "example": 10
+                },
+                "attributeNames": {
+                    "description": "comma delimited list of attribtue names to return",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "condition": {
+                    "$ref": "#/components/schemas/ConditionParameter"
+                }
+            }
+        },
+        "RecordAction": {
+            "type": "object",
+            "description": "represents a record action object",
+            "properties": {
+                "Label":{
+                    "type": "string",
+                    "description": "the action that occurred",
+                    "example": "Edit MOC"
+                },
+                "URLTemplate": {
+                    "type": "string",
+                    "description": "path of method used to modify the record",
+                    "example": "/Tools/ManagementOfChange/edit.aspx"
+                },
+                "ConfirmationText": {
+                    "type": "string",
+                    "description": "any confirmation text provided",
+                    "example": "null"
+                },
+                "ActionType":{
+                    "type":"integer",
+                    "description": "the action type code",
+                    "example": 1
+                },
+                "Operations": {
+                    "description": "collection of operations performed",
+                    "type": "array",
+                    "items":{
+                        "type": "string"
+                    }
+                },
+                "IsDisabled": {
+                    "type": "boolean",
+                    "description": "flag indicating whether this action has been disabled",
+                    "example": false
+                }
+            }
+        },
+        "MOCAttributeValues": {
+          "type": "object",
+          "description": "the definition of a simple stripped down MOC attribute collection",
+          "properties": {
+            "ManagmentOfChanges.Description": {
+              "type": "string",
+              "description": "the text description of the MOC",
+              "example": "Sample description"
+            },
+            "ManagementOfChanges.Id": {
+              "type": "integer",
+              "description": "the id of the MOC instance",
+              "example": 390
+            },
+            "ManagementOfChanges.Location": {
+              "type": "array",
+              "items": {
+                "type":"integer"
+              }
+            },
+            "ManagmentOfChanges.Title": {
+              "type": "string",
+              "description": "the title for the MOC instance",
+              "example": "sample title"
+            }
+          }
+        },
+        "LessonsLearnedAttributeValues": {
+            "type": "object",
+            "description": "the definition of a basic lesson learned object",
+            "properties": {
+                "LessonsLearned.CreatedByUserID": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "LessonsLearned.LocationId": {
+                    "type": "array",
+                    "items":{
+                        "type": "integer"
+                    }
+                },
+                "LessonsLearned.ID": {
+                    "type": "integer",
+                    "description": "the id of the lessons learned instance",
+                    "example": 2408219
+                },
+                "LessonsLearned.Title": {
+                    "type": "string",
+                    "description": "the title of the lesson learned instance",
+                    "example": "title"
+                },
+                "LessonsLearned.Deleted": {
+                    "type": "boolean",
+                    "description": "whether this instance exists or not",
+                    "example": false
+                },
+                "LessonsLearned.IsCommitted": {
+                    "type": "boolean",
+                    "description": "whether this instance has been committed to the data store",
+                    "example": false
+                },
+                "LessonsLearned.DateTimeCreated": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "when this object was created",
+                    "example": "2020-03-17T02:52:16.000"
+                }
+            }
+        },
+        "LessonsLearned": {
+            "type": "object",
+            "description": "a lesson learned object",
+            "properties": {
+                "className": {
+                  "type": "string",
+                  "description": "the class name of the record requested",
+                  "example": "Rivo.RiskEngine.Object_306 (Lesson Learned)"
+                },
+                "id": {
+                  "type": "object",
+                  "description": "The record identifier",
+                  "example": "2408219"
+                },
+                "attributeValues": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LessonsLearnedAttributeValues"
+                  }
+                }
+              }
+        },
+        "TaskAttributeValues": {
+          "type": "object",
+          "description": "the definition of a basic task object",
+          "properties": {
+              "Tasks.DiaryEventID": {
+                  "type": "integer",
+                  "description": "the id of the task instance",
+                  "example": 2408219
+              },
+              "Tasks.RelatedClass": {
+                  "type": "string",
+                  "description": "the type of record that this task is related to",
+                  "example": "Rivo.RiskEngine.ManagementOfChanges"
+              },
+              "Tasks.RelatedID": {
+                  "type": "integer",
+                  "description": "the id of the parent object",
+                  "example": 309
+              },
+              "Tasks.Title": {
+                  "type": "string",
+                  "description": "The title of the Task",
+                  "example": "Sample Task Title"
+              }
+          }
+        },
+        "Task": {
+          "type": "object",
+          "description": "a simple Task",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "the identifier of the task",
+              "example": 1075746
+            },
+            "className": {
+              "type": "string",
+              "description": "the class type of the Task",
+              "example": "Rivo.riskEngine.DiaryEvents"
+            },
+            "attributeValues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TaskAttributeValues"
+              }
+            }
+          }
+        },
+        "TaskCollection": {
+          "type": "object",
+          "properties": {
+              "data": {
+                  "type": "array",
+                  "items": {
+                      "$ref": "#/components/schemas/Task"
+                  }
+              },
+              "total": {
+                  "type": "number",
+                  "description": "the total number of records available",
+                  "example": 316
+              }
+          },
+          "description": "A collection of Task Records"
+        }
+      },
+      "securitySchemes": {
+        "apiKeyHeader": {
+          "type": "apiKey",
+          "name": "Ocp-Apim-Subscription-Key",
+          "in": "header"
+        },
+        "apiKeyQuery": {
+          "type": "apiKey",
+          "name": "subscription-key",
+          "in": "query"
+        }
+      }
+    },
+    "security": [
+      {
+        "apiKeyHeader": []
+      },
+      {
+        "apiKeyQuery": []
+      }
+    ],
+    "tags": [
+      {
+        "name": "ManagementOfChange",
+        "description": "Management of Change (MOC) is a best practice used to ensure that safety, health, and environmental risks and hazards are properly controlled when an organization makes changes to their facilities, operations, or personnel",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://spheracloud.net/moc"
+        }
+      },
+      {
+        "name": "LessonsLearned",
+        "description": "Lessons Learned Activities",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://spheracloud.net/lessonslearned"
+        }
+      },
+      {
+        "name": "Tasks",
+        "description": "Tasks",
+        "externalDocs": {
+          "description": "Find out more",
+          "url": "http://spheracloud.net/Tasks"
+        }
+      }
+    ]
+  }
